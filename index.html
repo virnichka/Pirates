@@ -2,15 +2,15 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <title>Quiz entre amis – Version Random</title>
+  <title>Quiz entre potes</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(to bottom right, #f9f9f9, #eeeeee);
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom right, #f9f9f9, #e9e9e9);
       color: #222;
       text-align: center;
-      padding: 40px 20px;
+      padding: 30px;
       margin: 0;
     }
 
@@ -22,19 +22,19 @@
     }
 
     h1 {
-      font-size: 2.5em;
-      margin: 0.4em 0 0.2em 0;
+      font-size: 2.2em;
+      margin-top: 10px;
     }
 
     .question {
-      font-size: 1.4em;
-      margin: 40px 0 20px 0;
+      font-size: 1.3em;
+      margin: 30px 0 20px 0;
     }
 
     .answers button {
       display: block;
-      width: 100%;
-      max-width: 300px;
+      width: 90%;
+      max-width: 320px;
       margin: 10px auto;
       padding: 12px;
       font-size: 1em;
@@ -50,11 +50,28 @@
     }
 
     .correct {
-      background-color: #c8f7c5 !important;
+      background-color: #b6f3b6 !important;
     }
 
     .wrong {
-      background-color: #f7c5c5 !important;
+      background-color: #f7b6b6 !important;
+    }
+
+    #nextBtn {
+      margin-top: 30px;
+      padding: 12px 20px;
+      font-size: 1em;
+      background-color: #222;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      display: none;
+    }
+
+    #result {
+      font-size: 1.4em;
+      margin-top: 40px;
     }
 
     .footer {
@@ -68,97 +85,92 @@
 <body>
 
   <div class="top-acroche" id="topAcroche"></div>
-  <h1 id="mainTitle"></h1>
+  <h1 id="mainTitle">Quiz entre potes</h1>
 
   <div class="question" id="quizQuestion"></div>
   <div class="answers" id="quizAnswers"></div>
+  <button id="nextBtn" onclick="nextQuestion()">Question suivante</button>
+  <div id="result"></div>
 
   <div class="footer">
     ⚠️ Ce site peut contenir des traces d'humour noir, de mauvaise foi et de honte collective.
   </div>
 
   <script>
-    // Accroches (en haut)
+    const potes = ["Thomas", "Simon", "Vladimir", "Alexis", "Ludovic", "Sacha", "Maxence", "Le zinc"];
+
+    const questions = [
+      {
+        text: "Qui a loupé son avion pour aller en Irlande parce qu'il l'avait pris dans la cabine ?",
+        correct: "Maxence"
+      },
+      {
+        text: "Qui a crié dans le micro devant Charlotte et son mec que Ludovic avait baisé Charlotte ?",
+        correct: "Vladimir"
+      },
+      {
+        text: "Qui était déguisé en Pikachu sur les pistes de ski ?",
+        correct: "Sacha"
+      },
+      {
+        text: "Qui a un nez tellement développé qu'il peut reconnaître quand les filles ont leurs règles ?",
+        correct: "Simon"
+      },
+      {
+        text: "Qui a perforé la jambe de Vladimir avec une carabine à plomb ?",
+        correct: "Alexis"
+      },
+      {
+        text: "Qui s'est fait endormir par un vigile parce qu'il a voulu jouer au héros ?",
+        correct: "Ludovic"
+      },
+      {
+        text: "Qui a piffé dans le tiroir de sa cuisine parce qu'il était sous substance ?",
+        correct: "Thomas"
+      },
+      {
+        text: "Qui a chopé la meuf de son cousin en secrète ?",
+        correct: "Le zinc"
+      }
+    ];
+
     const accroches = [
       "Ici, on se dit les vérités entre potes.",
       "Pas de filtre, pas de pitié.",
-      "Un quiz pour foutre le feu à la conversation.",
       "Tu vas regretter d’être venu.",
-      "Ce site est plus honnête que ton ex.",
       "On a tout vu. On se souvient de tout.",
       "Bonne chance. T'en auras besoin.",
     ];
 
-    const punchlines = [
-      "Yo, bande de tocards 👋",
-      "Bienvenue sur le site qui va foutre la merde 💣",
-      "Encore un quiz ? Non. Une embuscade.",
-      "Voici l’endroit où les souvenirs gênants ressuscitent 🪦",
-      "Ce quiz juge. Et il juge fort.",
-      "On est entre nous. C’est justement ça le problème.",
-    ];
+    let shuffledQuestions = shuffleArray([...questions]);
+    let currentQuestion = 0;
+    let score = 0;
 
-    // Liste de questions
-    const questions = [
-      {
-        text: "Qui a dormi par terre au Nouvel An sans s’en souvenir ?",
-        answers: [
-          { text: "Alex", correct: false },
-          { text: "Jules", correct: true },
-          { text: "Sam", correct: false },
-          { text: "Nina", correct: false }
-        ]
-      },
-      {
-        text: "Qui a pissé dans le four d’un Airbnb en croyant que c’était les toilettes ?",
-        answers: [
-          { text: "Thomas", correct: false },
-          { text: "Simon", correct: false },
-          { text: "Vladimir", correct: true },
-          { text: "Le Zinc", correct: false }
-        ]
-      },
-      {
-        text: "Qui a loupé son avion pour aller en Irlande parce qu’il s’était pris une cabane ?",
-        answers: [
-          { text: "Maxence", correct: true },
-          { text: "Antoine", correct: false },
-          { text: "Loïc", correct: false },
-          { text: "Adrien", correct: false }
-        ]
-      },
-      {
-        text: "Qui a renversé une table de poker parce qu’il perdait trop ?",
-        answers: [
-          { text: "Tom", correct: false },
-          { text: "Léo", correct: false },
-          { text: "Sacha", correct: true },
-          { text: "La table elle-même", correct: false }
-        ]
-      }
-    ];
+    document.getElementById("topAcroche").innerText =
+      accroches[Math.floor(Math.random() * accroches.length)];
 
-    // Mélangeur de tableau
     function shuffleArray(array) {
       return array.sort(() => Math.random() - 0.5);
     }
 
-    // Afficher une question aléatoire
-    function displayRandomQuestion() {
-      const question = questions[Math.floor(Math.random() * questions.length)];
-      document.getElementById("quizQuestion").innerText = question.text;
+    function displayQuestion() {
+      const q = shuffledQuestions[currentQuestion];
+      document.getElementById("quizQuestion").innerText = q.text;
 
-      const shuffledAnswers = shuffleArray([...question.answers]);
-
+      // Mélanger les réponses
+      const others = potes.filter(name => name !== q.correct);
+      const choices = shuffleArray([q.correct, ...shuffleArray(others).slice(0, 3)]);
       const answersContainer = document.getElementById("quizAnswers");
       answersContainer.innerHTML = "";
 
-      shuffledAnswers.forEach(answer => {
-        const button = document.createElement("button");
-        button.innerText = answer.text;
-        button.onclick = () => handleAnswer(button, answer.correct);
-        answersContainer.appendChild(button);
+      choices.forEach(name => {
+        const btn = document.createElement("button");
+        btn.innerText = name;
+        btn.onclick = () => handleAnswer(btn, name === q.correct);
+        answersContainer.appendChild(btn);
       });
+
+      document.getElementById("nextBtn").style.display = "none";
     }
 
     function handleAnswer(button, isCorrect) {
@@ -167,18 +179,46 @@
 
       if (isCorrect) {
         button.classList.add("correct");
+        score++;
       } else {
         button.classList.add("wrong");
+        const correctBtn = Array.from(allButtons).find(
+          btn => btn.innerText === shuffledQuestions[currentQuestion].correct
+        );
+        if (correctBtn) correctBtn.classList.add("correct");
+      }
+
+      document.getElementById("nextBtn").style.display = "inline-block";
+    }
+
+    function nextQuestion() {
+      currentQuestion++;
+      if (currentQuestion < shuffledQuestions.length) {
+        displayQuestion();
+      } else {
+        showResult();
       }
     }
 
-    // Initialisation
-    document.getElementById("topAcroche").innerText =
-      accroches[Math.floor(Math.random() * accroches.length)];
-    document.getElementById("mainTitle").innerText =
-      punchlines[Math.floor(Math.random() * punchlines.length)];
-    displayRandomQuestion();
-  </script>
+    function showResult() {
+      document.getElementById("quizQuestion").style.display = "none";
+      document.getElementById("quizAnswers").style.display = "none";
+      document.getElementById("nextBtn").style.display = "none";
+      document.getElementById("result").innerHTML = `
+        <p>Tu as obtenu <strong>${score} / ${shuffledQuestions.length}</strong></p>
+        <p>${getMessage(score)}</p>
+      `;
+    }
 
+    function getMessage(score) {
+      if (score === shuffledQuestions.length) return "Tu es dans TOUS les dossiers. Flippant.";
+      if (score >= 5) return "Pas mal… tu mérites ta place à la table des anciens.";
+      if (score >= 3) return "T'étais là, mais t'écoutais pas.";
+      return "Frérot... t'es sûr que tu fais partie du groupe ?";
+    }
+
+    // Init
+    displayQuestion();
+  </script>
 </body>
 </html>
