@@ -1,224 +1,132 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8" />
-  <title>Quiz entre potes</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to bottom right, #f9f9f9, #e9e9e9);
-      color: #222;
-      text-align: center;
-      padding: 30px;
-      margin: 0;
+<script>
+const scriptURL = "https://script.google.com/macros/s/AKfycbwBFb6KKtgUUlKaxESDnN__J9eei9OHOS0FsTvGYbNxnrPkNSUP09SmPGCpwIOw5u_h/exec";
+
+let questions = [];
+let shuffledQuestions = [];
+let currentQuestionIndex = 0;
+let score = 0;
+
+// Charger les questions depuis Google Sheets
+async function chargerQuestions() {
+  try {
+    const response = await fetch(scriptURL);
+    const data = await response.json();
+
+    // Mélange des questions
+    questions = data;
+    shuffledQuestions = questions.sort(() => Math.random() - 0.5);
+    showQuestion();
+  } catch (error) {
+    console.error("Erreur de chargement des questions :", error);
+    document.getElementById("quizQuestion").innerText = "Erreur de chargement du quiz.";
+  }
+}
+
+// Afficher une question
+function showQuestion() {
+  const currentQuestion = shuffledQuestions[currentQuestionIndex];
+  document.getElementById("quizQuestion").innerText = currentQuestion.question;
+
+  const shuffledAnswers = shuffle([
+    currentQuestion.correct,
+    ...getRandomNames(currentQuestion.correct)
+  ]);
+
+  const answersContainer = document.getElementById("quizAnswers");
+  answersContainer.innerHTML = "";
+
+  shuffledAnswers.forEach(answer => {
+    const button = document.createElement("button");
+    button.innerText = answer;
+    button.className = "answerBtn";
+    button.onclick = () => checkAnswer(answer, currentQuestion.correct);
+    answersContainer.appendChild(button);
+  });
+
+  document.getElementById("nextBtn").style.display = "none";
+}
+
+// Vérifier la réponse
+function checkAnswer(selected, correct) {
+  const buttons = document.querySelectorAll(".answerBtn");
+  buttons.forEach(btn => {
+    btn.disabled = true;
+    if (btn.innerText === correct) {
+      btn.style.backgroundColor = "#4CAF50";
+    } else if (btn.innerText === selected) {
+      btn.style.backgroundColor = "#f44336";
     }
+  });
 
-    .top-acroche {
-      font-size: 0.9em;
-      font-style: italic;
-      color: #666;
-      margin-bottom: 15px;
-    }
+  if (selected === correct) {
+    score++;
+  }
 
-    h1 {
-      font-size: 2.2em;
-      margin-top: 10px;
-    }
+  document.getElementById("nextBtn").style.display = "inline-block";
+}
 
-    .question {
-      font-size: 1.3em;
-      margin: 30px 0 20px 0;
-    }
+// Aller à la question suivante
+function nextQuestion() {
+  currentQuestionIndex++;
+  if (currentQuestionIndex < shuffledQuestions.length) {
+    showQuestion();
+  } else {
+    showResult();
+  }
+}
 
-    .answers button {
-      display: block;
-      width: 90%;
-      max-width: 320px;
-      margin: 10px auto;
-      padding: 12px;
-      font-size: 1em;
-      border: none;
-      border-radius: 8px;
-      background-color: #eee;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
+// Afficher le résultat final
+function showResult() {
+  document.getElementById("quizQuestion").style.display = "none";
+  document.getElementById("quizAnswers").style.display = "none";
+  document.getElementById("nextBtn").style.display = "none";
 
-    .answers button:hover {
-      background-color: #ddd;
-    }
+  const pseudo = prompt("Entre ton prénom ou pseudo (facultatif) :") || "Anonyme";
+  envoyerResultat(pseudo, score, shuffledQuestions.length);
 
-    .correct {
-      background-color: #b6f3b6 !important;
-    }
+  document.getElementById("result").innerHTML = `
+    <p>Tu as obtenu <strong>${score} / ${shuffledQuestions.length}</strong></p>
+    <p>${getMessage(score)}</p>
+  `;
+}
 
-    .wrong {
-      background-color: #f7b6b6 !important;
-    }
+// Envoyer le score vers Google Sheets
+function envoyerResultat(nom, score, total) {
+  fetch(scriptURL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ nom, score, total })
+  })
+  .then(res => res.json())
+  .then(data => {
+    console.log("✅ Score envoyé :", data);
+  })
+  .catch(err => {
+    console.error("❌ Erreur d’envoi du score :", err);
+  });
+}
 
-    #nextBtn {
-      margin-top: 30px;
-      padding: 12px 20px;
-      font-size: 1em;
-      background-color: #222;
-      color: #fff;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      display: none;
-    }
+// Mélanger un tableau
+function shuffle(array) {
+  return array.sort(() => Math.random() - 0.5);
+}
 
-    #result {
-      font-size: 1.4em;
-      margin-top: 40px;
-    }
+// Simuler des faux noms pour les mauvaises réponses
+function getRandomNames(correctName) {
+  const allNames = ["Thomas", "Simon", "Vladimir", "Alexis", "Ludovic", "Sacha", "Maxence", "Le zinc"];
+  const others = allNames.filter(name => name !== correctName);
+  const shuffled = shuffle(others);
+  return shuffled.slice(0, 3); // 3 réponses leurres
+}
 
-    .footer {
-      font-size: 0.85em;
-      font-style: italic;
-      color: #999;
-      margin-top: 60px;
-    }
-  </style>
-</head>
-<body>
+// Message final personnalisé
+function getMessage(score) {
+  if (score === 0) return "T’as dormi ou quoi ?";
+  if (score < 3) return "Pas ouf…";
+  if (score < 6) return "Correct mais pas glorieux.";
+  return "Tu connais trop bien la bande, psychopathe 😎";
+}
 
-  <div class="top-acroche" id="topAcroche"></div>
-  <h1 id="mainTitle">Quiz entre potes</h1>
-
-  <div class="question" id="quizQuestion"></div>
-  <div class="answers" id="quizAnswers"></div>
-  <button id="nextBtn" onclick="nextQuestion()">Question suivante</button>
-  <div id="result"></div>
-
-  <div class="footer">
-    ⚠️ Ce site peut contenir des traces d'humour noir, de mauvaise foi et de honte collective.
-  </div>
-
-  <script>
-    const potes = ["Thomas", "Simon", "Vladimir", "Alexis", "Ludovic", "Sacha", "Maxence", "Le zinc"];
-
-    const questions = [
-      { text: "Qui a loupé son avion pour aller en Irlande parce qu'il a pris une une cabine ?", correct: "Maxence" },
-      { text: "Qui a crié dans le micro devant Charlotte et son mec que Ludovic avait baisé Charlotte ?", correct: "Vladimir" },
-      { text: "Qui était déguisé en Pikachu sur les pistes de ski ?", correct: "Sacha" },
-      { text: "Qui a un nez tellement développé qu'il peut reconnaître quand les meufs ont leurs règles ?", correct: "Simon" },
-      { text: "Qui a perforé la jambe de Vladimir avec une carabine à plomb ?", correct: "Alexis" },
-      { text: "Qui s'est fait endormir par un vigile parce qu'il a voulu jouer au héros ?", correct: "Ludovic" },
-      { text: "Qui a pissé dans le tiroir de sa cuisine parce qu'il était sous substance ?", correct: "Thomas" },
-      { text: "Qui a chopé la meuf de son cousin en scred‘ ?", correct: "Le zinc" }
-    ];
-
-    const accroches = [
-      "Ici, on se dit les vérités entre potes.",
-      "Pas de filtre, pas de pitié.",
-      "Tu vas regretter d’être venu.",
-      "On a tout vu. On se souvient de tout.",
-      "Bonne chance. T'en auras besoin."
-    ];
-
-    let shuffledQuestions = shuffleArray([...questions]);
-    let currentQuestion = 0;
-    let score = 0;
-
-    document.getElementById("topAcroche").innerText =
-      accroches[Math.floor(Math.random() * accroches.length)];
-
-    function shuffleArray(array) {
-      return array.sort(() => Math.random() - 0.5);
-    }
-
-    function displayQuestion() {
-      const q = shuffledQuestions[currentQuestion];
-      document.getElementById("quizQuestion").innerText = q.text;
-
-      const others = potes.filter(name => name !== q.correct);
-      const choices = shuffleArray([q.correct, ...shuffleArray(others).slice(0, 3)]);
-      const answersContainer = document.getElementById("quizAnswers");
-      answersContainer.innerHTML = "";
-
-      choices.forEach(name => {
-        const btn = document.createElement("button");
-        btn.innerText = name;
-        btn.onclick = () => handleAnswer(btn, name === q.correct);
-        answersContainer.appendChild(btn);
-      });
-
-      document.getElementById("nextBtn").style.display = "none";
-    }
-
-    function handleAnswer(button, isCorrect) {
-      const allButtons = document.querySelectorAll(".answers button");
-      allButtons.forEach(btn => btn.disabled = true);
-
-      if (isCorrect) {
-        button.classList.add("correct");
-        score++;
-      } else {
-        button.classList.add("wrong");
-        const correctBtn = Array.from(allButtons).find(
-          btn => btn.innerText === shuffledQuestions[currentQuestion].correct
-        );
-        if (correctBtn) correctBtn.classList.add("correct");
-      }
-
-      document.getElementById("nextBtn").style.display = "inline-block";
-    }
-
-    // **Nouvelle fonction** pour envoyer les résultats à Google Sheets
-    function envoyerResultat(nom, score, total) {
-      fetch("https://script.google.com/macros/s/AKfycbwBFb6KKtgUUlKaxESDnN__J9eei9OHOS0FsTvGYbNxnrPkNSUP09SmPGCpwIOw5u_h/exec", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          nom: nom,
-          score: score,
-          total: total
-        })
-      })
-      .then(response => response.json())
-      .then(data => {
-        console.log("Score envoyé dans Google Sheets ✅", data);
-      })
-      .catch(error => {
-        console.error("Erreur d’envoi vers la feuille Google Sheets ❌", error);
-      });
-    }
-
-    function nextQuestion() {
-      currentQuestion++;
-      if (currentQuestion < shuffledQuestions.length) {
-        displayQuestion();
-      } else {
-        showResult();
-      }
-    }
-
-    function showResult() {
-      document.getElementById("quizQuestion").style.display = "none";
-      document.getElementById("quizAnswers").style.display = "none";
-      document.getElementById("nextBtn").style.display = "none";
-
-      // Demande du pseudo et envoi
-      const pseudo = prompt("Entre ton prénom/pseudo (facultatif) :") || "Anonyme";
-      envoyerResultat(pseudo, score, shuffledQuestions.length);
-
-      document.getElementById("result").innerHTML = `
-        <p>Tu as obtenu <strong>${score} / ${shuffledQuestions.length}</strong></p>
-        <p>${getMessage(score)}</p>
-      `;
-    }
-
-    function getMessage(score) {
-      if (score === shuffledQuestions.length) return "Tu es dans TOUS les dossiers. Flippant.";
-      if (score >= 5) return "Pas mal… tu mérites ta place à la table des anciens.";
-      if (score >= 3) return "T'étais là, mais t'écoutais pas.";
-      return "Frérot... t'es sûr que tu fais partie du groupe ?";
-    }
-
-    // Lancement initial du quiz
-    displayQuestion();
-  </script>
-</body>
-</html>
+// Initialisation
+window.onload = chargerQuestions;
+</script>
