@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <title>Quiz entre potes</title>
+  <title>Quiz entre amis – Version Random</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     body {
@@ -70,54 +70,97 @@
   <div class="top-acroche" id="topAcroche"></div>
   <h1 id="mainTitle"></h1>
 
-  <div class="question">
-    Qui a dormi par terre au Nouvel An sans s’en souvenir ?
-  </div>
-
-  <div class="answers">
-    <button onclick="handleAnswer(this, false)">A. Alex</button>
-    <button onclick="handleAnswer(this, true)">B. Jules</button>
-    <button onclick="handleAnswer(this, false)">C. Sam</button>
-    <button onclick="handleAnswer(this, false)">D. Nina</button>
-  </div>
+  <div class="question" id="quizQuestion"></div>
+  <div class="answers" id="quizAnswers"></div>
 
   <div class="footer">
     ⚠️ Ce site peut contenir des traces d'humour noir, de mauvaise foi et de honte collective.
   </div>
 
   <script>
-    // Phrases d'accroche (en haut)
+    // Accroches (en haut)
     const accroches = [
       "Ici, on se dit les vérités entre potes.",
       "Pas de filtre, pas de pitié.",
       "Un quiz pour foutre le feu à la conversation.",
       "Tu vas regretter d’être venu.",
       "Ce site est plus honnête que ton ex.",
-      "Respire… c’est encore (presque) drôle.",
       "On a tout vu. On se souvient de tout.",
-      "Tu peux mentir, mais pas au quiz.",
       "Bonne chance. T'en auras besoin.",
     ];
 
-    // Phrases principales (titre)
     const punchlines = [
       "Yo, bande de tocards 👋",
       "Bienvenue sur le site qui va foutre la merde 💣",
       "Encore un quiz ? Non. Une embuscade.",
-      "T’as cliqué ? Trop tard. Prépare-toi.",
       "Voici l’endroit où les souvenirs gênants ressuscitent 🪦",
       "Ce quiz juge. Et il juge fort.",
       "On est entre nous. C’est justement ça le problème.",
-      "Des questions ? Oui. Des regrets ? Probablement.",
     ];
 
-    // Affichage aléatoire
-    document.getElementById("topAcroche").innerText =
-      accroches[Math.floor(Math.random() * accroches.length)];
-    document.getElementById("mainTitle").innerText =
-      punchlines[Math.floor(Math.random() * punchlines.length)];
+    // Liste de questions
+    const questions = [
+      {
+        text: "Qui a dormi par terre au Nouvel An sans s’en souvenir ?",
+        answers: [
+          { text: "Alex", correct: false },
+          { text: "Jules", correct: true },
+          { text: "Sam", correct: false },
+          { text: "Nina", correct: false }
+        ]
+      },
+      {
+        text: "Qui a pissé dans le four d’un Airbnb en croyant que c’était les toilettes ?",
+        answers: [
+          { text: "Thomas", correct: false },
+          { text: "Simon", correct: false },
+          { text: "Vladimir", correct: true },
+          { text: "Le Zinc", correct: false }
+        ]
+      },
+      {
+        text: "Qui a loupé son avion pour aller en Irlande parce qu’il s’était pris une cabane ?",
+        answers: [
+          { text: "Maxence", correct: true },
+          { text: "Antoine", correct: false },
+          { text: "Loïc", correct: false },
+          { text: "Adrien", correct: false }
+        ]
+      },
+      {
+        text: "Qui a renversé une table de poker parce qu’il perdait trop ?",
+        answers: [
+          { text: "Tom", correct: false },
+          { text: "Léo", correct: false },
+          { text: "Sacha", correct: true },
+          { text: "La table elle-même", correct: false }
+        ]
+      }
+    ];
 
-    // Réponse
+    // Mélangeur de tableau
+    function shuffleArray(array) {
+      return array.sort(() => Math.random() - 0.5);
+    }
+
+    // Afficher une question aléatoire
+    function displayRandomQuestion() {
+      const question = questions[Math.floor(Math.random() * questions.length)];
+      document.getElementById("quizQuestion").innerText = question.text;
+
+      const shuffledAnswers = shuffleArray([...question.answers]);
+
+      const answersContainer = document.getElementById("quizAnswers");
+      answersContainer.innerHTML = "";
+
+      shuffledAnswers.forEach(answer => {
+        const button = document.createElement("button");
+        button.innerText = answer.text;
+        button.onclick = () => handleAnswer(button, answer.correct);
+        answersContainer.appendChild(button);
+      });
+    }
+
     function handleAnswer(button, isCorrect) {
       const allButtons = document.querySelectorAll(".answers button");
       allButtons.forEach(btn => btn.disabled = true);
@@ -128,6 +171,13 @@
         button.classList.add("wrong");
       }
     }
+
+    // Initialisation
+    document.getElementById("topAcroche").innerText =
+      accroches[Math.floor(Math.random() * accroches.length)];
+    document.getElementById("mainTitle").innerText =
+      punchlines[Math.floor(Math.random() * punchlines.length)];
+    displayRandomQuestion();
   </script>
 
 </body>
