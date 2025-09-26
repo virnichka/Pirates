@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz des Tarés</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #fffbe6;
+      color: #222;
+      text-align: center;
+      padding: 50px;
+    }
+
+    h1 {
+      font-size: 3em;
+      margin-bottom: 20px;
+    }
+
+    #randomIntro {
+      font-size: 1.4em;
+      margin-bottom: 40px;
+    }
+
+    p {
+      font-size: 1.1em;
+      margin-top: 20px;
+    }
+
+    .footer {
+      margin-top: 50px;
+      font-size: 0.9em;
+      color: gray;
+    }
+  </style>
+</head>
+<body>
+  <h1 id="randomIntro">Chargement du jugement…</h1>
+
+  <p>
+    Ce quiz n’est pas là pour flatter ton ego.<br>
+    Il est là pour te rappeler que même tes potes se souviennent de ce que tu veux oublier.
+  </p>
+
+  <p>
+    Prends une grande respiration. Ou une claque. C’est parti.
+  </p>
+
+  <div class="footer">
+    ⚠️ Ce site peut contenir des traces d'humour noir, de mauvaise foi et de honte collective.
+  </div>
+
+  <script>
+    const intros = [
+      "Salut bande de déglingués 👋",
+      "Oh non… t’es encore là ?",
+      "Bienvenue sur LE site qui va briser des amitiés.",
+      "Allez, asseyez-vous, on va régler des comptes.",
+      "Prépare-toi à assumer tes conneries (ou à mentir très fort).",
+      "Yo, sac à problèmes émotionnels 👀",
+      "C’est ici le tribunal de la mauvaise foi.",
+      "Encore un quiz ? Oui. Encore des traumatismes ? Évidemment.",
+      "Courage. Ou pas.",
+      "T’as cliqué ? Trop tard. Tu vas te faire allumer.",
+      "Ce site va révéler qui est un génie… et qui est juste bruyant."
+    ];
+
+    // Choisir une phrase aléatoire et l'afficher
+    const random = intros[Math.floor(Math.random() * intros.length)];
+    document.getElementById("randomIntro").innerText = random;
+  </script>
+</body>
+</html>
