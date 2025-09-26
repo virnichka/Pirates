@@ -1,74 +1,101 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Quiz des Tarés</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     body {
-      font-family: 'Arial', sans-serif;
-      background-color: #fffbe6;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #fcfcfc;
       color: #222;
       text-align: center;
-      padding: 50px;
+      padding: 40px 20px;
+      margin: 0;
+    }
+
+    .top-acroche {
+      font-size: 0.9em;
+      font-style: italic;
+      color: #666;
+      margin-bottom: 15px;
     }
 
     h1 {
-      font-size: 3em;
-      margin-bottom: 20px;
+      font-size: 2.5em;
+      margin: 0.4em 0 0.2em 0;
     }
 
-    #randomIntro {
-      font-size: 1.4em;
-      margin-bottom: 40px;
-    }
-
-    p {
-      font-size: 1.1em;
-      margin-top: 20px;
+    .intro {
+      font-size: 1.3em;
+      margin-top: 25px;
+      line-height: 1.6;
     }
 
     .footer {
-      margin-top: 50px;
-      font-size: 0.9em;
-      color: gray;
+      font-size: 0.85em;
+      font-style: italic;
+      color: #999;
+      margin-top: 60px;
     }
   </style>
 </head>
 <body>
-  <h1 id="randomIntro">Chargement du jugement…</h1>
 
-  <p>
-    Ce quiz n’est pas là pour flatter ton ego.<br>
-    Il est là pour te rappeler que même tes potes se souviennent de ce que tu veux oublier.
-  </p>
+  <div class="top-acroche" id="topAcroche">
+    <!-- Accroche aléatoire -->
+  </div>
 
-  <p>
-    Prends une grande respiration. Ou une claque. C’est parti.
-  </p>
+  <h1 id="mainTitle">
+    <!-- Phrase principale aléatoire -->
+  </h1>
+
+  <div class="intro">
+    Ce quiz n’a aucun respect.<br />
+    Tu vas te prendre des souvenirs en pleine face.<br />
+    À toi de jouer… si t’as les nerfs.
+  </div>
 
   <div class="footer">
     ⚠️ Ce site peut contenir des traces d'humour noir, de mauvaise foi et de honte collective.
   </div>
 
   <script>
-    const intros = [
-      "Salut bande de déglingués 👋",
-      "Oh non… t’es encore là ?",
-      "Bienvenue sur LE site qui va briser des amitiés.",
-      "Allez, asseyez-vous, on va régler des comptes.",
-      "Prépare-toi à assumer tes conneries (ou à mentir très fort).",
-      "Yo, sac à problèmes émotionnels 👀",
-      "C’est ici le tribunal de la mauvaise foi.",
-      "Encore un quiz ? Oui. Encore des traumatismes ? Évidemment.",
-      "Courage. Ou pas.",
-      "T’as cliqué ? Trop tard. Tu vas te faire allumer.",
-      "Ce site va révéler qui est un génie… et qui est juste bruyant."
+    // Phrases d'accroche discrètes (en haut)
+    const accroches = [
+      "Ici, on se dit les vérités entre potes.",
+      "Pas de filtre, pas de pitié.",
+      "Un quiz pour foutre le feu à la conversation.",
+      "Tu vas regretter d’être venu.",
+      "Respire… c’est encore (presque) drôle.",
+      "Ce site est plus honnête que ton ex.",
+      "On a tout vu. On se souvient de tout.",
+      "Tu peux mentir, mais pas au quiz.",
+      "Les règles ? Y’en a pas.",
+      "Bonne chance. T'en auras besoin."
     ];
 
-    // Choisir une phrase aléatoire et l'afficher
-    const random = intros[Math.floor(Math.random() * intros.length)];
-    document.getElementById("randomIntro").innerText = random;
+    // Phrases principales (titre)
+    const punchlines = [
+      "Yo, bande de tocards 👋",
+      "Bienvenue sur le site qui va foutre la merde 💣",
+      "Encore un quiz ? Non. Une embuscade.",
+      "T’as cliqué ? Trop tard. Prépare-toi.",
+      "Voici l’endroit où les souvenirs gênants ressuscitent 🪦",
+      "Bienvenue dans le pire procès de groupe de l’année",
+      "Ce quiz juge. Et il juge fort.",
+      "Si t’es pas prêt à te faire afficher… ferme cette page.",
+      "Des questions ? Oui. Des regrets ? Probablement.",
+      "On est entre nous. C’est justement ça le problème."
+    ];
+
+    // Choisir aléatoirement et insérer
+    document.getElementById("topAcroche").innerText =
+      accroches[Math.floor(Math.random() * accroches.length)];
+
+    document.getElementById("mainTitle").innerText =
+      punchlines[Math.floor(Math.random() * punchlines.length)];
   </script>
+
 </body>
 </html>
