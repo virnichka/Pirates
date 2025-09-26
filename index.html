@@ -4,11 +4,17 @@
   <meta charset="UTF-8">
   <title>Quiz Entre Potes</title>
   <style>
+  * {
+    box-sizing: border-box;
+  }
+
   body {
     font-family: Arial, sans-serif;
     text-align: center;
     padding: 20px;
     margin: 0;
+    max-width: 100vw;
+    overflow-x: hidden;
   }
 
   h1 {
@@ -20,8 +26,10 @@
     font-size: 1.3em;
     margin: 20px auto;
     max-width: 90%;
-    line-height: 1.4;
-    word-wrap: break-word;
+    line-height: 1.5;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
   }
 
   #quizAnswers {
@@ -36,6 +44,8 @@
     width: 80%;
     max-width: 300px;
     border-radius: 6px;
+    word-break: break-word;
+    white-space: normal;
   }
 
   #nextBtn {
@@ -44,11 +54,15 @@
     font-size: 16px;
     display: block;
     border-radius: 6px;
+    max-width: 300px;
   }
 
   #result {
     margin-top: 20px;
     font-size: 1.2em;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   footer {
@@ -78,6 +92,7 @@
   }
 </style>
 
+
 </head>
 <body>
   <h1>Le Grand Quiz de la Honte</h1>
@@ -88,7 +103,7 @@
   <button id="nextBtn" onclick="nextQuestion()" style="display: none;">Suivant</button>
   <div id="result"></div>
 
-  <footer>rev.0.07</footer>
+  <footer>rev0.08</footer>
 
   <script>
     const scriptURL = "https://virnichka.github.io/Pirates/questions.json";
