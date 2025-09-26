@@ -34,13 +34,12 @@
   <button id="nextBtn" onclick="nextQuestion()" style="display: none;">Suivant</button>
   <div id="result"></div>
 
-  <footer>rev.0.03</footer>
+  <footer>rev.0.04</footer>
 
   <script>
     const scriptURL = "https://script.google.com/macros/s/AKfycbwBFb6KKtgUUlKaxESDnN__J9eei9OHOS0FsTvGYbNxnrPkNSUP09SmPGCpwIOw5u_h/exec";
+    const noms = ["Thomas", "Simon", "Vladimir", "Alexis", "Ludovic", "Sacha", "Maxence", "Le zinc"];
 
-
-    
     let questions = [];
     let shuffledQuestions = [];
     let currentQuestionIndex = 0;
@@ -50,14 +49,25 @@
       try {
         const response = await fetch(scriptURL);
         const data = await response.json();
+        console.log("✅ Questions chargées :", data);
 
         questions = data;
         shuffledQuestions = questions.sort(() => Math.random() - 0.5);
         showQuestion();
       } catch (error) {
-        console.error("Erreur de chargement des questions :", error);
+        console.error("❌ Erreur de chargement des questions :", error);
         document.getElementById("quizQuestion").innerText = "Erreur de chargement du quiz.";
       }
+    }
+
+    function getRandomNames(exclude) {
+      const autres = noms.filter(n => n !== exclude);
+      const melange = autres.sort(() => Math.random() - 0.5);
+      return melange.slice(0, 3); // 3 mauvaises réponses
+    }
+
+    function shuffle(array) {
+      return array.sort(() => Math.random() - 0.5);
     }
 
     function showQuestion() {
@@ -98,4 +108,25 @@
         score++;
       }
 
-      document.getElement
+      document.getElementById("nextBtn").style.display = "block";
+    }
+
+    function nextQuestion() {
+      currentQuestionIndex++;
+      if (currentQuestionIndex < shuffledQuestions.length) {
+        showQuestion();
+      } else {
+        showFinalScore();
+      }
+    }
+
+    function showFinalScore() {
+      document.getElementById("quizQuestion").innerText = `Quiz terminé !`;
+      document.getElementById("quizAnswers").innerHTML = `Tu as eu ${score} bonne(s) réponse(s) sur ${shuffledQuestions.length}.`;
+      document.getElementById("nextBtn").style.display = "none";
+    }
+
+    window.onload = chargerQuestions;
+  </script>
+</body>
+</html>
