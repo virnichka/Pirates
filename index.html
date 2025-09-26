@@ -2,12 +2,12 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <title>Quiz des Tarés</title>
+  <title>Quiz entre potes</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #fcfcfc;
+      background: linear-gradient(to bottom right, #f9f9f9, #eeeeee);
       color: #222;
       text-align: center;
       padding: 40px 20px;
@@ -26,10 +26,35 @@
       margin: 0.4em 0 0.2em 0;
     }
 
-    .intro {
-      font-size: 1.3em;
-      margin-top: 25px;
-      line-height: 1.6;
+    .question {
+      font-size: 1.4em;
+      margin: 40px 0 20px 0;
+    }
+
+    .answers button {
+      display: block;
+      width: 100%;
+      max-width: 300px;
+      margin: 10px auto;
+      padding: 12px;
+      font-size: 1em;
+      border: none;
+      border-radius: 8px;
+      background-color: #eee;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .answers button:hover {
+      background-color: #ddd;
+    }
+
+    .correct {
+      background-color: #c8f7c5 !important;
+    }
+
+    .wrong {
+      background-color: #f7c5c5 !important;
     }
 
     .footer {
@@ -42,18 +67,18 @@
 </head>
 <body>
 
-  <div class="top-acroche" id="topAcroche">
-    <!-- Accroche aléatoire -->
+  <div class="top-acroche" id="topAcroche"></div>
+  <h1 id="mainTitle"></h1>
+
+  <div class="question">
+    Qui a dormi par terre au Nouvel An sans s’en souvenir ?
   </div>
 
-  <h1 id="mainTitle">
-    <!-- Phrase principale aléatoire -->
-  </h1>
-
-  <div class="intro">
-    Ce quiz n’a aucun respect.<br />
-    Tu vas te prendre des souvenirs en pleine face.<br />
-    À toi de jouer… si t’as les nerfs.
+  <div class="answers">
+    <button onclick="handleAnswer(this, false)">A. Alex</button>
+    <button onclick="handleAnswer(this, true)">B. Jules</button>
+    <button onclick="handleAnswer(this, false)">C. Sam</button>
+    <button onclick="handleAnswer(this, false)">D. Nina</button>
   </div>
 
   <div class="footer">
@@ -61,18 +86,17 @@
   </div>
 
   <script>
-    // Phrases d'accroche discrètes (en haut)
+    // Phrases d'accroche (en haut)
     const accroches = [
       "Ici, on se dit les vérités entre potes.",
       "Pas de filtre, pas de pitié.",
       "Un quiz pour foutre le feu à la conversation.",
       "Tu vas regretter d’être venu.",
-      "Respire… c’est encore (presque) drôle.",
       "Ce site est plus honnête que ton ex.",
+      "Respire… c’est encore (presque) drôle.",
       "On a tout vu. On se souvient de tout.",
       "Tu peux mentir, mais pas au quiz.",
-      "Les règles ? Y’en a pas.",
-      "Bonne chance. T'en auras besoin."
+      "Bonne chance. T'en auras besoin.",
     ];
 
     // Phrases principales (titre)
@@ -82,19 +106,28 @@
       "Encore un quiz ? Non. Une embuscade.",
       "T’as cliqué ? Trop tard. Prépare-toi.",
       "Voici l’endroit où les souvenirs gênants ressuscitent 🪦",
-      "Bienvenue dans le pire procès de groupe de l’année",
       "Ce quiz juge. Et il juge fort.",
-      "Si t’es pas prêt à te faire afficher… ferme cette page.",
+      "On est entre nous. C’est justement ça le problème.",
       "Des questions ? Oui. Des regrets ? Probablement.",
-      "On est entre nous. C’est justement ça le problème."
     ];
 
-    // Choisir aléatoirement et insérer
+    // Affichage aléatoire
     document.getElementById("topAcroche").innerText =
       accroches[Math.floor(Math.random() * accroches.length)];
-
     document.getElementById("mainTitle").innerText =
       punchlines[Math.floor(Math.random() * punchlines.length)];
+
+    // Réponse
+    function handleAnswer(button, isCorrect) {
+      const allButtons = document.querySelectorAll(".answers button");
+      allButtons.forEach(btn => btn.disabled = true);
+
+      if (isCorrect) {
+        button.classList.add("correct");
+      } else {
+        button.classList.add("wrong");
+      }
+    }
   </script>
 
 </body>
