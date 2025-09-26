@@ -4,26 +4,80 @@
   <meta charset="UTF-8">
   <title>Quiz Entre Potes</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 20px;
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 20px;
+    margin: 0;
+  }
+
+  h1 {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+  }
+
+  #quizQuestion {
+    font-size: 1.3em;
+    margin: 20px auto;
+    max-width: 90%;
+    line-height: 1.4;
+    word-wrap: break-word;
+  }
+
+  #quizAnswers {
+    margin-top: 20px;
+  }
+
+  #quizAnswers button {
+    display: block;
+    margin: 10px auto;
+    padding: 12px 24px;
+    font-size: 16px;
+    width: 80%;
+    max-width: 300px;
+    border-radius: 6px;
+  }
+
+  #nextBtn {
+    margin: 30px auto 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    display: block;
+    border-radius: 6px;
+  }
+
+  #result {
+    margin-top: 20px;
+    font-size: 1.2em;
+  }
+
+  footer {
+    margin-top: 50px;
+    font-size: 0.8em;
+    color: #999;
+  }
+
+  @media (max-width: 600px) {
+    h1 {
+      font-size: 1.5em;
     }
+
+    #quizQuestion {
+      font-size: 1.1em;
+    }
+
     #quizAnswers button {
-      display: block;
-      margin: 10px auto;
-      padding: 10px 20px;
-      font-size: 16px;
+      font-size: 15px;
+      padding: 10px;
     }
+
     #nextBtn {
-      margin-top: 20px;
+      font-size: 15px;
+      padding: 10px 18px;
     }
-    footer {
-      margin-top: 50px;
-      font-size: 0.8em;
-      color: #999;
-    }
-  </style>
+  }
+</style>
+
 </head>
 <body>
   <h1>Le Grand Quiz de la Honte</h1>
@@ -34,7 +88,7 @@
   <button id="nextBtn" onclick="nextQuestion()" style="display: none;">Suivant</button>
   <div id="result"></div>
 
-  <footer>rev.0.06</footer>
+  <footer>rev.0.07</footer>
 
   <script>
     const scriptURL = "https://virnichka.github.io/Pirates/questions.json";
