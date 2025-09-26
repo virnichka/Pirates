@@ -1,132 +1,99 @@
-<script>
-const scriptURL = "https://script.google.com/macros/s/AKfycbwBFb6KKtgUUlKaxESDnN__J9eei9OHOS0FsTvGYbNxnrPkNSUP09SmPGCpwIOw5u_h/exec";
-
-let questions = [];
-let shuffledQuestions = [];
-let currentQuestionIndex = 0;
-let score = 0;
-
-// Charger les questions depuis Google Sheets
-async function chargerQuestions() {
-  try {
-    const response = await fetch(scriptURL);
-    const data = await response.json();
-
-    // Mélange des questions
-    questions = data;
-    shuffledQuestions = questions.sort(() => Math.random() - 0.5);
-    showQuestion();
-  } catch (error) {
-    console.error("Erreur de chargement des questions :", error);
-    document.getElementById("quizQuestion").innerText = "Erreur de chargement du quiz.";
-  }
-}
-
-// Afficher une question
-function showQuestion() {
-  const currentQuestion = shuffledQuestions[currentQuestionIndex];
-  document.getElementById("quizQuestion").innerText = currentQuestion.question;
-
-  const shuffledAnswers = shuffle([
-    currentQuestion.correct,
-    ...getRandomNames(currentQuestion.correct)
-  ]);
-
-  const answersContainer = document.getElementById("quizAnswers");
-  answersContainer.innerHTML = "";
-
-  shuffledAnswers.forEach(answer => {
-    const button = document.createElement("button");
-    button.innerText = answer;
-    button.className = "answerBtn";
-    button.onclick = () => checkAnswer(answer, currentQuestion.correct);
-    answersContainer.appendChild(button);
-  });
-
-  document.getElementById("nextBtn").style.display = "none";
-}
-
-// Vérifier la réponse
-function checkAnswer(selected, correct) {
-  const buttons = document.querySelectorAll(".answerBtn");
-  buttons.forEach(btn => {
-    btn.disabled = true;
-    if (btn.innerText === correct) {
-      btn.style.backgroundColor = "#4CAF50";
-    } else if (btn.innerText === selected) {
-      btn.style.backgroundColor = "#f44336";
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz Entre Potes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
     }
-  });
+    #quizAnswers button {
+      display: block;
+      margin: 10px auto;
+      padding: 10px 20px;
+      font-size: 16px;
+    }
+    #nextBtn {
+      margin-top: 20px;
+    }
+    footer {
+      margin-top: 50px;
+      font-size: 0.8em;
+      color: #999;
+    }
+  </style>
+</head>
+<body>
+  <h1>Le Grand Quiz de la Honte</h1>
+  <p><em>Réponds sans trembler, t’es peut-être la prochaine question du quiz...</em></p>
 
-  if (selected === correct) {
-    score++;
-  }
+  <h2 id="quizQuestion">Chargement…</h2>
+  <div id="quizAnswers"></div>
+  <button id="nextBtn" onclick="nextQuestion()" style="display: none;">Suivant</button>
+  <div id="result"></div>
 
-  document.getElementById("nextBtn").style.display = "inline-block";
-}
+  <footer>rev.0.01</footer>
 
-// Aller à la question suivante
-function nextQuestion() {
-  currentQuestionIndex++;
-  if (currentQuestionIndex < shuffledQuestions.length) {
-    showQuestion();
-  } else {
-    showResult();
-  }
-}
+  <script>
+    const scriptURL = "https://script.google.com/macros/s/AKfycbwBFb6KKtgUUlKaxESDnN__J9eei9OHOS0FsTvGYbNxnrPkNSUP09SmPGCpwIOw5u_h/exec";
 
-// Afficher le résultat final
-function showResult() {
-  document.getElementById("quizQuestion").style.display = "none";
-  document.getElementById("quizAnswers").style.display = "none";
-  document.getElementById("nextBtn").style.display = "none";
+    let questions = [];
+    let shuffledQuestions = [];
+    let currentQuestionIndex = 0;
+    let score = 0;
 
-  const pseudo = prompt("Entre ton prénom ou pseudo (facultatif) :") || "Anonyme";
-  envoyerResultat(pseudo, score, shuffledQuestions.length);
+    async function chargerQuestions() {
+      try {
+        const response = await fetch(scriptURL);
+        const data = await response.json();
 
-  document.getElementById("result").innerHTML = `
-    <p>Tu as obtenu <strong>${score} / ${shuffledQuestions.length}</strong></p>
-    <p>${getMessage(score)}</p>
-  `;
-}
+        questions = data;
+        shuffledQuestions = questions.sort(() => Math.random() - 0.5);
+        showQuestion();
+      } catch (error) {
+        console.error("Erreur de chargement des questions :", error);
+        document.getElementById("quizQuestion").innerText = "Erreur de chargement du quiz.";
+      }
+    }
 
-// Envoyer le score vers Google Sheets
-function envoyerResultat(nom, score, total) {
-  fetch(scriptURL, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ nom, score, total })
-  })
-  .then(res => res.json())
-  .then(data => {
-    console.log("✅ Score envoyé :", data);
-  })
-  .catch(err => {
-    console.error("❌ Erreur d’envoi du score :", err);
-  });
-}
+    function showQuestion() {
+      const currentQuestion = shuffledQuestions[currentQuestionIndex];
+      document.getElementById("quizQuestion").innerText = currentQuestion.question;
 
-// Mélanger un tableau
-function shuffle(array) {
-  return array.sort(() => Math.random() - 0.5);
-}
+      const shuffledAnswers = shuffle([
+        currentQuestion.correct,
+        ...getRandomNames(currentQuestion.correct)
+      ]);
 
-// Simuler des faux noms pour les mauvaises réponses
-function getRandomNames(correctName) {
-  const allNames = ["Thomas", "Simon", "Vladimir", "Alexis", "Ludovic", "Sacha", "Maxence", "Le zinc"];
-  const others = allNames.filter(name => name !== correctName);
-  const shuffled = shuffle(others);
-  return shuffled.slice(0, 3); // 3 réponses leurres
-}
+      const answersContainer = document.getElementById("quizAnswers");
+      answersContainer.innerHTML = "";
 
-// Message final personnalisé
-function getMessage(score) {
-  if (score === 0) return "T’as dormi ou quoi ?";
-  if (score < 3) return "Pas ouf…";
-  if (score < 6) return "Correct mais pas glorieux.";
-  return "Tu connais trop bien la bande, psychopathe 😎";
-}
+      shuffledAnswers.forEach(answer => {
+        const button = document.createElement("button");
+        button.innerText = answer;
+        button.className = "answerBtn";
+        button.onclick = () => checkAnswer(answer, currentQuestion.correct);
+        answersContainer.appendChild(button);
+      });
 
-// Initialisation
-window.onload = chargerQuestions;
-</script>
+      document.getElementById("nextBtn").style.display = "none";
+    }
+
+    function checkAnswer(selected, correct) {
+      const buttons = document.querySelectorAll(".answerBtn");
+      buttons.forEach(btn => {
+        btn.disabled = true;
+        if (btn.innerText === correct) {
+          btn.style.backgroundColor = "#4CAF50";
+        } else if (btn.innerText === selected) {
+          btn.style.backgroundColor = "#f44336";
+        }
+      });
+
+      if (selected === correct) {
+        score++;
+      }
+
+      document.getElement
