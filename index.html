@@ -100,38 +100,14 @@
     const potes = ["Thomas", "Simon", "Vladimir", "Alexis", "Ludovic", "Sacha", "Maxence", "Le zinc"];
 
     const questions = [
-      {
-        text: "Qui a loupé son avion pour aller en Irlande parce qu'il l'avait pris dans la cabine ?",
-        correct: "Maxence"
-      },
-      {
-        text: "Qui a crié dans le micro devant Charlotte et son mec que Ludovic avait baisé Charlotte ?",
-        correct: "Vladimir"
-      },
-      {
-        text: "Qui était déguisé en Pikachu sur les pistes de ski ?",
-        correct: "Sacha"
-      },
-      {
-        text: "Qui a un nez tellement développé qu'il peut reconnaître quand les filles ont leurs règles ?",
-        correct: "Simon"
-      },
-      {
-        text: "Qui a perforé la jambe de Vladimir avec une carabine à plomb ?",
-        correct: "Alexis"
-      },
-      {
-        text: "Qui s'est fait endormir par un vigile parce qu'il a voulu jouer au héros ?",
-        correct: "Ludovic"
-      },
-      {
-        text: "Qui a piffé dans le tiroir de sa cuisine parce qu'il était sous substance ?",
-        correct: "Thomas"
-      },
-      {
-        text: "Qui a chopé la meuf de son cousin en secrète ?",
-        correct: "Le zinc"
-      }
+      { text: "Qui a loupé son avion pour aller en Irlande parce qu'il l'avait pris dans la cabine ?", correct: "Maxence" },
+      { text: "Qui a crié dans le micro devant Charlotte et son mec que Ludovic avait baisé Charlotte ?", correct: "Vladimir" },
+      { text: "Qui était déguisé en Pikachu sur les pistes de ski ?", correct: "Sacha" },
+      { text: "Qui a un nez tellement développé qu'il peut reconnaître quand les filles ont leurs règles ?", correct: "Simon" },
+      { text: "Qui a perforé la jambe de Vladimir avec une carabine à plomb ?", correct: "Alexis" },
+      { text: "Qui s'est fait endormir par un vigile parce qu'il a voulu jouer au héros ?", correct: "Ludovic" },
+      { text: "Qui a piffé dans le tiroir de sa cuisine parce qu'il était sous substance ?", correct: "Thomas" },
+      { text: "Qui a chopé la meuf de son cousin en secrète ?", correct: "Le zinc" }
     ];
 
     const accroches = [
@@ -139,7 +115,7 @@
       "Pas de filtre, pas de pitié.",
       "Tu vas regretter d’être venu.",
       "On a tout vu. On se souvient de tout.",
-      "Bonne chance. T'en auras besoin.",
+      "Bonne chance. T'en auras besoin."
     ];
 
     let shuffledQuestions = shuffleArray([...questions]);
@@ -157,7 +133,6 @@
       const q = shuffledQuestions[currentQuestion];
       document.getElementById("quizQuestion").innerText = q.text;
 
-      // Mélanger les réponses
       const others = potes.filter(name => name !== q.correct);
       const choices = shuffleArray([q.correct, ...shuffleArray(others).slice(0, 3)]);
       const answersContainer = document.getElementById("quizAnswers");
@@ -191,6 +166,26 @@
       document.getElementById("nextBtn").style.display = "inline-block";
     }
 
+    // **Nouvelle fonction** pour envoyer les résultats à Google Sheets
+    function envoyerResultat(nom, score, total) {
+      fetch("https://script.google.com/macros/s/AKfycbwBFb6KKtgUUlKaxESDnN__J9eei9OHOS0FsTvGYbNxnrPkNSUP09SmPGCpwIOw5u_h/exec", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          nom: nom,
+          score: score,
+          total: total
+        })
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log("Score envoyé dans Google Sheets ✅", data);
+      })
+      .catch(error => {
+        console.error("Erreur d’envoi vers la feuille Google Sheets ❌", error);
+      });
+    }
+
     function nextQuestion() {
       currentQuestion++;
       if (currentQuestion < shuffledQuestions.length) {
@@ -204,6 +199,11 @@
       document.getElementById("quizQuestion").style.display = "none";
       document.getElementById("quizAnswers").style.display = "none";
       document.getElementById("nextBtn").style.display = "none";
+
+      // Demande du pseudo et envoi
+      const pseudo = prompt("Entre ton prénom/pseudo (facultatif) :") || "Anonyme";
+      envoyerResultat(pseudo, score, shuffledQuestions.length);
+
       document.getElementById("result").innerHTML = `
         <p>Tu as obtenu <strong>${score} / ${shuffledQuestions.length}</strong></p>
         <p>${getMessage(score)}</p>
@@ -217,7 +217,7 @@
       return "Frérot... t'es sûr que tu fais partie du groupe ?";
     }
 
-    // Init
+    // Lancement initial du quiz
     displayQuestion();
   </script>
 </body>
