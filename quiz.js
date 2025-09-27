@@ -52,26 +52,36 @@ function shuffle(array) {
 
 function showQuestion() {
   const current = shuffledQuestions[currentQuestionIndex];
-  document.getElementById("quizQuestion").innerText = current.question;
-
-  const shuffledAnswers = shuffle([
-    current.correct,
-    ...getRandomNames(current.correct)
-  ]);
-
+  const questionContainer = document.getElementById("quizQuestion");
   const answersContainer = document.getElementById("quizAnswers");
-  answersContainer.innerHTML = "";
 
-  shuffledAnswers.forEach(answer => {
-    const button = document.createElement("button");
-    button.innerText = answer;
-    button.className = "answerBtn";
-    button.onclick = () => checkAnswer(answer, current.correct);
-    answersContainer.appendChild(button);
-  });
+  // Étape 1 : ajoute l'effet de fondu (on cache)
+  questionContainer.classList.remove("show");
+  answersContainer.classList.remove("show");
 
-  document.getElementById("nextBtn").style.display = "none";
-  document.getElementById("restartBtn").style.display = "none";
+  setTimeout(() => {
+    // Étape 2 : met à jour le contenu après disparition
+    questionContainer.innerText = current.question;
+
+    const shuffledAnswers = shuffle([
+      current.correct,
+      ...getRandomNames(current.correct)
+    ]);
+
+    answersContainer.innerHTML = "";
+    shuffledAnswers.forEach(answer => {
+      const button = document.createElement("button");
+      button.innerText = answer;
+      button.className = "answerBtn";
+      button.onclick = () => checkAnswer(answer, current.correct);
+      answersContainer.appendChild(button);
+    });
+
+    // Étape 3 : fait réapparaître en douceur
+    questionContainer.classList.add("show");
+    answersContainer.classList.add("show");
+
+  }, 300); // délai de disparition
 }
 
 function checkAnswer(selected, correct) {
