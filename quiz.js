@@ -200,5 +200,7 @@ function restartQuiz() {
 }
 
 window.onload = () => {
+  chargerAccroches();
   chargerQuestions();
 };
+
