@@ -145,6 +145,7 @@ function nextQuestion() {
 }
 
 function showFinalScore() {
+  document.getElementById("miniCommentaire").innerText = "";
   const commentaires = [
     "Zéro pointé. T'es sûr que tu fais partie du groupe ? 😅",
     "Une seule bonne réponse… Ça sent le déni ou l'amnésie sélective.",
