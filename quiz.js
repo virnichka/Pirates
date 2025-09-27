@@ -52,6 +52,20 @@ let shuffledQuestions = [];
 let currentQuestionIndex = 0;
 let score = 0;
 
+async function chargerAccroches() {
+  try {
+    const response = await fetch("accroches.json");
+    const data = await response.json();
+    const titre = data.titres[Math.floor(Math.random() * data.titres.length)];
+    const sousTitre = data.sousTitres[Math.floor(Math.random() * data.sousTitres.length)];
+    document.getElementById("titre").innerText = titre;
+    document.getElementById("sousTitre").innerText = sousTitre;
+  } catch (error) {
+    console.error("Erreur de chargement des accroches :", error);
+  }
+}
+
+
 function shuffle(array) {
   return array.sort(() => Math.random() - 0.5);
 }
