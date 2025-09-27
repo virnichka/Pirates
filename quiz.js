@@ -130,7 +130,10 @@ function checkAnswer(selected, correct) {
   } else {
     phrase = miniPhrases[Math.floor(Math.random() * miniPhrases.length)];
   }
-  document.getElementById("miniCommentaire").innerText = phrase;
+  const mini = document.getElementById("miniCommentaire");
+  mini.innerText = phrase;
+  mini.classList.add("visible");
+
 
   document.getElementById("nextBtn").style.display = "block";
 }
