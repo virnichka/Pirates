@@ -1,53 +1,76 @@
-// 🧠 quiz.js
 const noms = ["Thomas", "Simon", "Vladimir", "Alexis", "Ludovic", "Sacha", "Maxence", "Le zinc"];
-const questionsURL = "https://virnichka.github.io/Pirates/questions.json";
-const accrochesURL = "https://virnichka.github.io/Pirates/accroches.json";
+const scriptURL = "questions.json";
+
+const miniPhrases = [
+  "Trop tard pour reculer",
+  "Bien tenté, champion",
+  "Pas ouf, hein",
+  "La honte continue",
+  "Tu le savais pas ?",
+  "Encore raté, bravo",
+  "Ça sent le mytho",
+  "Gros malaise là",
+  "On a les preuves",
+  "Pire que prévu",
+  "Mieux vaut oublier",
+  "Continue, on juge",
+  "Mais pourquoi t’as cliqué",
+  "La commère en chef",
+  "On te voit venir",
+  "Pas sûr de toi",
+  "Y’a des témoins mec",
+  "On en parlera",
+  "T’as pas honte ?",
+  "C’est ton pote ça ?"
+];
+
+const miniPhrasesCorrectes = [
+  "Trop précis mec",
+  "T’étais là c’est sûr",
+  "Balanceur repéré",
+  "Ça sent la délation",
+  "Bien vu, fouineur",
+  "Il/elle balance sec",
+  "Encore un ragot validé",
+  "Le roi du quiz",
+  "Pas mal Sherlock",
+  "T’as pas hésité",
+  "On sent le vécu",
+  "Tu connais les dossiers",
+  "C’est cramé que tu sais",
+  "Trop bien informé",
+  "T’as des captures ?",
+  "On t’écoute, commère",
+  "Champion du ragot",
+  "C’est toi la source ?",
+  "Bravo, sale balance",
+  "On veut les détails"
+];
 
 let questions = [];
 let shuffledQuestions = [];
 let currentQuestionIndex = 0;
 let score = 0;
-let titres = [];
-let sousTitres = [];
 
-async function chargerAccroches() {
-  try {
-    const response = await fetch(accrochesURL);
-    const data = await response.json();
-    titres = data.titres;
-    sousTitres = data.sousTitres;
-    afficherAccroches();
-  } catch (e) {
-    console.error("Erreur de chargement des accroches", e);
-  }
-}
-
-function afficherAccroches() {
-  const titre = titres[Math.floor(Math.random() * titres.length)];
-  const sousTitre = sousTitres[Math.floor(Math.random() * sousTitres.length)];
-  document.getElementById("titre").innerText = titre;
-  document.getElementById("sousTitre").innerText = sousTitre;
-}
-
-async function chargerQuestions() {
-  try {
-    const response = await fetch(questionsURL);
-    const data = await response.json();
-    questions = data;
-    shuffledQuestions = questions.sort(() => Math.random() - 0.5);
-    showQuestion();
-  } catch (error) {
-    document.getElementById("quizQuestion").innerText = "Erreur de chargement du quiz.";
-  }
+function shuffle(array) {
+  return array.sort(() => Math.random() - 0.5);
 }
 
 function getRandomNames(exclude) {
   const autres = noms.filter(n => n !== exclude);
-  return autres.sort(() => Math.random() - 0.5).slice(0, 3);
+  return shuffle(autres).slice(0, 3);
 }
 
-function shuffle(array) {
-  return array.sort(() => Math.random() - 0.5);
+async function chargerQuestions() {
+  try {
+    const response = await fetch(scriptURL);
+    const data = await response.json();
+    questions = data;
+    shuffledQuestions = shuffle([...questions]);
+    showQuestion();
+  } catch (error) {
+    document.getElementById("quizQuestion").innerText = "Erreur de chargement du quiz.";
+  }
 }
 
 function showQuestion() {
@@ -55,12 +78,14 @@ function showQuestion() {
   const questionContainer = document.getElementById("quizQuestion");
   const answersContainer = document.getElementById("quizAnswers");
 
-  // Étape 1 : ajoute l'effet de fondu (on cache)
+  // Reset phrase et bouton
+  document.getElementById("miniCommentaire").innerText = "";
+
+  // Animation fade out
   questionContainer.classList.remove("show");
   answersContainer.classList.remove("show");
 
   setTimeout(() => {
-    // Étape 2 : met à jour le contenu après disparition
     questionContainer.innerText = current.question;
 
     const shuffledAnswers = shuffle([
@@ -77,11 +102,10 @@ function showQuestion() {
       answersContainer.appendChild(button);
     });
 
-    // Étape 3 : fait réapparaître en douceur
     questionContainer.classList.add("show");
     answersContainer.classList.add("show");
 
-  }, 300); // délai de disparition
+  }, 300);
 }
 
 function checkAnswer(selected, correct) {
@@ -98,6 +122,15 @@ function checkAnswer(selected, correct) {
   if (selected === correct) {
     score++;
   }
+
+  // Affiche une petite phrase selon la réponse
+  let phrase = "";
+  if (selected === correct) {
+    phrase = miniPhrasesCorrectes[Math.floor(Math.random() * miniPhrasesCorrectes.length)];
+  } else {
+    phrase = miniPhrases[Math.floor(Math.random() * miniPhrases.length)];
+  }
+  document.getElementById("miniCommentaire").innerText = phrase;
 
   document.getElementById("nextBtn").style.display = "block";
 }
@@ -126,13 +159,8 @@ function showFinalScore() {
 
   const commentaire = commentaires[score] || "Bravo… ou désolé, on sait plus trop.";
   document.getElementById("quizQuestion").innerText = "Quiz terminé !";
-  document.getElementById("quizAnswers").innerHTML = `
-    <p>Tu as eu ${score} bonne(s) réponse(s) sur ${shuffledQuestions.length}.</p>
-    <p>${commentaire}</p>
-    <p><label for="playerName">Ton prénom :</label><br>
-    <input type="text" id="playerName" placeholder="Ton blaze ici"></p>
-    <button onclick="soumettreScore()">Envoyer mon score</button>
-  `;
+  document.getElementById("quizAnswers").innerHTML =
+    `<p>Tu as eu ${score} bonne(s) réponse(s) sur ${shuffledQuestions.length}.</p><p>${commentaire}</p>`;
   document.getElementById("nextBtn").style.display = "none";
   document.getElementById("restartBtn").style.display = "block";
 }
@@ -140,19 +168,10 @@ function showFinalScore() {
 function restartQuiz() {
   currentQuestionIndex = 0;
   score = 0;
-  shuffledQuestions = questions.sort(() => Math.random() - 0.5);
+  shuffledQuestions = shuffle([...questions]);
   showQuestion();
 }
 
-function toggleTheme() {
-  document.body.classList.toggle("light");
-  const isLight = document.body.classList.contains("light");
-  const btn = document.getElementById("toggleThemeBtn");
-  btn.innerText = isLight ? "Basculer en thème sombre" : "Basculer en thème clair";
-}
-
 window.onload = () => {
-  chargerAccroches();
   chargerQuestions();
-  toggleTheme(); toggleTheme();
 };
