@@ -8,7 +8,7 @@ function soumettreScore() {
 
 // 🔁 Remplace ici par l'URL exacte de TON script Google Apps Script
 function envoyerResultat(nom, score, total) {
-  fetch("https://script.google.com/macros/s/TON_URL_SCRIPT/exec", {
+  fetch("https://script.google.com/macros/s/AKfycbw91fMdYaGQPYnpzMkEIbUADTN3np_8jmXCCS-Bk2u3KUAdvDmjLQ4D8AfPcttHAt5-/exec", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
