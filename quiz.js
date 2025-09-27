@@ -74,24 +74,19 @@ async function chargerQuestions() {
 }
 
 function showQuestion() {
-  const current = shuffledQuestions[currentQuestionIndex];
-  const questionContainer = document.getElementById("quizQuestion");
+  const questionEl = document.getElementById("quizQuestion");
   const answersContainer = document.getElementById("quizAnswers");
   const mini = document.getElementById("miniCommentaire");
-  
+
+  // Effet fondu sortant
+  questionEl.classList.add("fade-out");
+  answersContainer.classList.add("fade-out");
   mini.innerText = "";
   mini.classList.remove("visible");
 
-
-  // Reset phrase et bouton
-  document.getElementById("miniCommentaire").innerText = "";
-
-  // Animation fade out
-  questionContainer.classList.remove("show");
-  answersContainer.classList.remove("show");
-
   setTimeout(() => {
-    questionContainer.innerText = current.question;
+    const current = shuffledQuestions[currentQuestionIndex];
+    questionEl.innerText = current.question;
 
     const shuffledAnswers = shuffle([
       current.correct,
@@ -107,10 +102,15 @@ function showQuestion() {
       answersContainer.appendChild(button);
     });
 
-    questionContainer.classList.add("show");
-    answersContainer.classList.add("show");
+    // Réactive le fade-in
+    questionEl.classList.remove("fade-out");
+    answersContainer.classList.remove("fade-out");
+    questionEl.classList.add("fade-in");
+    answersContainer.classList.add("fade-in");
 
-  }, 300);
+    document.getElementById("nextBtn").style.display = "none";
+    document.getElementById("restartBtn").style.display = "none";
+  }, 400);
 }
 
 function checkAnswer(selected, correct) {
