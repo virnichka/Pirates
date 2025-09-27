@@ -7,6 +7,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="style.css" />
 </head>
+  <script>
+  function toggleTheme() {
+    const body = document.body;
+    const isLight = body.classList.toggle("light");
+    const btn = document.getElementById("toggleThemeBtn");
+    btn.innerText = isLight ? "Basculer en thème sombre" : "Basculer en thème clair";
+  }
+</script>
+
 <body>
   <h1 id="titre"></h1>
   <p><em id="sousTitre"></em></p>
