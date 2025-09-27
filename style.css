@@ -139,4 +139,18 @@ footer {
     font-size: 15px;
     padding: 10px 18px;
   }
+
+  #miniCommentaire {
+  min-height: 1.2em; /* Réserve de l’espace même quand vide */
+  margin-top: 10px;
+  font-style: italic;
+  font-size: 0.9em;
+  transition: opacity 0.3s ease;
+  opacity: 0;
+}
+
+#miniCommentaire.visible {
+  opacity: 1;
+}
+
 }
