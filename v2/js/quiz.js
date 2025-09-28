@@ -13,11 +13,6 @@ function startQuiz(list) {
   questions = shuffle(list).slice(0, CONFIG.QUIZ_LIMIT);
   currentQuestion = 0;
   score = 0;
-
-  // 🔽 On cache le bouton "Rejouer" dès qu'une nouvelle partie commence
-  document.getElementById("restartBtn").style.display = "none";
-  document.getElementById("nextBtn").style.display = "none";
-
   showQuestion();
 }
 
