@@ -132,7 +132,7 @@ body.light .answerBtn:hover:not(:disabled) {
 /* ----------- BUTTONS ----------- */
 .buttons {
   display: flex;
-  justify-content: center; /* ✅ centre les boutons horizontalement */
+  justify-content: center; /* ✅ centre horizontalement */
   align-items: center;
   gap: 1rem;
   margin-top: 1.5rem;
@@ -147,6 +147,8 @@ button {
   font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.2s, transform 0.2s;
+  display: inline-block; /* ✅ évite l’écrasement du style */
+  min-width: 120px; /* ✅ assure une taille visuelle cohérente */
 }
 
 button:hover {
@@ -163,6 +165,7 @@ body.light button {
 body.light button:hover {
   background-color: #e6e6e6;
 }
+
 
 /* ----------- FOOTER ----------- */
 footer {
