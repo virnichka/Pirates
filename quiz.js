@@ -37,6 +37,7 @@ function shuffle(array) {
 function demarrerQuiz(listeQuestions) {
   console.log("🎮 Quiz démarré avec", listeQuestions.length, "questions");
   questions = listeQuestions;
+  console.log("🧠 Exemple de question reçue :", questions[0]);
   shuffledQuestions = questions.sort(() => Math.random() - 0.5);
   currentQuestionIndex = 0;
   score = 0;
