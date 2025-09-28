@@ -3,10 +3,51 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Quiz Entre Potes — V2 (test)</title>
+  <title>🎯 Quiz Entre Potes – V2</title>
+
+  <!-- 🧭 Styles -->
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- 🧠 Configuration globale -->
+  <script>
+    const CONFIG = {
+      VERSION: "v2.0",
+      GOOGLE_SCRIPT_URL: "https://script.google.com/macros/s/AKfycbx93i92e5L0HfuJIlfoU6ZSFHYT9cIJz5WfjOikscP2PJDGdoOHV8PuworGE4D0LGsb/exec",
+      QUIZ_LIMIT: 5
+    };
+  </script>
 </head>
+
 <body>
-  <h1>V2 : déploiement OK ✅</h1>
-  <p>Si tu vois cette page, la structure <code>/v2</code> est prête. On ajoutera le vrai code ensuite.</p>
+  <!-- 🏷️ En-tête -->
+  <header>
+    <h1 id="titre">Quiz Entre Potes</h1>
+    <p><em id="sousTitre">Chargement…</em></p>
+  </header>
+
+  <!-- 🎮 Contenu principal du quiz -->
+  <main>
+    <h2 id="quizQuestion">Chargement du quiz…</h2>
+    <div id="quizAnswers" class="answers"></div>
+    <div id="miniCommentaire" class="mini-comment"></div>
+
+    <!-- 🔘 Boutons de navigation -->
+    <div class="buttons">
+      <button id="nextBtn" onclick="nextQuestion()" style="display:none;">Suivant</button>
+      <button id="restartBtn" onclick="startQuiz(questions)" style="display:none;">Rejouer</button>
+    </div>
+  </main>
+
+  <!-- ⚙️ Pied de page -->
+  <footer>
+    <button id="toggleThemeBtn" onclick="toggleTheme()">Basculer le thème</button>
+    <div>rev. <span id="versionTag">2.0</span></div>
+  </footer>
+
+  <!-- 📎 Scripts -->
+  <script src="js/ui.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/quiz.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>
