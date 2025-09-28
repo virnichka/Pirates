@@ -14,7 +14,7 @@ const bonnesReactions = [
 
 async function chargerQuestions() {
   try {
-    const response = await fetch("questions.json");
+    const response = await fetch("questions.js");
     const data = await response.json();
     questions = data;
     shuffledQuestions = questions.sort(() => Math.random() - 0.5);
