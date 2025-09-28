@@ -1,11 +1,14 @@
-/* ===============================
-   🎯 Quiz Entre Potes — Style V2.3
+/* ===========================================================
+   🎯 QUIZ ENTRE POTES — STYLE V2.4
    Auteur : vinrichka
-   Amélioration :
-   ✅ Couleurs correct/incorrect cohérentes dans les deux thèmes
-================================ */
+   Description :
+   Feuille de style modernisée, lisible et réactive
+   Compatible thème sombre / clair
+   =========================================================== */
 
-/* ----------- RESET ----------- */
+/* -----------------------------------------------------------
+   🧱 RESET GÉNÉRAL
+   ----------------------------------------------------------- */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -13,6 +16,9 @@
   font-family: "Segoe UI", Roboto, sans-serif;
 }
 
+/* -----------------------------------------------------------
+   🌗 BASE DU SITE
+   ----------------------------------------------------------- */
 body {
   background-color: #121212;
   color: #f5f5f5;
@@ -25,13 +31,15 @@ body {
   transition: background-color 0.4s, color 0.4s;
 }
 
-/* ----------- THEMES ----------- */
+/* --- Thème clair --- */
 body.light {
   background-color: #fafafa;
   color: #1b1b1b;
 }
 
-/* ----------- HEADER ----------- */
+/* -----------------------------------------------------------
+   🏷️ EN-TÊTE
+   ----------------------------------------------------------- */
 header {
   text-align: center;
   margin-bottom: 2rem;
@@ -48,7 +56,9 @@ header em {
   color: #999;
 }
 
-/* ----------- QUIZ AREA ----------- */
+/* -----------------------------------------------------------
+   🎮 ZONE DE QUIZ
+   ----------------------------------------------------------- */
 main {
   text-align: center;
   width: 100%;
@@ -62,14 +72,17 @@ main {
   transition: opacity 0.3s;
 }
 
-/* ----------- ANSWERS ----------- */
+/* -----------------------------------------------------------
+   🧩 RÉPONSES
+   ----------------------------------------------------------- */
 .answers {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  margin-bottom: 2rem;
+  margin-bottom: 2rem; /* espace avant les boutons */
 }
 
+/* --- Style par défaut --- */
 .answerBtn {
   background-color: #1f1f1f;
   color: #fff;
@@ -81,14 +94,14 @@ main {
   transition: all 0.2s ease-in-out;
 }
 
-/* Thème clair */
+/* --- Thème clair --- */
 body.light .answerBtn {
   background-color: #f0f0f0;
   color: #111;
   border: 1px solid #ccc;
 }
 
-/* Survol */
+/* --- Survol --- */
 .answerBtn:hover:not(:disabled) {
   transform: scale(1.02);
   background-color: #2e2e2e;
@@ -98,45 +111,38 @@ body.light .answerBtn:hover:not(:disabled) {
   background-color: #e0e0e0;
 }
 
-/* ✅ États correct / incorrect (valables pour les 2 thèmes) */
-.answerBtn.correct {
+/* --- États correct / incorrect universels --- */
+.answerBtn.correct,
+body.light .answerBtn.correct {
   background-color: #2ecc71 !important; /* Vert succès */
-  color: #fff !important;
   border-color: #27ae60 !important;
+  color: #fff !important;
   animation: pop 0.2s ease-in-out;
 }
 
-.answerBtn.incorrect {
-  background-color: #e74c3c !important; /* Rouge erreur */
-  color: #fff !important;
-  border-color: #c0392b !important;
-}
-
-/* ✅ Spécifique au thème clair pour éviter d’être écrasé */
-body.light .answerBtn.correct {
-  background-color: #27ae60 !important;
-  border-color: #1e8449 !important;
-}
-
+.answerBtn.incorrect,
 body.light .answerBtn.incorrect {
-  background-color: #c0392b !important;
-  border-color: #922b21 !important;
+  background-color: #e74c3c !important; /* Rouge erreur */
+  border-color: #c0392b !important;
+  color: #fff !important;
 }
 
-/* État désactivé */
+/* --- Désactivation --- */
 .answerBtn:disabled {
   opacity: 0.8;
   cursor: not-allowed;
 }
 
-/* Animation */
+/* --- Animation d’apparition pour la bonne réponse --- */
 @keyframes pop {
   0% { transform: scale(0.95); }
   50% { transform: scale(1.05); }
   100% { transform: scale(1); }
 }
 
-/* ----------- MINI COMMENT ----------- */
+/* -----------------------------------------------------------
+   💬 MINI COMMENTAIRE
+   ----------------------------------------------------------- */
 .mini-comment {
   margin-top: 0.5rem;
   font-style: italic;
@@ -150,7 +156,9 @@ body.light .answerBtn.incorrect {
   opacity: 1;
 }
 
-/* ----------- BUTTONS ----------- */
+/* -----------------------------------------------------------
+   🔘 BOUTONS (SUIVANT / REJOUER)
+   ----------------------------------------------------------- */
 .buttons {
   display: flex;
   justify-content: center;
@@ -160,6 +168,7 @@ body.light .answerBtn.incorrect {
   margin-bottom: 2rem;
 }
 
+/* --- Boutons génériques --- */
 button {
   background-color: #1f1f1f;
   color: white;
@@ -172,11 +181,13 @@ button {
   min-width: 120px;
 }
 
+/* --- Hover --- */
 button:hover {
   background-color: #2e2e2e;
   transform: translateY(-2px);
 }
 
+/* --- Thème clair --- */
 body.light button {
   background-color: #f0f0f0;
   color: #111;
@@ -187,7 +198,9 @@ body.light button:hover {
   background-color: #e0e0e0;
 }
 
-/* ----------- FOOTER ----------- */
+/* -----------------------------------------------------------
+   ⚙️ PIED DE PAGE
+   ----------------------------------------------------------- */
 footer {
   margin-top: 3rem;
   text-align: center;
@@ -203,34 +216,4 @@ footer span {
   font-weight: bold;
 }
 
-/* ----------- RESPONSIVE ----------- */
-@media (max-width: 600px) {
-  body {
-    padding: 1rem;
-  }
-
-  #quizQuestion {
-    font-size: 1.2rem;
-  }
-
-  .answerBtn {
-    font-size: 0.95rem;
-  }
-}
-
-/* --- ✅ Couleurs correctes universelles (version consolidée) --- */
-.answerBtn.correct,
-body.light .answerBtn.correct {
-  background-color: #2ecc71 !important;
-  border-color: #27ae60 !important;
-  color: #fff !important;
-}
-
-.answerBtn.incorrect,
-body.light .answerBtn.incorrect {
-  background-color: #e74c3c !important;
-  border-color: #c0392b !important;
-  color: #fff !important;
-}
-
-
+/* ---------------------------------------------------*
