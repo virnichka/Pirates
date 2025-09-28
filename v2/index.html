@@ -7,15 +7,6 @@
 
   <!-- 🧭 Styles -->
   <link rel="stylesheet" href="css/style.css" />
-
-  <!-- 🧠 Configuration globale -->
-  <script>
-    const CONFIG = {
-      VERSION: "v2.0",
-      GOOGLE_SCRIPT_URL: "https://script.google.com/macros/s/AKfycbx93i92e5L0HfuJIlfoU6ZSFHYT9cIJz5WfjOikscP2PJDGdoOHV8PuworGE4D0LGsb/exec",
-      QUIZ_LIMIT: 5
-    };
-  </script>
 </head>
 
 <body>
@@ -44,10 +35,11 @@
     <div>rev. <span id="versionTag">2.0</span></div>
   </footer>
 
-  <!-- 📎 Scripts -->
-  <script src="js/ui.js"></script>
-  <script src="js/api.js"></script>
-  <script src="js/quiz.js"></script>
-  <script src="js/main.js"></script>
+  <!-- 📎 Scripts (dans le bon ordre !) -->
+  <script src="js/config.js"></script>   <!-- ⚙️ Configuration globale -->
+  <script src="js/api.js"></script>      <!-- 🌐 Communication avec Google Sheets -->
+  <script src="js/ui.js"></script>       <!-- 🎨 Interface utilisateur -->
+  <script src="js/quiz.js"></script>     <!-- 🎮 Logique du quiz -->
+  <script src="js/main.js"></script>     <!-- 🚀 Démarrage -->
 </body>
 </html>
