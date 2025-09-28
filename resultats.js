@@ -7,25 +7,25 @@ function soumettreScore() {
 }
 
 function envoyerResultat(nom, score, total) {
-  const formData = new FormData();
-  formData.append("nom", nom);
-  formData.append("score", score);
-  formData.append("total", total);
-
-  // DEBUG – afficher tout le contenu du formData
-  for (let pair of formData.entries()) {
-    console.log(`📦 ${pair[0]}: ${pair[1]}`);
-  }
+  const params = new URLSearchParams();
+  params.append("nom", nom);
+  params.append("score", score);
+  params.append("total", total);
 
   // DEBUG – afficher ce qu’on s’apprête à envoyer
+  for (let pair of params.entries()) {
+    console.log(`📦 ${pair[0]}: ${pair[1]}`);
+  }
   console.log("📤 Envoi avec :", nom, score, total);
-
 
   fetch("https://script.google.com/macros/s/AKfycbwkVTs1FhApBp_L56ufCDCgnGFail0Seu_d-l4aBc0sRwiWKScWrj_KH_ikRUoybQyW/exec", {
     method: "POST",
-    body: formData
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded"
+    },
+    body: params
   })
-    .then(response => response.json()) // ✅ Important ici
+    .then(response => response.json())
     .then(data => {
       console.log("✅ Score envoyé :", data);
     })
@@ -33,6 +33,7 @@ function envoyerResultat(nom, score, total) {
       console.error("❌ Erreur lors de l'envoi du score :", error);
     });
 }
+
 
 
 
