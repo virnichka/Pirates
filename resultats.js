@@ -16,7 +16,7 @@ function envoyerResultat(nom, score, total) {
     method: "POST",
     body: formData
   })
-    .then(response => response.text())
+    .then(response => response.json()) // ✅ Important ici
     .then(data => {
       console.log("✅ Score envoyé :", data);
     })
@@ -24,5 +24,6 @@ function envoyerResultat(nom, score, total) {
       console.error("❌ Erreur lors de l'envoi du score :", error);
     });
 }
+
 
 
