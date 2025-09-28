@@ -59,17 +59,18 @@ function showQuestion() {
     const current = shuffledQuestions[currentQuestionIndex];
     questionEl.innerText = current.question;
 
-    const shuffledAnswers = shuffle([
-      current.reponseCorrecte,
-      ...getRandomNames(current.reponseCorrecte)
-    ]);
+const shuffledAnswers = shuffle([
+  current.bonne_reponse,
+  ...getRandomNames(current.bonne_reponse)
+]);
+
 
     answersContainer.innerHTML = "";
     shuffledAnswers.forEach(answer => {
       const button = document.createElement("button");
       button.innerText = answer;
       button.className = "answerBtn";
-      button.onclick = () => checkAnswer(answer, current.reponseCorrecte);
+      button.onclick = () => checkAnswer(answer, current.bonne_reponse);
       answersContainer.appendChild(button);
     });
 
