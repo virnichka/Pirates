@@ -1,9 +1,8 @@
 /* ===============================
-   🎯 Quiz Entre Potes — Style V2.2
+   🎯 Quiz Entre Potes — Style V2.3
    Auteur : vinrichka
-   Description :
-   Style clair, lisible et sans bug
-   Compatible thème clair/sombre
+   Amélioration :
+   ✅ Couleurs correct/incorrect cohérentes dans les deux thèmes
 ================================ */
 
 /* ----------- RESET ----------- */
@@ -68,7 +67,7 @@ main {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  margin-bottom: 2rem; /* espace sous les réponses */
+  margin-bottom: 2rem;
 }
 
 .answerBtn {
@@ -87,7 +86,6 @@ body.light .answerBtn {
   background-color: #f0f0f0;
   color: #111;
   border: 1px solid #ccc;
-  cursor: pointer;
 }
 
 /* Survol */
@@ -100,27 +98,38 @@ body.light .answerBtn:hover:not(:disabled) {
   background-color: #e0e0e0;
 }
 
-/* États correct / incorrect */
+/* ✅ États correct / incorrect (valables pour les 2 thèmes) */
 .answerBtn.correct {
-  background-color: #2ecc71;
-  color: #fff;
-  border-color: #27ae60;
+  background-color: #2ecc71 !important; /* Vert succès */
+  color: #fff !important;
+  border-color: #27ae60 !important;
   animation: pop 0.2s ease-in-out;
 }
 
 .answerBtn.incorrect {
-  background-color: #e74c3c;
-  color: #fff;
-  border-color: #c0392b;
+  background-color: #e74c3c !important; /* Rouge erreur */
+  color: #fff !important;
+  border-color: #c0392b !important;
+}
+
+/* ✅ Spécifique au thème clair pour éviter d’être écrasé */
+body.light .answerBtn.correct {
+  background-color: #27ae60 !important;
+  border-color: #1e8449 !important;
+}
+
+body.light .answerBtn.incorrect {
+  background-color: #c0392b !important;
+  border-color: #922b21 !important;
 }
 
 /* État désactivé */
 .answerBtn:disabled {
-  opacity: 0.7;
+  opacity: 0.8;
   cursor: not-allowed;
 }
 
-/* Animation pour la bonne réponse */
+/* Animation */
 @keyframes pop {
   0% { transform: scale(0.95); }
   50% { transform: scale(1.05); }
@@ -141,7 +150,7 @@ body.light .answerBtn:hover:not(:disabled) {
   opacity: 1;
 }
 
-/* ----------- BUTTONS (Suivant / Rejouer) ----------- */
+/* ----------- BUTTONS ----------- */
 .buttons {
   display: flex;
   justify-content: center;
@@ -160,7 +169,6 @@ button {
   font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.2s, transform 0.2s;
-  display: inline-block;
   min-width: 120px;
 }
 
