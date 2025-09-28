@@ -6,6 +6,8 @@ window.onload = async () => {
   try {
     // Charger les accroches
     const accroches = await fetch("data/accroches.json").then(r => r.json());
+    window.ACCROCHES = accroches;
+
 
     // 🔥 Rendre l'objet disponible globalement
     window.ACCROCHES = accroches;
