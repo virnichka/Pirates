@@ -22,8 +22,9 @@ async function chargerQuestionsDepuisGoogle() {
 // Exemple : au démarrage du quiz
 chargerQuestionsDepuisGoogle().then(questions => {
   if (questions.length > 0) {
-    demarrerQuiz(questions); // ta fonction existante qui démarre le quiz
+    demarrerQuiz(questions); // ta fonction qui lance le quiz
   } else {
     alert("Impossible de charger les questions !");
   }
+
 });
