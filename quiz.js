@@ -59,8 +59,8 @@ function showQuestion() {
     questionEl.innerText = current.question;
 
     const shuffledAnswers = shuffle([
-      current.correct,
-      ...getRandomNames(current.correct)
+      current.reponseCorrecte,
+      ...getRandomNames(current.reponseCorrecte)
     ]);
 
     answersContainer.innerHTML = "";
@@ -68,7 +68,7 @@ function showQuestion() {
       const button = document.createElement("button");
       button.innerText = answer;
       button.className = "answerBtn";
-      button.onclick = () => checkAnswer(answer, current.correct);
+      button.onclick = () => checkAnswer(answer, current.reponseCorrecte);
       answersContainer.appendChild(button);
     });
 
@@ -140,10 +140,9 @@ function showFinalScore() {
   mini.classList.remove("visible");
 
   const nom = prompt("Entre ton nom pour le classement :");
-if (nom && nom.trim() !== "") {
-  envoyerResultat(nom.trim(), score, shuffledQuestions.length);
-}
-
+  if (nom && nom.trim() !== "") {
+    envoyerResultat(nom.trim(), score, shuffledQuestions.length);
+  }
 }
 
 function restartQuiz() {
@@ -162,5 +161,3 @@ window.onload = async () => {
     document.getElementById("quizQuestion").innerText = "Erreur de chargement du quiz.";
   }
 };
-
-
