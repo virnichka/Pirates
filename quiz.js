@@ -12,19 +12,6 @@ const bonnesReactions = [
   "bien joué", "tu connais tes potes", "haha exact", "trop fort", "tu l’as", "yes", "bingo", "respect", "joli", "clean"
 ];
 
-
-async function chargerQuestions() {
-  try {
-    const response = await fetch("questions.js");
-    const data = await response.json();
-    questions = data;
-    shuffledQuestions = questions.sort(() => Math.random() - 0.5);
-    showQuestion();
-  } catch (error) {
-    document.getElementById("quizQuestion").innerText = "Erreur de chargement du quiz.";
-  }
-}
-
 async function chargerAccroches() {
   try {
     const response = await fetch("accroches.json");
@@ -45,6 +32,15 @@ function getRandomNames(exclude) {
 
 function shuffle(array) {
   return array.sort(() => Math.random() - 0.5);
+}
+
+function demarrerQuiz(listeQuestions) {
+  console.log("🎮 Quiz démarré avec", listeQuestions.length, "questions");
+  questions = listeQuestions;
+  shuffledQuestions = questions.sort(() => Math.random() - 0.5);
+  currentQuestionIndex = 0;
+  score = 0;
+  showQuestion();
 }
 
 function showQuestion() {
