@@ -217,3 +217,28 @@ footer span {
     font-size: 0.95rem;
   }
 }
+
+/* --- Forcer les couleurs de validation, tous thèmes --- */
+button.answerBtn.correct {
+  background-color: #2ecc71 !important; /* vert */
+  border-color: #27ae60 !important;
+  color: #fff !important;
+}
+
+button.answerBtn.incorrect {
+  background-color: #e74c3c !important; /* rouge */
+  border-color: #c0392b !important;
+  color: #fff !important;
+}
+
+/* --- Ajustement explicite pour le thème clair (au cas où) --- */
+body.light button.answerBtn.correct {
+  background-color: #27ae60 !important;
+  border-color: #1e8449 !important;
+}
+
+body.light button.answerBtn.incorrect {
+  background-color: #c0392b !important;
+  border-color: #922b21 !important;
+}
+
