@@ -5,6 +5,9 @@ let shuffledQuestions = [];
 let currentQuestionIndex = 0;
 let score = 0;
 
+// 🌟 Nombre total de questions à afficher par partie
+const NOMBRE_QUESTIONS = 5;
+
 const mauvaisesReactions = [
   "aie...", "c’était pas ça", "dommage", "raté", "outch", "eh non", "presque", "non non non", "oh lala", "quelle honte"
 ];
@@ -34,11 +37,17 @@ function shuffle(array) {
   return array.sort(() => Math.random() - 0.5);
 }
 
+// 🔀 Fonction utilitaire : mélange les questions et en garde NOMBRE_QUESTIONS
+function melangerEtLimiterQuestions(liste) {
+  return liste.sort(() => Math.random() - 0.5).slice(0, NOMBRE_QUESTIONS);
+}
+
 function demarrerQuiz(listeQuestions) {
   console.log("🎮 Quiz démarré avec", listeQuestions.length, "questions");
   questions = listeQuestions;
   console.log("🧠 Exemple de question reçue :", questions[0]);
-  shuffledQuestions = questions.sort(() => Math.random() - 0.5);
+  
+  shuffledQuestions = melangerEtLimiterQuestions(questions);
   currentQuestionIndex = 0;
   score = 0;
   showQuestion();
@@ -59,11 +68,10 @@ function showQuestion() {
     const current = shuffledQuestions[currentQuestionIndex];
     questionEl.innerText = current.question;
 
-const shuffledAnswers = shuffle([
-  current.bonne_reponse,
-  ...getRandomNames(current.bonne_reponse)
-]);
-
+    const shuffledAnswers = shuffle([
+      current.bonne_reponse,
+      ...getRandomNames(current.bonne_reponse)
+    ]);
 
     answersContainer.innerHTML = "";
     shuffledAnswers.forEach(answer => {
@@ -133,33 +141,4 @@ function showFinalScore() {
   const commentaire = commentaires[score] || "Bravo… ou désolé, on sait plus trop.";
   document.getElementById("quizQuestion").innerText = "Quiz terminé !";
   document.getElementById("quizAnswers").innerHTML =
-    `<p>Tu as eu ${score} bonne(s) réponse(s) sur ${shuffledQuestions.length}.</p><p>${commentaire}</p>`;
-  document.getElementById("nextBtn").style.display = "none";
-  document.getElementById("restartBtn").style.display = "block";
-
-  const mini = document.getElementById("miniCommentaire");
-  mini.innerText = "";
-  mini.classList.remove("visible");
-
-  const nom = prompt("Entre ton nom pour le classement :");
-  if (nom && nom.trim() !== "") {
-    envoyerResultat(nom.trim(), score, shuffledQuestions.length);
-  }
-}
-
-function restartQuiz() {
-  currentQuestionIndex = 0;
-  score = 0;
-  shuffledQuestions = questions.sort(() => Math.random() - 0.5);
-  showQuestion();
-}
-
-window.onload = async () => {
-  chargerAccroches();
-  const questions = await chargerQuestionsDepuisGoogle();
-  if (questions.length > 0) {
-    demarrerQuiz(questions);
-  } else {
-    document.getElementById("quizQuestion").innerText = "Erreur de chargement du quiz.";
-  }
-};
+    `<p>Tu as eu ${sco
