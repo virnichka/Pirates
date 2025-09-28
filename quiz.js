@@ -125,35 +125,43 @@ function nextQuestion() {
   }
 }
 
-function showFinalScore() {
-  const commentaires = [
-    "Zéro pointé. T'es sûr que tu fais partie du groupe ? 😅",
-    "Une seule bonne réponse… Ça sent le déni ou l'amnésie sélective.",
-    "Deux bonnes réponses. Tu veux qu'on te rafraîchisse la mémoire ?",
-    "Trois ? Tu connais juste les potins les plus évidents.",
-    "Quatre. Tu sauves l'honneur… de justesse.",
-    "Cinq bonnes réponses ! Pas mal, t'as bien suivi les histoires.",
-    "Six ? On sent que t'as pris des notes dans l’ombre.",
-    "Sept ? T'es clairement une commère premium.",
-    "Huit sur huit ? Tu ES la honte collective incarnée."
-  ];
+function commentairePour(score, total) {
+  const pct = Math.round((score / total) * 100);
 
-  const commentaire = commentaires[score] || "Bravo… ou désolé, on sait plus trop.";
+  if (pct === 100) return "Parfait ! 100% — tu es la commère en chef. 👑";
+  if (pct >= 80)  return "Excellent, tu connais tes potes par cœur. 🔥";
+  if (pct >= 60)  return "Pas mal, t'as bien suivi les histoires. 😉";
+  if (pct >= 40)  return "Moyen… il te manque quelques potins. 🤏";
+  if (pct >= 20)  return "Ouch… on dirait que t'étais pas là. 😬";
+  if (pct > 0)    return "Une petite lueur d'espoir… 🌤️";
+  return "Zéro pointé. T'es sûr que tu fais partie du groupe ? 😅";
+}
+
+function showFinalScore() {
+  const total = shuffledQuestions.length;
+  const commentaire = commentairePour(score, total); // ⬅️ calcul dynamique du message
+
+  // 🧾 Affichage du score et du commentaire
   document.getElementById("quizQuestion").innerText = "Quiz terminé !";
   document.getElementById("quizAnswers").innerHTML =
-    `<p>Tu as eu ${score} bonne(s) réponse(s) sur ${shuffledQuestions.length}.</p><p>${commentaire}</p>`;
+    `<p>Tu as eu ${score} bonne(s) réponse(s) sur ${total}.</p><p>${commentaire}</p>`;
+
+  // 🎛️ Réglage des boutons
   document.getElementById("nextBtn").style.display = "none";
   document.getElementById("restartBtn").style.display = "block";
 
+  // 💬 Réinitialisation du mini-commentaire
   const mini = document.getElementById("miniCommentaire");
   mini.innerText = "";
   mini.classList.remove("visible");
 
+  // 🧍‍♂️ Envoi du résultat à Google Sheets
   const nom = prompt("Entre ton nom pour le classement :");
   if (nom && nom.trim() !== "") {
-    envoyerResultat(nom.trim(), score, shuffledQuestions.length);
+    envoyerResultat(nom.trim(), score, total);
   }
 }
+
 
 function restartQuiz() {
   currentQuestionIndex = 0;
