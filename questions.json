@@ -1,10 +1,12 @@
 async function chargerQuestionsDepuisGoogle() {
-  const url = "https://script.google.com/macros/s/AKfycbzK_WNkNMelWEnZANzSmux6biHSZBT5t6QMT9TvDZ3qwxecAp3FQEzkyaG5drcixP6Q/exec?action=getQuestions";
+  // Utilise la variable globale définie dans config.js
+  const url = `${GOOGLE_SCRIPT_URL}?action=getQuestions`;
 
   try {
-    const response = await fetch(url);
+    const response = await fetch(url, { cache: "no-store" }); // no-store = toujours les dernières questions
     const data = await response.json();
-    if (data.status === "success") {
+
+    if (data.status === "success" && Array.isArray(data.questions)) {
       console.log("✅ Questions chargées depuis Google Sheets :", data.questions);
       return data.questions;
     } else {
