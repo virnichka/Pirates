@@ -140,11 +140,13 @@ function commentairePour(score, total) {
 function showFinalScore() {
   const total = shuffledQuestions.length;
   const commentaire = commentairePour(score, total); // ⬅️ calcul dynamique du message
-
+  const pourcentage = Math.round((score / total) * 100);
+  
   // 🧾 Affichage du score et du commentaire
   document.getElementById("quizQuestion").innerText = "Quiz terminé !";
+
   document.getElementById("quizAnswers").innerHTML =
-    `<p>Tu as eu ${score} bonne(s) réponse(s) sur ${total}.</p><p>${commentaire}</p>`;
+    `<p>Tu as eu ${score} bonne(s) réponse(s) sur ${total} (${pourcentage}%).</p><p>${commentaire}</p>`;
 
   // 🎛️ Réglage des boutons
   document.getElementById("nextBtn").style.display = "none";
