@@ -1,16 +1,49 @@
 /**
- * 🎨 Gestion de l'interface et des textes
+ * 🎨 Gestion de l'interface et des textes (V2.4)
+ * 
+ * - Charge les accroches (titres, sous-titres, commentaires finaux)
+ * - Gère le thème clair/sombre
+ * - Fournit des utilitaires (shuffle, prénoms aléatoires)
  */
 
-function toggleTheme() {
-  const body = document.body;
-  const isLight = body.classList.toggle("light");
-  const btn = document.getElementById("toggleThemeBtn");
-  btn.innerText = isLight ? "Basculer en thème sombre" : "Basculer en thème clair";
+let ACCROCHES = {}; // 🔹 Stockera les données du fichier accroches.json
+
+/**
+ * 🔄 Charge les accroches (titres, sous-titres, et commentaires de fin)
+ */
+async function chargerAccroches() {
+  try {
+    const response = await fetch("data/accroches.json");
+    ACCROCHES = await response.json();
+
+    // 🎯 Sélection aléatoire d’un titre et d’un sous-titre
+    const titre = getRandomItem(ACCROCHES.titres);
+    const sousTitre = getRandomItem(ACCROCHES.sousTitres);
+
+    document.getElementById("titre").innerText = titre;
+    document.getElementById("sousTitre").innerText = sousTitre;
+
+  } catch (error) {
+    console.error("❌ Erreur de chargement des accroches :", error);
+  }
 }
 
 /**
- * Récupère un ensemble de prénoms aléatoires à afficher comme fausses réponses
+ * 🧩 Retourne un élément aléatoire dans une liste
+ */
+function getRandomItem(list) {
+  return list[Math.floor(Math.random() * list.length)];
+}
+
+/**
+ * 🎲 Mélange un tableau (utile pour les questions / réponses)
+ */
+function shuffle(array) {
+  return array.sort(() => Math.random() - 0.5);
+}
+
+/**
+ * 👥 Récupère un ensemble de prénoms aléatoires (sauf le bon)
  */
 function getRandomNames(exclude) {
   const noms = ["Thomas", "Simon", "Vladimir", "Alexis", "Ludovic", "Sacha", "Maxence", "Le zinc"];
@@ -18,20 +51,37 @@ function getRandomNames(exclude) {
 }
 
 /**
- * Mélange un tableau
+ * 🏴‍☠️ Retourne un commentaire final selon le pourcentage de réussite
+ * → Les phrases sont définies dans data/accroches.json
  */
-function shuffle(array) {
-  return array.sort(() => Math.random() - 0.5);
+function getCommentaire(pourcentage) {
+  if (!ACCROCHES.commentairesFin) {
+    console.warn("⚠️ Commentaires finaux non trouvés dans accroches.json — fallback local utilisé");
+    return "Fin du quiz — résultat non interprété.";
+  }
+
+  // 🔢 Convertit les clés de l’objet (ex: "10", "20", …) en nombres triés
+  const niveaux = Object.keys(ACCROCHES.commentairesFin)
+    .map(n => parseInt(n, 10))
+    .sort((a, b) => a - b);
+
+  // 📊 Trouve le palier le plus proche sans dépasser le score
+  let palier = niveaux[0];
+  for (let i = 0; i < niveaux.length; i++) {
+    if (pourcentage >= niveaux[i]) palier = niveaux[i];
+    else break;
+  }
+
+  // 🗣️ Retourne le commentaire du palier trouvé
+  return ACCROCHES.commentairesFin[palier] || "Bravo… ou pas, on sait plus trop 😅";
 }
 
 /**
- * Retourne un message final selon le score
+ * 🌗 Bascule entre le thème clair et sombre
  */
-function getCommentaire(pourcentage) {
-  if (pourcentage === 100) return "Tu es imbattable 🔥";
-  if (pourcentage >= 80) return "Excellent ! Tu connais tout le monde !";
-  if (pourcentage >= 50) return "Pas mal, tu t’en sors bien 👏";
-  if (pourcentage >= 20) return "Hmm… on a connu mieux 😅";
-  return "Zéro pointé. T'es sûr que tu fais partie du groupe ? 😬";
+function toggleTheme() {
+  const body = document.body;
+  const isLight = body.classList.toggle("light");
+  const btn = document.getElementById("toggleThemeBtn");
+  btn.innerText = isLight ? "Basculer en thème sombre" : "Basculer en thème clair";
 }
-
