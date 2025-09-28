@@ -1,10 +1,9 @@
 /* ===============================
-   🎯 Quiz Entre Potes — Style V2
+   🎯 Quiz Entre Potes — Style V2.2
    Auteur : vinrichka
-   Version : 2.1
    Description :
-   Feuille de style claire & lisible
-   pour le quiz "Entre Potes" (V2)
+   Style clair, lisible et sans bug
+   Compatible thème clair/sombre
 ================================ */
 
 /* ----------- RESET ----------- */
@@ -81,29 +80,27 @@ main {
   font-size: 1rem;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
-  position: relative;
-  z-index: 1;
-  pointer-events: auto;
 }
 
+/* Thème clair */
 body.light .answerBtn {
   background-color: #f0f0f0;
-  color: #222;
+  color: #111;
   border: 1px solid #ccc;
-  position: relative;
-  z-index: 1;
-  pointer-events: auto;
+  cursor: pointer;
 }
 
+/* Survol */
 .answerBtn:hover:not(:disabled) {
   transform: scale(1.02);
   background-color: #2e2e2e;
 }
 
 body.light .answerBtn:hover:not(:disabled) {
-  background-color: #e6e6e6;
+  background-color: #e0e0e0;
 }
 
+/* États correct / incorrect */
 .answerBtn.correct {
   background-color: #2ecc71;
   color: #fff;
@@ -117,9 +114,10 @@ body.light .answerBtn:hover:not(:disabled) {
   border-color: #c0392b;
 }
 
+/* État désactivé */
 .answerBtn:disabled {
+  opacity: 0.7;
   cursor: not-allowed;
-  opacity: 0.8;
 }
 
 /* Animation pour la bonne réponse */
@@ -143,7 +141,7 @@ body.light .answerBtn:hover:not(:disabled) {
   opacity: 1;
 }
 
-/* ----------- BUTTONS ----------- */
+/* ----------- BUTTONS (Suivant / Rejouer) ----------- */
 .buttons {
   display: flex;
   justify-content: center;
@@ -178,7 +176,7 @@ body.light button {
 }
 
 body.light button:hover {
-  background-color: #e6e6e6;
+  background-color: #e0e0e0;
 }
 
 /* ----------- FOOTER ----------- */
