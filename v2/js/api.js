@@ -32,8 +32,8 @@ async function sendScore(nom, score, total) {
   try {
     const response = await fetch(CONFIG.GOOGLE_SCRIPT_URL, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ nom, score, total })
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams({ nom, score, total })
     });
 
     const data = await response.json();
