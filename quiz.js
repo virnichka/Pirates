@@ -153,9 +153,14 @@ function restartQuiz() {
   showQuestion();
 }
 
-window.onload = () => {
+window.onload = async () => {
   chargerAccroches();
-  chargerQuestions();
+  const questions = await chargerQuestionsDepuisGoogle();
+  if (questions.length > 0) {
+    demarrerQuiz(questions);
+  } else {
+    document.getElementById("quizQuestion").innerText = "Erreur de chargement du quiz.";
+  }
 };
 
 
