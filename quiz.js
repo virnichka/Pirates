@@ -141,4 +141,33 @@ function showFinalScore() {
   const commentaire = commentaires[score] || "Bravo… ou désolé, on sait plus trop.";
   document.getElementById("quizQuestion").innerText = "Quiz terminé !";
   document.getElementById("quizAnswers").innerHTML =
-    `<p>Tu as eu ${sco
+    `<p>Tu as eu ${score} bonne(s) réponse(s) sur ${shuffledQuestions.length}.</p><p>${commentaire}</p>`;
+  document.getElementById("nextBtn").style.display = "none";
+  document.getElementById("restartBtn").style.display = "block";
+
+  const mini = document.getElementById("miniCommentaire");
+  mini.innerText = "";
+  mini.classList.remove("visible");
+
+  const nom = prompt("Entre ton nom pour le classement :");
+  if (nom && nom.trim() !== "") {
+    envoyerResultat(nom.trim(), score, shuffledQuestions.length);
+  }
+}
+
+function restartQuiz() {
+  currentQuestionIndex = 0;
+  score = 0;
+  shuffledQuestions = melangerEtLimiterQuestions(questions);
+  showQuestion();
+}
+
+window.onload = async () => {
+  chargerAccroches();
+  const questions = await chargerQuestionsDepuisGoogle();
+  if (questions.length > 0) {
+    demarrerQuiz(questions);
+  } else {
+    document.getElementById("quizQuestion").innerText = "Erreur de chargement du quiz.";
+  }
+};
