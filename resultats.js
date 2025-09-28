@@ -18,7 +18,7 @@ function envoyerResultat(nom, score, total) {
   }
   console.log("📤 Envoi avec :", nom, score, total);
 
-  fetch("https://script.google.com/macros/s/AKfycbx93i92e5L0HfuJIlfoU6ZSFHYT9cIJz5WfjOikscP2PJDGdoOHV8PuworGE4D0LGsb/exec", {
+    fetch(GOOGLE_SCRIPT_URL, {
     method: "POST",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded"
