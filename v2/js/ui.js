@@ -8,25 +8,6 @@
 
 let ACCROCHES = {}; // 🔹 Stockera les données du fichier accroches.json
 
-/**
- * 🔄 Charge les accroches (titres, sous-titres, et commentaires de fin)
- */
-async function chargerAccroches() {
-  try {
-    const response = await fetch("data/accroches.json");
-    ACCROCHES = await response.json();
-
-    // 🎯 Sélection aléatoire d’un titre et d’un sous-titre
-    const titre = getRandomItem(ACCROCHES.titres);
-    const sousTitre = getRandomItem(ACCROCHES.sousTitres);
-
-    document.getElementById("titre").innerText = titre;
-    document.getElementById("sousTitre").innerText = sousTitre;
-
-  } catch (error) {
-    console.error("❌ Erreur de chargement des accroches :", error);
-  }
-}
 
 /**
  * 🧩 Retourne un élément aléatoire dans une liste
