@@ -12,6 +12,12 @@ function envoyerResultat(nom, score, total) {
   formData.append("score", score);
   formData.append("total", total);
 
+  // DEBUG – afficher tout le contenu du formData
+for (let pair of formData.entries()) {
+  console.log(`📦 ${pair[0]}: ${pair[1]}`);
+}
+
+
   fetch("https://script.google.com/macros/s/AKfycbwkVTs1FhApBp_L56ufCDCgnGFail0Seu_d-l4aBc0sRwiWKScWrj_KH_ikRUoybQyW/exec", {
     method: "POST",
     body: formData
