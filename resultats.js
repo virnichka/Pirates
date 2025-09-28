@@ -19,9 +19,10 @@ function envoyerResultat(nom, score, total) {
     })
   })
   .then(response => response.json())
-  .then(data => {
+.then(data => {
     console.log("✅ Score envoyé :", data);
-  })
+    alert("Score envoyé : " + JSON.stringify(data));
+})
   .catch(error => {
     console.error("❌ Erreur lors de l'envoi du score :", error);
   });
