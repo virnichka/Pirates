@@ -1,5 +1,5 @@
 async function chargerQuestionsDepuisGoogle() {
-  // Utilise la variable globale définie dans config.js
+  // Utilise l'URL définie dans config.js
   const url = `${GOOGLE_SCRIPT_URL}?action=getQuestions`;
 
   try {
