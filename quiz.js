@@ -141,6 +141,12 @@ function showFinalScore() {
   const mini = document.getElementById("miniCommentaire");
   mini.innerText = "";
   mini.classList.remove("visible");
+
+  const nom = prompt("Entre ton nom pour le classement :");
+if (nom && nom.trim() !== "") {
+  envoyerResultat(nom.trim(), score, shuffledQuestions.length);
+}
+
 }
 
 function restartQuiz() {
