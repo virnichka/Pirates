@@ -69,7 +69,7 @@ main {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem; /* un peu plus d’espace avant les boutons */
 }
 
 .answerBtn {
@@ -85,3 +85,112 @@ main {
 
 body.light .answerBtn {
   background-color: #f0f0f0;
+  color: #222;
+  border: 1px solid #ccc;
+}
+
+.answerBtn:hover:not(:disabled) {
+  transform: scale(1.02);
+  background-color: #2e2e2e;
+}
+
+body.light .answerBtn:hover:not(:disabled) {
+  background-color: #e6e6e6;
+}
+
+.answerBtn.correct {
+  background-color: #2ecc71;
+  color: #fff;
+  border-color: #27ae60;
+}
+
+.answerBtn.incorrect {
+  background-color: #e74c3c;
+  color: #fff;
+  border-color: #c0392b;
+}
+
+.answerBtn:disabled {
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+/* ----------- MINI COMMENT ----------- */
+.mini-comment {
+  margin-top: 0.5rem;
+  font-style: italic;
+  font-size: 1rem;
+  color: #aaa;
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.mini-comment.visible {
+  opacity: 1;
+}
+
+/* ----------- BUTTONS ----------- */
+.buttons {
+  display: flex;
+  justify-content: center; /* ✅ centre les boutons horizontalement */
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+button {
+  background-color: #1f1f1f;
+  color: white;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+button:hover {
+  background-color: #2e2e2e;
+  transform: translateY(-2px);
+}
+
+body.light button {
+  background-color: #f0f0f0;
+  color: #111;
+  border: 1px solid #ccc;
+}
+
+body.light button:hover {
+  background-color: #e6e6e6;
+}
+
+/* ----------- FOOTER ----------- */
+footer {
+  margin-top: 3rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #777;
+}
+
+footer button {
+  margin-bottom: 0.5rem;
+}
+
+footer span {
+  font-weight: bold;
+}
+
+/* ----------- RESPONSIVE ----------- */
+@media (max-width: 600px) {
+  body {
+    padding: 1rem;
+  }
+
+  #quizQuestion {
+    font-size: 1.2rem;
+  }
+
+  .answerBtn {
+    font-size: 0.95rem;
+  }
+}
