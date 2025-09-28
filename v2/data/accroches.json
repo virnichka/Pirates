@@ -22,5 +22,17 @@
     "Tu pensais qu’on t’avait oublié ? Bah non, on a les preuves.",
     "Ce quiz est sponsorisé par la honte et le désespoir.",
     "Si tu finis avec 0, t’as plus le droit de parler dans le groupe."
-  ]
+  ],
+  "commentairesFin": {
+    "0": "Zéro. Même ChatGPT aurait fait mieux. T’as dormi pendant toutes les soirées ou quoi ? 💀",
+    "10": "Aïe... T’étais là, mais visiblement pas sobre. 🥴",
+    "20": "Ok, t’as des souvenirs flous. On dirait un mec qui nie les preuves. 😬",
+    "30": "T’es dans le déni total, mais on t’aime quand même. Presque.",
+    "40": "T’as pigé quelques trucs, genre les gros dossiers. C’est déjà ça. 😅",
+    "50": "La moyenne. T’as évité la honte, mais c’est tout juste. 👏",
+    "70": "Pas mal du tout ! T’as une mémoire sélective, mais efficace. 🧠",
+    "80": "Respect. Tu connais tes potes et leurs pires moments. 🏴‍☠️",
+    "90": "Wow, t’es soit un espion, soit trop impliqué dans nos conneries. 🕵️‍♂️",
+    "100": "Parfait. Tu es la honte collective incarnée. Le boss final du malaise. 👑"
+  }
 }
