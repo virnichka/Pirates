@@ -1,7 +1,7 @@
 /* ===============================
    🎯 Quiz Entre Potes — Style V2
    Auteur : vinrichka
-   Version : 2.0
+   Version : 2.1
    Description :
    Feuille de style claire & lisible
    pour le quiz "Entre Potes" (V2)
@@ -69,7 +69,7 @@ main {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  margin-bottom: 2rem; /* un peu plus d’espace avant les boutons */
+  margin-bottom: 2rem; /* espace sous les réponses */
 }
 
 .answerBtn {
@@ -81,12 +81,18 @@ main {
   font-size: 1rem;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
+  position: relative;
+  z-index: 1;
+  pointer-events: auto;
 }
 
 body.light .answerBtn {
   background-color: #f0f0f0;
   color: #222;
   border: 1px solid #ccc;
+  position: relative;
+  z-index: 1;
+  pointer-events: auto;
 }
 
 .answerBtn:hover:not(:disabled) {
@@ -102,6 +108,7 @@ body.light .answerBtn:hover:not(:disabled) {
   background-color: #2ecc71;
   color: #fff;
   border-color: #27ae60;
+  animation: pop 0.2s ease-in-out;
 }
 
 .answerBtn.incorrect {
@@ -113,6 +120,13 @@ body.light .answerBtn:hover:not(:disabled) {
 .answerBtn:disabled {
   cursor: not-allowed;
   opacity: 0.8;
+}
+
+/* Animation pour la bonne réponse */
+@keyframes pop {
+  0% { transform: scale(0.95); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
 }
 
 /* ----------- MINI COMMENT ----------- */
@@ -132,10 +146,11 @@ body.light .answerBtn:hover:not(:disabled) {
 /* ----------- BUTTONS ----------- */
 .buttons {
   display: flex;
-  justify-content: center; /* ✅ centre horizontalement */
+  justify-content: center;
   align-items: center;
   gap: 1rem;
-  margin-top: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
 button {
@@ -147,8 +162,8 @@ button {
   font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.2s, transform 0.2s;
-  display: inline-block; /* ✅ évite l’écrasement du style */
-  min-width: 120px; /* ✅ assure une taille visuelle cohérente */
+  display: inline-block;
+  min-width: 120px;
 }
 
 button:hover {
@@ -165,7 +180,6 @@ body.light button {
 body.light button:hover {
   background-color: #e6e6e6;
 }
-
 
 /* ----------- FOOTER ----------- */
 footer {
