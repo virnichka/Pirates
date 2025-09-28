@@ -12,6 +12,7 @@ const bonnesReactions = [
   "bien joué", "tu connais tes potes", "haha exact", "trop fort", "tu l’as", "yes", "bingo", "respect", "joli", "clean"
 ];
 
+
 async function chargerQuestions() {
   try {
     const response = await fetch("questions.js");
