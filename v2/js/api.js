@@ -14,6 +14,7 @@ async function fetchQuestions() {
 
     if (data.status === "success") {
       console.log("✅ Questions chargées :", data.questions.length);
+      console.log("Questions reçues depuis Google Sheet :", data.questions);
       return data.questions;
     } else {
       console.error("⚠️ Erreur de chargement :", data.message);
