@@ -3,10 +3,8 @@
    Auteur : vinrichka
    Description :
    Feuille de style modernisée, lisible et réactive
-   Compatible thème sombre / clair
+   Compatible thème sombre / clair / fun / full_dark
    =========================================================== */
-
-
 
 /* -----------------------------------------------------------
    🧱 RESET GÉNÉRAL
@@ -60,13 +58,12 @@
   --border-color: #cccccc;
 }
 
-
 /* -----------------------------------------------------------
    🌗 BASE DU SITE
    ----------------------------------------------------------- */
 body {
-  background-color: #121212;
-  color: #f5f5f5;
+  background-color: var(--bg-color);
+  color: var(--text-color);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -74,12 +71,6 @@ body {
   justify-content: flex-start;
   padding: 2rem;
   transition: background-color 0.4s, color 0.4s;
-}
-
-/* --- Thème clair --- */
-body.light {
-  background-color: #fafafa;
-  color: #1b1b1b;
 }
 
 /* -----------------------------------------------------------
@@ -94,11 +85,12 @@ header h1 {
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 0.3rem;
+  color: var(--text-color);
 }
 
 header em {
   font-size: 1.1rem;
-  color: #999;
+  color: var(--accent-color);
 }
 
 /* -----------------------------------------------------------
@@ -115,6 +107,7 @@ main {
   font-weight: 600;
   margin-bottom: 1.5rem;
   transition: opacity 0.3s;
+  color: var(--text-color);
 }
 
 /* -----------------------------------------------------------
@@ -124,14 +117,14 @@ main {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  margin-bottom: 2rem; /* espace avant les boutons */
+  margin-bottom: 2rem;
 }
 
 /* --- Style par défaut --- */
 .answerBtn {
-  background-color: #1f1f1f;
-  color: #fff;
-  border: 1px solid #333;
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  border: 1px solid var(--border-color);
   border-radius: 8px;
   padding: 0.8rem 1rem;
   font-size: 1rem;
@@ -139,35 +132,23 @@ main {
   transition: all 0.2s ease-in-out;
 }
 
-/* --- Thème clair --- */
-body.light .answerBtn {
-  background-color: #f0f0f0;
-  color: #111;
-  border: 1px solid #ccc;
-}
-
 /* --- Survol --- */
 .answerBtn:hover:not(:disabled) {
   transform: scale(1.02);
-  background-color: #2e2e2e;
-}
-
-body.light .answerBtn:hover:not(:disabled) {
-  background-color: #e0e0e0;
+  background-color: var(--accent-color);
+  color: #fff;
 }
 
 /* --- États correct / incorrect universels --- */
-.answerBtn.correct,
-body.light .answerBtn.correct {
-  background-color: #2ecc71 !important; /* Vert succès */
+.answerBtn.correct {
+  background-color: #2ecc71 !important;
   border-color: #27ae60 !important;
   color: #fff !important;
   animation: pop 0.2s ease-in-out;
 }
 
-.answerBtn.incorrect,
-body.light .answerBtn.incorrect {
-  background-color: #e74c3c !important; /* Rouge erreur */
+.answerBtn.incorrect {
+  background-color: #e74c3c !important;
   border-color: #c0392b !important;
   color: #fff !important;
 }
@@ -192,7 +173,7 @@ body.light .answerBtn.incorrect {
   margin-top: 0.5rem;
   font-style: italic;
   font-size: 1rem;
-  color: #aaa;
+  color: var(--accent-color);
   opacity: 0;
   transition: opacity 0.4s;
 }
@@ -215,9 +196,9 @@ body.light .answerBtn.incorrect {
 
 /* --- Boutons génériques --- */
 button {
-  background-color: #1f1f1f;
-  color: white;
-  border: 1px solid #333;
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  border: 1px solid var(--border-color);
   border-radius: 8px;
   padding: 0.8rem 1.5rem;
   font-size: 1rem;
@@ -228,19 +209,9 @@ button {
 
 /* --- Hover --- */
 button:hover {
-  background-color: #2e2e2e;
+  background-color: var(--accent-color);
+  color: #fff;
   transform: translateY(-2px);
-}
-
-/* --- Thème clair --- */
-body.light button {
-  background-color: #f0f0f0;
-  color: #111;
-  border: 1px solid #ccc;
-}
-
-body.light button:hover {
-  background-color: #e0e0e0;
 }
 
 /* -----------------------------------------------------------
@@ -250,7 +221,7 @@ footer {
   margin-top: 3rem;
   text-align: center;
   font-size: 0.9rem;
-  color: #777;
+  color: var(--text-color);
 }
 
 footer button {
@@ -260,5 +231,3 @@ footer button {
 footer span {
   font-weight: bold;
 }
-
-/* ---------------------------------------------------*
