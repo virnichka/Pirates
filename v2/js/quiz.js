@@ -32,7 +32,15 @@ function showQuestion() {
   elQ.innerText = q.question;
   elA.innerHTML = "";
 
-  const answers = shuffle([q.bonne_reponse, ...getRandomNames(q.bonne_reponse)]);
+  // ✅ Utiliser les mauvaises réponses de la Google Sheet
+  const wrongs = Array.isArray(q.reponses)
+    ? q.reponses.filter(r => r && r.trim().length > 0)
+    : [];
+
+  // ✅ Combiner et mélanger les réponses
+  const answers = shuffle([q.bonne_reponse, ...wrongs]);
+
+  // ✅ Créer les boutons de réponses
   answers.forEach(ans => {
     const btn = document.createElement("button");
     btn.className = "answerBtn";
