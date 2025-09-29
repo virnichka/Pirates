@@ -43,43 +43,45 @@ function getRandomNames(exclude) {
  * ======================================================
  */
 function getCommentaire(pourcentage) {
-
-    // 🩵 Synchronisation de sécurité avec le contenu global chargé
-  if (!ACCROCHES || !Object.keys(ACCROCHES).length) {
-    ACCROCHES = window.ACCROCHES || {};
-  }
-  
-  // 1) Récupère le mode courant (sauvegardé par le sélecteur)
+  // 🧠 1) Récupère le mode courant (sauvegardé par le sélecteur)
   const modeFromStorage = localStorage.getItem("selectedMode");
 
-  // 2) Sélectionne la bonne source de commentaires
-  //    - d’abord ceux du mode (si dispo)
-  //    - sinon le bloc racine ACCROCHES.commentairesFin
-  const byMode = ACCROCHES?.modes?.[modeFromStorage]?.commentairesFin;
-  const comments = byMode || ACCROCHES?.commentairesFin || {};
+  // 🧩 2) Récupère les données globales des accroches
+  const data = window.ACCROCHES;
+  if (!data) {
+    console.warn("⚠️ ACCROCHES non chargé ou inaccessible.");
+    return "Fin du quiz — données indisponibles.";
+  }
 
-  // 3) Sécurités : si rien trouvé, on renvoie une phrase par défaut
+  // 🎯 3) Sélectionne la bonne source de commentaires
+  const byMode = data?.modes?.[modeFromStorage]?.commentairesFin;
+  const comments = byMode || data?.commentairesFin || {};
+
+  // 🛑 4) Sécurité si rien trouvé
   const keys = Object.keys(comments);
   if (!keys.length) {
     console.warn("⚠️ Aucun commentaire de fin trouvé pour le mode:", modeFromStorage);
+    console.log("📂 Modes disponibles :", Object.keys(data.modes || {}));
     return "Bravo pour avoir terminé le quiz !";
   }
 
-  // 4) Convertit les clés ("0","20",...) en nombres triés
+  // 📊 5) Trie les clés ("0","20",...) en nombres
   const niveaux = keys
     .map(k => parseInt(k, 10))
     .filter(n => !Number.isNaN(n))
     .sort((a, b) => a - b);
 
-  // 5) Trouve le palier le plus bas <= pourcentage
+  // 📈 6) Trouve le palier correspondant
   let palier = niveaux[0];
   for (let i = 0; i < niveaux.length; i++) {
     if (pourcentage >= niveaux[i]) palier = niveaux[i];
     else break;
   }
 
-  // 6) Renvoie la phrase correspondante (fallback générique si manquante)
-  return comments[palier] || "Bravo pour avoir terminé le quiz !";
+  // 🗣️ 7) Retourne la phrase correspondante
+  const message = comments[palier] || "Bravo pour avoir terminé le quiz !";
+  console.log(`💬 Mode: ${modeFromStorage} | Palier ${palier}% → ${message}`);
+  return message;
 }
 
 
