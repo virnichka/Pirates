@@ -49,7 +49,7 @@ async function sendScore(nom, score, total, mode = "general") {
     // ✅ Appel en GET (aucun CORS)
     const response = await fetch(url, { method: "GET", cache: "no-store" });
 
-    // ⚠️ Sécurise le parsing JSON (si la réponse est vide)
+    // ⚠️ Sécurise le parsing JSON (si la réponse est vide ou invalide)
     let data;
     try {
       data = await response.json();
@@ -69,3 +69,4 @@ async function sendScore(nom, score, total, mode = "general") {
     return { ok: false, error: err.message };
   }
 }
+
