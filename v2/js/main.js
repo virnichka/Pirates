@@ -21,7 +21,9 @@ window.addEventListener("load", async () => {
     console.log("✅ ACCROCHES chargées :", ACCROCHES);
 
     // 4️⃣ Chargement des questions + démarrage du quiz
-    const questions = await fetchQuestions();
+    const savedMode = localStorage.getItem("selectedMode") || "general";
+    const questions = await fetchQuestions(savedMode);
+
     console.log("✅ Questions reçues :", questions.length);
     if (questions && questions.length > 0) {
       startQuiz(questions);
