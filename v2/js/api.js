@@ -7,7 +7,6 @@
  * ------------------------------------------------------------
  */
 
-
 /**
  * ==============================================
  *  🧩 Chargement des questions selon le mode choisi
@@ -47,7 +46,6 @@ async function fetchQuestions(mode = null) {
   }
 }
 
-
 /**
  * ==============================================
  *  📤 Envoi du score vers Google Sheets
@@ -57,13 +55,8 @@ async function fetchQuestions(mode = null) {
  */
 async function sendScore(nom, score, total, mode = "general") {
   try {
-    // 1️⃣ Construction de l’URL
-    const url = `${CONFIG.GOOGLE_SCRIPT_URL}?action=sendScore`
-      + `&nom=${encodeURIComponent(nom)}`
-      + `&score=${encodeURIComponent(score)}`
-      + `&total=${encodeURIComponent(total)}`
-      + `&mode=${encodeURIComponent(mode)}`
-      + `&_t=${Date.now()}`; // évite le cache navigateur
+    // 1️⃣ Construction de l’URL complète sur une seule ligne (évite les erreurs de parsing)
+    const url = `${CONFIG.GOOGLE_SCRIPT_URL}?action=sendScore&nom=${encodeURIComponent(nom)}&score=${encodeURIComponent(score)}&total=${encodeURIComponent(total)}&mode=${encodeURIComponent(mode)}&_t=${Date.now()}`;
 
     console.log("📡 Envoi du score via URL :", url);
 
