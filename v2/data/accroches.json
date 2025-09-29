@@ -1,23 +1,14 @@
 {
-  /* ===========================================================
-     🧩 FICHIER D’ACCROCHES — QUIZ ENTRE POTES (MULTI-MODES)
-     -----------------------------------------------------------
-     Ce fichier contient tous les textes “dynamiques” du site :
-       - Titres et sous-titres (haut de page du quiz)
-       - Commentaires de fin selon le score
-       - Variantes de ton pour chaque mode (général / fun / full_dark)
+  "_info": {
+    "description": "Fichier d’accroches — Quiz Entre Potes (multi-modes)",
+    "usage": "Contient les textes dynamiques : titres, sous-titres, commentaires de fin, et variantes selon le mode.",
+    "structure": {
+      "racine": ["titres", "sousTitres", "commentairesFin"],
+      "modes": ["general", "fun", "full_dark"]
+    },
+    "defaultMode": "general"
+  },
 
-     💡 Structure :
-       - Les clés à la racine ("titres", "sousTitres", "commentairesFin")
-         restent pour compatibilité avec le code actuel (mode “full_dark”).
-       - Le bloc "modes" ajoute les futures variantes par thème.
-  =========================================================== */
-
-  /* -----------------------------------------------------------
-     🎭 CONTENU PAR DÉFAUT (COMPATIBILITÉ AVEC LE CODE EXISTANT)
-     Ce bloc correspond au mode “entre potes / full_dark”.
-     Tous les titres et sous-titres d’origine sont conservés.
-  ----------------------------------------------------------- */
   "titres": [
     "Quiz Entre Potes — édition gueule de bois 🍺",
     "Le tribunal des cassos ⚖️",
@@ -28,17 +19,7 @@
     "Le grand déballage des dossiers honteux 🫣",
     "Qui a fait quoi ? Et pourquoi c’est encore toi ?",
     "Les potes contre-attaquent (et ça va faire mal) 💣",
-    "Soirée quiz : pas de gagnant, que des humiliés 🐒",
-    "Quiz entre potes : prépare ta dignité, elle va souffrir 🥲",
-    "L’arène du malaise : un seul survivra (peut-être) ⚔️",
-    "Session quiz : bière, trahison et mauvaise foi 🍻",
-    "Bienvenue au jugement dernier de ton QI 🧠",
-    "Tournoi des cerveaux endommagés 💀",
-    "Quiz pirates : hisse la honte et le pavillon noir ☠️",
-    "Le retour du quiz maudit 🧩",
-    "Le grand test de la mémoire sélective 🫨",
-    "Interrogatoire collectif : personne n’en sortira indemne 👮‍♂️",
-    "Soirée vengeance : les potes passent à table 🍽️"
+    "Soirée quiz : pas de gagnant, que des humiliés 🐒"
   ],
 
   "sousTitres": [
@@ -51,17 +32,7 @@
     "Le but ? Humilier, rire, puis recommencer.",
     "Tu pensais qu’on t’avait oublié ? Bah non, on a les preuves.",
     "Ce quiz est sponsorisé par la honte et le désespoir.",
-    "Si tu finis avec 0, t’as plus le droit de parler dans le groupe.",
-    "Tente ta chance, mais on sait tous comment ça va finir…",
-    "Tu peux toujours blâmer la bière, pas ton cerveau.",
-    "N’oublie pas : la mauvaise foi est une stratégie légitime.",
-    "On te juge, mais avec amour (enfin, un peu).",
-    "Ce quiz est un piège affectif. Fuis tant qu’il est temps.",
-    "Les points ne comptent pas, seule la honte est éternelle.",
-    "Aucune IA ne pourra te sauver cette fois-ci.",
-    "Ici, c’est chacun pour soi, mais toujours entre amis.",
-    "C’est pas un quiz, c’est une séance de thérapie de groupe.",
-    "Allez, on rigole… enfin toi un peu moins."
+    "Si tu finis avec 0, t’as plus le droit de parler dans le groupe."
   ],
 
   "commentairesFin": {
@@ -73,9 +44,6 @@
     "100": "Parfait. Tu es la honte collective incarnée. Le boss final du malaise. 👑"
   },
 
-  /* -----------------------------------------------------------
-     🌈 NOUVEAU BLOC MULTI-MODES
-  ----------------------------------------------------------- */
   "modes": {
     "general": {
       "titres": [
@@ -163,8 +131,5 @@
     }
   },
 
-  /* -----------------------------------------------------------
-     ⚙️ MÉTADONNÉES OPTIONNELLES
-  ----------------------------------------------------------- */
   "_defaultMode": "general"
 }
