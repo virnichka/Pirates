@@ -13,8 +13,7 @@ async function fetchQuestions(mode = null) {
     const selectedMode = mode || localStorage.getItem("selectedMode") || "general";
 
     // 2️⃣ Construit l’URL vers ton Apps Script
-    // (⚠️ vérifie que cette constante existe déjà)
-    const url = `${API_BASE_URL}?action=getQuestions&sheet=${encodeURIComponent(selectedMode)}`;
+    const url = `${CONFIG.GOOGLE_SCRIPT_URL}?action=getQuestions&sheet=${encodeURIComponent(selectedMode)}`;
 
     // 3️⃣ Récupération des données
     const response = await fetch(url);
