@@ -31,3 +31,28 @@ window.onload = async () => {
 function randomItem(array) {
   return array[Math.floor(Math.random() * array.length)];
 }
+
+// === Gestion du thème visuel du site ===
+
+// Applique le thème visuel selon le mode choisi
+function applyTheme(mode) {
+  document.documentElement.setAttribute("data-theme", mode);
+  localStorage.setItem("selectedMode", mode); // sauvegarde du choix dans le navigateur
+}
+
+// Au chargement de la page : on applique le thème sauvegardé ou le thème par défaut
+document.addEventListener("DOMContentLoaded", () => {
+  const savedMode = localStorage.getItem("selectedMode") || "general";
+  applyTheme(savedMode);
+
+  // Gestion du sélecteur de mode si présent dans le HTML
+  const select = document.getElementById("themeMode");
+  if (select) {
+    select.value = savedMode;
+    select.addEventListener("change", (e) => {
+      const mode = e.target.value;
+      applyTheme(mode);
+    });
+  }
+});
+
