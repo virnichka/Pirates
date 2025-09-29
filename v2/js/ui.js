@@ -31,31 +31,53 @@ function getRandomNames(exclude) {
   return noms.filter(n => n !== exclude).sort(() => Math.random() - 0.5).slice(0, 3);
 }
 
+
+
 /**
- * 🏴‍☠️ Retourne un commentaire final selon le pourcentage de réussite
- * → Les phrases sont définies dans data/accroches.json
+ * ======================================================
+ *  🧠 getCommentaire(pourcentage)
+ *  Renvoie la phrase finale selon le score ET le mode
+ *  - Lit d’abord les commentaires du mode actif (localStorage.selectedMode)
+ *  - Sinon fallback sur les commentaires racine (compatibilité)
+ *  - Conserve ta logique de paliers 0/20/40/60/80/100
+ * ======================================================
  */
 function getCommentaire(pourcentage) {
-  if (!ACCROCHES.commentairesFin) {
-    console.warn("⚠️ Commentaires finaux non trouvés dans accroches.json — fallback local utilisé");
-    return "Fin du quiz — résultat non interprété.";
+  // 1) Récupère le mode courant (sauvegardé par le sélecteur)
+  const modeFromStorage = localStorage.getItem("selectedMode");
+
+  // 2) Sélectionne la bonne source de commentaires
+  //    - d’abord ceux du mode (si dispo)
+  //    - sinon le bloc racine ACCROCHES.commentairesFin
+  const byMode = ACCROCHES?.modes?.[modeFromStorage]?.commentairesFin;
+  const comments = byMode || ACCROCHES?.commentairesFin || {};
+
+  // 3) Sécurités : si rien trouvé, on renvoie une phrase par défaut
+  const keys = Object.keys(comments);
+  if (!keys.length) {
+    console.warn("⚠️ Aucun commentaire de fin trouvé pour le mode:", modeFromStorage);
+    return "Bravo pour avoir terminé le quiz !";
   }
 
-  // 🔢 Convertit les clés de l’objet (ex: "10", "20", …) en nombres triés
-  const niveaux = Object.keys(ACCROCHES.commentairesFin)
-    .map(n => parseInt(n, 10))
+  // 4) Convertit les clés ("0","20",...) en nombres triés
+  const niveaux = keys
+    .map(k => parseInt(k, 10))
+    .filter(n => !Number.isNaN(n))
     .sort((a, b) => a - b);
 
-  // 📊 Trouve le palier le plus proche sans dépasser le score
+  // 5) Trouve le palier le plus bas <= pourcentage
   let palier = niveaux[0];
   for (let i = 0; i < niveaux.length; i++) {
     if (pourcentage >= niveaux[i]) palier = niveaux[i];
     else break;
   }
 
-  // 🗣️ Retourne le commentaire du palier trouvé
-  return ACCROCHES.commentairesFin[palier] || "Bravo… ou pas, on sait plus trop 😅";
+  // 6) Renvoie la phrase correspondante (fallback générique si manquante)
+  return comments[palier] || "Bravo pour avoir terminé le quiz !";
 }
+
+
+
 
 /**
  * 🌗 Bascule entre le thème clair et sombre
