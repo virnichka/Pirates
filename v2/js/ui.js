@@ -43,6 +43,12 @@ function getRandomNames(exclude) {
  * ======================================================
  */
 function getCommentaire(pourcentage) {
+
+    // 🩵 Synchronisation de sécurité avec le contenu global chargé
+  if (!ACCROCHES || !Object.keys(ACCROCHES).length) {
+    ACCROCHES = window.ACCROCHES || {};
+  }
+  
   // 1) Récupère le mode courant (sauvegardé par le sélecteur)
   const modeFromStorage = localStorage.getItem("selectedMode");
 
