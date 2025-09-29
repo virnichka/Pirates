@@ -6,6 +6,8 @@
    Compatible thème sombre / clair
    =========================================================== */
 
+
+
 /* -----------------------------------------------------------
    🧱 RESET GÉNÉRAL
    ----------------------------------------------------------- */
@@ -15,6 +17,49 @@
   padding: 0;
   font-family: "Segoe UI", Roboto, sans-serif;
 }
+
+/* === Thèmes visuels — Général / Fun / Full Dark === */
+
+/* Thème clair (par défaut) — Mode Général */
+:root[data-theme="general"] {
+  --bg-color: #ffffff;
+  --text-color: #111111;
+  --accent-color: #007bff;
+  --button-bg: #f5f5f5;
+  --button-text: #111111;
+  --border-color: #cccccc;
+}
+
+/* Thème coloré — Mode Fun */
+:root[data-theme="fun"] {
+  --bg-color: #fff8e1;
+  --text-color: #222222;
+  --accent-color: #ff6f61;
+  --button-bg: #ffe57f;
+  --button-text: #111111;
+  --border-color: #ffb74d;
+}
+
+/* Thème sombre — Mode Full Dark */
+:root[data-theme="full_dark"] {
+  --bg-color: #121212;
+  --text-color: #f0f0f0;
+  --accent-color: #e74c3c;
+  --button-bg: #1f1f1f;
+  --button-text: #f0f0f0;
+  --border-color: #333333;
+}
+
+/* Valeurs par défaut (fallback si aucun data-theme n’est défini) */
+:root {
+  --bg-color: #ffffff;
+  --text-color: #111111;
+  --accent-color: #007bff;
+  --button-bg: #f5f5f5;
+  --button-text: #111111;
+  --border-color: #cccccc;
+}
+
 
 /* -----------------------------------------------------------
    🌗 BASE DU SITE
