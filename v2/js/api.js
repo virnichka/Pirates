@@ -1,28 +1,46 @@
 /**
- * 🔗 API : gestion des échanges avec Google Apps Script
+ * 🔗 API – Communication avec Google Apps Script
+ * ------------------------------------------------------------
+ *  Contient :
+ *   - fetchQuestions() → récupère les questions selon le mode
+ *   - sendScore() → envoie le score final à la feuille "scores"
+ * ------------------------------------------------------------
  */
+
 
 /**
  * ==============================================
- *  Chargement des questions selon le mode choisi
+ *  🧩 Chargement des questions selon le mode choisi
  * ==============================================
  */
 async function fetchQuestions(mode = null) {
-  console.log("URL API utilisée :", CONFIG?.GOOGLE_SCRIPT_URL);
-
   try {
-    // 1️⃣ Récupère le mode sélectionné (ou celui sauvegardé)
+    // 1️⃣ Récupère le mode sélectionné ou "general" par défaut
     const selectedMode = mode || localStorage.getItem("selectedMode") || "general";
 
-    // 2️⃣ Construit l’URL vers ton Apps Script
+    // 2️⃣ Construit l’URL vers ton Google Apps Script
     const url = `${CONFIG.GOOGLE_SCRIPT_URL}?action=getQuestions&sheet=${encodeURIComponent(selectedMode)}`;
 
-    // 3️⃣ Récupération des données
-    const response = await fetch(url);
+    console.log("🌐 URL API utilisée :", url);
+
+    // 3️⃣ Récupère les données
+    const response = await fetch(url, { method: "GET", cache: "no-store" });
+
+    if (!response.ok) {
+      console.warn(`⚠️ Erreur HTTP (${response.status})`);
+      return [];
+    }
+
     const questions = await response.json();
 
-    console.log(`✅ Questions chargées depuis "${selectedMode}" (${questions.length} lignes)`);
+    if (!Array.isArray(questions)) {
+      console.warn("⚠️ Réponse inattendue :", questions);
+      return [];
+    }
+
+    console.log(`✅ ${questions.length} questions chargées pour le mode "${selectedMode}"`);
     return questions;
+
   } catch (err) {
     console.error("❌ Erreur lors du chargement des questions :", err);
     return [];
@@ -31,32 +49,37 @@ async function fetchQuestions(mode = null) {
 
 
 /**
- * Envoie le score final vers la feuille Google Sheets
- * Compatible GitHub Pages (GET → évite CORS)
+ * ==============================================
+ *  📤 Envoi du score vers Google Sheets
+ * ==============================================
+ *  → Utilise une requête GET pour contourner le CORS
+ *  → Données visibles dans la feuille “scores”
  */
 async function sendScore(nom, score, total, mode = "general") {
   try {
-    // ✅ Construction de l’URL avec paramètres GET
+    // 1️⃣ Construction de l’URL
     const url = `${CONFIG.GOOGLE_SCRIPT_URL}?action=sendScore`
       + `&nom=${encodeURIComponent(nom)}`
       + `&score=${encodeURIComponent(score)}`
       + `&total=${encodeURIComponent(total)}`
       + `&mode=${encodeURIComponent(mode)}`
-      + `&_t=${Date.now()}`; // anti-cache
+      + `&_t=${Date.now()}`; // évite le cache navigateur
 
     console.log("📡 Envoi du score via URL :", url);
 
-    // ✅ Appel en GET (aucun CORS)
+    // 2️⃣ Appel GET
     const response = await fetch(url, { method: "GET", cache: "no-store" });
 
-    // ⚠️ Sécurise le parsing JSON (si la réponse est vide ou invalide)
+    // 3️⃣ Vérifie la validité de la réponse
     let data;
     try {
       data = await response.json();
-    } catch {
+    } catch (err) {
+      console.warn("⚠️ Réponse non JSON :", err);
       data = { ok: false, message: "Réponse non JSON" };
     }
 
+    // 4️⃣ Log console
     console.log("📤 Score enregistré :", data);
 
     if (!data.ok) {
@@ -64,9 +87,6 @@ async function sendScore(nom, score, total, mode = "general") {
     }
 
     return data;
+
   } catch (err) {
     console.error("❌ Erreur d’envoi du score :", err);
-    return { ok: false, error: err.message };
-  }
-}
-
