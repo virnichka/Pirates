@@ -78,6 +78,7 @@ async function applyAccroches(mode = "general") {
   try {
     const response = await fetch("data/accroches.json");
     const data = await response.json();
+    window.ACCROCHES = data;
 
     // 🔹 On lit le bon bloc de texte selon le mode
     const modeData = data.modes?.[mode] || data.modes.general;
