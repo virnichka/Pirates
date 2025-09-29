@@ -17,9 +17,8 @@
 }
 
 /* === Thèmes visuels — Général / Fun / Full Dark === */
-
 /* Thème clair (par défaut) — Mode Général */
-:root[data-theme="general"] {
+html[data-theme="general"] {
   --bg-color: #ffffff;
   --text-color: #111111;
   --accent-color: #007bff;
@@ -29,7 +28,7 @@
 }
 
 /* Thème coloré — Mode Fun */
-:root[data-theme="fun"] {
+html[data-theme="fun"] {
   --bg-color: #fff8e1;
   --text-color: #222222;
   --accent-color: #ff6f61;
@@ -39,7 +38,7 @@
 }
 
 /* Thème sombre — Mode Full Dark */
-:root[data-theme="full_dark"] {
+html[data-theme="full_dark"] {
   --bg-color: #121212;
   --text-color: #f0f0f0;
   --accent-color: #e74c3c;
@@ -48,8 +47,8 @@
   --border-color: #333333;
 }
 
-/* Valeurs par défaut (fallback si aucun data-theme n’est défini) */
-:root {
+/* Valeurs par défaut */
+html {
   --bg-color: #ffffff;
   --text-color: #111111;
   --accent-color: #007bff;
@@ -57,6 +56,7 @@
   --button-text: #111111;
   --border-color: #cccccc;
 }
+
 
 /* -----------------------------------------------------------
    🌗 BASE DU SITE
