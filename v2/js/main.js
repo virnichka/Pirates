@@ -40,6 +40,32 @@ function applyTheme(mode) {
   localStorage.setItem("selectedMode", mode); // sauvegarde du choix dans le navigateur
 }
 
+// === Gestion des accroches dynamiques selon le mode ===
+async function applyAccroches(mode) {
+  try {
+    const response = await fetch("data/accroches.json");
+    const data = await response.json();
+
+    // On regarde dans la partie "modes"
+    const selectedMode = data.modes[mode] || data.modes[data._defaultMode];
+
+    // Sélectionne aléatoirement un titre et un sous-titre
+    const titre = selectedMode.titres[Math.floor(Math.random() * selectedMode.titres.length)];
+    const sousTitre = selectedMode.sousTitres[Math.floor(Math.random() * selectedMode.sousTitres.length)];
+
+    // Injection dans le DOM
+    const headerTitle = document.querySelector("header h1");
+    const headerSubtitle = document.querySelector("header p");
+
+    if (headerTitle) headerTitle.textContent = titre;
+    if (headerSubtitle) headerSubtitle.textContent = sousTitre;
+
+  } catch (err) {
+    console.error("Erreur lors du chargement des accroches :", err);
+  }
+}
+
+
 // Au chargement de la page : on applique le thème sauvegardé ou le thème par défaut
 document.addEventListener("DOMContentLoaded", () => {
   const savedMode = localStorage.getItem("selectedMode") || "general";
