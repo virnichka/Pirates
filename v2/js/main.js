@@ -1,51 +1,60 @@
-/**
- * 🚀 Point d’entrée unique du quiz
- */
+
+// ===============================================
+// QUIZ ENTRE POTES – main.js (version corrigée)
+// * 🚀 Point d’entrée unique du quiz
+// ===============================================
+
 window.addEventListener("load", async () => {
   try {
-    // 1️⃣ Récupération ou création du mode par défaut
-    let savedMode = localStorage.getItem("selectedMode");
-    if (!savedMode) {
-      savedMode = "general";
-      localStorage.setItem("selectedMode", savedMode);
-    }
+    // 1️⃣ Récupération du mode sauvegardé (ou "general" par défaut)
+    const savedMode = localStorage.getItem("selectedMode") || "general";
 
-    // 2️⃣ Application du thème et des accroches
+    // 2️⃣ Application du thème visuel et des accroches correspondantes
     applyTheme(savedMode);
     await applyAccroches(savedMode);
 
-    // 3️⃣ Chargement des accroches globales (si besoin)
-    const response = await fetch("data/accroches.json");
-    const accroches = await response.json();
-    ACCROCHES = accroches;
-    console.log("✅ ACCROCHES chargées :", ACCROCHES);
-
-    // 4️⃣ Chargement des questions + démarrage du quiz
-    const savedMode = localStorage.getItem("selectedMode") || "general";
+    // 3️⃣ Chargement des questions selon le mode choisi
     const questions = await fetchQuestions(savedMode);
 
-    console.log("✅ Questions reçues :", questions.length);
-    if (questions && questions.length > 0) {
-      startQuiz(questions);
-    } else {
-      document.getElementById("quizQuestion").innerText = "Aucune question trouvée.";
-    }
+    // 4️⃣ Démarrage du quiz
+    startQuiz(questions);
 
-    // 5️⃣ Gestion du sélecteur de mode
+    // 5️⃣ Gestion du sélecteur de mode (liste déroulante)
     const select = document.getElementById("themeMode");
     if (select) {
+      // initialise la valeur affichée dans la liste
       select.value = savedMode;
+
+      // écoute le changement de mode
       select.addEventListener("change", async (e) => {
         const mode = e.target.value;
+
+        // 🔹 1. Sauvegarde le mode choisi
+        localStorage.setItem("selectedMode", mode);
+
+        // 🔹 2. Applique le thème visuel correspondant
         applyTheme(mode);
+
+        // 🔹 3. Met à jour les accroches (titres/sous-titres)
         await applyAccroches(mode);
+
+        // 🔹 4. Recharge les questions du bon mode
+        const newQuestions = await fetchQuestions(mode);
+
+        // 🔹 5. Redémarre le quiz avec les nouvelles questions
+        if (newQuestions && newQuestions.length > 0) {
+          startQuiz(newQuestions);
+        } else {
+          document.getElementById("quizQuestion").innerText =
+            "Aucune question trouvée pour ce mode.";
+        }
       });
     }
-
   } catch (err) {
     console.error("❌ Erreur lors du démarrage du quiz :", err);
   }
 });
+
 
 /**
  * Renvoie un élément aléatoire d’un tableau
