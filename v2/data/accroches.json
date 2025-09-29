@@ -1,4 +1,23 @@
 {
+  /* ===========================================================
+     🧩 FICHIER D’ACCROCHES — QUIZ ENTRE POTES (MULTI-MODES)
+     -----------------------------------------------------------
+     Ce fichier contient tous les textes “dynamiques” du site :
+       - Titres et sous-titres (haut de page du quiz)
+       - Commentaires de fin selon le score
+       - Variantes de ton pour chaque mode (général / fun / full_dark)
+
+     💡 Structure :
+       - Les clés à la racine ("titres", "sousTitres", "commentairesFin")
+         restent pour compatibilité avec le code actuel (mode “full_dark”).
+       - Le bloc "modes" ajoute les futures variantes par thème.
+  =========================================================== */
+
+  /* -----------------------------------------------------------
+     🎭 CONTENU PAR DÉFAUT (COMPATIBILITÉ AVEC LE CODE EXISTANT)
+     Ce bloc correspond au mode “entre potes / full_dark”.
+     Tous les titres et sous-titres d’origine sont conservés.
+  ----------------------------------------------------------- */
   "titres": [
     "Quiz Entre Potes — édition gueule de bois 🍺",
     "Le tribunal des cassos ⚖️",
@@ -9,8 +28,19 @@
     "Le grand déballage des dossiers honteux 🫣",
     "Qui a fait quoi ? Et pourquoi c’est encore toi ?",
     "Les potes contre-attaquent (et ça va faire mal) 💣",
-    "Soirée quiz : pas de gagnant, que des humiliés 🐒"
+    "Soirée quiz : pas de gagnant, que des humiliés 🐒",
+    "Quiz entre potes : prépare ta dignité, elle va souffrir 🥲",
+    "L’arène du malaise : un seul survivra (peut-être) ⚔️",
+    "Session quiz : bière, trahison et mauvaise foi 🍻",
+    "Bienvenue au jugement dernier de ton QI 🧠",
+    "Tournoi des cerveaux endommagés 💀",
+    "Quiz pirates : hisse la honte et le pavillon noir ☠️",
+    "Le retour du quiz maudit 🧩",
+    "Le grand test de la mémoire sélective 🫨",
+    "Interrogatoire collectif : personne n’en sortira indemne 👮‍♂️",
+    "Soirée vengeance : les potes passent à table 🍽️"
   ],
+
   "sousTitres": [
     "Prépare ton ego, on va le découper façon carpaccio.",
     "T’as cru qu’on allait être gentils ? Mauvaise pioche.",
@@ -21,18 +51,120 @@
     "Le but ? Humilier, rire, puis recommencer.",
     "Tu pensais qu’on t’avait oublié ? Bah non, on a les preuves.",
     "Ce quiz est sponsorisé par la honte et le désespoir.",
-    "Si tu finis avec 0, t’as plus le droit de parler dans le groupe."
+    "Si tu finis avec 0, t’as plus le droit de parler dans le groupe.",
+    "Tente ta chance, mais on sait tous comment ça va finir…",
+    "Tu peux toujours blâmer la bière, pas ton cerveau.",
+    "N’oublie pas : la mauvaise foi est une stratégie légitime.",
+    "On te juge, mais avec amour (enfin, un peu).",
+    "Ce quiz est un piège affectif. Fuis tant qu’il est temps.",
+    "Les points ne comptent pas, seule la honte est éternelle.",
+    "Aucune IA ne pourra te sauver cette fois-ci.",
+    "Ici, c’est chacun pour soi, mais toujours entre amis.",
+    "C’est pas un quiz, c’est une séance de thérapie de groupe.",
+    "Allez, on rigole… enfin toi un peu moins."
   ],
+
   "commentairesFin": {
     "0": "Zéro. Même ChatGPT aurait fait mieux. T’as dormi pendant toutes les soirées ou quoi ? 💀",
-    "10": "Aïe... T’étais là, mais visiblement pas sobre. 🥴",
-    "20": "Ok, t’as des souvenirs flous. On dirait un mec qui nie les preuves. 😬",
-    "30": "T’es dans le déni total, mais on t’aime quand même. Presque.",
-    "40": "T’as pigé quelques trucs, genre les gros dossiers. C’est déjà ça. 😅",
-    "50": "La moyenne. T’as évité la honte, mais c’est tout juste. 👏",
-    "70": "Pas mal du tout ! T’as une mémoire sélective, mais efficace. 🧠",
-    "80": "Respect. Tu connais tes potes et leurs pires moments. 🏴‍☠️",
-    "90": "Wow, t’es soit un espion, soit trop impliqué dans nos conneries. 🕵️‍♂️",
+    "20": "T’étais là, mais visiblement pas sobre. 🥴",
+    "40": "Pas la honte totale, mais t’es pas loin. 😬",
+    "60": "La moyenne. T’as évité la honte, mais c’est tout juste. 👏",
+    "80": "Pas mal du tout ! T’as une mémoire sélective, mais efficace. 🧠",
     "100": "Parfait. Tu es la honte collective incarnée. Le boss final du malaise. 👑"
-  }
+  },
+
+  /* -----------------------------------------------------------
+     🌈 NOUVEAU BLOC MULTI-MODES
+  ----------------------------------------------------------- */
+  "modes": {
+    "general": {
+      "titres": [
+        "Quiz Culture Générale 🌞",
+        "Test tes connaissances !",
+        "Challenge ton cerveau ! 🧠",
+        "Petit quiz du jour : tu brilles ou tu bégayes ?",
+        "Le Grand Quiz des Curieux 🔍"
+      ],
+      "sousTitres": [
+        "Pas besoin d’être Einstein, mais presque.",
+        "On révise sans pression.",
+        "Quelques questions pour briller en société.",
+        "Révise ton savoir sans prise de tête.",
+        "À toi de jouer, futur champion du Trivial Pursuit."
+      ],
+      "commentairesFin": {
+        "0": "Aïe... un petit coup de révisions ne ferait pas de mal ! 📚",
+        "20": "Tu sembles un peu rouillé, mais c’est un début !",
+        "40": "Tu progresses, continue à t’instruire !",
+        "60": "Bien joué ! Tes neurones sont bien connectés.",
+        "80": "Excellent niveau ! Tu frôles le sans-faute.",
+        "100": "Parfait ! La culture G, c’est ton domaine. 👏"
+      }
+    },
+
+    "fun": {
+      "titres": [
+        "Quiz 100% Fun 🤪",
+        "Le quiz qui met la banane 🍌",
+        "Zéro pression, que du fun ! 🎉",
+        "Rire garanti (ou presque)",
+        "Le quiz détente par excellence 🌈"
+      ],
+      "sousTitres": [
+        "Réponds au feeling, on est là pour rigoler.",
+        "Aucune prise de tête, que des fous rires.",
+        "Ambiance détente : les points, c’est secondaire.",
+        "Tu veux gagner ? Commence par sourire 😎",
+        "Quiz déjanté pour esprit légendaire !"
+      ],
+      "commentairesFin": {
+        "0": "Échec comique assumé 😂 mais au moins t’as joué !",
+        "20": "T’as perdu, mais t’as mis l’ambiance. 😄",
+        "40": "Pas mal, t’as le sens du spectacle !",
+        "60": "Solide ! Fun et talent, le combo parfait.",
+        "80": "T’es en feu, showman du quiz ! 🔥",
+        "100": "Parfait + panache. Roi/Reine du fun. 👑"
+      }
+    },
+
+    "full_dark": {
+      "titres": [
+        "Quiz Entre Potes — édition gueule de bois 🍺",
+        "Le tribunal des cassos ⚖️",
+        "Les pirates du QI en panne 🏴‍☠️",
+        "Test de survie sociale : t’es encore des nôtres ?",
+        "Le bûcher des traîtres (et de Maxence, surtout lui)",
+        "La taverne des légendes foireuses 🍻",
+        "Le grand déballage des dossiers honteux 🫣",
+        "Qui a fait quoi ? Et pourquoi c’est encore toi ?",
+        "Les potes contre-attaquent (et ça va faire mal) 💣",
+        "Soirée quiz : pas de gagnant, que des humiliés 🐒"
+      ],
+      "sousTitres": [
+        "Prépare ton ego, on va le découper façon carpaccio.",
+        "T’as cru qu’on allait être gentils ? Mauvaise pioche.",
+        "Ici, on note tout, même tes pires choix d’alcools.",
+        "Une mauvaise réponse, et t’es banni du prochain apéro.",
+        "Rappelle-toi : dans le doute, accuse Thomas.",
+        "Ton cerveau a quitté le navire, toi aussi apparemment.",
+        "Le but ? Humilier, rire, puis recommencer.",
+        "Tu pensais qu’on t’avait oublié ? Bah non, on a les preuves.",
+        "Ce quiz est sponsorisé par la honte et le désespoir.",
+        "Si tu finis avec 0, t’as plus le droit de parler dans le groupe."
+      ],
+      "commentairesFin": {
+        "0": "Zéro. Même ChatGPT aurait fait mieux. 💀",
+        "20": "T’étais là, mais visiblement pas sobre. 🥴",
+        "40": "Pas la honte totale, mais t’es pas loin. 😬",
+        "60": "La moyenne. T’as évité la honte, mais c’est tout juste. 👏",
+        "80": "Pas mal du tout ! T’as une mémoire sélective, mais efficace. 🧠",
+        "100": "Parfait. Tu es la honte collective incarnée. 👑"
+      }
+    }
+  },
+
+  /* -----------------------------------------------------------
+     ⚙️ MÉTADONNÉES OPTIONNELLES
+  ----------------------------------------------------------- */
+  "_defaultMode": "general"
 }
