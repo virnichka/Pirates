@@ -78,7 +78,7 @@ async function applyAccroches(mode = "general") {
   try {
     // 🔹 Si les accroches n'ont jamais été chargées, on les charge une fois
     if (!window.ACCROCHES) {
-      const response = await fetch("./v2/data/accroches.json");
+      const response = await fetch("./data/accroches.json");
       const data = await response.json();
       window.ACCROCHES = data; // ✅ Sauvegarde globale
       console.log("📦 Accroches chargées globalement :", Object.keys(window.ACCROCHES.modes));
