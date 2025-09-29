@@ -1,29 +1,33 @@
 /**
  * 🚀 Point d’entrée unique du quiz
  */
-document.addEventListener("DOMContentLoaded", async () => {
+window.addEventListener("load", async () => {
   try {
-    // 1️⃣ Appliquer le thème sauvegardé ou par défaut
+    // 1️⃣ Récupération ou création du mode par défaut
     let savedMode = localStorage.getItem("selectedMode");
     if (!savedMode) {
       savedMode = "general";
       localStorage.setItem("selectedMode", savedMode);
     }
-    applyTheme(savedMode);
 
-    // 2️⃣ Appliquer les accroches selon le mode
+    // 2️⃣ Application du thème et des accroches
+    applyTheme(savedMode);
     await applyAccroches(savedMode);
 
-    // 3️⃣ Charger les accroches globales (pour le reste du site)
+    // 3️⃣ Chargement des accroches globales (si besoin)
     const response = await fetch("data/accroches.json");
     const accroches = await response.json();
     ACCROCHES = accroches;
     console.log("✅ ACCROCHES chargées :", ACCROCHES);
 
-    // 4️⃣ Charger les questions et démarrer le quiz
+    // 4️⃣ Chargement des questions + démarrage du quiz
     const questions = await fetchQuestions();
-    if (questions.length > 0) startQuiz(questions);
-    else document.getElementById("quizQuestion").innerText = "Erreur de chargement du quiz.";
+    console.log("✅ Questions reçues :", questions.length);
+    if (questions && questions.length > 0) {
+      startQuiz(questions);
+    } else {
+      document.getElementById("quizQuestion").innerText = "Aucune question trouvée.";
+    }
 
     // 5️⃣ Gestion du sélecteur de mode
     const select = document.getElementById("themeMode");
@@ -35,8 +39,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         await applyAccroches(mode);
       });
     }
+
   } catch (err) {
-    console.error("❌ Erreur lors du démarrage :", err);
+    console.error("❌ Erreur lors du démarrage du quiz :", err);
   }
 });
 
