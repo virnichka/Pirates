@@ -1,29 +1,44 @@
 /**
- * 🚀 Point d’entrée du quiz
+ * 🚀 Point d’entrée unique du quiz
  */
-
-window.onload = async () => {
+document.addEventListener("DOMContentLoaded", async () => {
   try {
-    // ✅ Charger les accroches et les rendre globales (visibles dans ui.js)
+    // 1️⃣ Appliquer le thème sauvegardé ou par défaut
+    let savedMode = localStorage.getItem("selectedMode");
+    if (!savedMode) {
+      savedMode = "general";
+      localStorage.setItem("selectedMode", savedMode);
+    }
+    applyTheme(savedMode);
+
+    // 2️⃣ Appliquer les accroches selon le mode
+    await applyAccroches(savedMode);
+
+    // 3️⃣ Charger les accroches globales (pour le reste du site)
     const response = await fetch("data/accroches.json");
     const accroches = await response.json();
-    ACCROCHES = accroches; // ⬅️ pas window.ACCROCHES, juste ACCROCHES global
+    ACCROCHES = accroches;
     console.log("✅ ACCROCHES chargées :", ACCROCHES);
 
-    // 🎯 Appliquer un titre et un sous-titre aléatoires
-    const titre = randomItem(ACCROCHES.titres);
-    const sousTitre = randomItem(ACCROCHES.sousTitres);
-    document.getElementById("titre").innerText = titre;
-    document.getElementById("sousTitre").innerText = sousTitre;
-
-    // 📦 Charger les questions
+    // 4️⃣ Charger les questions et démarrer le quiz
     const questions = await fetchQuestions();
     if (questions.length > 0) startQuiz(questions);
     else document.getElementById("quizQuestion").innerText = "Erreur de chargement du quiz.";
+
+    // 5️⃣ Gestion du sélecteur de mode
+    const select = document.getElementById("themeMode");
+    if (select) {
+      select.value = savedMode;
+      select.addEventListener("change", async (e) => {
+        const mode = e.target.value;
+        applyTheme(mode);
+        await applyAccroches(mode);
+      });
+    }
   } catch (err) {
     console.error("❌ Erreur lors du démarrage :", err);
   }
-};
+});
 
 /**
  * Renvoie un élément aléatoire d’un tableau
@@ -33,11 +48,9 @@ function randomItem(array) {
 }
 
 // === Gestion du thème visuel du site ===
-
-// Applique le thème visuel selon le mode choisi
 function applyTheme(mode) {
   document.documentElement.setAttribute("data-theme", mode);
-  localStorage.setItem("selectedMode", mode); // sauvegarde du choix dans le navigateur
+  localStorage.setItem("selectedMode", mode);
 }
 
 // === Gestion des accroches dynamiques selon le mode ===
@@ -46,50 +59,17 @@ async function applyAccroches(mode) {
     const response = await fetch("data/accroches.json");
     const data = await response.json();
 
-    // On regarde dans la partie "modes"
     const selectedMode = data.modes[mode] || data.modes[data._defaultMode];
 
-    // Sélectionne aléatoirement un titre et un sous-titre
     const titre = selectedMode.titres[Math.floor(Math.random() * selectedMode.titres.length)];
     const sousTitre = selectedMode.sousTitres[Math.floor(Math.random() * selectedMode.sousTitres.length)];
 
-    // Injection dans le DOM
     const headerTitle = document.querySelector("header h1");
     const headerSubtitle = document.querySelector("header p");
 
     if (headerTitle) headerTitle.textContent = titre;
     if (headerSubtitle) headerSubtitle.textContent = sousTitre;
-
   } catch (err) {
     console.error("Erreur lors du chargement des accroches :", err);
   }
 }
-
-
-// Au chargement de la page : on applique le thème sauvegardé ou le thème par défaut
-document.addEventListener("DOMContentLoaded", () => {
-  const savedMode = localStorage.getItem("selectedMode") || "general";
-
-  // Si aucun mode n’est encore défini, forcer le mode général
-  if (!savedMode) {
-    savedMode = "general";
-    localStorage.setItem("selectedMode", savedMode);
-  }
-  
-  applyTheme(savedMode);
-  applyAccroches(savedMode);
-  
-  
-  // Gestion du sélecteur de mode si présent dans le HTML
-  const select = document.getElementById("themeMode");
-  if (select) {
-    select.value = savedMode;
-    select.addEventListener("change", (e) => {
-      const mode = e.target.value;
-      applyTheme(mode);
-      applyAccroches(mode);
-    });
-  }
-});
-
-
