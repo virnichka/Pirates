@@ -8,6 +8,8 @@
  * ==============================================
  */
 async function fetchQuestions(mode = null) {
+  console.log("URL API utilisée :", CONFIG?.GOOGLE_SCRIPT_URL);
+
   try {
     // 1️⃣ Récupère le mode sélectionné (ou celui sauvegardé)
     const selectedMode = mode || localStorage.getItem("selectedMode") || "general";
