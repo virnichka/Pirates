@@ -3,28 +3,31 @@
  */
 
 /**
- * Récupère les questions depuis la feuille Google Sheets.
- * @returns {Promise<Array>} - Liste des questions.
+ * ==============================================
+ *  Chargement des questions selon le mode choisi
+ * ==============================================
  */
-async function fetchQuestions() {
-  const url = `${CONFIG.GOOGLE_SCRIPT_URL}?action=getQuestions`;
+async function fetchQuestions(mode = null) {
   try {
-    const response = await fetch(url);
-    const data = await response.json();
+    // 1️⃣ Récupère le mode sélectionné (ou celui sauvegardé)
+    const selectedMode = mode || localStorage.getItem("selectedMode") || "general";
 
-    if (data.status === "success") {
-      console.log("✅ Questions chargées :", data.questions.length);
-      console.log("Questions reçues depuis Google Sheet :", data.questions);
-      return data.questions;
-    } else {
-      console.error("⚠️ Erreur de chargement :", data.message);
-      return [];
-    }
+    // 2️⃣ Construit l’URL vers ton Apps Script
+    // (⚠️ vérifie que cette constante existe déjà)
+    const url = `${API_BASE_URL}?action=getQuestions&sheet=${encodeURIComponent(selectedMode)}`;
+
+    // 3️⃣ Récupération des données
+    const response = await fetch(url);
+    const questions = await response.json();
+
+    console.log(`✅ Questions chargées depuis "${selectedMode}" (${questions.length} lignes)`);
+    return questions;
   } catch (err) {
-    console.error("❌ Erreur réseau :", err);
+    console.error("❌ Erreur lors du chargement des questions :", err);
     return [];
   }
 }
+
 
 /**
  * Envoie le score final vers la feuille Google Sheets.
