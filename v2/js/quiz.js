@@ -29,18 +29,33 @@ function showQuestion() {
   const elQ = document.getElementById("quizQuestion");
   const elA = document.getElementById("quizAnswers");
 
+  // 📝 Affiche le texte de la question
   elQ.innerText = q.question;
   elA.innerHTML = "";
 
-  // ✅ Utiliser les mauvaises réponses de la Google Sheet
-  const wrongs = Array.isArray(q.reponses)
-    ? q.reponses.filter(r => r && r.trim().length > 0)
-    : [];
+  // 🧩 1. Récupère les mauvaises réponses depuis la Google Sheet
+  const wrongsRaw = Array.isArray(q.reponses)
+    ? q.reponses
+    : (typeof q.reponses === "string" ? q.reponses.split(";") : []);
 
-  // ✅ Combiner et mélanger les réponses
-  const answers = shuffle([q.bonne_reponse, ...wrongs]);
+  // 🧹 2. Nettoie les réponses : trim, supprime les vides et les doublons
+  const wrongs = wrongsRaw
+    .map(r => String(r).trim())
+    .filter(r => r.length && r.toLowerCase() !== String(q.bonne_reponse).trim().toLowerCase());
 
-  // ✅ Créer les boutons de réponses
+  // 🧯 3. Sécurité : si la Google Sheet n’a pas 3 mauvaises réponses, on complète avec la liste locale
+  if (wrongs.length < 3) {
+    const backup = getRandomNames(q.bonne_reponse); // depuis ui.js
+    for (const name of backup) {
+      if (wrongs.length >= 3) break;
+      if (!wrongs.includes(name)) wrongs.push(name);
+    }
+  }
+
+  // 🎲 4. Combine la bonne réponse + les mauvaises et mélange le tout
+  const answers = shuffle([q.bonne_reponse, ...wrongs.slice(0, 3)]);
+
+  // 🧱 5. Crée un bouton par réponse
   answers.forEach(ans => {
     const btn = document.createElement("button");
     btn.className = "answerBtn";
