@@ -70,7 +70,9 @@ async function applyAccroches(mode) {
 document.addEventListener("DOMContentLoaded", () => {
   const savedMode = localStorage.getItem("selectedMode") || "general";
   applyTheme(savedMode);
-
+  applyAccroches(savedMode);
+  
+  
   // Gestion du sélecteur de mode si présent dans le HTML
   const select = document.getElementById("themeMode");
   if (select) {
@@ -78,7 +80,9 @@ document.addEventListener("DOMContentLoaded", () => {
     select.addEventListener("change", (e) => {
       const mode = e.target.value;
       applyTheme(mode);
+      applyAccroches(mode);
     });
   }
 });
+
 
