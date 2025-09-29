@@ -31,7 +31,8 @@ async function fetchQuestions(mode = null) {
 
 
 /**
- * Envoie le score final vers la feuille Google Sheets (version GET compatible GitHub Pages)
+ * Envoie le score final vers la feuille Google Sheets
+ * Compatible GitHub Pages (GET → évite CORS)
  */
 async function sendScore(nom, score, total, mode = "general") {
   try {
@@ -40,21 +41,31 @@ async function sendScore(nom, score, total, mode = "general") {
       + `&nom=${encodeURIComponent(nom)}`
       + `&score=${encodeURIComponent(score)}`
       + `&total=${encodeURIComponent(total)}`
-      + `&mode=${encodeURIComponent(mode)}`;
+      + `&mode=${encodeURIComponent(mode)}`
+      + `&_t=${Date.now()}`; // anti-cache
 
     console.log("📡 Envoi du score via URL :", url);
 
-    // ✅ Appel en GET (et non POST)
-    const response = await fetch(url, { method: "GET" });
+    // ✅ Appel en GET (aucun CORS)
+    const response = await fetch(url, { method: "GET", cache: "no-store" });
 
-    // ✅ Lecture et affichage de la réponse
-    const data = await response.json();
+    // ⚠️ Sécurise le parsing JSON (si la réponse est vide)
+    let data;
+    try {
+      data = await response.json();
+    } catch {
+      data = { ok: false, message: "Réponse non JSON" };
+    }
+
     console.log("📤 Score enregistré :", data);
 
     if (!data.ok) {
       console.warn("⚠️ Réponse non valide :", data);
     }
+
     return data;
   } catch (err) {
-    console.error("❌ Erreur d’envoi du score :
-
+    console.error("❌ Erreur d’envoi du score :", err);
+    return { ok: false, error: err.message };
+  }
+}
