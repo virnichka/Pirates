@@ -90,3 +90,6 @@ async function sendScore(nom, score, total, mode = "general") {
 
   } catch (err) {
     console.error("❌ Erreur d’envoi du score :", err);
+    return { ok: false, error: err.message };
+  }
+}
