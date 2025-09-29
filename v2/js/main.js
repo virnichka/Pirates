@@ -69,23 +69,33 @@ function applyTheme(mode) {
   localStorage.setItem("selectedMode", mode);
 }
 
-// === Gestion des accroches dynamiques selon le mode ===
-async function applyAccroches(mode) {
+/**
+ * ======================================================
+ *  🧩 Mise à jour des accroches selon le mode choisi
+ * ======================================================
+ */
+async function applyAccroches(mode = "general") {
   try {
     const response = await fetch("data/accroches.json");
     const data = await response.json();
 
-    const selectedMode = data.modes[mode] || data.modes[data._defaultMode];
+    // 🔹 On lit le bon bloc de texte selon le mode
+    const modeData = data.modes?.[mode] || data.modes.general;
 
-    const titre = selectedMode.titres[Math.floor(Math.random() * selectedMode.titres.length)];
-    const sousTitre = selectedMode.sousTitres[Math.floor(Math.random() * selectedMode.sousTitres.length)];
+    // 🔹 Titres et sous-titres
+    const titre = randomItem(modeData.titres);
+    const sousTitre = randomItem(modeData.sousTitres);
 
-    const headerTitle = document.querySelector("header h1");
-    const headerSubtitle = document.querySelector("header p");
+    // 🔹 Application dans le DOM
+    document.getElementById("quizTitle").innerText = titre;
+    document.getElementById("quizSubtitle").innerText = sousTitre;
 
-    if (headerTitle) headerTitle.textContent = titre;
-    if (headerSubtitle) headerSubtitle.textContent = sousTitre;
+    // 🔹 Sauvegarde pour les commentaires de fin
+    window.currentComments = modeData.commentairesFin;
+
+    console.log(`🧠 Accroches appliquées pour le mode "${mode}"`);
   } catch (err) {
-    console.error("Erreur lors du chargement des accroches :", err);
+    console.error("❌ Erreur lors du chargement des accroches :", err);
   }
 }
+
