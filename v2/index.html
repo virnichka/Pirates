@@ -44,9 +44,17 @@
 
   <!-- ⚙️ Pied de page -->
   <footer>
-    <button id="toggleThemeBtn" onclick="toggleTheme()">Basculer le thème</button>
-    <div>rev. <span id="versionTag">2.39</span></div>
+    <div id="mode-selector-footer">
+      <label for="themeMode">🎮 Choisis ton mode :</label>
+      <select id="themeMode">
+        <option value="general">Mode Général 🌞</option>
+        <option value="fun">Mode Fun 🤪</option>
+        <option value="full_dark">Mode Full Dark 🏴‍☠️</option>
+      </select>
+    </div>
+    <div style="margin-top: 0.8rem;">rev. <span id="versionTag">2.39</span></div>
   </footer>
+
 
   <!-- 📎 Scripts (dans le bon ordre !) -->
   <script src="js/config.js"></script>   <!-- ⚙️ Configuration globale -->
