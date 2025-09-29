@@ -29,6 +29,10 @@ function showQuestion() {
   const elQ = document.getElementById("quizQuestion");
   const elA = document.getElementById("quizAnswers");
 
+  //  debog console vue question
+  console.log("Question actuelle :", q);
+
+
   // 📝 Affiche le texte de la question
   elQ.innerText = q.question;
   elA.innerHTML = "";
