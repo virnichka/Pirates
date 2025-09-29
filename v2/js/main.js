@@ -69,6 +69,13 @@ async function applyAccroches(mode) {
 // Au chargement de la page : on applique le thème sauvegardé ou le thème par défaut
 document.addEventListener("DOMContentLoaded", () => {
   const savedMode = localStorage.getItem("selectedMode") || "general";
+
+  // Si aucun mode n’est encore défini, forcer le mode général
+  if (!savedMode) {
+    savedMode = "general";
+    localStorage.setItem("selectedMode", savedMode);
+  }
+  
   applyTheme(savedMode);
   applyAccroches(savedMode);
   
