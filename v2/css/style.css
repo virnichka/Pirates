@@ -92,69 +92,68 @@ html[data-theme="full_dark"] {
   --border-color: #333333;
 }
 
-/* 🔸 1. Fond principal avec un léger dégradé vertical */
+/* 🔸 1. Fond plus profond et contrasté */
 html[data-theme="full_dark"] body {
-  background: linear-gradient(180deg, #121212 0%, #1b1b1b 100%);
-  color: var(--text-color);
+  background: radial-gradient(circle at top, #1a1a1a 0%, #0e0e0e 80%);
+  color: #e8e8e8;
 }
 
-/* 🔸 2. Boutons élégants, effet lumineux au survol */
+/* 🔸 2. Boutons mieux détachés du fond */
 html[data-theme="full_dark"] .answerBtn {
-  background-color: #1f1f1f;
-  color: #e0e0e0;
+  background: #232323;
+  color: #f5f5f5;
   border: 1px solid #333;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
   transition: all 0.2s ease;
 }
 
 html[data-theme="full_dark"] .answerBtn:hover {
-  background-color: #2a2a2a;
-  border-color: #00bcd4;
-  box-shadow: 0 0 10px rgba(0, 188, 212, 0.4);
-  transform: scale(1.02);
+  background: #2c2c2c;
+  border-color: #00acc1;
+  box-shadow: 0 0 10px rgba(0, 172, 193, 0.4);
+  transform: scale(1.03);
 }
 
-/* 🔸 3. Accent visuel sur le titre principal */
+/* 🔸 3. Couleur d'accent subtile et moderne */
 html[data-theme="full_dark"] h1 {
-  color: #00bcd4;
-  letter-spacing: 0.5px;
+  color: #00bcd4; /* turquoise lumineux */
+  text-shadow: 0 0 10px rgba(0, 188, 212, 0.25);
 }
 
-/* 🔸 4. Petit effet de lueur sous le titre (très léger) */
+html[data-theme="full_dark"] h2, 
+html[data-theme="full_dark"] h3,
+html[data-theme="full_dark"] p.subtitle {
+  color: #cfcfcf;
+  opacity: 0.85;
+}
+
+/* 🔸 4. Trait lumineux décoratif sous le titre */
 html[data-theme="full_dark"] h1::after {
   content: "";
   display: block;
-  width: 60px;
+  width: 70px;
   height: 2px;
   margin: 0.4rem auto 0;
   background: linear-gradient(90deg, transparent, #00bcd4, transparent);
   border-radius: 2px;
-  opacity: 0.8;
+  opacity: 0.9;
 }
 
-/* 🔸 5. Effet “press” au clic sur les réponses */
+/* 🔸 5. Effet tactile au clic */
 html[data-theme="full_dark"] .answerBtn:active {
   transform: scale(0.97);
+  box-shadow: 0 0 5px rgba(0, 188, 212, 0.3);
 }
 
-/* 🔸 6. Bloc de fin de quiz (carte résultat) */
+/* 🔸 6. Carte finale (résultat du quiz) */
 html[data-theme="full_dark"] #quizQuestion.finished {
-  background-color: #1f1f1f;
+  background: #1d1d1d;
   border: 1px solid #333;
-  box-shadow: 0 0 12px rgba(0, 188, 212, 0.15);
-  color: #e0e0e0;
+  box-shadow: 0 0 15px rgba(0, 188, 212, 0.25);
+  color: #f2f2f2;
+  text-align: center;
 }
 
-
-/* Valeurs par défaut */
-html {
-  --bg-color: #ffffff;
-  --text-color: #111111;
-  --accent-color: #007bff;
-  --button-bg: #f5f5f5;
-  --button-text: #111111;
-  --border-color: #cccccc;
-}
 
 
 /* -----------------------------------------------------------
