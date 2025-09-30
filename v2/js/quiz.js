@@ -116,9 +116,12 @@ const explication = current.explication;
 if (explication) {
   commentaireEl.textContent = explication;
   commentaireEl.style.display = "block";
+  commentaireEl.classList.add("visible");   // 👈 rend visible avec fondu
 } else {
+  commentaireEl.classList.remove("visible"); // 👈 cache si pas d'explication
   commentaireEl.style.display = "none";
 }
+
 
 
 
