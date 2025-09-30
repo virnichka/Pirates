@@ -354,6 +354,9 @@ h1 {
 /* -----------------------------------------------------------
    💬 MINI COMMENTAIRE
    ----------------------------------------------------------- */
+/* -----------------------------------------------------------
+   💬 MINI COMMENTAIRE — explication affichée sous la question
+   ----------------------------------------------------------- */
 .mini-comment {
   margin-top: 0.8rem;
   text-align: center;
@@ -363,13 +366,14 @@ h1 {
   background: transparent;
   border: none;
   padding: 0.5rem;
-  opacity: 0;                 /* invisible par défaut */
-  transition: opacity 0.4s;   /* effet fondu */
+  opacity: 0;                 /* caché par défaut */
+  transition: opacity 0.4s ease; /* effet fondu doux */
 }
 
 .mini-comment.visible {
-  opacity: 1;                 /* visible quand la classe est ajoutée */
+  opacity: 1;                 /* visible en fondu */
 }
+
 
 
 
