@@ -96,3 +96,28 @@ function toggleTheme() {
   const btn = document.getElementById("toggleThemeBtn");
   btn.innerText = isLight ? "Basculer en thème sombre" : "Basculer en thème clair";
 }
+
+/* -----------------------------------------------------------
+   ⏳ ÉTAT DE CHARGEMENT — AFFICHAGE / MASQUAGE DU QUIZ
+   -----------------------------------------------------------
+   Gère l'affichage du texte "Chargement…" dans le sous-titre
+   et masque temporairement la zone principale du quiz (<main>)
+   lors du changement de mode ou du chargement initial.
+----------------------------------------------------------- */
+function setLoadingState(isLoading) {
+  const subtitle = document.getElementById("quizSubtitle");
+  const quizMain = document.querySelector("main"); // zone principale du quiz
+
+  if (!subtitle || !quizMain) return;
+
+  if (isLoading) {
+    subtitle.textContent = "Chargement…";
+    quizMain.style.display = "none";  // cache question + boutons
+  } else {
+    subtitle.textContent = "";        // retire le message
+    quizMain.style.display = "";      // réaffiche le quiz
+  }
+}
+
+
+
