@@ -147,6 +147,23 @@ header em {
 
 
 /* -----------------------------------------------------------
+   🎯 MISE EN VALEUR DE LA QUESTION
+   ----------------------------------------------------------- */
+
+/* Titre principal un peu plus sobre */
+h1 {
+  font-size: 1.9rem;
+}
+
+/* Question légèrement plus affirmée */
+#quizQuestion {
+  font-size: 1.4rem;
+  margin: 0.8rem 0;
+}
+
+
+
+/* -----------------------------------------------------------
    🏁 STYLE DU MESSAGE FINAL (fin de quiz)
    ----------------------------------------------------------- */
 #quizQuestion.finished {
