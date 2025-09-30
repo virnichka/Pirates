@@ -80,8 +80,14 @@ function checkAnswer(selected, correct) {
   const buttons = document.querySelectorAll(".answerBtn");
   buttons.forEach(b => {
     b.disabled = true;
-    if (b.textContent === correct) b.classList.add("correct");
-    else if (b.textContent === selected) b.classList.add("incorrect");
+    // Normalisation : tout en texte, sans espaces ni casse
+const btnText = String(b.textContent).trim().toLowerCase();
+const correctText = String(correct).trim().toLowerCase();
+const selectedText = String(selected).trim().toLowerCase();
+
+if (btnText === correctText) b.classList.add("correct");
+else if (btnText === selectedText) b.classList.add("incorrect");
+
   });
 
   if (selected === correct) score++;
