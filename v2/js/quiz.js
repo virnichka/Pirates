@@ -33,6 +33,15 @@ function showQuestion() {
   const elQ = document.getElementById("quizQuestion");
   const elA = document.getElementById("quizAnswers");
   const nextBtn = document.getElementById("nextBtn");
+  const commentaireEl = document.getElementById("miniCommentaire");
+
+
+  // 🔄 Réinitialise le commentaire/explication précédente
+if (commentaireEl) {
+  commentaireEl.style.display = "none";
+  commentaireEl.textContent = "";
+}
+
 
   // cache le bouton suivant
   if (nextBtn) nextBtn.style.display = "none";
