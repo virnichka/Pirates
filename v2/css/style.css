@@ -149,8 +149,7 @@ header em {
 /* -----------------------------------------------------------
    🏁 STYLE DU MESSAGE FINAL (fin de quiz)
    ----------------------------------------------------------- */
-#quizQuestion.finished,
-#quizAnswers.finished {
+#quizQuestion.finished {
   background-color: var(--button-bg);
   border: 1px solid var(--border-color);
   border-radius: 12px;
