@@ -133,7 +133,6 @@ document.getElementById("quizAnswers").innerHTML = "";
 
   // 🎨 Ajout : applique le style "carte de résultat"
   document.getElementById("quizQuestion").classList.add("finished");
-  document.getElementById("quizAnswers").classList.add("finished");
   
   document.getElementById("nextBtn").style.display = "none";
   document.getElementById("restartBtn").style.display = "block";
