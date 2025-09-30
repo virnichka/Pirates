@@ -105,16 +105,20 @@ else if (btnText === selectedText) b.classList.add("incorrect");
 
   if (selected === correct) score++;
   document.getElementById("nextBtn").style.display = "block";
-  // 🎓 Affiche l'explication de la réponse (si disponible)
-const explication = questions[currentQuestion].explication;
+  
+// 🎓 Affiche l'explication de la réponse (si disponible)
 const commentaireEl = document.getElementById("miniCommentaire");
+const current = questions && questions[currentQuestion] ? questions[currentQuestion] : null;
+if (!current || !commentaireEl) return;
 
-if (explication && commentaireEl) {
+const explication = current.explication;
+if (explication) {
   commentaireEl.textContent = explication;
   commentaireEl.style.display = "block";
-} else if (commentaireEl) {
+} else {
   commentaireEl.style.display = "none";
 }
+
 
 }
 
