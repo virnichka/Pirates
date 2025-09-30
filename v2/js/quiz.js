@@ -116,6 +116,11 @@ const explication = current.explication;
 if (explication) {
   commentaireEl.textContent = explication;
   commentaireEl.style.display = "block";
+
+  // temporaire
+  commentaireEl.style.visibility = "visible";
+  commentaireEl.style.opacity = "1";
+
 } else {
   commentaireEl.style.display = "none";
 }
