@@ -375,12 +375,6 @@ h1 {
 }
 
 
-
-
-.mini-comment.visible {
-  opacity: 1;
-}
-
 /* 💬 Texte d'explication affiché après la réponse */
 .mini-comment {
   margin-top: 0.8rem;
