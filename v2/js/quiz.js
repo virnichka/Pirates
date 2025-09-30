@@ -120,9 +120,16 @@ function showFinalScore() {
   const pourcentage = Math.round((score / total) * 100);
   const message = getCommentaire(pourcentage);
 
-  document.getElementById("quizQuestion").innerHTML =
-    `Quiz terminé 🎉<br>Tu as eu ${score}/${total} (${pourcentage}%)`;
-  document.getElementById("quizAnswers").innerHTML = `<p>${message}</p>`;
+  document.getElementById("quizQuestion").innerHTML = `
+  <div class="final-card">
+    <h2>Quiz terminé 🎉</h2>
+    <p><strong>Tu as eu ${score}/${total} (${pourcentage}%)</strong></p>
+    <p>${message}</p>
+  </div>
+`;
+
+document.getElementById("quizAnswers").innerHTML = "";
+
 
   // 🎨 Ajout : applique le style "carte de résultat"
   document.getElementById("quizQuestion").classList.add("finished");
