@@ -239,6 +239,12 @@ h1 {
   color: #fff;
 }
 
+/* Effet de clic sur les réponses */
+.answerBtn:active {
+  transform: scale(0.98);
+}
+
+
 /* --- États correct / incorrect universels --- */
 .answerBtn.correct {
   background-color: #2ecc71 !important;
