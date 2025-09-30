@@ -163,6 +163,26 @@ header em {
 }
 
 
+/* -----------------------------------------------------------
+   ✨ ANIMATION D'APPARITION DU MESSAGE FINAL
+   ----------------------------------------------------------- */
+@keyframes fadeInZoom {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+#quizQuestion.finished,
+#quizAnswers.finished {
+  animation: fadeInZoom 0.4s ease-out;
+}
+
+
 
 /* -----------------------------------------------------------
    🧩 RÉPONSES
