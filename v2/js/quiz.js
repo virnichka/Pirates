@@ -36,11 +36,13 @@ function showQuestion() {
   const commentaireEl = document.getElementById("miniCommentaire");
 
 
-  // 🔄 Réinitialise le commentaire/explication précédente
+// 🔄 Réinitialise le commentaire/explication précédente
+const commentaireEl = document.getElementById("miniCommentaire");
 if (commentaireEl) {
   commentaireEl.style.display = "none";
   commentaireEl.textContent = "";
 }
+
 
 
   // cache le bouton suivant
