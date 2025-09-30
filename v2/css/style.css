@@ -375,19 +375,6 @@ h1 {
 }
 
 
-/* 💬 Texte d'explication affiché après la réponse */
-.mini-comment {
-  margin-top: 0.8rem;
-  text-align: center;
-  font-size: 1rem;
-  font-style: italic;
-  color: var(--text-color);
-  background: transparent;
-  border: none;
-  padding: 0.5rem;
-  opacity: 1;            /* visible */
-  visibility: visible;   /* visible */
-}
 
 /* -----------------------------------------------------------
    🔘 BOUTONS (SUIVANT / REJOUER)
