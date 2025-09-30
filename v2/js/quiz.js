@@ -28,6 +28,10 @@ function showQuestion() {
   const q = questions[currentQuestion];
   const elQ = document.getElementById("quizQuestion");
   const elA = document.getElementById("quizAnswers");
+  const nextBtn = document.getElementById("nextBtn");
+
+  // cache le bouton suivant
+  if (nextBtn) nextBtn.style.display = "none";
 
   //  debog console vue question
   console.log("Question actuelle :", q);
