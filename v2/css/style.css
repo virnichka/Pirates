@@ -355,13 +355,19 @@ h1 {
    💬 MINI COMMENTAIRE
    ----------------------------------------------------------- */
 .mini-comment {
-  margin-top: 0.5rem;
-  font-style: italic;
+  margin-top: 0.8rem;
+  text-align: center;
   font-size: 1rem;
-  color: var(--accent-color);
-  opacity: 0;
-  transition: opacity 0.4s;
+  font-style: italic;
+  color: var(--text-color);
+  background: transparent;
+  border: none;
+  padding: 0.5rem;
+  opacity: 1;           /* ✅ visible par défaut */
+  visibility: visible;  /* ✅ visible par défaut */
+  transition: none;     /* pas d’effet visuel pour l’instant */
 }
+
 
 .mini-comment.visible {
   opacity: 1;
