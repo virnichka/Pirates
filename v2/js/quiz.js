@@ -37,7 +37,6 @@ function showQuestion() {
 
 
 // 🔄 Réinitialise le commentaire/explication précédente
-const commentaireEl = document.getElementById("miniCommentaire");
 if (commentaireEl) {
   commentaireEl.style.display = "none";
   commentaireEl.textContent = "";
