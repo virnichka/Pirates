@@ -65,57 +65,20 @@ window.addEventListener("load", async () => {
           // 🔹 5. Redémarre le quiz avec les nouvelles questions
           if (newQuestions && newQuestions.length > 0) {
             startQuiz(newQuestions);
-          } e
-
-
-
-/**
- * Renvoie un élément aléatoire d’un tableau
- */
-function randomItem(array) {
-  return array[Math.floor(Math.random() * array.length)];
-}
-
-// === Gestion du thème visuel du site ===
-function applyTheme(mode) {
-  document.documentElement.setAttribute("data-theme", mode);
-  localStorage.setItem("selectedMode", mode);
-}
-
-/**
- * ======================================================
- *  🧩 Mise à jour des accroches selon le mode choisi
- * ======================================================
- */
-async function applyAccroches(mode = "general") {
-  try {
-    // 🔹 Si les accroches n'ont jamais été chargées, on les charge une fois
-    if (!window.ACCROCHES) {
-      const response = await fetch("./data/accroches.json");
-      const data = await response.json();
-      window.ACCROCHES = data; // ✅ Sauvegarde globale
-      console.log("📦 Accroches chargées globalement :", Object.keys(window.ACCROCHES.modes));
+          } else {
+            document.getElementById("quizQuestion").innerText =
+              "Aucune question trouvée pour ce mode.";
+          }
+        } catch (error) {
+          console.error("❌ Erreur lors du changement de mode :", error);
+        } finally {
+          setLoadingState(false); // ✅ Fin du chargement : réaffiche le quiz
+        }
+      });
     }
-
-    // 🔹 Récupère le bloc du mode courant
-    const modeData = window.ACCROCHES.modes?.[mode] || window.ACCROCHES.modes.general;
-
-    // 🔹 Applique le titre et le sous-titre dans le DOM
-    const titre = randomItem(modeData.titres);
-    const sousTitre = randomItem(modeData.sousTitres);
-
-    const titleEl = document.getElementById("quizTitle") || document.getElementById("titre");
-    const subTitleEl = document.getElementById("quizSubtitle") || document.getElementById("sousTitre");
-
-    if (titleEl) titleEl.innerText = titre;
-    if (subTitleEl) subTitleEl.innerText = sousTitre;
-
-    // 🔹 Sauvegarde les phrases de fin du mode
-    window.currentComments = modeData.commentairesFin;
-    console.log(`🧠 Accroches appliquées pour le mode "${mode}"`);
-
   } catch (err) {
-    console.error("❌ Erreur lors du chargement des accroches :", err);
+    console.error("❌ Erreur lors du démarrage du quiz :", err);
+  } finally {
+    setLoadingState(false); // ✅ Fin du chargement initial
   }
-}
-
+});
