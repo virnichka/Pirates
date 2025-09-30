@@ -91,68 +91,36 @@ html[data-theme="full_dark"] {
   --button-text: #f0f0f0;
   --border-color: #333333;
 }
+/* -----------------------------------------------------------
+   🔧 CORRECTIONS ET AMÉLIORATIONS VISUELLES — MODE FULL DARK
+   ----------------------------------------------------------- */
 
-/* 🔸 1. Fond plus profond et contrasté */
-html[data-theme="full_dark"] body {
-  background: radial-gradient(circle at top, #1a1a1a 0%, #0e0e0e 80%);
-  color: #e8e8e8;
+/* 1. Question principale : plus lisible */
+html[data-theme="full_dark"] #quizQuestion {
+  color: #f2f2f2;           /* blanc doux */
+  font-weight: 600;         /* texte un peu plus marqué */
+  text-shadow: 0 0 4px rgba(255, 255, 255, 0.08); /* léger halo */
 }
 
-/* 🔸 2. Boutons mieux détachés du fond */
+/* 2. Réponses : contraste un peu renforcé */
 html[data-theme="full_dark"] .answerBtn {
-  background: #232323;
-  color: #f5f5f5;
-  border: 1px solid #333;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
-  transition: all 0.2s ease;
+  background: #232323;      /* un ton plus clair que le fond */
+  border: 1px solid #333;   /* délimitation douce */
+  color: #f5f5f5;           /* texte clair */
 }
 
 html[data-theme="full_dark"] .answerBtn:hover {
-  background: #2c2c2c;
-  border-color: #00acc1;
-  box-shadow: 0 0 10px rgba(0, 172, 193, 0.4);
-  transform: scale(1.03);
+  background: #2c2c2c;      /* éclaircissement subtil */
 }
 
-/* 🔸 3. Couleur d'accent subtile et moderne */
-html[data-theme="full_dark"] h1 {
-  color: #00bcd4; /* turquoise lumineux */
-  text-shadow: 0 0 10px rgba(0, 188, 212, 0.25);
-}
-
-html[data-theme="full_dark"] h2, 
-html[data-theme="full_dark"] h3,
-html[data-theme="full_dark"] p.subtitle {
-  color: #cfcfcf;
-  opacity: 0.85;
-}
-
-/* 🔸 4. Trait lumineux décoratif sous le titre */
-html[data-theme="full_dark"] h1::after {
-  content: "";
-  display: block;
-  width: 70px;
-  height: 2px;
-  margin: 0.4rem auto 0;
-  background: linear-gradient(90deg, transparent, #00bcd4, transparent);
-  border-radius: 2px;
-  opacity: 0.9;
-}
-
-/* 🔸 5. Effet tactile au clic */
-html[data-theme="full_dark"] .answerBtn:active {
-  transform: scale(0.97);
-  box-shadow: 0 0 5px rgba(0, 188, 212, 0.3);
-}
-
-/* 🔸 6. Carte finale (résultat du quiz) */
+/* 3. Résultat final : carte mieux détachée */
 html[data-theme="full_dark"] #quizQuestion.finished {
   background: #1d1d1d;
   border: 1px solid #333;
-  box-shadow: 0 0 15px rgba(0, 188, 212, 0.25);
+  box-shadow: 0 0 15px rgba(0, 188, 212, 0.25); /* halo turquoise */
   color: #f2f2f2;
-  text-align: center;
 }
+
 
 
 
