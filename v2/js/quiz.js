@@ -116,17 +116,6 @@ const explication = current.explication;
 if (explication) {
   commentaireEl.textContent = explication;
   commentaireEl.style.display = "block";
-
-  // 🕒 Petit forçage du rendu avant de rendre visible
-setTimeout(() => {
-  commentaireEl.style.visibility = "visible";
-  commentaireEl.style.opacity = "1";
-}, 50);
-
-  // temporaire
-  commentaireEl.style.visibility = "visible";
-  commentaireEl.style.opacity = "1";
-
 } else {
   commentaireEl.style.display = "none";
 }
