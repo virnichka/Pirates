@@ -18,6 +18,10 @@ function startQuiz(list) {
   document.getElementById("restartBtn").style.display = "none";
   document.getElementById("nextBtn").style.display = "none";
 
+  // Cela supprime le style dès qu’un nouveau quiz commence —
+  document.getElementById("quizQuestion").classList.remove("finished");
+  document.getElementById("quizAnswers").classList.remove("finished");
+  
   showQuestion();
 }
 
@@ -119,6 +123,11 @@ function showFinalScore() {
   document.getElementById("quizQuestion").innerHTML =
     `Quiz terminé 🎉<br>Tu as eu ${score}/${total} (${pourcentage}%)`;
   document.getElementById("quizAnswers").innerHTML = `<p>${message}</p>`;
+
+  // 🎨 Ajout : applique le style "carte de résultat"
+  document.getElementById("quizQuestion").classList.add("finished");
+  document.getElementById("quizAnswers").classList.add("finished");
+  
   document.getElementById("nextBtn").style.display = "none";
   document.getElementById("restartBtn").style.display = "block";
 
