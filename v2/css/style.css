@@ -363,10 +363,14 @@ h1 {
   background: transparent;
   border: none;
   padding: 0.5rem;
-  opacity: 1;           /* ✅ visible par défaut */
-  visibility: visible;  /* ✅ visible par défaut */
-  transition: none;     /* pas d’effet visuel pour l’instant */
+  opacity: 0;                 /* invisible par défaut */
+  transition: opacity 0.4s;   /* effet fondu */
 }
+
+.mini-comment.visible {
+  opacity: 1;                 /* visible quand la classe est ajoutée */
+}
+
 
 
 .mini-comment.visible {
