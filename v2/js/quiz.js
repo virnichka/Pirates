@@ -96,6 +96,17 @@ else if (btnText === selectedText) b.classList.add("incorrect");
 
   if (selected === correct) score++;
   document.getElementById("nextBtn").style.display = "block";
+  // 🎓 Affiche l'explication de la réponse (si disponible)
+const explication = questions[currentQuestion].explication;
+const commentaireEl = document.getElementById("miniCommentaire");
+
+if (explication && commentaireEl) {
+  commentaireEl.textContent = explication;
+  commentaireEl.style.display = "block";
+} else if (commentaireEl) {
+  commentaireEl.style.display = "none";
+}
+
 }
 
 /**
