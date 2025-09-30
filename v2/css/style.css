@@ -28,6 +28,12 @@ html[data-theme="general"] {
   --border-color: #cccccc;
 }
 
+
+
+/* -----------------------------------------------------------
+   🌈 AJUSTEMENTS VISUELS — MODE FUN
+   ----------------------------------------------------------- */
+
 /* Thème coloré — Mode Fun */
 html[data-theme="fun"] {
   --bg-color: #fff8e1;
@@ -37,10 +43,6 @@ html[data-theme="fun"] {
   --button-text: #111111;
   --border-color: #ffb74d;
 }
-
-/* -----------------------------------------------------------
-   🌈 AJUSTEMENTS VISUELS — MODE FUN
-   ----------------------------------------------------------- */
 
 /* 🔸 1. Fond avec un léger dégradé chaleureux */
 html[data-theme="fun"] body {
@@ -74,6 +76,12 @@ html[data-theme="fun"] h1 {
 }
 
 
+
+/* -----------------------------------------------------------
+   🌑 AJUSTEMENTS VISUELS — MODE FULL DARK
+   ----------------------------------------------------------- */
+
+
 /* Thème sombre — Mode Full Dark */
 html[data-theme="full_dark"] {
   --bg-color: #121212;
@@ -83,6 +91,60 @@ html[data-theme="full_dark"] {
   --button-text: #f0f0f0;
   --border-color: #333333;
 }
+
+/* 🔸 1. Fond principal avec un léger dégradé vertical */
+html[data-theme="full_dark"] body {
+  background: linear-gradient(180deg, #121212 0%, #1b1b1b 100%);
+  color: var(--text-color);
+}
+
+/* 🔸 2. Boutons élégants, effet lumineux au survol */
+html[data-theme="full_dark"] .answerBtn {
+  background-color: #1f1f1f;
+  color: #e0e0e0;
+  border: 1px solid #333;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  transition: all 0.2s ease;
+}
+
+html[data-theme="full_dark"] .answerBtn:hover {
+  background-color: #2a2a2a;
+  border-color: #00bcd4;
+  box-shadow: 0 0 10px rgba(0, 188, 212, 0.4);
+  transform: scale(1.02);
+}
+
+/* 🔸 3. Accent visuel sur le titre principal */
+html[data-theme="full_dark"] h1 {
+  color: #00bcd4;
+  letter-spacing: 0.5px;
+}
+
+/* 🔸 4. Petit effet de lueur sous le titre (très léger) */
+html[data-theme="full_dark"] h1::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 2px;
+  margin: 0.4rem auto 0;
+  background: linear-gradient(90deg, transparent, #00bcd4, transparent);
+  border-radius: 2px;
+  opacity: 0.8;
+}
+
+/* 🔸 5. Effet “press” au clic sur les réponses */
+html[data-theme="full_dark"] .answerBtn:active {
+  transform: scale(0.97);
+}
+
+/* 🔸 6. Bloc de fin de quiz (carte résultat) */
+html[data-theme="full_dark"] #quizQuestion.finished {
+  background-color: #1f1f1f;
+  border: 1px solid #333;
+  box-shadow: 0 0 12px rgba(0, 188, 212, 0.15);
+  color: #e0e0e0;
+}
+
 
 /* Valeurs par défaut */
 html {
