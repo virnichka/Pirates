@@ -204,6 +204,21 @@ h3 {
   color: #fff;
 }
 
+/* ✏️ Texte d'explication sous la question */
+.mini-comment {
+  margin-top: 0.8rem;
+  text-align: center;
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--text-color);
+  background: transparent; /* pas de fond */
+  border: none;
+  padding: 0.5rem;
+  opacity: 1;
+  visibility: visible;
+}
+
+
 
 /* -----------------------------------------------------------
    ❓ QUESTIONS ET MESSAGES DE FIN
