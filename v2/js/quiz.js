@@ -92,6 +92,11 @@ function checkAnswer(selected, correct) {
  * Passe à la question suivante ou termine le quiz
  */
 function nextQuestion() {
+  const nextBtn = document.getElementById("nextBtn");
+  
+  // on cache le bouton suivant
+  if (nextBtn) nextBtn.style.display = "none";
+  
   currentQuestion++;
   if (currentQuestion < questions.length) showQuestion();
   else showFinalScore();
