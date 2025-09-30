@@ -38,6 +38,42 @@ html[data-theme="fun"] {
   --border-color: #ffb74d;
 }
 
+/* -----------------------------------------------------------
+   🌈 AJUSTEMENTS VISUELS — MODE FUN
+   ----------------------------------------------------------- */
+
+/* 🔸 1. Fond avec un léger dégradé chaleureux */
+html[data-theme="fun"] body {
+  background: linear-gradient(180deg, #fff8e1 0%, #ffefb2 100%);
+}
+
+/* 🔸 2. Boutons plus “rebondissants” et lumineux */
+html[data-theme="fun"] .answerBtn {
+  box-shadow: 0 3px 6px rgba(255, 193, 7, 0.25);
+  transition: all 0.15s ease;
+}
+
+html[data-theme="fun"] .answerBtn:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 10px rgba(255, 193, 7, 0.35);
+}
+
+/* 🔸 3. Petit emoji après le titre (pas besoin de modifier le HTML) */
+html[data-theme="fun"] h1::after {
+  content: " 🤩";
+}
+
+/* 🔸 4. Micro-animation lente sur le titre */
+html[data-theme="fun"] h1 {
+  animation: funBounce 3s ease-in-out infinite alternate;
+}
+
+@keyframes funBounce {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(4px); }
+}
+
+
 /* Thème sombre — Mode Full Dark */
 html[data-theme="full_dark"] {
   --bg-color: #121212;
