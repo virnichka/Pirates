@@ -131,6 +131,40 @@ header em {
 
 
 /* -----------------------------------------------------------
+   ❓ QUESTIONS ET MESSAGES DE FIN
+   ----------------------------------------------------------- */
+
+/* Centre le texte des questions (et aussi du message final “Quiz terminé”) */
+#quizQuestion {
+  text-align: center;
+}
+
+/* Centre le texte des messages de fin affichés dans #quizAnswers */
+#quizAnswers p {
+  text-align: center;
+  margin-top: 0.5rem; /* petit espace au-dessus pour l’aération */
+}
+
+
+/* -----------------------------------------------------------
+   🏁 STYLE DU MESSAGE FINAL (fin de quiz)
+   ----------------------------------------------------------- */
+#quizQuestion.finished,
+#quizAnswers.finished {
+  background-color: var(--button-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 1.5rem 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  margin: 1.5rem auto;
+  text-align: center;
+  transition: all 0.3s ease-in-out;
+}
+
+
+
+/* -----------------------------------------------------------
    🧩 RÉPONSES
    ----------------------------------------------------------- */
 .answers {
