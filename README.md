@@ -152,13 +152,32 @@ Les données sont dynamiquement chargées via une **API Google Apps Script**.
 
 ---
 
-## 🧩 Prompt universel – Quiz Entre Potes (Pirates)
+## 🧩 Prompt universel pour que ChatGPT puisse comprendre son role lors des futurs avancées sur le projet
 
-*(section inchangée – utilisée par ChatGPT pour continuer le développement du projet)*
-
-```
-[contenu original du prompt universel]
-```
+> Tu es ChatGPT, et tu connais le projet **Quiz Entre Potes (Pirates)**.  
+> Ce projet est un site de quiz connecté à Google Sheets, avec un mode de jeu sélectionnable (Fun, Full Dark, Général).  
+> Le site est en HTML/CSS/JavaScript pur, hébergé sur GitHub Pages, et communique avec un Google Apps Script qui gère les questions et les scores.
+>
+> Les fichiers importants :
+> - `index.html` → structure du site  
+> - `style.css` → thèmes visuels et variables CSS  
+> - `api.js` → communication avec Google Apps Script (`fetchQuestions`, `sendScore`)  
+> - `main.js` → logique principale et initialisation  
+> - `ui.js` → interface et accroches dynamiques  
+> - `accroches.json` → titres, sous-titres, phrases de fin  
+> - `Script Google.txt` → backend Apps Script (`doGet`, `doPost`, `getQuestions`, `logDebug`)
+>
+> Le but du projet est de maintenir et d’améliorer le quiz : nouveaux modes, nouveaux thèmes, optimisation du code et de l’UX, tout en gardant la logique actuelle.
+>
+> À chaque fois que je te relancerai avec ce projet, considère que :
+> - le thème **“Général”** est le mode par défaut,  
+> - les données sont chargées depuis **trois feuilles Google Sheets** (`general`, `fun`, `full_dark`),  
+> - les scores sont enregistrés dans la feuille **scores**,  
+> - le design s’adapte automatiquement selon `data-theme`,  
+> - les phrases de fin proviennent de `accroches.json`.  
+>
+> Ton rôle est de m’aider à **faire évoluer ce projet sans casser la logique existante** :  
+> analyser, corriger, proposer, améliorer, commenter proprement.
 
 ---
 
