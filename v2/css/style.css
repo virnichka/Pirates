@@ -16,6 +16,18 @@
   font-family: "Segoe UI", Roboto, sans-serif;
 }
 
+/* === Animations & Transitions === */
+.fade {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.fade.show {
+  opacity: 1;
+}
+
+
+
 /* === Thèmes visuels — Général / Fun / Full Dark === */
 
 /* Thème clair (par défaut) — Mode Général */
