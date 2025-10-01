@@ -43,6 +43,8 @@ window.addEventListener("load", async () => {
         const quizAnswersEl = document.getElementById("quizAnswers");
         const miniCommentEl = document.getElementById("miniCommentaire");
 
+        console.log("🎨 Début du fondu sur #quizQuestion :", quizQuestionEl);
+
         if (quizQuestionEl) quizQuestionEl.innerText = "- Chargement du quiz -";
         if (quizAnswersEl) quizAnswersEl.innerHTML = "";
         if (miniCommentEl) miniCommentEl.style.display = "none";
