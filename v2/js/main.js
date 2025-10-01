@@ -47,6 +47,14 @@ window.addEventListener("load", async () => {
         if (quizAnswersEl) quizAnswersEl.innerHTML = "";
         if (miniCommentEl) miniCommentEl.style.display = "none";
 
+        // 💫 Ajoute la classe d'animation pour le fondu du texte
+      if (quizQuestionEl) {
+        quizQuestionEl.classList.add("fade");
+        quizQuestionEl.classList.remove("show");
+        setTimeout(() => quizQuestionEl.classList.add("show"), 50);
+      }
+
+
         // 🔹 3. Met à jour les accroches (titres/sous-titres)
         await applyAccroches(mode);
 
