@@ -26,14 +26,17 @@ window.addEventListener("load", async () => {
       select.value = savedMode;
 
       // écoute le changement de mode
-      select.addEventListener("change", async (e) => {
-        const mode = e.target.value;
+select.addEventListener("change", async (e) => {
+  const mode = e.target.value;
 
-        // 🔹 1. Sauvegarde le mode choisi
-        localStorage.setItem("selectedMode", mode);
+  // 🔹 1. Sauvegarde le mode choisi
+  localStorage.setItem("selectedMode", mode);
 
-        // 🔹 2. Applique le thème visuel correspondant
-        applyTheme(mode);
+  // 🔹 1.5. Désactive temporairement le sélecteur pour éviter plusieurs clics
+  select.disabled = true;
+
+  // 🔹 2. Applique le thème visuel correspondant
+  applyTheme(mode);
 
   // 🔹 2.5. Affiche un message de chargement pendant la transition de mode
   const quizQuestionEl = document.getElementById("quizQuestion");
@@ -44,22 +47,24 @@ window.addEventListener("load", async () => {
   if (quizAnswersEl) quizAnswersEl.innerHTML = "";
   if (miniCommentEl) miniCommentEl.style.display = "none";
 
+  // 🔹 3. Met à jour les accroches (titres/sous-titres)
+  await applyAccroches(mode);
 
+  // 🔹 4. Recharge les questions du bon mode
+  const newQuestions = await fetchQuestions(mode);
 
-        // 🔹 3. Met à jour les accroches (titres/sous-titres)
-        await applyAccroches(mode);
+  // 🔹 5. Redémarre le quiz avec les nouvelles questions
+  if (newQuestions && newQuestions.length > 0) {
+    startQuiz(newQuestions);
+  } else {
+    document.getElementById("quizQuestion").innerText =
+      "Aucune question trouvée pour ce mode.";
+  }
 
-        // 🔹 4. Recharge les questions du bon mode
-        const newQuestions = await fetchQuestions(mode);
+  // 🔹 6. Réactive le sélecteur après le chargement
+  select.disabled = false;
+});
 
-        // 🔹 5. Redémarre le quiz avec les nouvelles questions
-        if (newQuestions && newQuestions.length > 0) {
-          startQuiz(newQuestions);
-        } else {
-          document.getElementById("quizQuestion").innerText =
-            "Aucune question trouvée pour ce mode.";
-        }
-      });
     }
   } catch (err) {
     console.error("❌ Erreur lors du démarrage du quiz :", err);
