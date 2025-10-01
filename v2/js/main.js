@@ -35,6 +35,16 @@ window.addEventListener("load", async () => {
         // 🔹 2. Applique le thème visuel correspondant
         applyTheme(mode);
 
+          // 🔹 2.1. Affiche un message de chargement pendant la transition de mode
+  const quizQuestionEl = document.getElementById("quizQuestion");
+  const quizAnswersEl = document.getElementById("quizAnswers");
+  const miniCommentEl = document.getElementById("miniCommentaire");
+
+  if (quizQuestionEl) quizQuestionEl.innerText = "Chargement du quiz…";
+  if (quizAnswersEl) quizAnswersEl.innerHTML = "";
+  if (miniCommentEl) miniCommentEl.style.display = "none";
+
+
         // 🔹 3. Met à jour les accroches (titres/sous-titres)
         await applyAccroches(mode);
 
