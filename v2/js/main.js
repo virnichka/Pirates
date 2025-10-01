@@ -40,7 +40,7 @@ window.addEventListener("load", async () => {
   const quizAnswersEl = document.getElementById("quizAnswers");
   const miniCommentEl = document.getElementById("miniCommentaire");
 
-  if (quizQuestionEl) quizQuestionEl.innerText = "Chargement du quiz…";
+  if (quizQuestionEl) quizQuestionEl.innerText = "Chargement du quizz";
   if (quizAnswersEl) quizAnswersEl.innerHTML = "";
   if (miniCommentEl) miniCommentEl.style.display = "none";
 
