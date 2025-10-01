@@ -26,50 +26,50 @@ window.addEventListener("load", async () => {
       select.value = savedMode;
 
       // écoute le changement de mode
-select.addEventListener("change", async (e) => {
-  const mode = e.target.value;
+      select.addEventListener("change", async (e) => {
+        const mode = e.target.value;
 
-  // 🔹 1. Sauvegarde le mode choisi
-  localStorage.setItem("selectedMode", mode);
+        // 🔹 1. Sauvegarde le mode choisi
+        localStorage.setItem("selectedMode", mode);
 
-  // 🔹 1.5. Désactive temporairement le sélecteur pour éviter plusieurs clics
-  select.disabled = true;
+        // 🔹 1.5. Désactive temporairement le sélecteur pour éviter plusieurs clics
+        select.disabled = true;
 
-  // 🔹 2. Applique le thème visuel correspondant
-  applyTheme(mode);
+        // 🔹 2. Applique le thème visuel correspondant
+        applyTheme(mode);
 
-  // 🔹 2.5. Affiche un message de chargement pendant la transition de mode
-  const quizQuestionEl = document.getElementById("quizQuestion");
-  const quizAnswersEl = document.getElementById("quizAnswers");
-  const miniCommentEl = document.getElementById("miniCommentaire");
+        // 🔹 2.5. Affiche un message de chargement pendant la transition de mode
+        const quizQuestionEl = document.getElementById("quizQuestion");
+        const quizAnswersEl = document.getElementById("quizAnswers");
+        const miniCommentEl = document.getElementById("miniCommentaire");
 
-  if (quizQuestionEl) quizQuestionEl.innerText = "- Chargement du quiz -";
-  if (quizAnswersEl) quizAnswersEl.innerHTML = "";
-  if (miniCommentEl) miniCommentEl.style.display = "none";
+        if (quizQuestionEl) quizQuestionEl.innerText = "- Chargement du quiz -";
+        if (quizAnswersEl) quizAnswersEl.innerHTML = "";
+        if (miniCommentEl) miniCommentEl.style.display = "none";
 
-  // 🔹 3. Met à jour les accroches (titres/sous-titres)
-  await applyAccroches(mode);
+        // 🔹 3. Met à jour les accroches (titres/sous-titres)
+        await applyAccroches(mode);
 
-  // 🔹 4. Recharge les questions du bon mode
-  const newQuestions = await fetchQuestions(mode);
+        // 🔹 4. Recharge les questions du bon mode
+        const newQuestions = await fetchQuestions(mode);
 
-  // 🔹 5. Redémarre le quiz avec les nouvelles questions
-  if (newQuestions && newQuestions.length > 0) {
-    startQuiz(newQuestions);
-  } else {
-    document.getElementById("quizQuestion").innerText =
-      "Aucune question trouvée pour ce mode.";
-  }
+        // 🔹 5. Redémarre le quiz avec les nouvelles questions
+        if (newQuestions && newQuestions.length > 0) {
+          startQuiz(newQuestions);
+        } else {
+          document.getElementById("quizQuestion").innerText =
+            "Aucune question trouvée pour ce mode.";
+        }
 
-  // 🔹 6. Réactive le sélecteur après le chargement
-  select.disabled = false;
-});
-
-    }
+        // 🔹 6. Réactive le sélecteur après le chargement
+        select.disabled = false;
+      }); // <-- fermeture du addEventListener
+    } // <-- fermeture du if (select)
   } catch (err) {
     console.error("❌ Erreur lors du démarrage du quiz :", err);
   }
-});
+}); 
+
 
 
 /**
