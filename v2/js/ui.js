@@ -15,7 +15,7 @@ if (typeof TEXTS === "undefined" || !TEXTS?.ui) {
 }
 
 
-let ACCROCHES = {}; // 🔹 Stockera les données du fichier accroches.json
+let ACCROCHES = TEXTS?.accroches || {}; // ✅🔹 texts accroches
 
 
 /**
@@ -56,7 +56,7 @@ function getCommentaire(pourcentage) {
   const modeFromStorage = localStorage.getItem("selectedMode");
 
   // 🧩 2) Récupère les données globales des accroches
-  const data = window.ACCROCHES;
+  const data = ACCROCHES || TEXTS?.accroches;
   if (!data) {
     console.warn("⚠️ ACCROCHES non chargé ou inaccessible.");
     return "Fin du quiz — données indisponibles.";
@@ -103,5 +103,17 @@ function toggleTheme() {
   const body = document.body;
   const isLight = body.classList.toggle("light");
   const btn = document.getElementById("toggleThemeBtn");
-  btn.innerText = isLight ? "Basculer en thème sombre" : "Basculer en thème clair";
+  btn.innerText = isLight ? TEXTS.ui.toggleDark : TEXTS.ui.toggleLight;
 }
+
+/* =======================================
+   🔁 Mise à jour dynamique de l'interface
+   ======================================= */
+function updateUITexts() {
+  if (!TEXTS?.ui) return;
+  const btn = document.getElementById("toggleThemeBtn");
+  const isLight = document.body.classList.contains("light");
+  btn.innerText = isLight ? TEXTS.ui.toggleDark : TEXTS.ui.toggleLight;
+  console.log("[i18n] Textes UI mis à jour.");
+}
+
