@@ -99,17 +99,37 @@ function toggleTheme() {
 /* =======================================
    🔁 Mise à jour dynamique de l'interface
    ======================================= */
+/* =======================================
+   🔁 Mise à jour dynamique de l'interface
+   ======================================= */
 function updateUITexts() {
   if (!TEXTS?.ui) return;
 
-  const btn = document.getElementById("toggleThemeBtn");
-  if (btn) {
+  const t = TEXTS.ui;
+
+  // Sécurité : fonction d’aide
+  const setText = (id, value) => {
+    const el = document.getElementById(id);
+    if (el && value) el.innerText = value;
+  };
+
+  // === Mise à jour de base ===
+  setText("quizTitle", t.title);
+  setText("quizSubtitle", t.subtitle);
+  setText("startBtn", t.start);
+  setText("nextBtn", t.next);
+  setText("resultBtn", t.result);
+
+  // === Thème (optionnel, sécurisé) ===
+  const themeBtn = document.getElementById("toggleThemeBtn");
+  if (themeBtn) {
     const isLight = document.body.classList.contains("light");
-    btn.innerText = isLight ? TEXTS.ui.toggleDark : TEXTS.ui.toggleLight;
+    themeBtn.innerText = isLight ? t.toggleDark : t.toggleLight;
   }
 
-  console.log("[i18n] Textes UI mis à jour.");
+  console.log(`[i18n] Interface mise à jour (${window.currentLang})`);
 }
+
 
 
 /* =======================================
