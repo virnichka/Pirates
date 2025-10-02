@@ -133,17 +133,42 @@ waitForTexts();
 // 🌍 Sélecteur de langue dynamique
 // ========================================
 document.addEventListener("DOMContentLoaded", () => {
-  const langSelector = document.getElementById("langSelector");
+
+// Restaure la langue sauvegardée si elle existe
+const savedLang = localStorage.getItem("lang");
+if (savedLang) {
+  langSelector.value = savedLang;
+  window.currentLang = savedLang;
+}
+
+   
+   const langSelector = document.getElementById("langSelector");
   if (!langSelector) return;
 
   // Sélection initiale basée sur la langue chargée
   if (typeof currentLang !== "undefined") {
     langSelector.value = currentLang;
+  }// ========================================
+// 🌍 Sélecteur de langue dynamique (i18n)
+// ========================================
+document.addEventListener("DOMContentLoaded", () => {
+  const langSelector = document.getElementById("langSelector");
+  if (!langSelector) return;
+
+  // 🔸 Restaure la langue sauvegardée si elle existe
+  const savedLang = localStorage.getItem("lang");
+  if (savedLang) {
+    langSelector.value = savedLang;
+    window.currentLang = savedLang;
   }
 
+  // 🔹 Détecte le changement de langue
   langSelector.addEventListener("change", async (e) => {
     const newLang = e.target.value;
     console.log(`[i18n] Changement de langue demandé : ${newLang}`);
+
+    // 💾 Sauvegarde la langue choisie
+    localStorage.setItem("lang", newLang);
 
     try {
       const response = await fetch("./data/texts.json");
