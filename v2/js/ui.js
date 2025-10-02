@@ -6,6 +6,15 @@
  * - Fournit des utilitaires (shuffle, prénoms aléatoires)
  */
 
+/* =======================================
+   🔤 RÉCUPÉRATION DES TEXTES MULTILINGUES
+   ======================================= */
+
+if (typeof TEXTS === "undefined" || !TEXTS?.ui) {
+  console.warn("[i18n] TEXTS non défini dans ui.js — vérifie le chargement depuis main.js");
+}
+
+
 let ACCROCHES = {}; // 🔹 Stockera les données du fichier accroches.json
 
 
