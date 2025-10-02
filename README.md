@@ -134,18 +134,24 @@ Chaque mode correspond à un onglet dans Google Sheets :
 
 ## 🔧 Architecture globale du projet
 
-```
-📁 quiz-entre-potes/
-│
-├── index.html           → structure principale du site
-├── style.css            → styles + thèmes (general, fun, full_dark)
-├── main.js              → initialisation + gestion du mode
-├── quiz.js              → logique du quiz (navigation, vérification)
-├── ui.js                → fonctions utilitaires d’affichage
-├── api.js               → lien entre le front et Google Sheets (Apps Script)
-├── accroches.json       → textes ou phrases d’accroche du jeu
-└── README.md            → documentation et prompt de développement
-```
+Le projet Pirates est organisé selon une structure modulaire dans le dossier v2/.
+Le dépôt est public et accessible à l’adresse :
+🔗 https://github.com/virnichka/Pirates
+
+📁 Structure du répertoire
+v2/
+├── css/
+│   └── style.css
+├── data/
+│   └── accroches.json
+├── js/
+│   ├── api.js
+│   ├── config.js
+│   ├── main.js
+│   ├── quiz.js
+│   └── ui.js
+├── index.html
+└── README.md
 
 Le projet est entièrement statique et hébergé côté client (par exemple sur GitHub Pages).  
 Les données sont dynamiquement chargées via une **API Google Apps Script**.
