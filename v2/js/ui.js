@@ -15,7 +15,6 @@ if (typeof TEXTS === "undefined" || !TEXTS?.ui) {
 }
 
 
-let ACCROCHES = TEXTS?.accroches || {}; // ✅🔹 texts accroches
 
 
 /**
@@ -117,8 +116,6 @@ function updateUITexts() {
   console.log("[i18n] Textes UI mis à jour.");
 }
 
-// console verification chargement texte
-console.log("[i18n] Vérif ui.js :", TEXTS?.ui?.toggleDark || "TEXTS non chargé");
 
 /* =======================================
    ⏳ Attente du chargement de TEXTS
