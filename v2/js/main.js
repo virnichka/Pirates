@@ -4,6 +4,36 @@
 // * 🚀 Point d’entrée unique du quiz
 // ===============================================
 
+
+/* =======================================
+   🔤 GESTION DE LA LANGUE DU SITE
+   ======================================= */
+
+const SUPPORTED_LANGS = ["fr", "en", "es"];
+const DEFAULT_LANG = "fr";
+
+let lang = localStorage.getItem("lang") ||
+           (navigator.language || DEFAULT_LANG).slice(0,2).toLowerCase();
+if (!SUPPORTED_LANGS.includes(lang)) lang = DEFAULT_LANG;
+
+let TEXTS = null;
+
+async function loadTexts() {
+  try {
+    const res = await fetch("./data/texts.json", { cache: "no-cache" });
+    const allTexts = await res.json();
+    TEXTS = allTexts[lang] || allTexts[DEFAULT_LANG];
+    localStorage.setItem("lang", lang);
+    console.log(`[i18n] Langue chargée : ${lang}`);
+  } catch (err) {
+    console.error("[i18n] Erreur de chargement de texts.json :", err);
+  }
+}
+
+// ===============================================
+// ⚙️ INITIALISATION DU SITE
+// ===============================================
+
 window.addEventListener("load", async () => {
   try {
     // 1️⃣ Récupération du mode sauvegardé (ou "general" par défaut)
