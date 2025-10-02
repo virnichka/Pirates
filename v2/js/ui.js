@@ -101,11 +101,16 @@ function toggleTheme() {
    ======================================= */
 function updateUITexts() {
   if (!TEXTS?.ui) return;
+
   const btn = document.getElementById("toggleThemeBtn");
-  const isLight = document.body.classList.contains("light");
-  btn.innerText = isLight ? TEXTS.ui.toggleDark : TEXTS.ui.toggleLight;
+  if (btn) {
+    const isLight = document.body.classList.contains("light");
+    btn.innerText = isLight ? TEXTS.ui.toggleDark : TEXTS.ui.toggleLight;
+  }
+
   console.log("[i18n] Textes UI mis à jour.");
 }
+
 
 /* =======================================
    ⏳ Attente du chargement de TEXTS
