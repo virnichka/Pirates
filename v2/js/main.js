@@ -17,12 +17,14 @@ let lang = localStorage.getItem("lang") ||
 if (!SUPPORTED_LANGS.includes(lang)) lang = DEFAULT_LANG;
 
 let TEXTS = null;
+window.TEXTS = null;
+
 
 async function loadTexts() {
   try {
     const res = await fetch("./data/texts.json", { cache: "no-cache" });
     const allTexts = await res.json();
-    TEXTS = allTexts[lang] || allTexts[DEFAULT_LANG];
+    window.TEXTS = allTexts[lang] || allTexts[DEFAULT_LANG];
     localStorage.setItem("lang", lang);
     console.log(`[i18n] Langue chargée : ${lang}`);
   } catch (err) {
