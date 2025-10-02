@@ -163,7 +163,7 @@ document.addEventListener("DOMContentLoaded", () => {
       setTimeout(() => btn.classList.remove("lang-change"), 400);
       btn.innerText = `${flags[newLang]} ${newLang.toUpperCase()}`;
 
-      if (typeof updateUI === "function") updateUI();
+      if (typeof updateUITexts === "function") updateUITexts();
     } catch (err) {
       console.error("[i18n] Erreur lors du changement de langue :", err);
     }
