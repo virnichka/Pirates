@@ -16,7 +16,6 @@ let lang = localStorage.getItem("lang") ||
            (navigator.language || DEFAULT_LANG).slice(0,2).toLowerCase();
 if (!SUPPORTED_LANGS.includes(lang)) lang = DEFAULT_LANG;
 
-let TEXTS = null;
 window.TEXTS = null;
 
 
