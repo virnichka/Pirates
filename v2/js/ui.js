@@ -115,11 +115,6 @@ function waitForTexts() {
     ACCROCHES = TEXTS.accroches || {};
     console.log("[i18n] TEXTS disponible, UI prête ✅");
 
-    const btn = document.getElementById("toggleThemeBtn");
-    if (btn) {
-      const isLight = document.body.classList.contains("light");
-      btn.innerText = isLight ? TEXTS.ui.toggleDark : TEXTS.ui.toggleLight;
-    }
   } else {
     console.log("[i18n] TEXTS pas encore disponible, nouvelle tentative...");
     setTimeout(waitForTexts, 300);
