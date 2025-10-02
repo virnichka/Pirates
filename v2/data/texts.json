@@ -1,1 +1,599 @@
 
+{
+  "fr": {
+    "ui": {
+      "toggleDark": "Basculer en mode sombre",
+      "toggleLight": "Basculer en mode clair",
+      "startQuiz": "Démarrer le quiz",
+      "nextQuestion": "Question suivante",
+      "seeResults": "Voir les résultats",
+      "retry": "Rejouer",
+      "score": "Ton score :",
+      "congrats": "Félicitations !",
+      "loading": "Chargement..."
+    },
+    "accroches": {
+      "_info": {
+        "description": "Fichier d’accroches — Quiz Entre Potes (multi-modes)",
+        "usage": "Contient les textes dynamiques : titres, sous-titres, commentaires de fin, et variantes selon le mode.",
+        "structure": {
+          "racine": [
+            "titres",
+            "sousTitres",
+            "commentairesFin"
+          ],
+          "modes": [
+            "general",
+            "fun",
+            "full_dark"
+          ]
+        },
+        "defaultMode": "general"
+      },
+      "titres": [
+        "Quiz Entre Potes — édition gueule de bois 🍺",
+        "Le tribunal des cassos ⚖️",
+        "Les pirates du QI en panne 🏴‍☠️",
+        "Test de survie sociale : t’es encore des nôtres ?",
+        "Le bûcher des traîtres (et de Maxence, surtout lui)",
+        "La taverne des légendes foireuses 🍻",
+        "Le grand déballage des dossiers honteux 🫣",
+        "Qui a fait quoi ? Et pourquoi c’est encore toi ?",
+        "Les potes contre-attaquent (et ça va faire mal) 💣",
+        "Soirée quiz : pas de gagnant, que des humiliés 🐒"
+      ],
+      "sousTitres": [
+        "Prépare ton ego, on va le découper façon carpaccio.",
+        "T’as cru qu’on allait être gentils ? Mauvaise pioche.",
+        "Ici, on note tout, même tes pires choix d’alcools.",
+        "Une mauvaise réponse, et t’es banni du prochain apéro.",
+        "Rappelle-toi : dans le doute, accuse Thomas.",
+        "Ton cerveau a quitté le navire, toi aussi apparemment.",
+        "Le but ? Humilier, rire, puis recommencer.",
+        "Tu pensais qu’on t’avait oublié ? Bah non, on a les preuves.",
+        "Ce quiz est sponsorisé par la honte et le désespoir.",
+        "Si tu finis avec 0, t’as plus le droit de parler dans le groupe."
+      ],
+      "commentairesFin": {
+        "0": "Zéro. Même ChatGPT aurait fait mieux. T’as dormi pendant toutes les soirées ou quoi ? 💀",
+        "20": "T’étais là, mais visiblement pas sobre. 🥴",
+        "40": "Pas la honte totale, mais t’es pas loin. 😬",
+        "60": "La moyenne. T’as évité la honte, mais c’est tout juste. 👏",
+        "80": "Pas mal du tout ! T’as une mémoire sélective, mais efficace. 🧠",
+        "100": "Parfait. Tu es la honte collective incarnée. Le boss final du malaise. 👑"
+      },
+      "modes": {
+        "general": {
+          "titres": [
+            "Quiz Culture Générale 🌞",
+            "Test tes connaissances !",
+            "Challenge ton cerveau ! 🧠",
+            "Petit quiz du jour : tu brilles ou tu bégayes ?",
+            "Le Grand Quiz des Curieux 🔍"
+          ],
+          "sousTitres": [
+            "Pas besoin d’être Einstein, mais presque.",
+            "On révise sans pression.",
+            "Quelques questions pour briller en société.",
+            "Révise ton savoir sans prise de tête.",
+            "À toi de jouer, futur champion du Trivial Pursuit."
+          ],
+          "commentairesFin": {
+            "0": "Aïe... un petit coup de révisions ne ferait pas de mal ! 📚",
+            "20": "Tu sembles un peu rouillé, mais c’est un début !",
+            "40": "Tu progresses, continue à t’instruire !",
+            "60": "Bien joué ! Tes neurones sont bien connectés.",
+            "80": "Excellent niveau ! Tu frôles le sans-faute.",
+            "100": "Parfait ! La culture G, c’est ton domaine. 👏"
+          }
+        },
+        "fun": {
+          "titres": [
+            "Quiz 100% Fun 🤪",
+            "Le quiz qui met la banane 🍌",
+            "Zéro pression, que du fun ! 🎉",
+            "Rire garanti (ou presque)",
+            "Le quiz détente par excellence 🌈"
+          ],
+          "sousTitres": [
+            "Réponds au feeling, on est là pour rigoler.",
+            "Aucune prise de tête, que des fous rires.",
+            "Ambiance détente : les points, c’est secondaire.",
+            "Tu veux gagner ? Commence par sourire 😎",
+            "Quiz déjanté pour esprit légendaire !"
+          ],
+          "commentairesFin": {
+            "0": "Échec comique assumé 😂 mais au moins t’as joué !",
+            "20": "T’as perdu, mais t’as mis l’ambiance. 😄",
+            "40": "Pas mal, t’as le sens du spectacle !",
+            "60": "Solide ! Fun et talent, le combo parfait.",
+            "80": "T’es en feu, showman du quiz ! 🔥",
+            "100": "Parfait + panache. Roi/Reine du fun. 👑"
+          }
+        },
+        "full_dark": {
+          "titres": [
+            "Quiz Entre Potes — édition gueule de bois 🍺",
+            "Le tribunal des cassos ⚖️",
+            "Les pirates du QI en panne 🏴‍☠️",
+            "Test de survie sociale : t’es encore des nôtres ?",
+            "Le bûcher des traîtres (et de Maxence, surtout lui)",
+            "La taverne des légendes foireuses 🍻",
+            "Le grand déballage des dossiers honteux 🫣",
+            "Qui a fait quoi ? Et pourquoi c’est encore toi ?",
+            "Les potes contre-attaquent (et ça va faire mal) 💣",
+            "Soirée quiz : pas de gagnant, que des humiliés 🐒"
+          ],
+          "sousTitres": [
+            "Prépare ton ego, on va le découper façon carpaccio.",
+            "T’as cru qu’on allait être gentils ? Mauvaise pioche.",
+            "Ici, on note tout, même tes pires choix d’alcools.",
+            "Une mauvaise réponse, et t’es banni du prochain apéro.",
+            "Rappelle-toi : dans le doute, accuse Thomas.",
+            "Ton cerveau a quitté le navire, toi aussi apparemment.",
+            "Le but ? Humilier, rire, puis recommencer.",
+            "Tu pensais qu’on t’avait oublié ? Bah non, on a les preuves.",
+            "Ce quiz est sponsorisé par la honte et le désespoir.",
+            "Si tu finis avec 0, t’as plus le droit de parler dans le groupe."
+          ],
+          "commentairesFin": {
+            "0": "Zéro. Même ChatGPT aurait fait mieux. 💀",
+            "20": "T’étais là, mais visiblement pas sobre. 🥴",
+            "40": "Pas la honte totale, mais t’es pas loin. 😬",
+            "60": "La moyenne. T’as évité la honte, mais c’est tout juste. 👏",
+            "80": "Pas mal du tout ! T’as une mémoire sélective, mais efficace. 🧠",
+            "100": "Parfait. Tu es la honte collective incarnée. 👑"
+          }
+        }
+      },
+      "_defaultMode": "general"
+    }
+  },
+  "en": {
+    "ui": {
+      "toggleDark": "Switch to dark mode",
+      "toggleLight": "Switch to light mode",
+      "startQuiz": "Start quiz",
+      "nextQuestion": "Next question",
+      "seeResults": "See results",
+      "retry": "Play again",
+      "score": "Your score:",
+      "congrats": "Congratulations!",
+      "loading": "Loading..."
+    },
+    "accroches": {
+      "_info": {
+        "description": "Fichier d’accroches — Quiz Entre Potes (multi-modes)",
+        "usage": "Contient les textes dynamiques : titres, sous-titres, commentaires de fin, et variantes selon le mode.",
+        "structure": {
+          "racine": [
+            "titres",
+            "sousTitres",
+            "commentairesFin"
+          ],
+          "modes": [
+            "general",
+            "fun",
+            "full_dark"
+          ]
+        },
+        "defaultMode": "general"
+      },
+      "titres": [
+        "Quiz Entre Potes — édition gueule de bois 🍺",
+        "Le tribunal des cassos ⚖️",
+        "Les pirates du QI en panne 🏴‍☠️",
+        "Test de survie sociale : t’es encore des nôtres ?",
+        "Le bûcher des traîtres (et de Maxence, surtout lui)",
+        "La taverne des légendes foireuses 🍻",
+        "Le grand déballage des dossiers honteux 🫣",
+        "Qui a fait quoi ? Et pourquoi c’est encore toi ?",
+        "Les potes contre-attaquent (et ça va faire mal) 💣",
+        "Soirée quiz : pas de gagnant, que des humiliés 🐒"
+      ],
+      "sousTitres": [
+        "Prépare ton ego, on va le découper façon carpaccio.",
+        "T’as cru qu’on allait être gentils ? Mauvaise pioche.",
+        "Ici, on note tout, même tes pires choix d’alcools.",
+        "Une mauvaise réponse, et t’es banni du prochain apéro.",
+        "Rappelle-toi : dans le doute, accuse Thomas.",
+        "Ton cerveau a quitté le navire, toi aussi apparemment.",
+        "Le but ? Humilier, rire, puis recommencer.",
+        "Tu pensais qu’on t’avait oublié ? Bah non, on a les preuves.",
+        "Ce quiz est sponsorisé par la honte et le désespoir.",
+        "Si tu finis avec 0, t’as plus le droit de parler dans le groupe."
+      ],
+      "commentairesFin": {
+        "0": "Zéro. Même ChatGPT aurait fait mieux. T’as dormi pendant toutes les soirées ou quoi ? 💀",
+        "20": "T’étais là, mais visiblement pas sobre. 🥴",
+        "40": "Pas la honte totale, mais t’es pas loin. 😬",
+        "60": "La moyenne. T’as évité la honte, mais c’est tout juste. 👏",
+        "80": "Pas mal du tout ! T’as une mémoire sélective, mais efficace. 🧠",
+        "100": "Parfait. Tu es la honte collective incarnée. Le boss final du malaise. 👑"
+      },
+      "modes": {
+        "general": {
+          "titres": [
+            "Quiz Culture Générale 🌞",
+            "Test tes connaissances !",
+            "Challenge ton cerveau ! 🧠",
+            "Petit quiz du jour : tu brilles ou tu bégayes ?",
+            "Le Grand Quiz des Curieux 🔍"
+          ],
+          "sousTitres": [
+            "Pas besoin d’être Einstein, mais presque.",
+            "On révise sans pression.",
+            "Quelques questions pour briller en société.",
+            "Révise ton savoir sans prise de tête.",
+            "À toi de jouer, futur champion du Trivial Pursuit."
+          ],
+          "commentairesFin": {
+            "0": "Aïe... un petit coup de révisions ne ferait pas de mal ! 📚",
+            "20": "Tu sembles un peu rouillé, mais c’est un début !",
+            "40": "Tu progresses, continue à t’instruire !",
+            "60": "Bien joué ! Tes neurones sont bien connectés.",
+            "80": "Excellent niveau ! Tu frôles le sans-faute.",
+            "100": "Parfait ! La culture G, c’est ton domaine. 👏"
+          }
+        },
+        "fun": {
+          "titres": [
+            "Quiz 100% Fun 🤪",
+            "Le quiz qui met la banane 🍌",
+            "Zéro pression, que du fun ! 🎉",
+            "Rire garanti (ou presque)",
+            "Le quiz détente par excellence 🌈"
+          ],
+          "sousTitres": [
+            "Réponds au feeling, on est là pour rigoler.",
+            "Aucune prise de tête, que des fous rires.",
+            "Ambiance détente : les points, c’est secondaire.",
+            "Tu veux gagner ? Commence par sourire 😎",
+            "Quiz déjanté pour esprit légendaire !"
+          ],
+          "commentairesFin": {
+            "0": "Échec comique assumé 😂 mais au moins t’as joué !",
+            "20": "T’as perdu, mais t’as mis l’ambiance. 😄",
+            "40": "Pas mal, t’as le sens du spectacle !",
+            "60": "Solide ! Fun et talent, le combo parfait.",
+            "80": "T’es en feu, showman du quiz ! 🔥",
+            "100": "Parfait + panache. Roi/Reine du fun. 👑"
+          }
+        },
+        "full_dark": {
+          "titres": [
+            "Quiz Entre Potes — édition gueule de bois 🍺",
+            "Le tribunal des cassos ⚖️",
+            "Les pirates du QI en panne 🏴‍☠️",
+            "Test de survie sociale : t’es encore des nôtres ?",
+            "Le bûcher des traîtres (et de Maxence, surtout lui)",
+            "La taverne des légendes foireuses 🍻",
+            "Le grand déballage des dossiers honteux 🫣",
+            "Qui a fait quoi ? Et pourquoi c’est encore toi ?",
+            "Les potes contre-attaquent (et ça va faire mal) 💣",
+            "Soirée quiz : pas de gagnant, que des humiliés 🐒"
+          ],
+          "sousTitres": [
+            "Prépare ton ego, on va le découper façon carpaccio.",
+            "T’as cru qu’on allait être gentils ? Mauvaise pioche.",
+            "Ici, on note tout, même tes pires choix d’alcools.",
+            "Une mauvaise réponse, et t’es banni du prochain apéro.",
+            "Rappelle-toi : dans le doute, accuse Thomas.",
+            "Ton cerveau a quitté le navire, toi aussi apparemment.",
+            "Le but ? Humilier, rire, puis recommencer.",
+            "Tu pensais qu’on t’avait oublié ? Bah non, on a les preuves.",
+            "Ce quiz est sponsorisé par la honte et le désespoir.",
+            "Si tu finis avec 0, t’as plus le droit de parler dans le groupe."
+          ],
+          "commentairesFin": {
+            "0": "Zéro. Même ChatGPT aurait fait mieux. 💀",
+            "20": "T’étais là, mais visiblement pas sobre. 🥴",
+            "40": "Pas la honte totale, mais t’es pas loin. 😬",
+            "60": "La moyenne. T’as évité la honte, mais c’est tout juste. 👏",
+            "80": "Pas mal du tout ! T’as une mémoire sélective, mais efficace. 🧠",
+            "100": "Parfait. Tu es la honte collective incarnée. 👑"
+          }
+        }
+      },
+      "_defaultMode": "general"
+    }
+  },
+  "es": {
+    "ui": {
+      "toggleDark": "Cambiar al modo oscuro",
+      "toggleLight": "Cambiar al modo claro",
+      "startQuiz": "Comenzar el cuestionario",
+      "nextQuestion": "Siguiente pregunta",
+      "seeResults": "Ver resultados",
+      "retry": "Jugar de nuevo",
+      "score": "Tu puntuación:",
+      "congrats": "¡Felicidades!",
+      "loading": "Cargando..."
+    },
+    "accroches": {
+      "_info": {
+        "description": "Fichier d’accroches — Quiz Entre Potes (multi-modes)",
+        "usage": "Contient les textes dynamiques : titres, sous-titres, commentaires de fin, et variantes selon le mode.",
+        "structure": {
+          "racine": [
+            "titres",
+            "sousTitres",
+            "commentairesFin"
+          ],
+          "modes": [
+            "general",
+            "fun",
+            "full_dark"
+          ]
+        },
+        "defaultMode": "general"
+      },
+      "titres": [
+        "Quiz Entre Potes — édition gueule de bois 🍺",
+        "Le tribunal des cassos ⚖️",
+        "Les pirates du QI en panne 🏴‍☠️",
+        "Test de survie sociale : t’es encore des nôtres ?",
+        "Le bûcher des traîtres (et de Maxence, surtout lui)",
+        "La taverne des légendes foireuses 🍻",
+        "Le grand déballage des dossiers honteux 🫣",
+        "Qui a fait quoi ? Et pourquoi c’est encore toi ?",
+        "Les potes contre-attaquent (et ça va faire mal) 💣",
+        "Soirée quiz : pas de gagnant, que des humiliés 🐒"
+      ],
+      "sousTitres": [
+        "Prépare ton ego, on va le découper façon carpaccio.",
+        "T’as cru qu’on allait être gentils ? Mauvaise pioche.",
+        "Ici, on note tout, même tes pires choix d’alcools.",
+        "Une mauvaise réponse, et t’es banni du prochain apéro.",
+        "Rappelle-toi : dans le doute, accuse Thomas.",
+        "Ton cerveau a quitté le navire, toi aussi apparemment.",
+        "Le but ? Humilier, rire, puis recommencer.",
+        "Tu pensais qu’on t’avait oublié ? Bah non, on a les preuves.",
+        "Ce quiz est sponsorisé par la honte et le désespoir.",
+        "Si tu finis avec 0, t’as plus le droit de parler dans le groupe."
+      ],
+      "commentairesFin": {
+        "0": "Zéro. Même ChatGPT aurait fait mieux. T’as dormi pendant toutes les soirées ou quoi ? 💀",
+        "20": "T’étais là, mais visiblement pas sobre. 🥴",
+        "40": "Pas la honte totale, mais t’es pas loin. 😬",
+        "60": "La moyenne. T’as évité la honte, mais c’est tout juste. 👏",
+        "80": "Pas mal du tout ! T’as une mémoire sélective, mais efficace. 🧠",
+        "100": "Parfait. Tu es la honte collective incarnée. Le boss final du malaise. 👑"
+      },
+      "modes": {
+        "general": {
+          "titres": [
+            "Quiz Culture Générale 🌞",
+            "Test tes connaissances !",
+            "Challenge ton cerveau ! 🧠",
+            "Petit quiz du jour : tu brilles ou tu bégayes ?",
+            "Le Grand Quiz des Curieux 🔍"
+          ],
+          "sousTitres": [
+            "Pas besoin d’être Einstein, mais presque.",
+            "On révise sans pression.",
+            "Quelques questions pour briller en société.",
+            "Révise ton savoir sans prise de tête.",
+            "À toi de jouer, futur champion du Trivial Pursuit."
+          ],
+          "commentairesFin": {
+            "0": "Aïe... un petit coup de révisions ne ferait pas de mal ! 📚",
+            "20": "Tu sembles un peu rouillé, mais c’est un début !",
+            "40": "Tu progresses, continue à t’instruire !",
+            "60": "Bien joué ! Tes neurones sont bien connectés.",
+            "80": "Excellent niveau ! Tu frôles le sans-faute.",
+            "100": "Parfait ! La culture G, c’est ton domaine. 👏"
+          }
+        },
+        "fun": {
+          "titres": [
+            "Quiz 100% Fun 🤪",
+            "Le quiz qui met la banane 🍌",
+            "Zéro pression, que du fun ! 🎉",
+            "Rire garanti (ou presque)",
+            "Le quiz détente par excellence 🌈"
+          ],
+          "sousTitres": [
+            "Réponds au feeling, on est là pour rigoler.",
+            "Aucune prise de tête, que des fous rires.",
+            "Ambiance détente : les points, c’est secondaire.",
+            "Tu veux gagner ? Commence par sourire 😎",
+            "Quiz déjanté pour esprit légendaire !"
+          ],
+          "commentairesFin": {
+            "0": "Échec comique assumé 😂 mais au moins t’as joué !",
+            "20": "T’as perdu, mais t’as mis l’ambiance. 😄",
+            "40": "Pas mal, t’as le sens du spectacle !",
+            "60": "Solide ! Fun et talent, le combo parfait.",
+            "80": "T’es en feu, showman du quiz ! 🔥",
+            "100": "Parfait + panache. Roi/Reine du fun. 👑"
+          }
+        },
+        "full_dark": {
+          "titres": [
+            "Quiz Entre Potes — édition gueule de bois 🍺",
+            "Le tribunal des cassos ⚖️",
+            "Les pirates du QI en panne 🏴‍☠️",
+            "Test de survie sociale : t’es encore des nôtres ?",
+            "Le bûcher des traîtres (et de Maxence, surtout lui)",
+            "La taverne des légendes foireuses 🍻",
+            "Le grand déballage des dossiers honteux 🫣",
+            "Qui a fait quoi ? Et pourquoi c’est encore toi ?",
+            "Les potes contre-attaquent (et ça va faire mal) 💣",
+            "Soirée quiz : pas de gagnant, que des humiliés 🐒"
+          ],
+          "sousTitres": [
+            "Prépare ton ego, on va le découper façon carpaccio.",
+            "T’as cru qu’on allait être gentils ? Mauvaise pioche.",
+            "Ici, on note tout, même tes pires choix d’alcools.",
+            "Une mauvaise réponse, et t’es banni du prochain apéro.",
+            "Rappelle-toi : dans le doute, accuse Thomas.",
+            "Ton cerveau a quitté le navire, toi aussi apparemment.",
+            "Le but ? Humilier, rire, puis recommencer.",
+            "Tu pensais qu’on t’avait oublié ? Bah non, on a les preuves.",
+            "Ce quiz est sponsorisé par la honte et le désespoir.",
+            "Si tu finis avec 0, t’as plus le droit de parler dans le groupe."
+          ],
+          "commentairesFin": {
+            "0": "Zéro. Même ChatGPT aurait fait mieux. 💀",
+            "20": "T’étais là, mais visiblement pas sobre. 🥴",
+            "40": "Pas la honte totale, mais t’es pas loin. 😬",
+            "60": "La moyenne. T’as évité la honte, mais c’est tout juste. 👏",
+            "80": "Pas mal du tout ! T’as une mémoire sélective, mais efficace. 🧠",
+            "100": "Parfait. Tu es la honte collective incarnée. 👑"
+          }
+        }
+      },
+      "_defaultMode": "general"
+    }
+  },
+  "ro": {
+    "ui": {
+      "toggleDark": "Comută la modul întunecat",
+      "toggleLight": "Comută la modul luminos",
+      "startQuiz": "Pornește testul",
+      "nextQuestion": "Întrebarea următoare",
+      "seeResults": "Vezi rezultatele",
+      "retry": "Joacă din nou",
+      "score": "Scorul tău:",
+      "congrats": "Felicitări!",
+      "loading": "Se încarcă..."
+    },
+    "accroches": {
+      "_info": {
+        "description": "Fichier d’accroches — Quiz Entre Potes (multi-modes)",
+        "usage": "Contient les textes dynamiques : titres, sous-titres, commentaires de fin, et variantes selon le mode.",
+        "structure": {
+          "racine": [
+            "titres",
+            "sousTitres",
+            "commentairesFin"
+          ],
+          "modes": [
+            "general",
+            "fun",
+            "full_dark"
+          ]
+        },
+        "defaultMode": "general"
+      },
+      "titres": [
+        "Quiz Entre Potes — édition gueule de bois 🍺",
+        "Le tribunal des cassos ⚖️",
+        "Les pirates du QI en panne 🏴‍☠️",
+        "Test de survie sociale : t’es encore des nôtres ?",
+        "Le bûcher des traîtres (et de Maxence, surtout lui)",
+        "La taverne des légendes foireuses 🍻",
+        "Le grand déballage des dossiers honteux 🫣",
+        "Qui a fait quoi ? Et pourquoi c’est encore toi ?",
+        "Les potes contre-attaquent (et ça va faire mal) 💣",
+        "Soirée quiz : pas de gagnant, que des humiliés 🐒"
+      ],
+      "sousTitres": [
+        "Prépare ton ego, on va le découper façon carpaccio.",
+        "T’as cru qu’on allait être gentils ? Mauvaise pioche.",
+        "Ici, on note tout, même tes pires choix d’alcools.",
+        "Une mauvaise réponse, et t’es banni du prochain apéro.",
+        "Rappelle-toi : dans le doute, accuse Thomas.",
+        "Ton cerveau a quitté le navire, toi aussi apparemment.",
+        "Le but ? Humilier, rire, puis recommencer.",
+        "Tu pensais qu’on t’avait oublié ? Bah non, on a les preuves.",
+        "Ce quiz est sponsorisé par la honte et le désespoir.",
+        "Si tu finis avec 0, t’as plus le droit de parler dans le groupe."
+      ],
+      "commentairesFin": {
+        "0": "Zéro. Même ChatGPT aurait fait mieux. T’as dormi pendant toutes les soirées ou quoi ? 💀",
+        "20": "T’étais là, mais visiblement pas sobre. 🥴",
+        "40": "Pas la honte totale, mais t’es pas loin. 😬",
+        "60": "La moyenne. T’as évité la honte, mais c’est tout juste. 👏",
+        "80": "Pas mal du tout ! T’as une mémoire sélective, mais efficace. 🧠",
+        "100": "Parfait. Tu es la honte collective incarnée. Le boss final du malaise. 👑"
+      },
+      "modes": {
+        "general": {
+          "titres": [
+            "Quiz Culture Générale 🌞",
+            "Test tes connaissances !",
+            "Challenge ton cerveau ! 🧠",
+            "Petit quiz du jour : tu brilles ou tu bégayes ?",
+            "Le Grand Quiz des Curieux 🔍"
+          ],
+          "sousTitres": [
+            "Pas besoin d’être Einstein, mais presque.",
+            "On révise sans pression.",
+            "Quelques questions pour briller en société.",
+            "Révise ton savoir sans prise de tête.",
+            "À toi de jouer, futur champion du Trivial Pursuit."
+          ],
+          "commentairesFin": {
+            "0": "Aïe... un petit coup de révisions ne ferait pas de mal ! 📚",
+            "20": "Tu sembles un peu rouillé, mais c’est un début !",
+            "40": "Tu progresses, continue à t’instruire !",
+            "60": "Bien joué ! Tes neurones sont bien connectés.",
+            "80": "Excellent niveau ! Tu frôles le sans-faute.",
+            "100": "Parfait ! La culture G, c’est ton domaine. 👏"
+          }
+        },
+        "fun": {
+          "titres": [
+            "Quiz 100% Fun 🤪",
+            "Le quiz qui met la banane 🍌",
+            "Zéro pression, que du fun ! 🎉",
+            "Rire garanti (ou presque)",
+            "Le quiz détente par excellence 🌈"
+          ],
+          "sousTitres": [
+            "Réponds au feeling, on est là pour rigoler.",
+            "Aucune prise de tête, que des fous rires.",
+            "Ambiance détente : les points, c’est secondaire.",
+            "Tu veux gagner ? Commence par sourire 😎",
+            "Quiz déjanté pour esprit légendaire !"
+          ],
+          "commentairesFin": {
+            "0": "Échec comique assumé 😂 mais au moins t’as joué !",
+            "20": "T’as perdu, mais t’as mis l’ambiance. 😄",
+            "40": "Pas mal, t’as le sens du spectacle !",
+            "60": "Solide ! Fun et talent, le combo parfait.",
+            "80": "T’es en feu, showman du quiz ! 🔥",
+            "100": "Parfait + panache. Roi/Reine du fun. 👑"
+          }
+        },
+        "full_dark": {
+          "titres": [
+            "Quiz Entre Potes — édition gueule de bois 🍺",
+            "Le tribunal des cassos ⚖️",
+            "Les pirates du QI en panne 🏴‍☠️",
+            "Test de survie sociale : t’es encore des nôtres ?",
+            "Le bûcher des traîtres (et de Maxence, surtout lui)",
+            "La taverne des légendes foireuses 🍻",
+            "Le grand déballage des dossiers honteux 🫣",
+            "Qui a fait quoi ? Et pourquoi c’est encore toi ?",
+            "Les potes contre-attaquent (et ça va faire mal) 💣",
+            "Soirée quiz : pas de gagnant, que des humiliés 🐒"
+          ],
+          "sousTitres": [
+            "Prépare ton ego, on va le découper façon carpaccio.",
+            "T’as cru qu’on allait être gentils ? Mauvaise pioche.",
+            "Ici, on note tout, même tes pires choix d’alcools.",
+            "Une mauvaise réponse, et t’es banni du prochain apéro.",
+            "Rappelle-toi : dans le doute, accuse Thomas.",
+            "Ton cerveau a quitté le navire, toi aussi apparemment.",
+            "Le but ? Humilier, rire, puis recommencer.",
+            "Tu pensais qu’on t’avait oublié ? Bah non, on a les preuves.",
+            "Ce quiz est sponsorisé par la honte et le désespoir.",
+            "Si tu finis avec 0, t’as plus le droit de parler dans le groupe."
+          ],
+          "commentairesFin": {
+            "0": "Zéro. Même ChatGPT aurait fait mieux. 💀",
+            "20": "T’étais là, mais visiblement pas sobre. 🥴",
+            "40": "Pas la honte totale, mais t’es pas loin. 😬",
+            "60": "La moyenne. T’as évité la honte, mais c’est tout juste. 👏",
+            "80": "Pas mal du tout ! T’as une mémoire sélective, mais efficace. 🧠",
+            "100": "Parfait. Tu es la honte collective incarnée. 👑"
+          }
+        }
+      },
+      "_defaultMode": "general"
+    }
+  }
+}
