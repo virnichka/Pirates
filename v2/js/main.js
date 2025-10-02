@@ -37,7 +37,9 @@ async function loadTexts() {
 
 window.addEventListener("load", async () => {
   try {
-    // 1️⃣ Récupération du mode sauvegardé (ou "general" par défaut)
+    await loadTexts(); // 🧩 Charge les textes multilingues au démarrage
+     
+     // 1️⃣ Récupération du mode sauvegardé (ou "general" par défaut)
     const savedMode = localStorage.getItem("selectedMode") || "general";
 
     // 2️⃣ Application du thème visuel et des accroches correspondantes
