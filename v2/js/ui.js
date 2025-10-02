@@ -148,8 +148,11 @@ if (savedLang) {
   // Sélection initiale basée sur la langue chargée
   if (typeof currentLang !== "undefined") {
     langSelector.value = currentLang;
-  }// ========================================
-// 🌍 Sélecteur de langue dynamique (i18n)
+  }
+
+   
+   // ========================================
+// 🌍 Sélecteur de langue dynamique
 // ========================================
 document.addEventListener("DOMContentLoaded", () => {
   const langSelector = document.getElementById("langSelector");
@@ -188,5 +191,59 @@ document.addEventListener("DOMContentLoaded", () => {
       console.error("[i18n] Erreur lors du changement de langue :", err);
     }
   });
+}
+
+
+/* =======================================
+   🌍 BOUTON FUN DE CHANGEMENT DE LANGUE
+   ======================================= */
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.getElementById("langBtn");
+  if (!btn) return;
+
+  // Liste des langues disponibles dans le bon ordre
+  const langs = ["fr", "en", "es", "ro"];
+  const flags = { fr: "🇫🇷", en: "🇬🇧", es: "🇪🇸", ro: "🇷🇴" };
+
+  // Langue sauvegardée ou FR par défaut
+  let currentLang = localStorage.getItem("lang") || "fr";
+  window.currentLang = currentLang;
+  btn.innerText = `${flags[currentLang]} ${currentLang.toUpperCase()}`;
+
+  btn.addEventListener("click", async () => {
+    // Passe à la langue suivante dans le tableau
+    const nextIndex = (langs.indexOf(currentLang) + 1) % langs.length;
+    const newLang = langs[nextIndex];
+    console.log(`🏴‍☠️ Ahoy! Changement de langue : ${newLang}`);
+
+    // 💾 Sauvegarde la langue choisie
+    localStorage.setItem("lang", newLang);
+
+    try {
+      const response = await fetch("./data/texts.json");
+      const texts = await response.json();
+
+      if (!texts[newLang]) {
+        console.warn(`[i18n] Langue ${newLang} introuvable dans texts.json`);
+        return;
+      }
+
+      window.TEXTS = texts[newLang];
+      window.currentLang = newLang;
+      currentLang = newLang;
+
+      // 🎨 Met à jour le bouton
+      btn.classList.add("lang-change");
+      setTimeout(() => btn.classList.remove("lang-change"), 400);
+      btn.innerText = `${flags[newLang]} ${newLang.toUpperCase()}`;
+
+      if (typeof updateUI === "function") updateUI();
+    } catch (err) {
+      console.error("[i18n] Erreur lors du changement de langue :", err);
+    }
+  });
 });
+
+                         
+                         );
 
