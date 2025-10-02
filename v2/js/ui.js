@@ -128,3 +128,40 @@ function waitForTexts() {
 
 // 🚀 Lancement automatique
 waitForTexts();
+
+// ========================================
+// 🌍 Sélecteur de langue dynamique
+// ========================================
+document.addEventListener("DOMContentLoaded", () => {
+  const langSelector = document.getElementById("langSelector");
+  if (!langSelector) return;
+
+  // Sélection initiale basée sur la langue chargée
+  if (typeof currentLang !== "undefined") {
+    langSelector.value = currentLang;
+  }
+
+  langSelector.addEventListener("change", async (e) => {
+    const newLang = e.target.value;
+    console.log(`[i18n] Changement de langue demandé : ${newLang}`);
+
+    try {
+      const response = await fetch("./data/texts.json");
+      const texts = await response.json();
+      if (!texts[newLang]) {
+        console.warn(`[i18n] Langue ${newLang} introuvable dans texts.json`);
+        return;
+      }
+
+      // Met à jour la variable globale
+      window.TEXTS = texts[newLang];
+      window.currentLang = newLang;
+
+      console.log(`[i18n] Langue changée en : ${newLang} ✅`);
+      if (typeof updateUI === "function") updateUI();
+    } catch (err) {
+      console.error("[i18n] Erreur lors du changement de langue :", err);
+    }
+  });
+});
+
