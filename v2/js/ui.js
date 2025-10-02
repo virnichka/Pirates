@@ -120,4 +120,27 @@ function updateUITexts() {
 // console verification chargement texte
 console.log("[i18n] Vérif ui.js :", TEXTS?.ui?.toggleDark || "TEXTS non chargé");
 
+/* =======================================
+   ⏳ Attente du chargement de TEXTS
+   ======================================= */
+function waitForTexts() {
+  if (typeof TEXTS !== "undefined" && TEXTS?.ui) {
+    ACCROCHES = TEXTS.accroches || {};
+    console.log("[i18n] TEXTS disponible, UI prête ✅");
+
+    // 🔁 Met à jour les textes de l’interface dès que TEXTS est prêt
+    const btn = document.getElementById("toggleThemeBtn");
+    if (btn) {
+      const isLight = document.body.classList.contains("light");
+      btn.innerText = isLight ? TEXTS.ui.toggleDark : TEXTS.ui.toggleLight;
+    }
+  } else {
+    console.log("[i18n] TEXTS pas encore disponible, nouvelle tentative...");
+    setTimeout(waitForTexts, 300); // ⏱️ nouvelle tentative dans 300ms
+  }
+}
+
+// 🚀 Lancement du check automatique au chargement du script
+waitForTexts();
+
 
