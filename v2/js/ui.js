@@ -117,3 +117,7 @@ function updateUITexts() {
   console.log("[i18n] Textes UI mis à jour.");
 }
 
+// console verification chargement texte
+console.log("[i18n] Vérif ui.js :", TEXTS?.ui?.toggleDark || "TEXTS non chargé");
+
+
