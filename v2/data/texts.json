@@ -10,17 +10,7 @@
       "retry": "Rejouer",
       "score": "Ton score :",
       "congrats": "Félicitations !",
-      "loading": "Chargement...",
-      "title": "Quiz Entre Potes 🤩",
-      "chooseMode": "Choisis ton mode :",
-      "modeGeneral": "Mode Général 🌞",
-      "modeFun": "Mode Fun 🤪",
-      "modeDark": "Mode Full Dark 🏴‍☠️",
-      "langBtn": "🌍 FR",
-      "quizSubtitle": "Teste tes connaissances avec tes amis !"
-}
-
-      
+      "loading": "Chargement..."
     },
     "accroches": {
       "_info": {
@@ -170,13 +160,6 @@
       "score": "Your score:",
       "congrats": "Congratulations!",
       "loading": "Loading..."
-      "title": "Friends Quiz 🤩",
-      "chooseMode": "Choose your mode:",
-      "modeGeneral": "General Mode 🌞",
-      "modeFun": "Fun Mode 🤪",
-      "modeDark": "Full Dark Mode 🏴‍☠️",
-      "langBtn": "🌍 EN",
-      "quizSubtitle": "Test your knowledge with your friends!
     },
     "accroches": {
       "_info": {
@@ -250,13 +233,6 @@
       "score": "Tu puntuación:",
       "congrats": "¡Felicidades!",
       "loading": "Cargando..."
-      "title": "Quiz entre amigos 🤩",
-      "chooseMode": "Elige tu modo:",
-      "modeGeneral": "Modo General 🌞",
-      "modeFun": "Modo Divertido 🤪",
-      "modeDark": "Modo Oscuro Total 🏴‍☠️",
-      "langBtn": "🌍 ES",
-      "quizSubtitle": "¡Pon a prueba tus conocimientos con tus amigos!"
     },
     "accroches": {
       "_info": {
@@ -330,12 +306,6 @@
       "score": "Scorul tău:",
       "congrats": "Felicitări!",
       "loading": "Se încarcă..."
-      "chooseMode": "Alege modul:",
-      "modeGeneral": "Mod General 🌞",
-      "modeFun": "Mod Distractiv 🤪",
-      "modeDark": "Mod Întunecat Complet 🏴‍☠️",
-      "langBtn": "🌍 RO",
-      "quizSubtitle": "Testează-ți cunoștințele alături de prieteni!"
     },
     "accroches": {
       "_info": {
