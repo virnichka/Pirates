@@ -7,22 +7,23 @@
  * ------------------------------------------------------------
  */
 
-/**
- * ==============================================
- *  🧩 Chargement des questions selon le mode choisi
- * ==============================================
- */
+/* ==============================================
+ *  🧩 Chargement des questions selon le mode et la langue
+ * ==============================================*/
 async function fetchQuestions(mode = null) {
   try {
     // 1️⃣ Récupère le mode sélectionné ou "general" par défaut
     const selectedMode = mode || localStorage.getItem("selectedMode") || "general";
 
-    // 2️⃣ Construit l’URL vers ton Google Apps Script
-    const url = `${CONFIG.GOOGLE_SCRIPT_URL}?action=getQuestions&sheet=${encodeURIComponent(selectedMode)}`;
+    // 2️⃣ Récupère la langue active du site (par défaut : fr)
+    const currentLang = window.currentLang || localStorage.getItem("lang") || "fr";
+
+    // 3️⃣ Construit l’URL vers ton Google Apps Script
+    const url = `${CONFIG.GOOGLE_SCRIPT_URL}?action=getQuestions&sheet=${encodeURIComponent(selectedMode)}&lang=${encodeURIComponent(currentLang)}`;
 
     console.log("🌐 URL API utilisée :", url);
 
-    // 3️⃣ Récupère les données
+    // 4️⃣ Appel API (GET)
     const response = await fetch(url, { method: "GET", cache: "no-store" });
 
     if (!response.ok) {
@@ -37,7 +38,7 @@ async function fetchQuestions(mode = null) {
       return [];
     }
 
-    console.log(`✅ ${questions.length} questions chargées pour le mode "${selectedMode}"`);
+    console.log(`✅ ${questions.length} questions chargées (${selectedMode}, ${currentLang})`);
     return questions;
 
   } catch (err) {
@@ -45,6 +46,7 @@ async function fetchQuestions(mode = null) {
     return [];
   }
 }
+
 
 /**
  * ==============================================
