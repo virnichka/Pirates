@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>🎯 Quiz Entre Potes – V2</title>
+  <title data-i18n="ui.title">🎯 Quiz Entre Potes – V2</title>
 
   <!-- 🧭 Styles -->
   <link rel="stylesheet" href="css/style.css" />
@@ -12,41 +12,38 @@
 <body>
   <!-- 🏷️ En-tête -->
   <header>
-    <h1 id="quizTitle">Quiz Entre Potes</h1>
-    <p><em id="quizSubtitle">Chargement…</em></p>
-  
+    <h1 id="quizTitle" data-i18n="ui.title">Quiz Entre Potes</h1>
+    <p><em id="quizSubtitle" data-i18n="ui.loading">Chargement…</em></p>
+
     <!-- 🌍 Bouton fun de changement de langue -->
-    <button id="langBtn" class="lang-btn" title="Changer de langue">🌍 FR</button>
+    <button id="langBtn" class="lang-btn" title="Changer de langue" data-i18n="ui.langBtn">🌍 FR</button>
   </header>
-
-
 
   <!-- 🎮 Contenu principal du quiz -->
   <main>
-    <h2 id="quizQuestion">Chargement du quiz…</h2>
+    <h2 id="quizQuestion" data-i18n="ui.loading">Chargement du quiz…</h2>
     <div id="quizAnswers" class="answers"></div>
     <div id="miniCommentaire" class="mini-comment"></div>
 
     <!-- 🔘 Boutons de navigation -->
     <div class="buttons">
-      <button id="nextBtn" onclick="nextQuestion()" style="display:none;">Suivant</button>
-      <button id="restartBtn" onclick="startQuiz(questions)" style="display:none;">Rejouer</button>
+      <button id="nextBtn" onclick="nextQuestion()" style="display:none;" data-i18n="ui.nextQuestion">Suivant</button>
+      <button id="restartBtn" onclick="startQuiz(questions)" style="display:none;" data-i18n="ui.retry">Rejouer</button>
     </div>
   </main>
 
   <!-- ⚙️ Pied de page -->
   <footer>
     <div id="mode-selector-footer">
-      <label for="themeMode">🎮 Choisis ton mode :</label>
+      <label for="themeMode" data-i18n="ui.chooseMode">🎮 Choisis ton mode :</label>
       <select id="themeMode">
-        <option value="general">Mode Général 🌞</option>
-        <option value="fun">Mode Fun 🤪</option>
-        <option value="full_dark">Mode Full Dark 🏴‍☠️</option>
+        <option value="general" data-i18n="ui.modeGeneral">Mode Général 🌞</option>
+        <option value="fun" data-i18n="ui.modeFun">Mode Fun 🤪</option>
+        <option value="full_dark" data-i18n="ui.modeDark">Mode Full Dark 🏴‍☠️</option>
       </select>
     </div>
-    <div style="margin-top: 0.8rem;">rev<span id="versionTag">3.09</span></div>
+    <div style="margin-top: 0.8rem;">rev<span id="versionTag">3.08</span></div>
   </footer>
-
 
   <!-- 📎 Scripts (dans le bon ordre !) -->
   <script src="js/config.js"></script>   <!-- ⚙️ Configuration globale -->
