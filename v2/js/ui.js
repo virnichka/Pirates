@@ -97,11 +97,23 @@ function updateUITexts() {
   document.querySelectorAll("[data-i18n]").forEach(el => {
     const key = el.getAttribute("data-i18n");
     const value = key.split('.').reduce((o, i) => o?.[i], window.TEXTS);
-    if (value) el.innerText = value;
+    if (!value) return;
+
+    switch (el.tagName) {
+      case "TITLE":
+        document.title = value; // 🔹 modifie bien l’onglet du navigateur
+        break;
+      case "OPTION":
+        el.textContent = value; // 🔹 remplace le texte de chaque option
+        break;
+      default:
+        el.innerText = value; // 🔹 comportement normal pour tous les autres
+    }
   });
 
   console.log("[i18n] Textes mis à jour dans toute l'interface.");
 }
+
 
 
 
