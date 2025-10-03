@@ -33,14 +33,6 @@ function shuffle(array) {
 }
 
 /**
- * 👥 Récupère un ensemble de prénoms aléatoires (sauf le bon)
- */
-function getRandomNames(exclude) {
-  const noms = ["Thomas", "Simon", "Vladimir", "Alexis", "Ludovic", "Sacha", "Maxence", "Le zinc"];
-  return noms.filter(n => n !== exclude).sort(() => Math.random() - 0.5).slice(0, 3);
-}
-
-/**
  * ======================================================
  *  🧠 getCommentaire(pourcentage)
  *  Renvoie la phrase finale selon le score ET le mode
