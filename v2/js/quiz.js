@@ -65,14 +65,6 @@ if (commentaireEl) {
     .map(r => String(r).trim())
     .filter(r => r.length && r.toLowerCase() !== String(q.bonne_reponse).trim().toLowerCase());
 
-  // 🧯 3. Sécurité : si la Google Sheet n’a pas 3 mauvaises réponses, on complète avec la liste locale
-  if (wrongs.length < 3) {
-    const backup = getRandomNames(q.bonne_reponse); // depuis ui.js
-    for (const name of backup) {
-      if (wrongs.length >= 3) break;
-      if (!wrongs.includes(name)) wrongs.push(name);
-    }
-  }
 
   // 🎲 4. Combine la bonne réponse + les mauvaises et mélange le tout
   const answers = shuffle([q.bonne_reponse, ...wrongs.slice(0, 3)]);
