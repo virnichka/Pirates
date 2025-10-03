@@ -135,16 +135,21 @@ function applyTheme(mode) {
  */
 async function applyAccroches(mode = "general") {
   try {
-    // 🔹 Si les accroches n'ont jamais été chargées, on les charge une fois
-    if (!window.ACCROCHES) {
-      const response = await fetch("./data/accroches.json");
-      const data = await response.json();
-      window.ACCROCHES = data; // ✅ Sauvegarde globale
-      console.log("📦 Accroches chargées globalement :", Object.keys(window.ACCROCHES.modes));
+    // 🔹 Si les textes ne sont pas encore chargés, on les charge une fois
+    if (!window.TEXTS) {
+      const response = await fetch("./data/texts.json");
+      const allTexts = await response.json();
+      const lang = window.currentLang || localStorage.getItem("lang") || "fr";
+      window.TEXTS = allTexts[lang];
+      console.log(`[i18n] Textes chargés pour la langue ${lang}`);
     }
 
-    // 🔹 Récupère le bloc du mode courant
-    const modeData = window.ACCROCHES.modes?.[mode] || window.ACCROCHES.modes.general;
+    // 🔹 Récupère le bloc du mode courant (depuis texts.json)
+    const modeData = window.TEXTS?.modes?.[mode] || window.TEXTS?.modes?.general;
+    if (!modeData) {
+      console.warn(`[i18n] Aucun bloc trouvé pour le mode "${mode}"`);
+      return;
+    }
 
     // 🔹 Applique le titre et le sous-titre dans le DOM
     const titre = randomItem(modeData.titres);
@@ -158,10 +163,9 @@ async function applyAccroches(mode = "general") {
 
     // 🔹 Sauvegarde les phrases de fin du mode
     window.currentComments = modeData.commentairesFin;
-    console.log(`🧠 Accroches appliquées pour le mode "${mode}"`);
-
+    console.log(`🧠 Accroches appliquées pour le mode "${mode}" (${window.currentLang})`);
   } catch (err) {
-    console.error("❌ Erreur lors du chargement des accroches :", err);
+    console.error("❌ Erreur lors du chargement des textes :", err);
   }
 }
 
