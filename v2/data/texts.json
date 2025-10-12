@@ -138,4 +138,145 @@
       }
     }
   }
+
+
+
+  "en": {
+  "ui": {
+    "toggleDark": "Switch to dark mode",
+    "toggleLight": "Switch to light mode",
+    "startQuiz": "Start the quiz",
+    "nextQuestion": "Next question",
+    "seeResults": "See results",
+    "retry": "Play again",
+    "score": "Your score:",
+    "congrats": "Congratulations!",
+    "loading": "Loading..."
+  },
+
+  "quiz": {
+    "quizFinished": "Quiz completed 🎉",
+    "youScored": "You scored {score}/{total} ({percent}%)",
+    "enterName": "Enter your name for the leaderboard:",
+    "noQuestions": "No questions found for this mode.",
+    "errorLoading": "Error while loading the quiz.",
+    "goodAnswer": "Correct answer!",
+    "badAnswer": "Wrong answer 😅",
+    "endOfQuiz": "End of the quiz",
+    "yourScore": "Your final score is {score}/{total}.",
+    "tryAgain": "Try again to beat your score!"
+  },
+
+  "accroches": {
+    "_defaultMode": "general",
+
+    "modes": {
+      "general": {
+        "titres": [
+          "General Knowledge Quiz 🌞",
+          "Test your knowledge!",
+          "Challenge your brain! 🧠",
+          "Daily quiz: will you shine or stumble?",
+          "The Great Quiz of the Curious 🔍",
+          "Culture Galore 📚",
+          "The Essentials of Knowledge 🧩",
+          "Quick Lunch Quiz 🌤️",
+          "Revise Your World 🌍",
+          "Get ready to think hard! 🔥"
+        ],
+        "sousTitres": [
+          "You don’t need to be Einstein... but it helps.",
+          "Learning made chill and fun.",
+          "A few questions to impress your friends.",
+          "Sharpen your mind, stress-free.",
+          "Your moment to shine, trivia champion.",
+          "Your brain loves this kind of challenge.",
+          "A bit of culture, a lot of fun!",
+          "Perfect to wake up your neurons.",
+          "Knowledge is power — your turn!",
+          "Spin the wheel of wisdom."
+        ],
+        "commentairesFin": {
+          "0": "Ouch... time for a little studying! 📚",
+          "20": "A bit rusty, but that’s a start!",
+          "40": "You’re getting there — keep learning!",
+          "60": "Nice work! Your neurons are firing.",
+          "80": "Excellent! You’re close to perfection.",
+          "100": "Perfect! General knowledge is your thing. 👏"
+        }
+      },
+
+      "fun": {
+        "titres": [
+          "100% Fun Quiz 🤪",
+          "The Quiz That Brings a Smile 🍌",
+          "No pressure, just fun! 🎉",
+          "Guaranteed laughs (well, almost)",
+          "The Ultimate Chill Quiz 🌈",
+          "Zero stress, maximum fun 😎",
+          "Good vibes only 🎭",
+          "Aperitif Mode: ON 🍹",
+          "Heat up your humor 🔥",
+          "The Feel-Good Quiz 💫"
+        ],
+        "sousTitres": [
+          "Go with your gut — we’re here to laugh.",
+          "No stress, just good times.",
+          "Relaxed vibes: points don’t really matter.",
+          "Want to win? Start with a smile 😎",
+          "A crazy quiz for legendary minds!",
+          "Good mood comes first!",
+          "Bad jokes get bonus points here.",
+          "It’s fun time, not class time.",
+          "Your laughter is worth all the points.",
+          "Bring on the emojis and the silly answers! 🤣"
+        ],
+        "commentairesFin": {
+          "0": "Epic fail 😂 but hey, at least you played!",
+          "20": "You lost, but you brought the fun! 😄",
+          "40": "Not bad — you’ve got showman energy!",
+          "60": "Solid! Fun and skill, perfect combo.",
+          "80": "You’re on fire, quiz superstar! 🔥",
+          "100": "Perfect score with style — Fun royalty 👑"
+        }
+      },
+
+      "full_dark": {
+        "titres": [
+          "Buddies’ Quiz — Hangover Edition 🍺",
+          "The Court of Chaos ⚖️",
+          "IQ Pirates on Strike 🏴‍☠️",
+          "Social Survival Test: Still One of Us?",
+          "The Traitors’ Bonfire (especially Maxence)",
+          "The Tavern of Questionable Legends 🍻",
+          "The Great Confession Night 🫣",
+          "Who Did What? (and why is it always you?)",
+          "The Friends Strike Back 💣",
+          "Quiz Night: No winners, only survivors 🐒"
+        ],
+        "sousTitres": [
+          "Brace yourself — your ego’s about to be sliced thin.",
+          "You thought we’d be nice? Think again.",
+          "We’re keeping score, even of your worst drink choices.",
+          "One wrong answer and you’re banned from the next party.",
+          "Remember: when in doubt, blame Thomas.",
+          "Your brain’s gone overboard — and so have you.",
+          "Goal: humiliate, laugh, repeat.",
+          "Thought we forgot? Nope, we kept the receipts.",
+          "This quiz is sponsored by shame and despair.",
+          "If you score zero, you lose speaking privileges."
+        ],
+        "commentairesFin": {
+          "0": "Zero. Even ChatGPT would’ve done better. 💀",
+          "20": "You showed up... probably not sober. 🥴",
+          "40": "Not total shame, but close. 😬",
+          "60": "Average — you dodged embarrassment (barely). 👏",
+          "80": "Not bad! Selective memory, effective brain. 🧠",
+          "100": "Perfect. You’re the embodiment of collective shame. 👑"
+        }
+      }
+    }
+  }
+}
+
 }
