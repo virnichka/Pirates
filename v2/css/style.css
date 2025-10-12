@@ -500,20 +500,174 @@ button:hover {
   transform: translateY(-2px);
 }
 
-/* -----------------------------------------------------------
-   ⚙️ PIED DE PAGE
-   ----------------------------------------------------------- */
-footer {
-  margin-top: 3rem;
-  text-align: center;
+/* ===========================================================
+   ⚙️ PIED DE PAGE HARMONISÉ — MODE + LANGUE
+   =========================================================== */
+.footer-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  margin-top: 2rem;
+  border-top: 1px solid var(--border-color);
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer-left,
+.footer-right {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  position: relative;
+}
+
+/* === 🎮 Sélecteur de mode === */
+#themeMode {
+  padding: 0.45rem 0.7rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background: var(--button-bg);
+  color: var(--button-text);
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: all 0.15s ease-in-out;
+}
+
+#themeMode:hover {
+  background: var(--accent-color);
+  color: #fff;
+}
+
+/* === 🌍 Sélecteur de langue === */
+.lang-btn {
+  background: var(--button-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  cursor: pointer;
+  padding: 0.3rem;
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lang-btn img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.lang-btn:hover img {
+  transform: scale(1.1);
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+}
+
+/* === 📜 Menu déroulant de langues === */
+.lang-menu {
+  position: absolute;
+  bottom: 110%;
+  right: 0;
+  background: var(--button-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 0.5rem 0;
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  min-width: 150px;
+  z-index: 50;
+}
+
+.lang-menu.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.lang-option {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
   font-size: 0.9rem;
   color: var(--text-color);
+  transition: background 0.15s ease;
 }
 
-footer button {
-  margin-bottom: 0.5rem;
+.lang-option img {
+  width: 22px;
+  height: 22px;
+  border-radius: 4px;
 }
 
-footer span {
-  font-weight: bold;
+.lang-option:hover {
+  background: var(--accent-color);
+  color: var(--bg-color);
 }
+
+/* === 📱 Responsive mobile === */
+@media (max-width: 600px) {
+  .footer-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .footer-left,
+  .footer-right {
+    justify-content: space-between;
+  }
+
+  .lang-menu {
+    right: auto;
+    left: 0;
+    bottom: 110%;
+  }
+}
+
+/* ===========================================================
+   🌑 VARIANTE AUTOMATIQUE — MODE FULL DARK
+   =========================================================== */
+html[data-theme="full_dark"] .footer-bar {
+  border-top: 1px solid #2a2a2a;
+}
+
+html[data-theme="full_dark"] #themeMode {
+  background: #1f1f1f;
+  border-color: #333;
+  color: #f5f5f5;
+}
+
+html[data-theme="full_dark"] #themeMode:hover {
+  background: #e74c3c;
+  color: #fff;
+}
+
+html[data-theme="full_dark"] .lang-btn {
+  background: #1f1f1f;
+  border-color: #333;
+}
+
+html[data-theme="full_dark"] .lang-btn img {
+  border: 1px solid #444;
+}
+
+html[data-theme="full_dark"] .lang-menu {
+  background: #1b1b1b;
+  border-color: #333;
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.05);
+}
+
+html[data-theme="full_dark"] .lang-option {
+  color: #f2f2f2;
+}
+
+html[data-theme="full_dark"] .lang-option:hover {
+  background: #e74c3c;
+  color: #fff;
+}
+
