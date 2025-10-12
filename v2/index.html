@@ -25,11 +25,18 @@
 
     <!-- 🌍 Bouton fun de changement de langue -->
     <button 
-      id="langBtn" 
-      class="lang-btn" 
-      title="Changer de langue" 
-      data-i18n="ui.langBtn">
-      🌍 FR
+      <div class="lang-selector">
+        <button id="langBtn" class="lang-btn">
+          <img id="currentFlag" src="flags/fr.svg" alt="FR" />
+        </button>
+        <div id="langMenu" class="lang-menu hidden">
+          <div class="lang-option" data-lang="fr"><img src="flags/fr.svg" alt="FR" /> Français</div>
+          <div class="lang-option" data-lang="en"><img src="flags/en.svg" alt="EN" /> English</div>
+          <div class="lang-option" data-lang="es"><img src="flags/es.svg" alt="ES" /> Español</div>
+          <div class="lang-option" data-lang="ro"><img src="flags/ro.svg" alt="RO" /> Română</div>
+        </div>
+      </div>
+
     </button>
   </header>
 
