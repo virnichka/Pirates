@@ -124,70 +124,36 @@ function waitForTexts() {
 waitForTexts();
 
 
-/* ==========================================================
-   🌍 GESTION DU SÉLECTEUR DE LANGUE VISUEL
-   ----------------------------------------------------------
-   • Affiche le drapeau de la langue actuelle.
-   • Permet de changer de langue via un menu déroulant.
-   • Met à jour texts.json et l’interface (i18n).
-   • S’adapte automatiquement au thème actuel.
-   ========================================================== */
-
+// 🌍 Gestion du changement de langue simplifiée
 document.addEventListener("DOMContentLoaded", () => {
-  const btn = document.getElementById("langBtn");
-  const menu = document.getElementById("langMenu");
-  const currentFlag = document.getElementById("currentFlag");
+  const langSelect = document.getElementById("langSelect");
+  if (!langSelect) return;
 
-  if (!btn || !menu || !currentFlag) return;
-
-  // 🏳️ Liste des langues disponibles + icônes
-  const flags = {
-    fr: "pics/fr.svg",
-    en: "pics/en.svg",
-    es: "pics/es.svg",
-    ro: "pics/ro.svg"
-  };
-
-  // 🔹 Langue courante (localStorage ou défaut)
+  // Langue courante (depuis le localStorage ou défaut)
   let currentLang = localStorage.getItem("lang") || "fr";
-  currentFlag.src = flags[currentLang];
+  langSelect.value = currentLang;
 
-  // 🔹 Clique sur le bouton principal → ouvre/ferme le menu
-  btn.addEventListener("click", () => {
-    menu.classList.toggle("hidden");
+  // 🔁 Quand on change de langue dans le menu
+  langSelect.addEventListener("change", async (e) => {
+    const newLang = e.target.value;
+    if (newLang === currentLang) return;
+
+    localStorage.setItem("lang", newLang);
+    currentLang = newLang;
+
+    try {
+      const response = await fetch("./data/texts.json");
+      const texts = await response.json();
+      if (!texts[newLang]) throw new Error("Langue manquante dans texts.json");
+
+      window.TEXTS = texts[newLang];
+      window.currentLang = newLang;
+
+      if (typeof updateUITexts === "function") updateUITexts();
+      console.log(`[i18n] Langue changée vers : ${newLang}`);
+    } catch (err) {
+      console.error("[i18n] Erreur lors du changement de langue :", err);
+    }
   });
-
-  // 🔹 Sélection d’une langue dans le menu
-  document.querySelectorAll(".lang-option").forEach(opt => {
-    opt.addEventListener("click", async (e) => {
-      const newLang = e.currentTarget.dataset.lang;
-      if (newLang === currentLang) return;
-
-      // 💾 Enregistre la langue choisie
-      localStorage.setItem("lang", newLang);
-      currentLang = newLang;
-      currentFlag.src = flags[newLang];
-      menu.classList.add("hidden");
-
-      // 🧩 Recharge les textes depuis texts.json
-      try {
-        const response = await fetch("./data/texts.json");
-        const texts = await response.json();
-        if (!texts[newLang]) throw new Error("Langue manquante dans texts.json");
-        window.TEXTS = texts[newLang];
-        window.currentLang = newLang;
-        if (typeof updateUITexts === "function") updateUITexts();
-        console.log(`[i18n] Langue changée vers : ${newLang}`);
-      } catch (err) {
-        console.error("[i18n] Erreur lors du changement de langue :", err);
-      }
-    });
-  });
-
-   // 🔹 Clique sur le bouton principal → ouvre/ferme le menu
-   btn.addEventListener("click", (e) => {
-     e.stopPropagation(); // 🧱 bloque la propagation du clic vers le document
-     menu.classList.toggle("hidden");
 });
 
-});
