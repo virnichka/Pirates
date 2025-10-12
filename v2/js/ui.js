@@ -161,4 +161,70 @@ document.addEventListener("DOMContentLoaded", () => {
       console.error("[i18n] Erreur lors du changement de langue :", err);
     }
   });
+}
+
+/* ==========================================================
+   🌍 GESTION DU SÉLECTEUR DE LANGUE VISUEL
+   ----------------------------------------------------------
+   • Affiche le drapeau de la langue actuelle.
+   • Permet de changer de langue via un menu déroulant.
+   • Met à jour texts.json et l’interface (i18n).
+   • S’adapte automatiquement au thème actuel.
+   ========================================================== */
+
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.getElementById("langBtn");
+  const menu = document.getElementById("langMenu");
+  const currentFlag = document.getElementById("currentFlag");
+
+  if (!btn || !menu || !currentFlag) return;
+
+  // 🏳️ Liste des langues disponibles + icônes
+  const flags = {
+    fr: "flags/fr.svg",
+    en: "flags/en.svg",
+    es: "flags/es.svg",
+    ro: "flags/ro.svg"
+  };
+
+  // 🔹 Langue courante (localStorage ou défaut)
+  let currentLang = localStorage.getItem("lang") || "fr";
+  currentFlag.src = flags[currentLang];
+
+  // 🔹 Clique sur le bouton principal → ouvre/ferme le menu
+  btn.addEventListener("click", () => {
+    menu.classList.toggle("hidden");
+  });
+
+  // 🔹 Sélection d’une langue dans le menu
+  document.querySelectorAll(".lang-option").forEach(opt => {
+    opt.addEventListener("click", async (e) => {
+      const newLang = e.currentTarget.dataset.lang;
+      if (newLang === currentLang) return;
+
+      // 💾 Enregistre la langue choisie
+      localStorage.setItem("lang", newLang);
+      currentLang = newLang;
+      currentFlag.src = flags[newLang];
+      menu.classList.add("hidden");
+
+      // 🧩 Recharge les textes depuis texts.json
+      try {
+        const response = await fetch("./data/texts.json");
+        const texts = await response.json();
+        if (!texts[newLang]) throw new Error("Langue manquante dans texts.json");
+        window.TEXTS = texts[newLang];
+        window.currentLang = newLang;
+        if (typeof updateUITexts === "function") updateUITexts();
+        console.log(`[i18n] Langue changée vers : ${newLang}`);
+      } catch (err) {
+        console.error("[i18n] Erreur lors du changement de langue :", err);
+      }
+    });
+  });
+
+  // 🔹 Ferme le menu si on clique ailleurs
+  document.addEventListener("click", (e) => {
+    if (!e.target.closest(".lang-selector")) menu.classList.add("hidden");
+  });
 });
