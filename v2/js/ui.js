@@ -150,7 +150,14 @@ document.addEventListener("DOMContentLoaded", () => {
       window.currentLang = newLang;
 
       if (typeof updateUITexts === "function") updateUITexts();
-      console.log(`[i18n] Langue changée vers : ${newLang}`);
+         // 🔁 Recharge les questions dans la nouvelle langue
+         if (typeof fetchQuestions === "function" && typeof startQuiz === "function") {
+           const savedMode = localStorage.getItem("selectedMode") || "general";
+           const newQuestions = await fetchQuestions(savedMode);
+           startQuiz(newQuestions);
+           console.log(`[i18n] Quiz rechargé pour la langue : ${newLang}`);
+         }
+
     } catch (err) {
       console.error("[i18n] Erreur lors du changement de langue :", err);
     }
