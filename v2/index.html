@@ -69,25 +69,35 @@
     </div>
   </main>
 
-  <!-- ⚙️ Pied de page -->
-  <footer>
-    <div id="mode-selector-footer">
-      <!-- 🎮 Libellé dynamique -->
-      <label for="themeMode" data-i18n="ui.chooseMode">
-        🎮 Choisis ton mode :
-      </label>
-
-      <!-- 🧩 Options reliées à texts.json -->
+   <!-- ⚙️ Pied de page -->
+  <footer class="footer-bar">
+    <!-- 🎮 Sélecteur de mode -->
+    <div id="mode-selector-footer" class="footer-left">
+      <label for="themeMode" data-i18n="ui.chooseMode">🎮 Choisis ton mode :</label>
       <select id="themeMode">
         <option value="general" data-i18n="ui.modeGeneral">Mode Général 🌞</option>
         <option value="fun" data-i18n="ui.modeFun">Mode Fun 🤪</option>
         <option value="full_dark" data-i18n="ui.modeDark">Mode Full Dark 🏴‍☠️</option>
       </select>
     </div>
-
-    <!-- 🔢 Version du site -->
-    <div style="margin-top: 0.8rem;">rev<span id="versionTag">3.21</span></div>
+  
+    <!-- 🌍 Sélecteur de langue -->
+    <div class="footer-right">
+      <div class="lang-selector">
+        <button id="langBtn" class="lang-btn" title="Changer de langue">
+          <img id="currentFlag" src="pics/fr.svg" alt="FR" />
+        </button>
+  
+        <div id="langMenu" class="lang-menu hidden">
+          <div class="lang-option" data-lang="fr"><img src="pics/fr.svg" alt="FR" /> Français</div>
+          <div class="lang-option" data-lang="en"><img src="pics/en.svg" alt="EN" /> English</div>
+          <div class="lang-option" data-lang="es"><img src="pics/es.svg" alt="ES" /> Español</div>
+          <div class="lang-option" data-lang="ro"><img src="pics/ro.svg" alt="RO" /> Română</div>
+        </div>
+      </div>
+    </div>
   </footer>
+
 
   <!-- 📎 Scripts (dans le bon ordre !) -->
   <script src="js/config.js"></script>   <!-- ⚙️ Configuration globale -->
