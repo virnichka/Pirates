@@ -167,7 +167,10 @@
           "retry": "Play again",
           "score": "Your score:",
           "congrats": "Congratulations!",
-          "loading": "Loading..."
+          "loading": "Loading...",
+          "quizFinished": "Quiz finished 🎉",
+          "youGot": "You got",
+          "outOf": "out of"
         },
 
 
@@ -315,7 +318,10 @@
           "retry": "Jugar de nuevo",
           "score": "Tu puntuación:",
           "congrats": "¡Felicidades!",
-          "loading": "Cargando..."
+          "loading": "Cargando...",
+          "quizFinished": "Cuestionario terminado 🎉",
+          "youGot": "Has conseguido",
+          "outOf": "de"
         },
 
   "quiz": {
@@ -462,7 +468,10 @@
         "retry": "Joacă din nou",
         "score": "Scorul tău:",
         "congrats": "Felicitări!",
-        "loading": "Se încarcă..."
+        "loading": "Se încarcă...",
+        "quizFinished": "Test finalizat 🎉",
+        "youGot": "Ai obținut",
+        "outOf": "din"        
       },
 
   "quiz": {
