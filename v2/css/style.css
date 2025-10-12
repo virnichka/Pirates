@@ -172,9 +172,9 @@ header em {
 }
 
 
-/* -----------------------------------------------------------
-   🌍 Sélecteur de langue visuel */
-   ----------------------------------------------------------- */
+/* ==========================================================
+   🌍 Sélecteur de langue visuel — s’adapte aux thèmes
+   ========================================================== */
 .lang-selector {
   position: relative;
   display: inline-block;
@@ -183,9 +183,9 @@ header em {
 .lang-btn {
   border: 1px solid var(--border-color);
   background: var(--button-bg);
-  border-radius: 10px;
+  border-radius: 12px;
   cursor: pointer;
-  padding: 0.4rem 0.6rem;
+  padding: 0.4rem;
   transition: all 0.25s ease;
   display: flex;
   align-items: center;
@@ -193,26 +193,26 @@ header em {
 }
 
 .lang-btn img {
-  width: 28px;
-  height: 28px;
+  width: 26px;
+  height: 26px;
   border-radius: 50%;
+  transition: transform 0.2s ease;
 }
 
-.lang-btn:hover {
-  background-color: var(--accent-color);
-  transform: scale(1.05);
+.lang-btn:hover img {
+  transform: scale(1.08);
 }
 
 .lang-menu {
   position: absolute;
-  top: 110%;
+  top: 115%;
   right: 0;
   background: var(--button-bg);
   border: 1px solid var(--border-color);
   border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
   overflow: hidden;
-  z-index: 100;
+  z-index: 200;
   min-width: 160px;
   animation: fadeIn 0.25s ease;
 }
@@ -229,11 +229,12 @@ header em {
   cursor: pointer;
   font-size: 0.95rem;
   transition: background-color 0.2s ease;
+  color: var(--text-color);
 }
 
 .lang-option:hover {
   background-color: var(--accent-color);
-  color: #fff;
+  color: var(--bg-color);
 }
 
 .lang-option img {
@@ -246,6 +247,7 @@ header em {
   from { opacity: 0; transform: translateY(-5px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
 
 
 
