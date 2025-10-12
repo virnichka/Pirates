@@ -147,7 +147,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const newLang = langs[nextIndex];
     console.log(`🏴‍☠️ Ahoy! Changement de langue : ${newLang}`);
 
-    localStorage.setItem("lang", newLang);
+    
 
     try {
       const response = await fetch("./data/texts.json");
@@ -157,6 +157,8 @@ document.addEventListener("DOMContentLoaded", () => {
       window.TEXTS = texts[newLang];
       window.currentLang = newLang;
       currentLang = newLang;
+
+       localStorage.setItem("lang", newLang);
 
       btn.classList.add("lang-change");
       setTimeout(() => btn.classList.remove("lang-change"), 400);
