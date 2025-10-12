@@ -134,39 +134,42 @@ function nextQuestion() {
 }
 
 /**
- * Affiche le score final
+ * 🎯 Affiche le score final
  */
 function showFinalScore() {
   const total = questions.length;
   const pourcentage = Math.round((score / total) * 100);
   const message = getCommentaire(pourcentage);
 
-  document.getElementById("quizQuestion").innerHTML = `
-  <div class="final-card">
-    const ui = window.TEXTS?.ui || {};
+  // 🧩 Récupère les textes de l'interface selon la langue
+  const ui = window.TEXTS?.ui || {};
 
-    document.getElementById("quizQuestion").innerHTML = `
+  // 🧱 Construit le contenu HTML à afficher
+  const html = `
     <div class="final-card">
-    <h2>${ui.quizFinished || "Quiz terminé 🎉"}</h2>
-    <p><strong>${ui.youGot || "Tu as eu"} ${score}/${total} (${pourcentage}%)</strong></p>
-    <p>${message}</p>
-  </div>
-`;
+      <h2>${ui.quizFinished || "Quiz terminé 🎉"}</h2>
+      <p><strong>${ui.youGot || "Tu as eu"} ${score}/${total} (${pourcentage}%)</strong></p>
+      <p>${message}</p>
+    </div>
+  `;
 
+  // 🧩 Injection dans le DOM
+  const questionEl = document.getElementById("quizQuestion");
+  const answersEl = document.getElementById("quizAnswers");
 
-    <p>${message}</p>
-  </div>
-`;
+  if (questionEl) {
+    questionEl.innerHTML = html;
+    questionEl.classList.add("finished");
+  }
 
-document.getElementById("quizAnswers").innerHTML = "";
+  if (answersEl) answersEl.innerHTML = "";
 
-
-  // 🎨 Ajout : applique le style "carte de résultat"
-  document.getElementById("quizQuestion").classList.add("finished");
-  
+  // 🎮 Boutons : on cache "Suivant", on affiche "Rejouer"
   document.getElementById("nextBtn").style.display = "none";
   document.getElementById("restartBtn").style.display = "block";
 
-  const nom = prompt("Entre ton nom pour le classement :");
+  // 🏆 Classement (optionnel)
+  const nom = prompt(ui.enterName || "Entre ton nom pour le classement :");
   if (nom && nom.trim()) sendScore(nom.trim(), score, total);
 }
+
