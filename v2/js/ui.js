@@ -142,10 +142,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 🏳️ Liste des langues disponibles + icônes
   const flags = {
-    fr: "flags/fr.svg",
-    en: "flags/en.svg",
-    es: "flags/es.svg",
-    ro: "flags/ro.svg"
+    fr: "pics/fr.svg",
+    en: "pics/en.svg",
+    es: "pics/es.svg",
+    ro: "pics/ro.svg"
   };
 
   // 🔹 Langue courante (localStorage ou défaut)
