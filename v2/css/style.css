@@ -171,6 +171,84 @@ header em {
   color: var(--accent-color);
 }
 
+
+/* -----------------------------------------------------------
+   🌍 Sélecteur de langue visuel */
+   ----------------------------------------------------------- */
+.lang-selector {
+  position: relative;
+  display: inline-block;
+}
+
+.lang-btn {
+  border: 1px solid var(--border-color);
+  background: var(--button-bg);
+  border-radius: 10px;
+  cursor: pointer;
+  padding: 0.4rem 0.6rem;
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lang-btn img {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+}
+
+.lang-btn:hover {
+  background-color: var(--accent-color);
+  transform: scale(1.05);
+}
+
+.lang-menu {
+  position: absolute;
+  top: 110%;
+  right: 0;
+  background: var(--button-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+  overflow: hidden;
+  z-index: 100;
+  min-width: 160px;
+  animation: fadeIn 0.25s ease;
+}
+
+.lang-menu.hidden {
+  display: none;
+}
+
+.lang-option {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: background-color 0.2s ease;
+}
+
+.lang-option:hover {
+  background-color: var(--accent-color);
+  color: #fff;
+}
+
+.lang-option img {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+
 /* -----------------------------------------------------------
    🎨 COULEUR DU TEXTE SECONDAIRE
    ----------------------------------------------------------- */
