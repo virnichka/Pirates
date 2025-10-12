@@ -76,8 +76,6 @@ window.addEventListener("load", async () => {
         const quizAnswersEl = document.getElementById("quizAnswers");
         const miniCommentEl = document.getElementById("miniCommentaire");
 
-        console.log("🎨 Début du fondu sur #quizQuestion :", quizQuestionEl);
-
         if (quizQuestionEl) quizQuestionEl.innerText = "- Chargement du quiz -";
         if (quizAnswersEl) quizAnswersEl.innerHTML = "";
         if (miniCommentEl) miniCommentEl.style.display = "none";
@@ -136,7 +134,6 @@ async function applyAccroches(mode = "general") {
       const allTexts = await response.json();
       const lang = window.currentLang || localStorage.getItem("lang") || "fr";
       window.TEXTS = allTexts[lang];
-      console.log(`[i18n] Textes chargés pour la langue ${lang}`);
     }
 
     // 🔹 Récupère le bloc du mode courant (depuis texts.json)
@@ -163,7 +160,6 @@ async function applyAccroches(mode = "general") {
 
     // 🔹 Sauvegarde les phrases de fin du mode
     window.currentComments = modeData.commentairesFin;
-    console.log(`🧠 Accroches appliquées pour le mode "${mode}" (${window.currentLang})`);
   } catch (err) {
     console.error("❌ Erreur lors du chargement des textes :", err);
   }
