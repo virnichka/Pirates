@@ -184,8 +184,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // 🔹 Ferme le menu si on clique ailleurs
-  document.addEventListener("click", (e) => {
-    if (!e.target.closest(".lang-selector")) menu.classList.add("hidden");
-  });
+   // 🔹 Clique sur le bouton principal → ouvre/ferme le menu
+   btn.addEventListener("click", (e) => {
+     e.stopPropagation(); // 🧱 bloque la propagation du clic vers le document
+     menu.classList.toggle("hidden");
+});
+
 });
