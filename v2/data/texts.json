@@ -417,5 +417,144 @@
   }
 }
 
+  "ro": {
+  "ui": {
+    "toggleDark": "Comută pe modul întunecat",
+    "toggleLight": "Comută pe modul luminos",
+    "startQuiz": "Începe quizul",
+    "nextQuestion": "Următoarea întrebare",
+    "seeResults": "Vezi rezultatele",
+    "retry": "Joacă din nou",
+    "score": "Scorul tău:",
+    "congrats": "Felicitări!",
+    "loading": "Se încarcă..."
+  },
+
+  "quiz": {
+    "quizFinished": "Quiz terminat 🎉",
+    "youScored": "Ai obținut {score}/{total} ({percent}%)",
+    "enterName": "Introdu numele tău pentru clasament:",
+    "noQuestions": "Nu s-au găsit întrebări pentru acest mod.",
+    "errorLoading": "Eroare la încărcarea quizului.",
+    "goodAnswer": "Răspuns corect!",
+    "badAnswer": "Răspuns greșit 😅",
+    "endOfQuiz": "Sfârșitul quizului",
+    "yourScore": "Scorul tău final este {score}/{total}.",
+    "tryAgain": "Încearcă din nou pentru un scor mai bun!"
+  },
+
+  "accroches": {
+    "_defaultMode": "general",
+
+    "modes": {
+      "general": {
+        "titres": [
+          "Quiz de Cultură Generală 🌞",
+          "Testează-ți cunoștințele!",
+          "Provocă-ți creierul! 🧠",
+          "Quizul zilei: strălucești sau te poticnești?",
+          "Marele Quiz al Curioșilor 🔍",
+          "Cultură generală la putere 📚",
+          "Elementele esențiale ale cunoașterii 🧩",
+          "Quiz rapid de prânz 🌤️",
+          "Reîmprospătează-ți lumea 🌍",
+          "Creierul tău se va încinge! 🔥"
+        ],
+        "sousTitres": [
+          "Nu trebuie să fii Einstein... dar ajută.",
+          "Repetiție ușoară și plăcută.",
+          "Câteva întrebări ca să impresionezi la conversație.",
+          "Exersează-ți mintea fără stres.",
+          "E momentul tău să strălucești, campionule de Trivial!",
+          "Creierul tău adoră provocările.",
+          "Un pic de cultură, multă distracție!",
+          "Perfect pentru a-ți trezi neuronii.",
+          "Cunoașterea este putere. E rândul tău!",
+          "Învârte roata cunoașterii!"
+        ],
+        "commentairesFin": {
+          "0": "Aoleu... un pic de învățat nu ar strica! 📚",
+          "20": "Cam ruginit, dar e un început!",
+          "40": "Progresezi, continuă așa!",
+          "60": "Bine jucat! Neuronii funcționează perfect.",
+          "80": "Excelent! Aproape de perfecțiune.",
+          "100": "Perfect! Cultură generală de top. 👏"
+        }
+      },
+
+      "fun": {
+        "titres": [
+          "Quiz 100% Distracție 🤪",
+          "Quizul care îți aduce zâmbetul 🍌",
+          "Fără presiune, doar voie bună! 🎉",
+          "Râsete garantate (aproape întotdeauna)",
+          "Cel mai relaxat quiz 🌈",
+          "Fără stres, doar chill 😎",
+          "Atmosferă relaxată și glume 🎭",
+          "Modul aperitiv activat 🍹",
+          "Încălzește-ți simțul umorului 🔥",
+          "Quizul bunei dispoziții 💫"
+        ],
+        "sousTitres": [
+          "Răspunde după instinct, suntem aici să ne distrăm!",
+          "Fără stres, doar zâmbete.",
+          "Ambianță relaxată: punctele contează mai puțin.",
+          "Vrei să câștigi? Începe cu un zâmbet 😎",
+          "Quiz nebun pentru minți legendare!",
+          "Buna dispoziție înainte de toate!",
+          "Glumele proaste sunt apreciate aici.",
+          "E timpul pentru distracție, nu pentru lecții.",
+          "Râsul tău valorează toate punctele.",
+          "Emojii și răspunsuri trăsnite, te rog! 🤣"
+        ],
+        "commentairesFin": {
+          "0": "Epic fail 😂 dar măcar ai jucat!",
+          "20": "Ai pierdut, dar ai adus buna dispoziție. 😄",
+          "40": "Nu rău! Ai stil de entertainer.",
+          "60": "Solid! Distracție și talent, combinația perfectă.",
+          "80": "Ești în formă maximă, star al quizului! 🔥",
+          "100": "Perfect, cu stil. 👑 Regele/Regina distracției!"
+        }
+      },
+
+      "full_dark": {
+        "titres": [
+          "Quiz între prieteni — Ediția mahmureală 🍺",
+          "Tribunalul haosului ⚖️",
+          "Pirații IQ-ului pe pauză 🏴‍☠️",
+          "Test de supraviețuire socială: mai faci parte din grup?",
+          "Rugul trădătorilor (mai ales Maxence)",
+          "Taverna legendelor ratate 🍻",
+          "Marele festival al secretelor rușinoase 🫣",
+          "Cine a făcut ce? Și de ce ești mereu tu?",
+          "Prieteni contraatacă 💣",
+          "Seară de quiz: fără câștigători, doar învinși 🐒"
+        ],
+        "sousTitres": [
+          "Pregătește-ți ego-ul, va fi făcut bucățele.",
+          "Ai crezut că vom fi drăguți? Greșeală.",
+          "Aici notăm tot, chiar și cele mai proaste decizii de băutură.",
+          "Un răspuns greșit și ești interzis la următorul party.",
+          "Ține minte: când ai dubii, dă vina pe Thomas.",
+          "Creierul tău a abandonat nava — și tu la fel.",
+          "Scopul: umilire, râsete și repetiție.",
+          "Ai crezut că te-am uitat? Avem dovezile.",
+          "Acest quiz este sponsorizat de rușine și disperare.",
+          "Dacă termini cu 0, nu mai ai dreptul să vorbești în grup."
+        ],
+        "commentairesFin": {
+          "0": "Zero. Până și ChatGPT ar fi făcut mai bine. 💀",
+          "20": "Ai fost prezent... dar probabil nu treaz. 🥴",
+          "40": "Nu e rușine totală, dar aproape. 😬",
+          "60": "Mediocru. Ai scăpat de rușine, la limită. 👏",
+          "80": "Foarte bine! Memorie selectivă, dar eficientă. 🧠",
+          "100": "Perfect. Ești rușinea colectivă întruchipată. 👑"
+        }
+      }
+    }
+  }
+}
+
+
 
 }
