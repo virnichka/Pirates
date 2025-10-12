@@ -279,4 +279,143 @@
   }
 }
 
+  "es": {
+  "ui": {
+    "toggleDark": "Cambiar a modo oscuro",
+    "toggleLight": "Cambiar a modo claro",
+    "startQuiz": "Empezar el quiz",
+    "nextQuestion": "Siguiente pregunta",
+    "seeResults": "Ver resultados",
+    "retry": "Jugar de nuevo",
+    "score": "Tu puntuación:",
+    "congrats": "¡Felicidades!",
+    "loading": "Cargando..."
+  },
+
+  "quiz": {
+    "quizFinished": "Quiz terminado 🎉",
+    "youScored": "Has conseguido {score}/{total} ({percent}%)",
+    "enterName": "Introduce tu nombre para la clasificación:",
+    "noQuestions": "No se encontraron preguntas para este modo.",
+    "errorLoading": "Error al cargar el quiz.",
+    "goodAnswer": "¡Respuesta correcta!",
+    "badAnswer": "Respuesta incorrecta 😅",
+    "endOfQuiz": "Fin del quiz",
+    "yourScore": "Tu puntuación final es {score}/{total}.",
+    "tryAgain": "¡Inténtalo de nuevo para mejorar tu resultado!"
+  },
+
+  "accroches": {
+    "_defaultMode": "general",
+
+    "modes": {
+      "general": {
+        "titres": [
+          "Quiz de Cultura General 🌞",
+          "¡Pon a prueba tus conocimientos!",
+          "¡Desafía tu cerebro! 🧠",
+          "Quiz del día: ¿brillas o tropiezas?",
+          "El Gran Quiz de los Curiosos 🔍",
+          "Cultura G a tope 📚",
+          "Los esenciales del saber 🧩",
+          "Quiz rápido del mediodía 🌤️",
+          "Repasa tu mundo 🌍",
+          "¡Tu cerebro va a echar humo! 🔥"
+        ],
+        "sousTitres": [
+          "No hace falta ser Einstein… pero casi.",
+          "Aprender sin estrés ni presión.",
+          "Unas preguntas para brillar en sociedad.",
+          "Repasa tus conocimientos sin complicaciones.",
+          "Tu momento para destacar, futuro campeón del Trivial.",
+          "A tu cerebro le encantan estos desafíos.",
+          "Un poco de cultura y mucha diversión.",
+          "Perfecto para despertar tus neuronas.",
+          "Saber es poder. ¡Es tu turno!",
+          "Gira la rueda del conocimiento."
+        ],
+        "commentairesFin": {
+          "0": "Ay... ¡un poco de repaso no vendría mal! 📚",
+          "20": "Estás algo oxidado, ¡pero es un comienzo!",
+          "40": "¡Vas mejorando! Sigue aprendiendo.",
+          "60": "¡Bien hecho! Tus neuronas están activas.",
+          "80": "¡Excelente! Estás cerca del pleno.",
+          "100": "¡Perfecto! La cultura general es lo tuyo. 👏"
+        }
+      },
+
+      "fun": {
+        "titres": [
+          "Quiz 100% Divertido 🤪",
+          "El quiz que te saca una sonrisa 🍌",
+          "¡Sin presión, solo diversión! 🎉",
+          "Risas garantizadas (bueno, casi)",
+          "El quiz más relajado 🌈",
+          "Sin estrés, solo buena vibra 😎",
+          "Ambiente chill y risas 🎭",
+          "Modo aperitivo activado 🍹",
+          "Calienta tu sentido del humor 🔥",
+          "El quiz buen rollo 💫"
+        ],
+        "sousTitres": [
+          "Responde con el instinto, ¡estamos aquí para reír!",
+          "Nada de estrés, solo carcajadas.",
+          "Ambiente relajado: los puntos no importan tanto.",
+          "¿Quieres ganar? Empieza sonriendo 😎",
+          "¡Quiz loco para mentes legendarias!",
+          "¡El buen humor ante todo!",
+          "Aquí las malas bromas también puntúan.",
+          "Es hora de divertirse, no de estudiar.",
+          "Tu risa vale más que los puntos.",
+          "¡Muchos emojis y respuestas locas! 🤣"
+        ],
+        "commentairesFin": {
+          "0": "Fracaso épico 😂 ¡pero al menos jugaste!",
+          "20": "Perdiste, pero animaste el ambiente. 😄",
+          "40": "¡Nada mal! Tienes alma de showman.",
+          "60": "¡Sólido! Diversión y talento, la mezcla perfecta.",
+          "80": "¡Estás en llamas, estrella del quiz! 🔥",
+          "100": "Perfecto y con estilo. 👑 ¡Rey/Reina del buen rollo!"
+        }
+      },
+
+      "full_dark": {
+        "titres": [
+          "Quiz entre colegas — Edición resaca 🍺",
+          "El tribunal del caos ⚖️",
+          "Piratas del CI en huelga 🏴‍☠️",
+          "Test de supervivencia social: ¿sigues entre nosotros?",
+          "La hoguera de los traidores (especialmente Maxence)",
+          "La taberna de las leyendas fallidas 🍻",
+          "El gran desfile de los secretos vergonzosos 🫣",
+          "¿Quién hizo qué? ¿Y por qué siempre tú?",
+          "Los amigos contraatacan 💣",
+          "Noche de quiz: sin ganadores, solo humillados 🐒"
+        ],
+        "sousTitres": [
+          "Prepárate: tu ego va a ser cortado en rodajas finas.",
+          "¿Pensaste que seríamos amables? Error.",
+          "Aquí se apunta todo, incluso tus peores decisiones alcohólicas.",
+          "Una mala respuesta y estás fuera del próximo aperitivo.",
+          "Recuerda: en caso de duda, culpa a Thomas.",
+          "Tu cerebro abandonó el barco... y tú también.",
+          "Objetivo: humillar, reír y repetir.",
+          "¿Pensabas que te habíamos olvidado? Tenemos pruebas.",
+          "Este quiz está patrocinado por la vergüenza y la desesperación.",
+          "Si terminas con 0, pierdes el derecho a hablar en el grupo."
+        ],
+        "commentairesFin": {
+          "0": "Cero. Incluso ChatGPT lo habría hecho mejor. 💀",
+          "20": "Estuviste presente... pero seguramente no sobrio. 🥴",
+          "40": "No es la vergüenza total, pero casi. 😬",
+          "60": "En la media. Evitaste el ridículo, por poco. 👏",
+          "80": "¡Muy bien! Memoria selectiva pero efectiva. 🧠",
+          "100": "Perfecto. Eres la vergüenza colectiva personificada. 👑"
+        }
+      }
+    }
+  }
+}
+
+
 }
