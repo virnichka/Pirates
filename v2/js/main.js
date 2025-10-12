@@ -20,6 +20,9 @@ window.TEXTS = null;
 
 
 async function loadTexts() {
+   
+   console.log("🔥 LANG avant init :", localStorage.getItem("lang"));
+
   try {
     const res = await fetch("./data/texts.json", { cache: "no-cache" });
     const allTexts = await res.json();
