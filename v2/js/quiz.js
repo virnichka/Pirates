@@ -143,8 +143,15 @@ function showFinalScore() {
 
   document.getElementById("quizQuestion").innerHTML = `
   <div class="final-card">
-    <h2>Quiz terminé 🎉</h2>
-    <p><strong>Tu as eu ${score}/${total} (${pourcentage}%)</strong></p>
+    const ui = window.TEXTS?.ui || {};
+    document.getElementById("quizQuestion").innerHTML = `
+    <div class="final-card">
+    <h2>${ui.quizFinished || "Quiz terminé 🎉"}</h2>
+    <p><strong>${ui.youGot || "Tu as eu"} ${score}/${total} (${pourcentage}${ui.percent || "%"})</strong></p>
+    <p>${message}</p>
+  </div>
+`;
+
     <p>${message}</p>
   </div>
 `;
