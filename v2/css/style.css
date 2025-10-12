@@ -463,23 +463,59 @@ button:hover {
   color: #fff;
 }
 
+
 /* ==========================================================
-   🌍 Sélecteur de langue visuel — s’adapte aux thèmes
+   🌍 Sélecteur de langue simplifié (même style que le mode)
    ========================================================== */
-.lang-selector {
-  position: relative;
-  display: inline-block;
+
+#lang-selector-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  margin-top: 0.8rem;
 }
 
-.lang-btn { ... }
-.lang-btn img { ... }
-.lang-btn:hover img { ... }
-.lang-menu { ... }
-.lang-menu.hidden { ... }
-.lang-option { ... }
-.lang-option:hover { ... }
-.lang-option img { ... }
-@keyframes fadeIn { ... }
+#lang-selector-footer label {
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+#lang-selector-footer select {
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#lang-selector-footer select:hover {
+  background-color: var(--accent-color);
+  color: #fff;
+}
+
+/* 🔧 Pour aligner le sélecteur de mode et celui de langue sur la même ligne */
+.footer-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  max-width: 500px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+@media (max-width: 600px) {
+  .footer-controls {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
 
 
 /* ===========================================================
