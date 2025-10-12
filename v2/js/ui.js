@@ -68,7 +68,6 @@ function getCommentaire(pourcentage) {
   }
 
   const message = comments[palier] || "Bravo pour avoir terminé le quiz !";
-  console.log(`💬 Mode: ${modeFromStorage} | Palier ${palier}% → ${message}`);
   return message;
 }
 
@@ -102,8 +101,6 @@ function updateUITexts() {
       else el.innerText = value;
     }
   });
-
-  console.log("[i18n] Textes mis à jour dans toute l'interface.");
 }
 
 
@@ -117,10 +114,8 @@ function updateUITexts() {
 function waitForTexts() {
   if (typeof TEXTS !== "undefined" && TEXTS?.ui) {
     ACCROCHES = TEXTS.accroches || {};
-    console.log("[i18n] TEXTS disponible, UI prête ✅");
 
   } else {
-    console.log("[i18n] TEXTS pas encore disponible, nouvelle tentative...");
     setTimeout(waitForTexts, 300);
   }
 }
@@ -144,10 +139,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   btn.addEventListener("click", async () => {
     const nextIndex = (langs.indexOf(currentLang) + 1) % langs.length;
-    const newLang = langs[nextIndex];
-    console.log(`🏴‍☠️ Ahoy! Changement de langue : ${newLang}`);
-
-    
+    const newLang = langs[nextIndex];    
 
     try {
       const response = await fetch("./data/texts.json");
