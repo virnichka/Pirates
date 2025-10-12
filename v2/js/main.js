@@ -20,15 +20,12 @@ window.TEXTS = null;
 
 
 async function loadTexts() {
-   
-   console.log("🔥 LANG avant init :", localStorage.getItem("lang"));
 
   try {
     const res = await fetch("./data/texts.json", { cache: "no-cache" });
     const allTexts = await res.json();
     window.TEXTS = allTexts[lang] || allTexts[DEFAULT_LANG];
     localStorage.setItem("lang", lang);
-    console.log(`[i18n] Langue chargée : ${lang}`);
   } catch (err) {
     console.error("[i18n] Erreur de chargement de texts.json :", err);
   }
