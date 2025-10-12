@@ -9,7 +9,7 @@
    🔤 GESTION DE LA LANGUE DU SITE
    ======================================= */
 
-const SUPPORTED_LANGS = ["fr", "en", "es"];
+const SUPPORTED_LANGS = ["fr", "en", "es", "ro"];
 const DEFAULT_LANG = "fr";
 
 let lang = localStorage.getItem("lang") ||
