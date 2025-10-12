@@ -123,45 +123,6 @@ function waitForTexts() {
 // 🚀 Lancement automatique
 waitForTexts();
 
-/* =======================================
-   🌍 BOUTON FUN DE CHANGEMENT DE LANGUE
-   ======================================= */
-document.addEventListener("DOMContentLoaded", () => {
-  const btn = document.getElementById("langBtn");
-  if (!btn) return;
-
-  const langs = ["fr", "en", "es", "ro"];
-  const flags = { fr: "🇫🇷", en: "🇬🇧", es: "🇪🇸", ro: "🇷🇴" };
-
-  let currentLang = localStorage.getItem("lang") || "fr";
-  window.currentLang = currentLang;
-  btn.innerText = `${flags[currentLang]} ${currentLang.toUpperCase()}`;
-
-  btn.addEventListener("click", async () => {
-    const nextIndex = (langs.indexOf(currentLang) + 1) % langs.length;
-    const newLang = langs[nextIndex];    
-
-    try {
-      const response = await fetch("./data/texts.json");
-      const texts = await response.json();
-      if (!texts[newLang]) return;
-
-      window.TEXTS = texts[newLang];
-      window.currentLang = newLang;
-      currentLang = newLang;
-
-       localStorage.setItem("lang", newLang);
-
-      btn.classList.add("lang-change");
-      setTimeout(() => btn.classList.remove("lang-change"), 400);
-      btn.innerText = `${flags[newLang]} ${newLang.toUpperCase()}`;
-
-      if (typeof updateUITexts === "function") updateUITexts();
-    } catch (err) {
-      console.error("[i18n] Erreur lors du changement de langue :", err);
-    }
-  });
-}
 
 /* ==========================================================
    🌍 GESTION DU SÉLECTEUR DE LANGUE VISUEL
