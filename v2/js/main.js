@@ -128,11 +128,6 @@ function applyTheme(mode) {
   localStorage.setItem("selectedMode", mode);
 }
 
-/**
- * ======================================================
- *  🧩 Mise à jour des accroches selon le mode choisi
- * ======================================================
- */
 async function applyAccroches(mode = "general") {
   try {
     // 🔹 Si les textes ne sont pas encore chargés, on les charge une fois
@@ -145,7 +140,10 @@ async function applyAccroches(mode = "general") {
     }
 
     // 🔹 Récupère le bloc du mode courant (depuis texts.json)
-    const modeData = window.TEXTS?.modes?.[mode] || window.TEXTS?.modes?.general;
+    const modeData =
+      window.TEXTS?.accroches?.modes?.[mode] ||
+      window.TEXTS?.accroches?.modes?.general;
+
     if (!modeData) {
       console.warn(`[i18n] Aucun bloc trouvé pour le mode "${mode}"`);
       return;
@@ -155,8 +153,10 @@ async function applyAccroches(mode = "general") {
     const titre = randomItem(modeData.titres);
     const sousTitre = randomItem(modeData.sousTitres);
 
-    const titleEl = document.getElementById("quizTitle") || document.getElementById("titre");
-    const subTitleEl = document.getElementById("quizSubtitle") || document.getElementById("sousTitre");
+    const titleEl =
+      document.getElementById("quizTitle") || document.getElementById("titre");
+    const subTitleEl =
+      document.getElementById("quizSubtitle") || document.getElementById("sousTitre");
 
     if (titleEl) titleEl.innerText = titre;
     if (subTitleEl) subTitleEl.innerText = sousTitre;
@@ -168,4 +168,5 @@ async function applyAccroches(mode = "general") {
     console.error("❌ Erreur lors du chargement des textes :", err);
   }
 }
+
 
