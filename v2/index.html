@@ -3,8 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title data-i18n="ui.title"></title>
-  
+
+  <!-- 🧩 Titre dynamique depuis texts.json -->
+  <title data-i18n="ui.title">Quiz Culture Générale</title>
+
   <!-- 🧭 Styles -->
   <link rel="stylesheet" href="css/style.css" />
 </head>
@@ -12,36 +14,73 @@
 <body>
   <!-- 🏷️ En-tête -->
   <header>
+    <!-- 🧠 Titre et sous-titre dynamiques -->
     <h1 id="quizTitle" data-i18n="ui.mainTitle"></h1>
-    <p><em id="quizSubtitle" data-i18n="ui.loading">Chargement…</em></p>
+    <p>
+      <em id="quizSubtitle" data-i18n="ui.loading">
+        <!-- valeur par défaut au cas où JSON ne charge pas -->
+        Chargement…
+      </em>
+    </p>
 
     <!-- 🌍 Bouton fun de changement de langue -->
-    <button id="langBtn" class="lang-btn" title="Changer de langue" data-i18n="ui.langBtn">🌍 FR</button>
+    <button 
+      id="langBtn" 
+      class="lang-btn" 
+      title="Changer de langue" 
+      data-i18n="ui.langBtn">
+      🌍 FR
+    </button>
   </header>
 
   <!-- 🎮 Contenu principal du quiz -->
   <main>
+    <!-- Question principale -->
     <h2 id="quizQuestion" data-i18n="ui.loading">Chargement du quiz…</h2>
+
+    <!-- Conteneur pour les réponses -->
     <div id="quizAnswers" class="answers"></div>
+
+    <!-- Commentaire rapide (ex: bonne/mauvaise réponse) -->
     <div id="miniCommentaire" class="mini-comment"></div>
 
     <!-- 🔘 Boutons de navigation -->
     <div class="buttons">
-      <button id="nextBtn" onclick="nextQuestion()" style="display:none;" data-i18n="ui.nextQuestion">Suivant</button>
-      <button id="restartBtn" onclick="startQuiz(questions)" style="display:none;" data-i18n="ui.retry">Rejouer</button>
+      <button 
+        id="nextBtn" 
+        onclick="nextQuestion()" 
+        style="display:none;" 
+        data-i18n="ui.nextQuestion">
+        Suivant
+      </button>
+
+      <button 
+        id="restartBtn" 
+        onclick="startQuiz(questions)" 
+        style="display:none;" 
+        data-i18n="ui.retry">
+        Rejouer
+      </button>
     </div>
   </main>
 
   <!-- ⚙️ Pied de page -->
   <footer>
     <div id="mode-selector-footer">
-      <label for="themeMode" data-i18n="ui.chooseMode">🎮 Choisis ton mode :</label>
+      <!-- 🎮 Libellé dynamique -->
+      <label for="themeMode" data-i18n="ui.chooseMode">
+        🎮 Choisis ton mode :
+      </label>
+
+      <!-- 🧩 Options reliées à texts.json -->
       <select id="themeMode">
         <option value="general" data-i18n="ui.modeGeneral">Mode Général 🌞</option>
         <option value="fun" data-i18n="ui.modeFun">Mode Fun 🤪</option>
         <option value="full_dark" data-i18n="ui.modeDark">Mode Full Dark 🏴‍☠️</option>
       </select>
     </div>
+
+    <!-- 🔢 Version du site -->
     <div style="margin-top: 0.8rem;">rev<span id="versionTag">3.17</span></div>
   </footer>
 
