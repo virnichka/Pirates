@@ -3,16 +3,24 @@
 
   "fr": {
     "ui": {
-      "toggleDark": "Basculer en mode sombre",
-      "toggleLight": "Basculer en mode clair",
-      "startQuiz": "Démarrer le quiz",
-      "nextQuestion": "Question suivante",
-      "seeResults": "Voir les résultats",
-      "retry": "Rejouer",
-      "score": "Ton score :",
-      "congrats": "Félicitations !",
-      "loading": "Chargement..."
-    },
+          "title": "Quiz Culture Générale",
+          "mainTitle": "Quiz Culture Générale 🌞",
+          "langBtn": "Changer de langue",
+          "chooseMode": "🎮 Choisis ton mode :",
+          "modeGeneral": "Mode Général 🌞",
+          "modeFun": "Mode Fun 🤪",
+          "modeDark": "Mode Full Dark 🏴‍☠️",
+          "toggleDark": "Basculer en mode sombre",
+          "toggleLight": "Basculer en mode clair",
+          "startQuiz": "Démarrer le quiz",
+          "nextQuestion": "Question suivante",
+          "seeResults": "Voir les résultats",
+          "retry": "Rejouer",
+          "score": "Ton score :",
+          "congrats": "Félicitations !",
+          "loading": "Chargement..."
+        },
+
 
     "quiz": {
       "quizFinished": "Quiz terminé 🎉",
@@ -140,17 +148,25 @@
   },
 
   "en": {
-  "ui": {
-    "toggleDark": "Switch to dark mode",
-    "toggleLight": "Switch to light mode",
-    "startQuiz": "Start the quiz",
-    "nextQuestion": "Next question",
-    "seeResults": "See results",
-    "retry": "Play again",
-    "score": "Your score:",
-    "congrats": "Congratulations!",
-    "loading": "Loading..."
-  },
+      "ui": {
+          "title": "General Knowledge Quiz",
+          "mainTitle": "General Knowledge Quiz 🌞",
+          "langBtn": "Change language",
+          "chooseMode": "🎮 Choose your mode:",
+          "modeGeneral": "General Mode 🌞",
+          "modeFun": "Fun Mode 🤪",
+          "modeDark": "Full Dark Mode 🏴‍☠️",
+          "toggleDark": "Switch to dark mode",
+          "toggleLight": "Switch to light mode",
+          "startQuiz": "Start the quiz",
+          "nextQuestion": "Next question",
+          "seeResults": "See results",
+          "retry": "Play again",
+          "score": "Your score:",
+          "congrats": "Congratulations!",
+          "loading": "Loading..."
+        },
+
 
   "quiz": {
     "quizFinished": "Quiz completed 🎉",
@@ -280,17 +296,24 @@
   
 
   "es": {
-  "ui": {
-    "toggleDark": "Cambiar a modo oscuro",
-    "toggleLight": "Cambiar a modo claro",
-    "startQuiz": "Empezar el quiz",
-    "nextQuestion": "Siguiente pregunta",
-    "seeResults": "Ver resultados",
-    "retry": "Jugar de nuevo",
-    "score": "Tu puntuación:",
-    "congrats": "¡Felicidades!",
-    "loading": "Cargando..."
-  },
+      "ui": {
+          "title": "Cuestionario de Cultura General",
+          "mainTitle": "Cuestionario de Cultura General 🌞",
+          "langBtn": "Cambiar idioma",
+          "chooseMode": "🎮 Elige tu modo:",
+          "modeGeneral": "Modo General 🌞",
+          "modeFun": "Modo Divertido 🤪",
+          "modeDark": "Modo Oscuro Total 🏴‍☠️",
+          "toggleDark": "Cambiar a modo oscuro",
+          "toggleLight": "Cambiar a modo claro",
+          "startQuiz": "Comenzar el cuestionario",
+          "nextQuestion": "Siguiente pregunta",
+          "seeResults": "Ver resultados",
+          "retry": "Jugar de nuevo",
+          "score": "Tu puntuación:",
+          "congrats": "¡Felicidades!",
+          "loading": "Cargando..."
+        },
 
   "quiz": {
     "quizFinished": "Quiz terminado 🎉",
@@ -420,17 +443,24 @@
   
 
   "ro": {
-  "ui": {
-    "toggleDark": "Comută pe modul întunecat",
-    "toggleLight": "Comută pe modul luminos",
-    "startQuiz": "Începe quizul",
-    "nextQuestion": "Următoarea întrebare",
-    "seeResults": "Vezi rezultatele",
-    "retry": "Joacă din nou",
-    "score": "Scorul tău:",
-    "congrats": "Felicitări!",
-    "loading": "Se încarcă..."
-  },
+    "ui": {
+        "title": "Test de Cultură Generală",
+        "mainTitle": "Test de Cultură Generală 🌞",
+        "langBtn": "Schimbă limba",
+        "chooseMode": "🎮 Alege modul tău:",
+        "modeGeneral": "Modul General 🌞",
+        "modeFun": "Modul Distractiv 🤪",
+        "modeDark": "Modul Întunecat Complet 🏴‍☠️",
+        "toggleDark": "Comută pe modul întunecat",
+        "toggleLight": "Comută pe modul luminos",
+        "startQuiz": "Începe testul",
+        "nextQuestion": "Întrebarea următoare",
+        "seeResults": "Vezi rezultatele",
+        "retry": "Joacă din nou",
+        "score": "Scorul tău:",
+        "congrats": "Felicitări!",
+        "loading": "Se încarcă..."
+      },
 
   "quiz": {
     "quizFinished": "Quiz terminat 🎉",
