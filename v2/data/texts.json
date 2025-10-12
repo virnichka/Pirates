@@ -18,7 +18,10 @@
           "retry": "Rejouer",
           "score": "Ton score :",
           "congrats": "Félicitations !",
-          "loading": "Chargement..."
+          "loading": "Chargement...",
+          "quizFinished": "Quiz terminé 🎉",
+          "youGot": "Tu as eu",
+          "outOf": "sur"
         },
 
 
