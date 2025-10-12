@@ -172,82 +172,6 @@ header em {
 }
 
 
-/* ==========================================================
-   🌍 Sélecteur de langue visuel — s’adapte aux thèmes
-   ========================================================== */
-.lang-selector {
-  position: relative;
-  display: inline-block;
-}
-
-.lang-btn {
-  border: 1px solid var(--border-color);
-  background: var(--button-bg);
-  border-radius: 12px;
-  cursor: pointer;
-  padding: 0.4rem;
-  transition: all 0.25s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.lang-btn img {
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  transition: transform 0.2s ease;
-}
-
-.lang-btn:hover img {
-  transform: scale(1.08);
-}
-
-.lang-menu {
-  position: absolute;
-  top: 115%;
-  right: 0;
-  background: var(--button-bg);
-  border: 1px solid var(--border-color);
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  overflow: hidden;
-  z-index: 9999;
-  min-width: 160px;
-  animation: fadeIn 0.25s ease;
-}
-
-.lang-menu.hidden {
-  display: none;
-}
-
-.lang-option {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 0.6rem 1rem;
-  cursor: pointer;
-  font-size: 0.95rem;
-  transition: background-color 0.2s ease;
-  color: var(--text-color);
-}
-
-.lang-option:hover {
-  background-color: var(--accent-color);
-  color: var(--bg-color);
-}
-
-.lang-option img {
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-5px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
 
 
 
@@ -539,95 +463,24 @@ button:hover {
   color: #fff;
 }
 
-/* === 🌍 Sélecteur de langue === */
-.lang-btn {
-  background: var(--button-bg);
-  border: 1px solid var(--border-color);
-  border-radius: 50%;
-  cursor: pointer;
-  padding: 0.3rem;
-  transition: all 0.25s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* ==========================================================
+   🌍 Sélecteur de langue visuel — s’adapte aux thèmes
+   ========================================================== */
+.lang-selector {
+  position: relative;
+  display: inline-block;
 }
 
-.lang-btn img {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
+.lang-btn { ... }
+.lang-btn img { ... }
+.lang-btn:hover img { ... }
+.lang-menu { ... }
+.lang-menu.hidden { ... }
+.lang-option { ... }
+.lang-option:hover { ... }
+.lang-option img { ... }
+@keyframes fadeIn { ... }
 
-.lang-btn:hover img {
-  transform: scale(1.1);
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
-}
-
-/* === 📜 Menu déroulant de langues === */
-.lang-menu {
-  position: absolute;
-  bottom: 110%;
-  right: 0;
-  background: var(--button-bg);
-  border: 1px solid var(--border-color);
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  padding: 0.5rem 0;
-  opacity: 0;
-  transform: translateY(10px);
-  pointer-events: none;
-  transition: opacity 0.18s ease, transform 0.18s ease;
-  min-width: 150px;
-  z-index: 50;
-}
-
-.lang-menu.show {
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
-}
-
-.lang-option {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-  font-size: 0.9rem;
-  color: var(--text-color);
-  transition: background 0.15s ease;
-}
-
-.lang-option img {
-  width: 22px;
-  height: 22px;
-  border-radius: 4px;
-}
-
-.lang-option:hover {
-  background: var(--accent-color);
-  color: var(--bg-color);
-}
-
-/* === 📱 Responsive mobile === */
-@media (max-width: 600px) {
-  .footer-bar {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .footer-left,
-  .footer-right {
-    justify-content: space-between;
-  }
-
-  .lang-menu {
-    right: auto;
-    left: 0;
-    bottom: 110%;
-  }
-}
 
 /* ===========================================================
    🌑 VARIANTE AUTOMATIQUE — MODE FULL DARK
