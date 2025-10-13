@@ -19,7 +19,6 @@ async function fetchQuestions(mode = null) {
     const currentLang = window.currentLang || localStorage.getItem("lang") || "fr";
 
     // 3️⃣ Construit l’URL vers ton Google Apps Script
-    const url = `${CONFIG.GOOGLE_SCRIPT_URL}?action=getQuestions&sheet=${encodeURIComponent(selectedMode)}&lang=${encodeURIComponent(currentLang)}`;
     // On récupère la limite de questions depuis le fichier config.js
     const limit = CONFIG.QUIZ_LIMIT || 5;
     // Ajout du paramètre shuffle=1 pour demander un tirage aléatoire
