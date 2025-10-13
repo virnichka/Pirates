@@ -33,26 +33,19 @@
     <!-- Conteneur pour les réponses -->
     <div id="quizAnswers" class="answers"></div>
 
-    <!-- Commentaire rapide (ex: bonne/mauvaise réponse) -->
+    <!-- 🔹 On place le bouton "Suivant" -->
+    <button id="nextBtn" onclick="nextQuestion()" data-i18n="ui.nextQuestion">
+      Suivant
+    </button>
+    
+    <!-- 💬 Puis le texte d’explication -->
     <div id="miniCommentaire" class="mini-comment"></div>
+    
+    <!-- 🔁 Et enfin le bouton Rejouer -->
+    <button id="restartBtn" onclick="restartQuiz()" style="display:none;" data-i18n="ui.retry">
+      Rejouer
+    </button>
 
-    <!-- 🔘 Boutons de navigation -->
-    <div class="buttons">
-      <button 
-        id="nextBtn" 
-        onclick="nextQuestion()" 
-        style="display:none;" 
-        data-i18n="ui.nextQuestion">
-        Suivant
-      </button>
-
-      <button 
-        id="restartBtn" 
-        onclick="restartQuiz()" 
-        style="display:none;" 
-        data-i18n="ui.retry">
-        Rejouer
-      </button>
     </div>
   </main>
 
