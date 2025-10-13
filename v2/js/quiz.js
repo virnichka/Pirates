@@ -195,7 +195,11 @@ function showFinalScore() {
  * Recharge les questions depuis le serveur avant de recommencer.
  */
 async function restartQuiz() {
-
+  
+  // ⛔️ Cache immédiatement le bouton "Rejouer"
+    const restartBtn = document.getElementById("restartBtn");
+    if (restartBtn) restartBtn.style.display = "none";
+  
   // 🔁 Réaffiche le titre et le sous-titre
   const title = document.getElementById("quizTitle");
   const subtitle = document.getElementById("quizSubtitle");
