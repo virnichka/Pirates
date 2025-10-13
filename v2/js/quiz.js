@@ -187,7 +187,7 @@ async function restartQuiz() {
     // 🔤 Récupération des textes selon la langue
     const uiTexts = (window.TEXTS && window.TEXTS.ui) || {};
 
-    const loadingMsg = uiTexts.loadingQuiz || "⏳ " + (uiTexts.loading || "Chargement du quiz...");
+    const loadingMsg = uiTexts.loading || "⏳ " + (uiTexts.loading || "Chargement du quiz...");
     const errorMsg = uiTexts.errorLoading || "Erreur lors du chargement du quiz 😕";
     const noQuestionsMsg = uiTexts.noQuestions || "Impossible de charger un nouveau quiz 😕";
 
