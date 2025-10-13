@@ -142,13 +142,12 @@ function showFinalScore() {
   const pourcentage = Math.round((score / total) * 100);
   const message = getCommentaire(pourcentage);
 
-  // 🧼 Cache le titre et le sous-titre pendant l'affichage du score final
-  const title = document.querySelector("header h1");
-  const subtitle = document.querySelector("header h2");
+  // 🧼 Cache le titre et le sous-titre quand le quiz est terminé
+  const title = document.getElementById("quizTitle");
+  const subtitle = document.getElementById("quizSubtitle");
   
   if (title) title.style.display = "none";
   if (subtitle) subtitle.style.display = "none";
-
 
   // 🧼 Nettoyer le texte explicatif à la fin du quiz
   const miniComment = document.getElementById("miniCommentaire");
