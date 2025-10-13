@@ -10,7 +10,8 @@ let score = 0;
  * Lance le quiz avec une liste de questions
  */
 function startQuiz(list) {
-  questions = shuffle(list).slice(0, CONFIG.QUIZ_LIMIT);
+  // Les questions sont limitées et mélangées côté serveur 
+  questions = list;
   currentQuestion = 0;
   score = 0;
 
