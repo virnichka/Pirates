@@ -195,6 +195,18 @@ function showFinalScore() {
  * Recharge les questions depuis le serveur avant de recommencer.
  */
 async function restartQuiz() {
+
+  // 🔁 Réaffiche le titre et le sous-titre
+  const title = document.getElementById("quizTitle");
+  const subtitle = document.getElementById("quizSubtitle");
+  if (title) title.style.display = "block";
+  if (subtitle) subtitle.style.display = "block";
+  
+  // 🏷️ Met à jour le titre et le sous-titre selon le mode
+  const currentMode = localStorage.getItem("selectedMode") || "general";
+  await applyAccroches(currentMode);
+
+  
   try {
     const selectedMode = localStorage.getItem("selectedMode") || "general";
     const lang = localStorage.getItem("lang") || "fr";
