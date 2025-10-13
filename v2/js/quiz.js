@@ -142,6 +142,14 @@ function showFinalScore() {
   const pourcentage = Math.round((score / total) * 100);
   const message = getCommentaire(pourcentage);
 
+  // 🧼 Nettoyer le texte explicatif à la fin du quiz
+  const miniComment = document.getElementById("miniCommentaire");
+  if (miniComment) {
+    miniComment.innerText = "";
+    miniComment.style.display = "none";
+  }
+
+
   // 🧩 Récupère les textes de l'interface selon la langue
   const ui = window.TEXTS?.ui || {};
 
