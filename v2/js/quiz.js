@@ -174,3 +174,49 @@ function showFinalScore() {
   if (nom && nom.trim()) sendScore(nom.trim(), score, total);
 }
 
+
+/**
+ * 🔄 Relance un nouveau quiz complet
+ * Recharge les questions depuis le serveur avant de recommencer.
+ */
+async function restartQuiz() {
+  try {
+    const selectedMode = localStorage.getItem("selectedMode") || "general";
+    const lang = localStorage.getItem("lang") || "fr";
+
+    // 🔤 Récupération des textes selon la langue
+    const uiTexts = (window.TEXTS && window.TEXTS.ui) || {};
+
+    const loadingMsg = uiTexts.loadingQuiz || "⏳ " + (uiTexts.loading || "Chargement du quiz...");
+    const errorMsg = uiTexts.errorLoading || "Erreur lors du chargement du quiz 😕";
+    const noQuestionsMsg = uiTexts.noQuestions || "Impossible de charger un nouveau quiz 😕";
+
+    // 🧼 Réinitialise l’affichage avant le rechargement
+    const questionEl = document.getElementById("quizQuestion");
+    const answersEl = document.getElementById("quizAnswers");
+    const finalEl = document.getElementById("quizFinal");
+
+    if (finalEl) finalEl.style.display = "none";
+    if (questionEl) questionEl.innerText = loadingMsg;
+    if (answersEl) answersEl.innerHTML = "";
+
+    // 🔁 Recharge les questions depuis le script Google
+    const newQuestions = await fetchQuestions(selectedMode);
+
+    if (newQuestions && newQuestions.length > 0) {
+      console.log(`✅ Nouvelles questions chargées (${selectedMode}, ${lang})`);
+      startQuiz(newQuestions);
+    } else {
+      questionEl.innerText = noQuestionsMsg;
+    }
+
+  } catch (err) {
+    console.error("❌ Erreur lors du redémarrage du quiz :", err);
+    const uiTexts = (window.TEXTS && window.TEXTS.ui) || {};
+    const errorMsg = uiTexts.errorLoading || "Erreur lors du rechargement du quiz.";
+    const questionEl = document.getElementById("quizQuestion");
+    if (questionEl) questionEl.innerText = errorMsg;
+  }
+}
+
+
