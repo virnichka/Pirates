@@ -371,7 +371,7 @@ h1 {
    💬 MINI COMMENTAIRE
    ----------------------------------------------------------- */
 /* -----------------------------------------------------------
-   💬 MINI COMMENTAIRE — explication affichée sous la question
+   💬 MINI COMMENTAIRE — explication de la reponse 
    ----------------------------------------------------------- */
 .mini-comment {
   margin-top: 0.8rem;
@@ -423,6 +423,19 @@ button:hover {
   color: #fff;
   transform: translateY(-2px);
 }
+
+/* --- Bouton SUIVANT isolé --- */
+#nextBtn {
+  display: block;
+  margin: 1.5rem auto 1rem auto; /* centré + espacement haut/bas */
+}
+
+/* --- Bouton REJOUER (dans .buttons) --- */
+#restartBtn {
+  margin: 0 auto;
+}
+
+
 
 /* ===========================================================
    ⚙️ PIED DE PAGE HARMONISÉ — MODE + LANGUE
