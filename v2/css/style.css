@@ -154,28 +154,41 @@ body {
 /* -----------------------------------------------------------
    🏷️ EN-TÊTE
    ----------------------------------------------------------- */
-header {
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-
+/* ===============================
+   🏷️ Titre et sous-titre du quiz
+   =============================== */
 header h1 {
-  font-size: clamp(1.5rem, 4vw, 1.8rem); /*s'adapte à l'écran */
+  font-size: clamp(1.5rem, 4vw, 1.8rem);
   font-weight: 700;
   line-height: 1.2;
   margin-bottom: 0.35rem;
   color: var(--text-color);
+  transition: font-size 0.3s ease, color 0.3s ease, opacity 0.3s ease;
+  opacity: 0.95; /* léger adoucissement */
 }
-
 
 header em {
-  font-size: clamp(0.9rem, 2.5vw, 1rem); 
+  font-size: clamp(0.9rem, 2.5vw, 1rem);
   font-style: normal;
   color: var(--accent-color);
-  opacity: 0.9; /* optionnel : rend le sous-titre légèrement plus doux */
+  opacity: 0.85;
+  transition: font-size 0.3s ease, color 0.3s ease, opacity 0.3s ease;
 }
 
+/* Petit effet visuel à l’apparition du titre */
+header {
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+header.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+header.fade {
+  transform: translateY(-8px);
+  opacity: 0;
+}
 
 
 
