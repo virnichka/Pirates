@@ -159,18 +159,22 @@ header {
   margin-bottom: 2rem;
 }
 
+
 header h1 {
-  font-size: 2rem;
+  font-size: clamp(1.5rem, 4vw, 1.8rem); /*s'adapte à l'écran */
   font-weight: 700;
-  margin-bottom: 0.3rem;
+  line-height: 1.2;
+  margin-bottom: 0.35rem;
   color: var(--text-color);
 }
 
-header em {
-  font-size: 1.1rem;
-  color: var(--accent-color);
-}
 
+header em {
+  font-size: clamp(0.9rem, 2.5vw, 1rem); 
+  font-style: normal;
+  color: var(--accent-color);
+  opacity: 0.9; /* optionnel : rend le sous-titre légèrement plus doux */
+}
 
 
 
