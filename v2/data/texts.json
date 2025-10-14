@@ -21,9 +21,8 @@
           "loading": "Chargement...",
           "quizFinished": "Quiz terminé 🎉",
           "youGot": "Tu as eu",
-          "outOf": "sur"
-          "badPassword": "Mauvais MdP"
-
+          "outOf": "sur",
+          "Mot de passe incorrect. Accès refusé."
         },
 
 
@@ -172,7 +171,8 @@
           "loading": "Loading...",
           "quizFinished": "Quiz finished 🎉",
           "youGot": "You got",
-          "outOf": "out of"
+          "outOf": "out of",
+          "badPassword": "Incorrect password. Access denied."
         },
 
 
@@ -323,7 +323,8 @@
           "loading": "Cargando...",
           "quizFinished": "Cuestionario terminado 🎉",
           "youGot": "Has conseguido",
-          "outOf": "de"
+          "outOf": "de",
+          "badPassword": "Contraseña incorrecta. Acceso denegado."
         },
 
   "quiz": {
@@ -473,7 +474,8 @@
         "loading": "Se încarcă...",
         "quizFinished": "Test finalizat 🎉",
         "youGot": "Ai obținut",
-        "outOf": "din"        
+        "outOf": "din",
+        "badPassword": "Parolă incorectă. Acces interzis."
       },
 
   "quiz": {
