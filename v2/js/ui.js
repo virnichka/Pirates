@@ -116,16 +116,31 @@ function waitForTexts() {
 // 🚀 Lancement automatique
 waitForTexts();
 
-// 🌍 Gestion du changement de langue simplifiée
+
+/**
+ * ============================================================
+ * 🌍 Initialisation complète de l'interface (langue + boutons)
+ * ============================================================
+ */
 document.addEventListener("DOMContentLoaded", () => {
+  initLanguageSelector();
+  initTopControls();
+});
+
+/**
+ * ============================================================
+ * 🌐 Gestion du changement de langue
+ * ============================================================
+ */
+function initLanguageSelector() {
   const langSelect = document.getElementById("langSelect");
   if (!langSelect) return;
 
-  // Langue courante (depuis le localStorage ou défaut)
+  // Langue courante (depuis localStorage ou défaut)
   let currentLang = localStorage.getItem("lang") || "fr";
   langSelect.value = currentLang;
 
-  // 🔁 Quand on change de langue dans le menu
+  // Quand l'utilisateur change la langue
   langSelect.addEventListener("change", async (e) => {
     const newLang = e.target.value;
     if (newLang === currentLang) return;
@@ -138,31 +153,32 @@ document.addEventListener("DOMContentLoaded", () => {
       const texts = await response.json();
       if (!texts[newLang]) throw new Error("Langue manquante dans texts.json");
 
+      // Mise à jour des textes
       window.TEXTS = texts[newLang];
       window.currentLang = newLang;
 
       if (typeof updateUITexts === "function") updateUITexts();
-         // 🔁 Recharge les questions dans la nouvelle langue
-         if (typeof fetchQuestions === "function" && typeof startQuiz === "function") {
-           const savedMode = localStorage.getItem("selectedMode") || "general";
-           const newQuestions = await fetchQuestions(savedMode);
-           startQuiz(newQuestions);
-           console.log(`[i18n] Quiz rechargé pour la langue : ${newLang}`);
-         }
+
+      // Recharge le quiz dans la nouvelle langue
+      if (typeof fetchQuestions === "function" && typeof startQuiz === "function") {
+        const savedMode = localStorage.getItem("selectedMode") || "general";
+        const newQuestions = await fetchQuestions(savedMode);
+        startQuiz(newQuestions);
+        console.log(`[i18n] Quiz rechargé pour la langue : ${newLang}`);
+      }
 
     } catch (err) {
       console.error("[i18n] Erreur lors du changement de langue :", err);
     }
   });
-};
+}
 
 /**
  * ============================================================
- * 🌐 Barre compacte Langue / Mode
+ * 🏴‍☠️ Barre compacte Langue / Mode (en haut du header)
  * ============================================================
  */
-document.addEventListener("DOMContentLoaded", () => {
-  // Sélection des éléments du DOM
+function initTopControls() {
   const langBtn = document.getElementById("langBtn");
   const modeBtn = document.getElementById("modeBtn");
   const langSelect = document.getElementById("langSelect");
@@ -170,13 +186,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* === LANGUE === */
   if (langBtn && langSelect) {
-    // Au clic sur le bouton, on ouvre le menu de sélection natif
+    // Ouvre le vrai menu <select> au clic sur le bouton compact
     langBtn.addEventListener("click", () => {
-      // showPicker() est supporté par Chrome, sinon fallback focus()
-      langSelect.showPicker?.() || langSelect.focus();
+      if (langSelect.showPicker) langSelect.showPicker();
+      else langSelect.focus();
     });
 
-    // Quand la langue change, on met à jour le texte du bouton
+    // Met à jour le texte du bouton quand la langue change
     langSelect.addEventListener("change", () => {
       const selectedLang = langSelect.value.toUpperCase();
       langBtn.textContent = `🌐 ${selectedLang}`;
@@ -185,17 +201,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* === MODE === */
   if (modeBtn && modeSelect) {
-    // Au clic sur le bouton, ouverture du menu mode
+    // Ouvre le vrai menu <select> au clic
     modeBtn.addEventListener("click", () => {
-      modeSelect.showPicker?.() || modeSelect.focus();
+      if (modeSelect.showPicker) modeSelect.showPicker();
+      else modeSelect.focus();
     });
 
-    // Quand le mode change, on met à jour le texte du bouton
+    // Met à jour le texte du bouton quand le mode change
     modeSelect.addEventListener("change", () => {
       const selectedMode = modeSelect.options[modeSelect.selectedIndex].textContent.trim();
       modeBtn.textContent = `🏴‍☠️ ${selectedMode}`;
     });
   }
-});
+}
 
 
