@@ -163,27 +163,49 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 }
 
-// Bouton changement langue et mode                
+/**
+ * ============================================================
+ * 🌐 Barre compacte Langue / Mode
+ * ------------------------------------------------------------
+ * Relie les  boutons en haut du header
+ * aux <select> existants pour langue et mode.
+ * ============================================================
+ */
 document.addEventListener("DOMContentLoaded", () => {
+  // Sélection des éléments du DOM
   const langBtn = document.getElementById("langBtn");
   const modeBtn = document.getElementById("modeBtn");
   const langSelect = document.getElementById("langSelect");
   const modeSelect = document.getElementById("themeMode");
 
+  /* === LANGUE === */
   if (langBtn && langSelect) {
-    langBtn.addEventListener("click", () => langSelect.showPicker?.() || langSelect.focus());
+    // Au clic sur le bouton, on ouvre le menu de sélection natif
+    langBtn.addEventListener("click", () => {
+      // showPicker() est supporté par Chrome, sinon fallback focus()
+      langSelect.showPicker?.() || langSelect.focus();
+    });
+
+    // Quand la langue change, on met à jour le texte du bouton
     langSelect.addEventListener("change", () => {
       const selectedLang = langSelect.value.toUpperCase();
       langBtn.textContent = `🌐 ${selectedLang}`;
     });
   }
 
+  /* === MODE === */
   if (modeBtn && modeSelect) {
-    modeBtn.addEventListener("click", () => modeSelect.showPicker?.() || modeSelect.focus());
+    // Au clic sur le bouton, ouverture du menu mode
+    modeBtn.addEventListener("click", () => {
+      modeSelect.showPicker?.() || modeSelect.focus();
+    });
+
+    // Quand le mode change, on met à jour le texte du bouton
     modeSelect.addEventListener("change", () => {
       const selectedMode = modeSelect.options[modeSelect.selectedIndex].textContent.trim();
       modeBtn.textContent = `🏴‍☠️ ${selectedMode}`;
     });
   }
 });
+
 
