@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -15,30 +14,6 @@
 <body>
   <!-- 🏷️ En-tête -->
   <header>
-
-    <!-- Bouton langue et mode -->
-    <div id="top-controls">
-      <button id="langBtn" class="icon-btn">🌐 FR</button>
-      <button id="modeBtn" class="icon-btn">🏴‍☠️ Général</button>
-      
-      <select id="langSelect" class="hidden-select">
-        <option value="fr">FR</option>
-        <option value="en">EN</option>
-        <option value="es">ES</option>
-        <option value="ro">RO</option>
-      </select>
-      
-      <select id="themeMode" class="hidden-select">
-        <option value="general">Général</option>
-        <option value="musique">Musique</option>
-        <option value="cinema">Cinéma</option>
-        <option value="geographie">Géographie</option>
-        <option value="histoire">Histoire</option>
-      </select>
-      
-    </div>
-    
-    
     <!-- 🧠 Titre et sous-titre dynamiques -->
     <h1 id="quizTitle" data-i18n="ui.mainTitle"></h1>
     <p>
@@ -75,7 +50,26 @@
 
    <!-- ⚙️ Pied de page -->
   <footer class="footer-bar">
-    
+    <!-- 🎮 Sélecteur de mode -->
+    <div id="mode-selector-footer" class="footer-left">
+      <label for="themeMode" data-i18n="ui.chooseMode">🎮</label>
+      <select id="themeMode">
+        <option value="general" data-i18n="ui.modeGeneral">Général 🌞</option>
+        <option value="fun" data-i18n="ui.modeFun">Fun 🤪</option>
+        <option value="full_dark" data-i18n="ui.modeDark">Full Dark 🏴‍☠️</option>
+      </select>
+    </div>
+  
+      <!-- 🌍 Sélecteur de langue simplifié -->
+      <div id="lang-selector-footer">
+        <label for="langSelect" data-i18n="ui.chooseLanguage">🌍</label>
+        <select id="langSelect">
+          <option value="fr">Français</option>
+          <option value="en">English</option>
+          <option value="es">Español</option>
+          <option value="ro">Română</option>
+        </select>
+      </div>
   </footer>
 
 
