@@ -13,10 +13,6 @@
 // ⚙️ Initialisation à vide : évite le crash si TEXTS n'est pas encore prêt
 let ACCROCHES = {};
 
-// ⚠️ Log d'information (non bloquant)
-if (typeof TEXTS === "undefined" || !TEXTS?.ui) {
-  console.warn("[i18n] TEXTS non défini dans ui.js — vérifie le chargement depuis main.js");
-}
 
 /**
  * 🧩 Retourne un élément aléatoire dans une liste
