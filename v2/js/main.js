@@ -94,7 +94,10 @@ window.addEventListener("load", async () => {
         const quizAnswersEl = document.getElementById("quizAnswers");
         const miniCommentEl = document.getElementById("miniCommentaire");
 
-        if (quizQuestionEl) quizQuestionEl.innerText = "- Chargement du quiz -";
+        // 🈳 Message localisé "chargement du quiz"
+         const uiTexts = window.TEXTS?.ui || {};
+         const loadingMsg = uiTexts.loading || "- Chargement du quiz -";
+         if (quizQuestionEl) quizQuestionEl.innerText = loadingMsg;
         if (quizAnswersEl) quizAnswersEl.innerHTML = "";
         if (miniCommentEl) miniCommentEl.style.display = "none";
 
