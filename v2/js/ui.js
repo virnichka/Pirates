@@ -10,6 +10,13 @@
    🔤 RÉCUPÉRATION DES TEXTES MULTILINGUES
    ======================================= */
 
+// ⚙️ Initialisation à vide : évite le crash si TEXTS n'est pas encore prêt
+let ACCROCHES = {};
+
+// ⚠️ Log d'information (non bloquant)
+if (typeof TEXTS === "undefined" || !TEXTS?.ui) {
+  console.warn("[i18n] TEXTS non défini dans ui.js — vérifie le chargement depuis main.js");
+}
 
 /**
  * 🧩 Retourne un élément aléatoire dans une liste
@@ -117,30 +124,16 @@ function waitForTexts() {
 waitForTexts();
 
 
-/**
- * ============================================================
- * 🌍 Initialisation complète de l'interface (langue + boutons)
- * ============================================================
- */
+// 🌍 Gestion du changement de langue simplifiée
 document.addEventListener("DOMContentLoaded", () => {
-  initLanguageSelector();
-  initTopControls();
-});
-
-/**
- * ============================================================
- * 🌐 Gestion du changement de langue
- * ============================================================
- */
-function initLanguageSelector() {
   const langSelect = document.getElementById("langSelect");
   if (!langSelect) return;
 
-  // Langue courante (depuis localStorage ou défaut)
+  // Langue courante (depuis le localStorage ou défaut)
   let currentLang = localStorage.getItem("lang") || "fr";
   langSelect.value = currentLang;
 
-  // Quand l'utilisateur change la langue
+  // 🔁 Quand on change de langue dans le menu
   langSelect.addEventListener("change", async (e) => {
     const newLang = e.target.value;
     if (newLang === currentLang) return;
@@ -153,66 +146,21 @@ function initLanguageSelector() {
       const texts = await response.json();
       if (!texts[newLang]) throw new Error("Langue manquante dans texts.json");
 
-      // Mise à jour des textes
       window.TEXTS = texts[newLang];
       window.currentLang = newLang;
 
       if (typeof updateUITexts === "function") updateUITexts();
-
-      // Recharge le quiz dans la nouvelle langue
-      if (typeof fetchQuestions === "function" && typeof startQuiz === "function") {
-        const savedMode = localStorage.getItem("selectedMode") || "general";
-        const newQuestions = await fetchQuestions(savedMode);
-        startQuiz(newQuestions);
-        console.log(`[i18n] Quiz rechargé pour la langue : ${newLang}`);
-      }
+         // 🔁 Recharge les questions dans la nouvelle langue
+         if (typeof fetchQuestions === "function" && typeof startQuiz === "function") {
+           const savedMode = localStorage.getItem("selectedMode") || "general";
+           const newQuestions = await fetchQuestions(savedMode);
+           startQuiz(newQuestions);
+           console.log(`[i18n] Quiz rechargé pour la langue : ${newLang}`);
+         }
 
     } catch (err) {
       console.error("[i18n] Erreur lors du changement de langue :", err);
     }
   });
-}
-
-/**
- * ============================================================
- * 🏴‍☠️ Barre compacte Langue / Mode (en haut du header)
- * ============================================================
- */
-function initTopControls() {
-  const langBtn = document.getElementById("langBtn");
-  const modeBtn = document.getElementById("modeBtn");
-  const langSelect = document.getElementById("langSelect");
-  const modeSelect = document.getElementById("themeMode");
-
-  /* === LANGUE === */
-  if (langBtn && langSelect) {
-    // Ouvre le vrai menu <select> au clic sur le bouton compact
-    langBtn.addEventListener("click", () => {
-      if (langSelect.showPicker) langSelect.showPicker();
-      else langSelect.focus();
-    });
-
-    // Met à jour le texte du bouton quand la langue change
-    langSelect.addEventListener("change", () => {
-      const selectedLang = langSelect.value.toUpperCase();
-      langBtn.textContent = `🌐 ${selectedLang}`;
-    });
-  }
-
-  /* === MODE === */
-  if (modeBtn && modeSelect) {
-    // Ouvre le vrai menu <select> au clic
-    modeBtn.addEventListener("click", () => {
-      if (modeSelect.showPicker) modeSelect.showPicker();
-      else modeSelect.focus();
-    });
-
-    // Met à jour le texte du bouton quand le mode change
-    modeSelect.addEventListener("change", () => {
-      const selectedMode = modeSelect.options[modeSelect.selectedIndex].textContent.trim();
-      modeBtn.textContent = `🏴‍☠️ ${selectedMode}`;
-    });
-  }
-}
-
+});
 
