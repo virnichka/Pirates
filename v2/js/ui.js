@@ -10,9 +10,6 @@
    🔤 RÉCUPÉRATION DES TEXTES MULTILINGUES
    ======================================= */
 
-// ⚙️ Initialisation à vide : évite le crash si TEXTS n'est pas encore prêt
-let ACCROCHES = {};
-
 
 /**
  * 🧩 Retourne un élément aléatoire dans une liste
