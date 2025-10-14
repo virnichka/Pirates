@@ -39,7 +39,7 @@ window.addEventListener("load", async () => {
   try {
     await loadTexts(); // 🧩 Charge les textes multilingues au démarrage
      
-     // 1️⃣ Récupération du mode sauvegardé (ou "general" par défaut)
+    // 1️⃣ Récupération du mode sauvegardé (ou "general" par défaut)
     const savedMode = localStorage.getItem("selectedMode") || "general";
 
     // 2️⃣ Application du thème visuel et des accroches correspondantes
@@ -60,31 +60,31 @@ window.addEventListener("load", async () => {
 
       // écoute le changement de mode
       select.addEventListener("change", async (e) => {
-         const modeActuel = localStorage.getItem("selectedMode") || "general";
-         const modeDemande = e.target.value;
+        const modeActuel = localStorage.getItem("selectedMode") || "general";
+        const modeDemande = e.target.value;
 
         // 🏴‍☠️ Si le mode demandé est Full Dark, demande un mot de passe
         if (modeDemande === "full_dark") {
-          const mdp = prompt("🗝️");
+          const mdp = prompt("🗝️ Mot de passe requis pour accéder au mode Full Dark :");
           if (mdp !== CONFIG.FULL_DARK_PASS) {
-             
             // 🗨️ Message localisé depuis texts.json
             const uiTexts = window.TEXTS?.ui || {};
             alert(uiTexts.badPassword || "❌ Mot de passe incorrect.");
             
             // 🔁 Retour au mode précédent
             e.target.value = modeActuel;
-            return;
+            return; // stoppe ici, on ne change pas de mode
           }
+        }
 
-        // 🔹 1. Sauvegarde le mode choisi
-        localStorage.setItem("selectedMode", mode);
+        // ✅ Si on arrive ici, le mode demandé est autorisé
+        localStorage.setItem("selectedMode", modeDemande);
 
-        // 🔹 1.5. Désactive temporairement le sélecteur pour éviter plusieurs clics
+        // 🔹 1. Désactive temporairement le sélecteur pour éviter plusieurs clics
         select.disabled = true;
 
         // 🔹 2. Applique le thème visuel correspondant
-        applyTheme(mode);
+        applyTheme(modeDemande);
 
         // 🔹 2.5. Affiche un message de chargement pendant la transition de mode
         const quizQuestionEl = document.getElementById("quizQuestion");
@@ -95,19 +95,18 @@ window.addEventListener("load", async () => {
         if (quizAnswersEl) quizAnswersEl.innerHTML = "";
         if (miniCommentEl) miniCommentEl.style.display = "none";
 
-        // 💫 Ajoute la classe d'animation pour le fondu du texte
-      if (quizQuestionEl) {
-        quizQuestionEl.classList.add("fade");
-        quizQuestionEl.classList.remove("show");
-        setTimeout(() => quizQuestionEl.classList.add("show"), 50);
-      }
-
+        // 💫 Animation de fondu pour le texte
+        if (quizQuestionEl) {
+          quizQuestionEl.classList.add("fade");
+          quizQuestionEl.classList.remove("show");
+          setTimeout(() => quizQuestionEl.classList.add("show"), 50);
+        }
 
         // 🔹 3. Met à jour les accroches (titres/sous-titres)
-        await applyAccroches(mode);
+        await applyAccroches(modeDemande);
 
         // 🔹 4. Recharge les questions du bon mode
-        const newQuestions = await fetchQuestions(mode);
+        const newQuestions = await fetchQuestions(modeDemande);
 
         // 🔹 5. Redémarre le quiz avec les nouvelles questions
         if (newQuestions && newQuestions.length > 0) {
@@ -124,7 +123,8 @@ window.addEventListener("load", async () => {
   } catch (err) {
     console.error("❌ Erreur lors du démarrage du quiz :", err);
   }
-}); 
+});
+
 
 
 
