@@ -125,42 +125,36 @@ waitForTexts();
 
 
 // 🌍 Gestion du changement de langue simplifiée
-document.addEventListener("DOMContentLoaded", () => {
-  const langSelect = document.getElementById("langSelect");
-  if (!langSelect) return;
+langSelect.addEventListener("change", async (e) => {
+  const newLang = e.target.value;
+  if (newLang === currentLang) return;
 
-  // Langue courante (depuis le localStorage ou défaut)
-  let currentLang = localStorage.getItem("lang") || "fr";
-  langSelect.value = currentLang;
+  localStorage.setItem("lang", newLang);
+  currentLang = newLang;
 
-  // 🔁 Quand on change de langue dans le menu
-  langSelect.addEventListener("change", async (e) => {
-    const newLang = e.target.value;
-    if (newLang === currentLang) return;
+  try {
+    const response = await fetch("./data/texts.json");
+    const texts = await response.json();
+    if (!texts[newLang]) throw new Error("Langue manquante dans texts.json");
 
-    localStorage.setItem("lang", newLang);
-    currentLang = newLang;
+    window.TEXTS = texts[newLang];
+    window.currentLang = newLang;
 
-    try {
-      const response = await fetch("./data/texts.json");
-      const texts = await response.json();
-      if (!texts[newLang]) throw new Error("Langue manquante dans texts.json");
+    if (typeof updateUITexts === "function") updateUITexts();
 
-      window.TEXTS = texts[newLang];
-      window.currentLang = newLang;
+    // 🔁 Recharge le mode courant et met à jour les accroches
+    const savedMode = localStorage.getItem("selectedMode") || "general";
+    if (typeof applyAccroches === "function") await applyAccroches(savedMode);
 
-      if (typeof updateUITexts === "function") updateUITexts();
-         // 🔁 Recharge les questions dans la nouvelle langue
-         if (typeof fetchQuestions === "function" && typeof startQuiz === "function") {
-           const savedMode = localStorage.getItem("selectedMode") || "general";
-           const newQuestions = await fetchQuestions(savedMode);
-           startQuiz(newQuestions);
-           console.log(`[i18n] Quiz rechargé pour la langue : ${newLang}`);
-         }
-
-    } catch (err) {
-      console.error("[i18n] Erreur lors du changement de langue :", err);
+    // 🔁 Recharge les questions dans la nouvelle langue
+    if (typeof fetchQuestions === "function" && typeof startQuiz === "function") {
+      const newQuestions = await fetchQuestions(savedMode);
+      startQuiz(newQuestions);
     }
-  });
+
+  } catch (err) {
+    console.error("Erreur lors du changement de langue :", err);
+  }
 });
+
 
