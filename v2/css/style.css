@@ -433,48 +433,145 @@ button:hover {
 }
 
 
-
-/* ==========================================================
-   ⚙️ Pied de page — disposition côte à côte même sur mobile
-   ========================================================== */
-
+/* ===========================================================
+   ⚙️ PIED DE PAGE HARMONISÉ — MODE + LANGUE
+   =========================================================== */
 .footer-bar {
   display: flex;
-  justify-content: center;   /* centre les deux blocs horizontalement */
+  justify-content: space-between;
   align-items: center;
-  gap: 0.8rem;               /* espace entre les sélecteurs */
-  flex-wrap: nowrap;         /* ❗ ne pas repasser à la ligne */
-  padding: 0.6rem 0.8rem;
-  background: var(--bg-secondary);
+  padding: 1rem 2rem;
+  margin-top: 2rem;
   border-top: 1px solid var(--border-color);
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
-/* chaque sélecteur = mini bloc horizontal */
-.footer-bar > div {
+.footer-left,
+.footer-right {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  position: relative;
+}
+
+/* === 🎮 Sélecteur de mode === */
+#themeMode {
+  padding: 0.45rem 0.7rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background: var(--button-bg);
+  color: var(--button-text);
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: all 0.15s ease-in-out;
+}
+
+#themeMode:hover {
+  background: var(--accent-color);
+  color: #fff;
+}
+
+/* ==========================================================
+   🌍 Sélecteur de langue simplifié (même style que le mode)
+   ========================================================== */
+
+#lang-selector-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  margin-top: 0.8rem;
+}
+
+#lang-selector-footer label {
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+#lang-selector-footer select {
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#lang-selector-footer select:hover {
+  background-color: var(--accent-color);
+  color: #fff;
+}
+
+/* ==========================================================
+   ⚙️ Alignement des sélecteurs de mode et de langue
+   ========================================================== */
+
+.footer-controls {
+  display: flex;
+  justify-content: center;      /* centre horizontalement */
+  align-items: center;
+  gap: 0.8rem;                  /* espace régulier entre les deux */
+  width: 90%;
+  max-width: 500px;
+  margin: 0.8rem auto;
+  flex-wrap: wrap;              /* s’ils ne tiennent pas, ils reviennent à la ligne proprement */
+}
+
+/* Chaque bloc (mode + langue) */
+.footer-controls > div {
   display: flex;
   align-items: center;
   gap: 0.4rem;
-  margin-top: 0;             /* supprime le décalage vertical */
 }
 
-/* adapte la taille des selects sur petits écrans */
-.footer-bar select {
-  font-size: 0.9rem;
-  padding: 0.35rem 0.6rem;
-  max-width: 44vw;           /* 2 sélecteurs + écart = 100% */
-}
+/* Sur mobile : on garde côte à côte, mais on réduit légèrement la taille */
+@media (max-width: 480px) {
+  .footer-controls {
+    gap: 0.6rem;
+  }
 
-/* Labels (emojis 🎮 / 🌍) */
-.footer-bar label {
-  font-size: 1rem;
-}
+  .footer-controls select {
+    font-size: 0.9rem;
+    padding: 0.3rem 0.5rem;
+  }
 
-/* Sécurité pour écrans minuscules (<350px) */
-@media (max-width: 350px) {
-  .footer-bar {
-    flex-wrap: wrap;
+  .footer-controls label {
+    font-size: 1rem;
   }
 }
+
+/* --- Forcer les deux sélecteurs sur une seule ligne en mobile --- */
+@media (max-width: 480px) {
+  .footer-bar {
+    justify-content: center;   /* centre les blocs */
+    gap: 0.6rem;
+    flex-wrap: nowrap;         /* ❗ ne pas revenir à la ligne */
+  }
+
+  /* compacter chaque bloc */
+  #mode-selector-footer,
+  #lang-selector-footer {
+    margin-top: 0;             /* évite un “décalage” vertical inutile */
+  }
+
+  /* réduire un peu le sélecteur pour qu’ils tiennent à deux */
+  .footer-bar select {
+    font-size: 0.9rem;
+    padding: 0.35rem 0.55rem;
+    max-width: 44vw;           /* 2 x 44% + gap ≈ 100% */
+  }
+
+  /* si jamais un appareil est vraiment minuscule, on autorise à re-passer à la ligne */
+  @media (max-width: 340px) {
+    .footer-bar {
+      flex-wrap: wrap;
+    }
+  }
+}
+
 
 
 
