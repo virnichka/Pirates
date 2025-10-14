@@ -148,7 +148,22 @@ langSelect.addEventListener("change", async (e) => {
 
     // 🔁 Recharge les questions dans la nouvelle langue
     if (typeof fetchQuestions === "function" && typeof startQuiz === "function") {
-      const newQuestions = await fetchQuestions(savedMode);
+
+       // 🔹 Nettoie l'affichage avant de recharger le quiz (comme lors d'un changement de mode)
+      const quizQuestionEl = document.getElementById("quizQuestion");
+      const quizAnswersEl = document.getElementById("quizAnswers");
+      const miniCommentEl = document.getElementById("miniCommentaire");
+      
+      const uiTexts = window.TEXTS?.ui || {};
+      const loadingMsg = uiTexts.loading || "- Chargement du quiz -";
+      
+      if (quizQuestionEl) quizQuestionEl.innerText = loadingMsg;
+      if (quizAnswersEl) quizAnswersEl.innerHTML = "";
+      if (miniCommentEl) miniCommentEl.style.display = "none";
+
+       
+       const newQuestions = await fetchQuestions(savedMode);
+       
       startQuiz(newQuestions);
     }
 
