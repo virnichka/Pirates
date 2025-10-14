@@ -68,7 +68,7 @@ window.addEventListener("load", async () => {
 
         // 🏴‍☠️ Si le mode demandé est Full Dark, demande un mot de passe
         if (modeDemande === "full_dark") {
-          const mdp = prompt("🗝️ Mot de passe requis pour accéder au mode Full Dark :");
+          const mdp = prompt("🗝️");
           if (mdp !== CONFIG.FULL_DARK_PASS) {
             // 🗨️ Message localisé depuis texts.json
             const uiTexts = window.TEXTS?.ui || {};
