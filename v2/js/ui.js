@@ -154,14 +154,11 @@ document.addEventListener("DOMContentLoaded", () => {
       console.error("[i18n] Erreur lors du changement de langue :", err);
     }
   });
-}
+};
 
 /**
  * ============================================================
  * 🌐 Barre compacte Langue / Mode
- * ------------------------------------------------------------
- * Relie les  boutons en haut du header
- * aux <select> existants pour langue et mode.
  * ============================================================
  */
 document.addEventListener("DOMContentLoaded", () => {
