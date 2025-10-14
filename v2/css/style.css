@@ -150,39 +150,10 @@ body {
   padding: 2rem;
   transition: background-color 0.4s, color 0.4s;
 }
-/* -----------------------------------------------------------
-   🌐 CONTROLES EN-TÊTE — LANGUE + MODE
-   ----------------------------------------------------------- */
-#top-controls {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 0.6rem;
-  margin-bottom: 0.5rem;
-}
-
-.icon-btn {
-  background: none;
-  border: none;
-  color: var(--text-color);
-  font-weight: 600;
-  cursor: pointer;
-  font-size: 0.95rem;
-  opacity: 0.8;
-  transition: opacity 0.2s ease;
-}
-
-.icon-btn:hover {
-  opacity: 1;
-  color: var(--accent-color);
-}
-
-
 
 /* -----------------------------------------------------------
    🏷️ EN-TÊTE
    ----------------------------------------------------------- */
-
 header {
   text-align: center;
   margin-bottom: 2rem;
@@ -601,15 +572,4 @@ html[data-theme="full_dark"] .lang-option:hover {
   background: #e74c3c;
   color: #fff;
 }
-
-
-
-/* 🎛️ Sélecteurs masqués mais accessibles */
-.hidden-select {
-  position: absolute;
-  left: -9999px;
-  opacity: 0;
-  pointer-events: none;
-}
-
 
