@@ -132,6 +132,14 @@ langSelect.addEventListener("change", async (e) => {
   localStorage.setItem("lang", newLang);
   window.currentLang = newLang;
 
+   // Synchronise le sélecteur de langue
+   const langSelect = document.getElementById("langSelect");
+   const savedLang = localStorage.getItem("lang") || "fr";
+   if (langSelect) {
+     langSelect.value = savedLang;
+   }
+
+
   try {
     const response = await fetch("./data/texts.json");
     const texts = await response.json();
