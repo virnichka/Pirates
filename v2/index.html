@@ -18,9 +18,25 @@
 
     <!-- Bouton langue et mode -->
     <div id="top-controls">
-    <button id="langBtn" class="icon-btn">🌐 FR</button>
-    <button id="modeBtn" class="icon-btn">🏴‍☠️ Général</button>
+      <button id="langBtn" class="icon-btn">🌐 FR</button>
+      <select id="langSelect" style="display:none;">
+        <option value="fr">FR</option>
+        <option value="en">EN</option>
+        <option value="es">ES</option>
+        <option value="ro">RO</option>
+      </select>
+      
+      <button id="modeBtn" class="icon-btn">🏴‍☠️ Général</button>
+      <select id="themeMode" style="display:none;">
+        <option value="general">Général</option>
+        <option value="musique">Musique</option>
+        <option value="cinema">Cinéma</option>
+        <option value="geographie">Géographie</option>
+        <option value="histoire">Histoire</option>
+      </select>
+      
     </div>
+    
     
     <!-- 🧠 Titre et sous-titre dynamiques -->
     <h1 id="quizTitle" data-i18n="ui.mainTitle"></h1>
