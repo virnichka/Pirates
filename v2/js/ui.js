@@ -123,7 +123,6 @@ function waitForTexts() {
 // 🚀 Lancement automatique
 waitForTexts();
 
-
 // 🌍 Gestion du changement de langue simplifiée
 document.addEventListener("DOMContentLoaded", () => {
   const langSelect = document.getElementById("langSelect");
@@ -162,5 +161,29 @@ document.addEventListener("DOMContentLoaded", () => {
       console.error("[i18n] Erreur lors du changement de langue :", err);
     }
   });
+}
+
+// Bouton changement langue et mode                
+document.addEventListener("DOMContentLoaded", () => {
+  const langBtn = document.getElementById("langBtn");
+  const modeBtn = document.getElementById("modeBtn");
+  const langSelect = document.getElementById("langSelect");
+  const modeSelect = document.getElementById("themeMode");
+
+  if (langBtn && langSelect) {
+    langBtn.addEventListener("click", () => langSelect.showPicker?.() || langSelect.focus());
+    langSelect.addEventListener("change", () => {
+      const selectedLang = langSelect.value.toUpperCase();
+      langBtn.textContent = `🌐 ${selectedLang}`;
+    });
+  }
+
+  if (modeBtn && modeSelect) {
+    modeBtn.addEventListener("click", () => modeSelect.showPicker?.() || modeSelect.focus());
+    modeSelect.addEventListener("change", () => {
+      const selectedMode = modeSelect.options[modeSelect.selectedIndex].textContent.trim();
+      modeBtn.textContent = `🏴‍☠️ ${selectedMode}`;
+    });
+  }
 });
 
