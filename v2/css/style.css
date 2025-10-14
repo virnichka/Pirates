@@ -544,6 +544,36 @@ button:hover {
   }
 }
 
+/* --- Forcer les deux sélecteurs sur une seule ligne en mobile --- */
+@media (max-width: 480px) {
+  .footer-bar {
+    justify-content: center;   /* centre les blocs */
+    gap: 0.6rem;
+    flex-wrap: nowrap;         /* ❗ ne pas revenir à la ligne */
+  }
+
+  /* compacter chaque bloc */
+  #mode-selector-footer,
+  #lang-selector-footer {
+    margin-top: 0;             /* évite un “décalage” vertical inutile */
+  }
+
+  /* réduire un peu le sélecteur pour qu’ils tiennent à deux */
+  .footer-bar select {
+    font-size: 0.9rem;
+    padding: 0.35rem 0.55rem;
+    max-width: 44vw;           /* 2 x 44% + gap ≈ 100% */
+  }
+
+  /* si jamais un appareil est vraiment minuscule, on autorise à re-passer à la ligne */
+  @media (max-width: 340px) {
+    .footer-bar {
+      flex-wrap: wrap;
+    }
+  }
+}
+
+
 
 
 
