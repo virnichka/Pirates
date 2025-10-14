@@ -49,6 +49,13 @@ window.addEventListener("load", async () => {
     applyTheme(savedMode);
     await applyAccroches(savedMode);
 
+     // Synchronise le sélecteur du mode
+      const modeSelect = document.getElementById("themeMode");
+      if (modeSelect) {
+        modeSelect.value = savedMode;
+      }
+
+
     // 3️⃣ Chargement des questions selon le mode choisi
     const questions = await fetchQuestions(savedMode);
 
