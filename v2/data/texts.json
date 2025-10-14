@@ -22,7 +22,7 @@
           "quizFinished": "Quiz terminé 🎉",
           "youGot": "Tu as eu",
           "outOf": "sur",
-          "Mot de passe incorrect. Accès refusé."
+          "badPassword": "Mot de passe incorrect. Accès refusé."
         },
 
 
