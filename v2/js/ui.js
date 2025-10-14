@@ -124,60 +124,60 @@ function waitForTexts() {
 waitForTexts();
 
 
-// 🌍 Gestion du changement de langue
-langSelect.addEventListener("change", async (e) => {
-  const newLang = e.target.value;
-  if (newLang === window.currentLang) return;
+// 🌍 Initialisation + gestion du changement de langue (bloc unique)
+document.addEventListener("DOMContentLoaded", () => {
+  const langSelect = document.getElementById("langSelect");
+  if (!langSelect) return;
 
-  localStorage.setItem("lang", newLang);
-  window.currentLang = newLang;
+  // 1) AU CHARGEMENT : synchro visuelle du sélecteur avec la langue sauvegardée
+  const savedLang =
+    localStorage.getItem("lang") ||
+    (navigator.language || "fr").slice(0, 2).toLowerCase();
 
-   // Synchronise le sélecteur de langue
-   const langSelect = document.getElementById("langSelect");
-   const savedLang = localStorage.getItem("lang") || "fr";
-   if (langSelect) {
-     langSelect.value = savedLang;
-   }
+  langSelect.value = savedLang;       // ✅ le menu affiche la bonne langue
+  window.currentLang = savedLang;     // ✅ référence globale pour le reste du code
 
+  // 2) CHANGEMENT UTILISATEUR : met à jour l'app
+  langSelect.addEventListener("change", async (e) => {
+    const newLang = e.target.value;
+    if (newLang === window.currentLang) return;
 
-  try {
-    const response = await fetch("./data/texts.json");
-    const texts = await response.json();
-    if (!texts[newLang]) throw new Error("Langue manquante dans texts.json");
-
-    window.TEXTS = texts[newLang];
+    localStorage.setItem("lang", newLang);
     window.currentLang = newLang;
 
-    if (typeof updateUITexts === "function") updateUITexts();
+    try {
+      // recharge texts.json et sélectionne la langue
+      const res = await fetch("./data/texts.json", { cache: "no-cache" });
+      const all = await res.json();
+      window.TEXTS = all[newLang];
 
-    // 🔁 Recharge le mode courant et met à jour les accroches
-    const savedMode = localStorage.getItem("selectedMode") || "general";
-    if (typeof applyAccroches === "function") await applyAccroches(savedMode);
+      // met à jour les libellés statiques (data-i18n, boutons, etc.)
+      if (typeof updateUITexts === "function") updateUITexts();
 
-    // 🔁 Recharge les questions dans la nouvelle langue
-    if (typeof fetchQuestions === "function" && typeof startQuiz === "function") {
+      // met à jour le titre / sous-titre pour le mode courant
+      const savedMode = localStorage.getItem("selectedMode") || "general";
+      if (typeof applyAccroches === "function") await applyAccroches(savedMode);
 
-       // 🔹 Nettoie l'affichage avant de recharger le quiz (comme lors d'un changement de mode)
-      const quizQuestionEl = document.getElementById("quizQuestion");
-      const quizAnswersEl = document.getElementById("quizAnswers");
-      const miniCommentEl = document.getElementById("miniCommentaire");
-      
-      const uiTexts = window.TEXTS?.ui || {};
-      const loadingMsg = uiTexts.loading || "- Chargement du quiz -";
-      
-      if (quizQuestionEl) quizQuestionEl.innerText = loadingMsg;
-      if (quizAnswersEl) quizAnswersEl.innerHTML = "";
-      if (miniCommentEl) miniCommentEl.style.display = "none";
+      // nettoyage visuel + message "loading" localisé
+      const ui = window.TEXTS?.ui || {};
+      const loadingMsg = ui.loading || "- Chargement du quiz -";
+      const qEl = document.getElementById("quizQuestion");
+      const aEl = document.getElementById("quizAnswers");
+      const miniEl = document.getElementById("miniCommentaire");
+      if (qEl) qEl.innerText = loadingMsg;
+      if (aEl) aEl.innerHTML = "";
+      if (miniEl) miniEl.style.display = "none";
 
-       
-       const newQuestions = await fetchQuestions(savedMode);
-       
-      startQuiz(newQuestions);
+      // recharge les questions et relance le quiz
+      if (typeof fetchQuestions === "function" && typeof startQuiz === "function") {
+        const qs = await fetchQuestions(savedMode);
+        startQuiz(qs);
+      }
+    } catch (err) {
+      console.error("Erreur lors du changement de langue :", err);
     }
-
-  } catch (err) {
-    console.error("Erreur lors du changement de langue :", err);
-  }
+  });
 });
+
 
 
