@@ -127,10 +127,10 @@ waitForTexts();
 // 🌍 Gestion du changement de langue
 langSelect.addEventListener("change", async (e) => {
   const newLang = e.target.value;
-  if (newLang === currentLang) return;
+  if (newLang === window.currentLang) return;
 
   localStorage.setItem("lang", newLang);
-  currentLang = newLang;
+  window.currentLang = newLang;
 
   try {
     const response = await fetch("./data/texts.json");
