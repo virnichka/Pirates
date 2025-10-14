@@ -473,7 +473,6 @@ button:hover {
   color: #fff;
 }
 
-
 /* ==========================================================
    🌍 Sélecteur de langue simplifié (même style que le mode)
    ========================================================== */
@@ -507,24 +506,44 @@ button:hover {
   color: #fff;
 }
 
-/* 🔧 Pour aligner le sélecteur de mode et celui de langue sur la même ligne */
+/* ==========================================================
+   ⚙️ Alignement des sélecteurs de mode et de langue
+   ========================================================== */
+
 .footer-controls {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;      /* centre horizontalement */
   align-items: center;
+  gap: 0.8rem;                  /* espace régulier entre les deux */
   width: 90%;
   max-width: 500px;
-  margin: 0 auto;
-  flex-wrap: wrap;
-  gap: 1rem;
+  margin: 0.8rem auto;
+  flex-wrap: wrap;              /* s’ils ne tiennent pas, ils reviennent à la ligne proprement */
 }
 
-@media (max-width: 600px) {
+/* Chaque bloc (mode + langue) */
+.footer-controls > div {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* Sur mobile : on garde côte à côte, mais on réduit légèrement la taille */
+@media (max-width: 480px) {
   .footer-controls {
-    flex-direction: column;
-    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .footer-controls select {
+    font-size: 0.9rem;
+    padding: 0.3rem 0.5rem;
+  }
+
+  .footer-controls label {
+    font-size: 1rem;
   }
 }
+
 
 
 
