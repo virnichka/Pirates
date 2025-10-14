@@ -124,7 +124,7 @@ function waitForTexts() {
 waitForTexts();
 
 
-// 🌍 Gestion du changement de langue simplifiée
+// 🌍 Gestion du changement de langue
 langSelect.addEventListener("change", async (e) => {
   const newLang = e.target.value;
   if (newLang === currentLang) return;
