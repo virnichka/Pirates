@@ -60,7 +60,22 @@ window.addEventListener("load", async () => {
 
       // écoute le changement de mode
       select.addEventListener("change", async (e) => {
-        const mode = e.target.value;
+         const modeActuel = localStorage.getItem("selectedMode") || "general";
+         const modeDemande = e.target.value;
+
+        // 🏴‍☠️ Si le mode demandé est Full Dark, demande un mot de passe
+        if (modeDemande === "full_dark") {
+          const mdp = prompt("🗝️");
+          if (mdp !== CONFIG.FULL_DARK_PASS) {
+             
+            // 🗨️ Message localisé depuis texts.json
+            const uiTexts = window.TEXTS?.ui || {};
+            alert(uiTexts.badPassword || "❌ Mot de passe incorrect.");
+            
+            // 🔁 Retour au mode précédent
+            e.target.value = modeActuel;
+            return;
+          }
 
         // 🔹 1. Sauvegarde le mode choisi
         localStorage.setItem("selectedMode", mode);
