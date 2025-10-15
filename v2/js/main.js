@@ -42,6 +42,16 @@ window.addEventListener("load", async () => {
   try {
     await loadTexts(); // 🧩 Charge les textes multilingues au démarrage
 
+      // Recharge texts.json dans la bonne langue
+      if (window.ALL_TEXTS && window.ALL_TEXTS[savedLang]) {
+        window.TEXTS = window.ALL_TEXTS[savedLang];
+      } else {
+        const res = await fetch("./data/texts.json", { cache: "no-cache" });
+        const all = await res.json();
+        window.ALL_TEXTS = all;
+        window.TEXTS = all[savedLang];
+      }
+     
      // 🗣️ Applique la langue sauvegardée au chargement
       const savedLang = localStorage.getItem("lang") || "fr";
       window.currentLang = savedLang;
