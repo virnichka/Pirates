@@ -41,6 +41,15 @@ async function loadTexts() {
 window.addEventListener("load", async () => {
   try {
     await loadTexts(); // 🧩 Charge les textes multilingues au démarrage
+
+     // 🗣️ Applique la langue sauvegardée au chargement
+      const savedLang = localStorage.getItem("lang") || "fr";
+      window.currentLang = savedLang;
+      
+      // Force la mise à jour des textes localisés de l'interface
+      if (typeof updateUITexts === "function") {
+        updateUITexts();
+      }
      
     // 1️⃣ Récupération du mode sauvegardé (ou "general" par défaut)
     const savedMode = localStorage.getItem("selectedMode") || "general";
