@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- 🧩 Titre dynamique depuis texts.json -->
+  <title data-i18n="ui.title">Quiz Culture Générale</title>
+
+  <!-- 🧭 Styles -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <!-- 🏷️ En-tête -->
+  <header>
+    <!-- 🧠 Titre et sous-titre dynamiques -->
+    <h1 id="quizTitle" data-i18n="ui.mainTitle"></h1>
+    <p>
+      <em id="quizSubtitle" data-i18n="ui.loading">
+        <!-- valeur par défaut au cas où JSON ne charge pas -->
+        Chargement…
+      </em>
+    </p>
+    
+  </header>
+
+  <!-- 🎮 Contenu principal du quiz -->
+  <main>
+    <!-- Question principale -->
+    <h2 id="quizQuestion" data-i18n="ui.loading">...</h2>
+
+    <!-- Conteneur pour les réponses -->
+    <div id="quizAnswers" class="answers"></div>
+
+    <!-- 🔹 On place le bouton "Suivant" -->
+    <button id="nextBtn" onclick="nextQuestion()" data-i18n="ui.nextQuestion" style="display:none;">
+      Suivant
+    </button>
+    
+    <!-- 💬 Puis le texte d’explication -->
+    <div id="miniCommentaire" class="mini-comment"></div>
+    
+    <!-- 🔁 Et enfin le bouton Rejouer -->
+    <button id="restartBtn" onclick="restartQuiz()" style="display:none;" data-i18n="ui.retry">
+      Rejouer
+    </button>
+
+  </main>
+
+   <!-- ⚙️ Pied de page -->
+  <footer class="footer-bar">
+    <!-- 🎮 Sélecteur de mode -->
+    <div id="mode-selector-footer" class="footer-left">
+      <label for="themeMode" data-i18n="ui.chooseMode">🎮</label>
+      <select id="themeMode">
+        <option value="general" data-i18n="ui.modeGeneral">Général 🌞</option>
+        <option value="fun" data-i18n="ui.modeFun">Fun 🤪</option>
+        <option value="full_dark" data-i18n="ui.modeDark">Full Dark 🏴‍☠️</option>
+      </select>
+    </div>
+  
+      <!-- 🌍 Sélecteur de langue simplifié -->
+      <div id="lang-selector-footer">
+        <label for="langSelect" data-i18n="ui.chooseLanguage">🌍</label>
+        <select id="langSelect">
+          <option value="fr">Français</option>
+          <option value="en">English</option>
+          <option value="es">Español</option>
+          <option value="ro">Română</option>
+        </select>
+      </div>
+  </footer>
+
+
+  <!-- 📎 Scripts (dans le bon ordre !) -->
+  <script src="js/config.js"></script>   <!-- ⚙️ Configuration globale -->
+  <script src="js/api.js"></script>      <!-- 🌐 Communication avec Google Sheets -->
+  <script src="js/ui.js"></script>       <!-- 🎨 Interface utilisateur -->
+  <script src="js/main.js"></script>     <!-- 🚀 Démarrage -->
+  <script src="js/quiz.js"></script>     <!-- 🎮 Logique du quiz -->
+</body>
+</html>
