@@ -1,149 +1,40 @@
 # 🏴‍☠️ Quiz Entre Potes (Pirates)
 
-Un quiz dynamique connecté à Google Sheets, pensé pour être simple, fun et flexible.  
-Le projet repose sur une architecture claire côté front-end et une source de données centralisée via Google Sheets.
+Un quiz dynamique et multilingue conçu pour un cercle d’amis.  
+L’objectif : offrir une expérience fun, fluide et personnalisée autour de différents modes de jeu.  
+Le projet repose sur une architecture 100 % front-end et une source de données centralisée dans **Google Sheets**, accessible via **Google Apps Script**.
+
+🔗 **Site en ligne :** [https://virnichka.github.io/Pirates/v2/](https://virnichka.github.io/Pirates/v2/)
 
 ---
 
-## ⚙️ Fonctionnement général
+## ⚙️ Fonctionnement général (Version actuelle – V2)
 
-Le site affiche une série de questions issues d’une feuille Google Sheet, selon le **mode** choisi par l’utilisateur.  
-Chaque mode correspond à une feuille différente (onglet) du même document Google Sheet.
+Lorsqu’un utilisateur sélectionne un mode de jeu :
 
-Lorsqu’un utilisateur choisit un mode :
-1. Le site interroge l’API Google Apps Script.
-2. Les données du mode sélectionné sont chargées :  
-   `question`, `bonne_reponse`, `reponses`, `explication`
-3. Le quiz s’affiche question par question, avec :
+1. Le site interroge l’API **Google Apps Script**.
+2. Les données correspondantes sont chargées depuis la feuille Google Sheet appropriée.
+3. Les questions s’affichent une à une :
    - 1 bonne réponse
    - 3 mauvaises réponses
-   - 1 explication (affichée après la sélection)
+   - Une explication facultative après la réponse.
+4. À la fin, un message personnalisé apparaît selon le score obtenu.
+
+> 💡 Le quiz est entièrement statique : aucune donnée personnelle n’est collectée.
 
 ---
 
-## 📊 Structure des données Google Sheets
+## 🧱 Architecture actuelle du projet
 
-Chaque onglet du document Google Sheets suit ce format :
+Le projet est hébergé sur **GitHub Pages** et structuré de manière modulaire.
 
-| question | bonne_reponse | reponses | explication |
-|-----------|----------------|-----------|--------------|
-| Texte de la question | Réponse correcte | Mauvaises réponses séparées par `;` | Brève explication du contexte |
-
-### Exemple :
-| question | bonne_reponse | reponses | explication |
-|-----------|----------------|-----------|--------------|
-| Combien de temps dort une girafe par jour ? | 2h | 4h;6h;8h | Une girafe dort environ deux heures par jour, souvent debout. |
-
-La colonne **explication** est facultative :  
-si elle est vide, aucune explication ne s’affiche dans le quiz.
-
----
-
-## 🧱 Structure HTML principale
-
-La section centrale du quiz est composée ainsi :
-
-```html
-<main>
-  <h2 id="quizQuestion">Chargement du quiz…</h2>
-  <div id="quizAnswers" class="answers"></div>
-  <div id="miniCommentaire" class="mini-comment"></div>
-
-  <div class="buttons">
-    <button id="nextBtn" onclick="nextQuestion()" style="display:none;">Suivant</button>
-    <button id="restartBtn" onclick="startQuiz(questions)" style="display:none;">Rejouer</button>
-  </div>
-</main>
+### 📂 Structure
 ```
-
-👉 `miniCommentaire` est une zone discrète qui affiche l’explication de la question juste après la réponse de l’utilisateur.
-
----
-
-## 🔁 Logique du quiz
-
-### 1. Initialisation
-- `startQuiz(list)` mélange et sélectionne un nombre limité de questions (`CONFIG.QUIZ_LIMIT`).
-- Le bouton “Rejouer” est masqué.
-- Les styles de fin de quiz sont réinitialisés.
-
-### 2. Affichage de la question
-- `showQuestion()` :
-  - Affiche la question et les 4 boutons de réponse.
-  - Cache le bouton “Suivant”.
-  - Réinitialise la zone d’explication (`miniCommentaire`).
-
-### 3. Validation de la réponse
-- `checkAnswer(selected, correct)` :
-  - Met en surbrillance la bonne et la mauvaise réponse.
-  - Affiche le bouton “Suivant”.
-  - ✅ Affiche, si disponible, le texte d’explication (`explication`) sous le bouton “Suivant”.
-
-### 4. Navigation
-- `nextQuestion()` masque le bouton “Suivant”, efface l’explication, et charge la question suivante.
-
-### 5. Fin du quiz
-- `showFinalScore()` affiche le score et un message final dans une carte centrée.
-- L’utilisateur peut rejouer ou envoyer son score.
-
----
-
-## 🧠 Scripts principaux
-
-### `main.js`
-- Initialise le quiz et gère la sélection du mode.
-- Appelle `fetchQuestions()` pour récupérer les données Google Sheets selon le mode.
-
-### `api.js`
-- Contient la logique d’appel à l’API Google Apps Script.
-- Retourne les données structurées pour le front-end.
-
-### `quiz.js`
-- Gère toute la logique du quiz :
-  - `startQuiz`, `showQuestion`, `checkAnswer`, `nextQuestion`, `showFinalScore`
-  - Ajout du support de l’**explication** (via la colonne `explication`).
-  - Gestion de la visibilité du bouton “Suivant”.
-
-### `ui.js`
-- Contient des fonctions d’affichage et utilitaires (ex. `getRandomNames`).
-
-### `style.css`
-- Définit le style des thèmes (général, fun, full_dark).
-- Unifie le bloc `.mini-comment` :
-  ```css
-  .mini-comment {
-    opacity: 0;
-    transition: opacity 0.4s ease;
-  }
-  .mini-comment.visible {
-    opacity: 1;
-  }
-  ```
-- Style compatible avec tous les modes.
-
----
-
-## 🌈 Modes disponibles
-
-Chaque mode correspond à un onglet dans Google Sheets :
-- **Mode Général** : apparence sobre et claire.
-- **Mode Fun** : couleurs plus vives, ambiance légère.
-- **Mode Full Dark** : contraste renforcé, texte clair sur fond sombre.
-
----
-
-## 🔧 Architecture globale du projet
-
-Le projet Pirates est organisé selon une structure modulaire dans le dossier v2/.
-Le dépôt est public et accessible à l’adresse :
-🔗 https://github.com/virnichka/Pirates
-
-📁 Structure du répertoire
 v2/
 ├── css/
 │   └── style.css
 ├── data/
-│   └── accroches.json
+│   └── texts.json
 ├── js/
 │   ├── api.js
 │   ├── config.js
@@ -152,42 +43,145 @@ v2/
 │   └── ui.js
 ├── index.html
 └── README.md
+```
 
-Le projet est entièrement statique et hébergé côté client (par exemple sur GitHub Pages).  
-Les données sont dynamiquement chargées via une **API Google Apps Script**.
+### 🗂️ Description des fichiers
 
----
-
-## 🧩 Prompt universel pour que ChatGPT puisse comprendre son role lors des futurs avancées sur le projet
-
-> Tu es ChatGPT, et tu connais le projet **Quiz Entre Potes (Pirates)**.  
-> Ce projet est un site de quiz connecté à Google Sheets, avec un mode de jeu sélectionnable (Fun, Full Dark, Général).  
-> Le site est en HTML/CSS/JavaScript pur, hébergé sur GitHub Pages, et communique avec un Google Apps Script qui gère les questions et les scores.
->
-> Les fichiers importants :
-> - `index.html` → structure du site  
-> - `style.css` → thèmes visuels et variables CSS  
-> - `api.js` → communication avec Google Apps Script (`fetchQuestions`, `sendScore`)  
-> - `main.js` → logique principale et initialisation  
-> - `ui.js` → interface et accroches dynamiques  
-> - `accroches.json` → titres, sous-titres, phrases de fin  
-> - `Script Google.txt` → backend Apps Script (`doGet`, `doPost`, `getQuestions`, `logDebug`)
->
-> Le but du projet est de maintenir et d’améliorer le quiz : nouveaux modes, nouveaux thèmes, optimisation du code et de l’UX, tout en gardant la logique actuelle.
->
-> À chaque fois que je te relancerai avec ce projet, considère que :
-> - le thème **“Général”** est le mode par défaut,  
-> - les données sont chargées depuis **trois feuilles Google Sheets** (`general`, `fun`, `full_dark`),  
-> - les scores sont enregistrés dans la feuille **scores**,  
-> - le design s’adapte automatiquement selon `data-theme`,  
-> - les phrases de fin proviennent de `accroches.json`.  
->
-> Ton rôle est de m’aider à **faire évoluer ce projet sans casser la logique existante** :  
-> analyser, corriger, proposer, améliorer, commenter proprement.
+| Fichier | Rôle |
+|----------|------|
+| **index.html** | Structure principale du site |
+| **style.css** | Thèmes visuels (Général / Fun / Full Dark) et animations |
+| **config.js** | Paramètres globaux (URL Google Script, limites, etc.) |
+| **api.js** | Appels API vers Google Apps Script |
+| **main.js** | Initialisation du quiz, gestion du mode sélectionné |
+| **quiz.js** | Logique du quiz (affichage des questions, score, réponses) |
+| **ui.js** | Fonctions d’interface utilisateur et effets visuels |
+| **texts.json** | Dictionnaire multilingue (FR, EN, ES, RO) |
 
 ---
 
-📘 **Résumé rapide**
-- Données : Google Sheets → Apps Script → JSON → Quiz Web.
-- Logique : 1 bonne réponse, 3 mauvaises, + 1 explication optionnelle.
-- UX : bouton “Suivant” caché jusqu’à la sélection, affichage d’une explication claire sous la question.
+## 🌈 Modes de jeu disponibles
+
+Chaque mode correspond à une ambiance distincte :
+
+| Mode | Description |
+|------|--------------|
+| 🌞 **Général** | Culture générale, ambiance sobre |
+| 🤪 **Fun** | Couleurs vives et humour léger |
+| 🏴‍☠️ **Full Dark** | Ambiance pirate et humour noir |
+
+---
+
+## 📊 Structure des données Google Sheets
+
+Chaque **mode** et **langue** possède sa propre feuille Google Sheets.  
+Exemples :
+- `General FR`, `General EN`, `General ES`, `General RO`
+- `Fun FR`, `Fun EN`, `Fun ES`, `Fun RO`
+- `Full Dark FR`, `Full Dark EN`, etc.
+
+Structure de chaque feuille :
+
+| question | bonne_reponse | reponses | explication |
+|-----------|----------------|-----------|--------------|
+| Texte de la question | Réponse correcte | Mauvaises réponses séparées par `;` | Explication optionnelle |
+
+---
+
+# 🚧 Projet en cours (V3)
+
+## 💡 Objectif
+
+Mettre en place une nouvelle fonctionnalité permettant aux amis du groupe de **proposer eux-mêmes des questions**, directement depuis le site.  
+Les propositions seront enregistrées dans une feuille Google Sheets dédiée (`propositions`).
+
+---
+
+## 🧠 Cahier des charges validé (Module “Proposer une question”)
+
+### 🔑 Authentification
+- Chaque ami dispose d’une **clé d’accès personnelle**.
+- Les clés sont définies **dans `config.js`** (aucune vérification côté serveur).
+- Si la clé est reconnue → affichage du formulaire.
+
+### 📋 Champs du formulaire
+| Champ | Description |
+|--------|--------------|
+| clé_utilisateur | Clé d’accès personnelle |
+| mode | Mode ciblé (`general`, `fun`, `full_dark`) |
+| langue | Langue de la question (`fr`, `en`, `es`, `ro`) |
+| question | Texte de la question |
+| bonne_reponse | Réponse correcte |
+| reponses | Mauvaises réponses séparées par `;` (au moins 4) |
+| explication | Brève explication (optionnelle) |
+
+### 🔁 Envoi
+- Vérification de la clé côté front.
+- Envoi au **Google Apps Script** via l’action `sendProposal`.
+- Le script ajoute la question à la feuille `propositions`.
+
+### 📊 Feuille Google `propositions`
+| clé_utilisateur | mode | langue | question | bonne_reponse | reponses | explication |
+|------------------|-------|---------|-----------|----------------|-----------|--------------|
+| PIRATE_LEA | fun | fr | Qui a volé le rhum ? | Maxence | Thomas;Léa;Nico;Julien | Parce que c’est toujours Maxence. |
+
+### 🎨 Interface prévue
+- Section intégrée dans `index.html` (pas de nouvelle page).
+- Accessible via un bouton “💡 Proposer une question”.
+- Affichage dynamique via `#quiz` / `#propose`.
+- Style cohérent avec les thèmes existants.
+- Message simple : “✅ Ta question a bien été envoyée !”
+
+---
+
+## 🧭 Architecture globale (vue d’ensemble)
+
+```
+Client (GitHub Pages)
+     ↓
+Front-end JS
+  ├── main.js (initialisation / navigation)
+  ├── quiz.js (logique du quiz)
+  ├── api.js (API Google Script)
+  └── config.js (paramètres + clés)
+     ↓
+Google Apps Script
+     ↓
+Google Sheets
+   ├── General FR / EN / ES / RO
+   ├── Fun FR / EN / ES / RO
+   ├── Full Dark FR / EN / ES / RO
+   └── Propositions
+```
+
+---
+
+# 🤖 Prompt ChatGPT (mémoire du projet)
+
+> Tu es ChatGPT et tu connais le projet **Quiz Entre Potes (Pirates)**.  
+> C’est un quiz multilingue, entre amis, connecté à **Google Sheets via Apps Script**.  
+> Le projet utilise **HTML / CSS / JavaScript pur**, hébergé sur **GitHub Pages**.  
+>
+> Le projet **V2** est stable avec trois modes : Général, Fun et Full Dark.  
+> Les données sont réparties par langue et mode dans Google Sheets.  
+>
+> Le projet **V3** (en développement) ajoute une fonctionnalité :  
+> permettre aux utilisateurs de **proposer leurs propres questions** via un formulaire intégré.  
+> La vérification de la clé d’accès est faite côté front (`config.js`),  
+> puis la question est envoyée à la feuille `propositions` via `sendProposal`.  
+>
+> Le projet doit rester : simple, fun, statique (sans backend) et cohérent avec l’existant.  
+> 
+> Si l’utilisateur te redonne ce README, tu dois pouvoir :  
+> - Reprendre immédiatement le contexte.  
+> - Générer du code ou de la doc cohérente avec l’architecture décrite ici.  
+> - Continuer le développement du module “Proposer une question”.
+
+---
+
+# 👨‍💻 Auteur
+
+**Projet :** @virnichka  
+**Version actuelle :** V2 (fonctionnelle)  
+**Version en cours :** V3 – Module “Proposer une question”  
+**Licence :** Usage personnel et amical.
