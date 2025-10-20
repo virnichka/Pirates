@@ -696,20 +696,5 @@ background-color: var(--bg-color);
 color: var(--text-color);
 font-size: 1rem;
 }
-
-
-.user-question-form button {
-background-color: var(--accent-color);
-color: #fff;
-border: none;
-border-radius: 6px;
-padding: 0.6rem 1rem;
-cursor: pointer;
-transition: background-color 0.3s;
-}
-
-
-.user-question-form button:hover {
-background-color: #0059b3;
 }
 
