@@ -570,14 +570,31 @@ button:hover {
   color: #fff;
 }
 
-/* 🪶 Adaptation pour très petits écrans */
-@media (max-width: 350px) {
-  .footer-bar {
-    flex-wrap: wrap;          /* si l'écran est trop étroit, repasse à la ligne */
-  }
+/* -----------------------------------------------------------
+   📱 Ajustement du footer pour 3 éléments (mode / langue / upload)
+   ----------------------------------------------------------- */
+.footer-bar {
+  justify-content: space-between; /* les 3 blocs se répartissent bien */
+  gap: 0.6rem;
+  flex-wrap: wrap; /* permet de repasser sur 2 lignes si besoin */
+}
 
-  .footer-bar select {
-    max-width: 100%;
+.footer-bar select,
+#proposeContainer .propose-btn {
+  width: 100%;
+  max-width: 30vw; /* environ un tiers chacun */
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+/* Petits écrans : on repasse sur 2 lignes proprement */
+@media (max-width: 420px) {
+  .footer-bar {
+    flex-wrap: wrap;
+  }
+  .footer-bar select,
+  #proposeContainer .propose-btn {
+    max-width: 45vw;
   }
 }
 
