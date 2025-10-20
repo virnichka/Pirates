@@ -283,6 +283,7 @@ if (proposeBtn && proposeSection) {
       }
 
       try {
+         console.log("📦 Données prêtes à l’envoi :", data); // 👈 AJOUTE CETTE LIGNE
         const result = await sendUserQuestion(data);
         if (result?.status === "success") {
           alert("✅ Question envoyée avec succès !");
