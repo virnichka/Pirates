@@ -91,3 +91,25 @@ async function sendScore(nom, score, total, mode = "general") {
     return { ok: false, error: err.message };
   }
 }
+
+// ===============================
+// 📡 Envoi d'une question utilisateur vers Google Sheets
+// ===============================
+async function sendUserQuestion(data) {
+  const scriptURL = CONFIG.GOOGLE_APPS_SCRIPT_URL; // définie dans config.js
+
+  const payload = {
+    action: "add_user_question",
+    ...data
+  };
+
+  const response = await fetch(scriptURL, {
+    method: "POST",
+    mode: "cors",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload)
+  });
+
+  return response.json();
+}
+
