@@ -221,29 +221,33 @@ if (proposeBtn && proposeSection) {
     // Sinon, on l'affiche avec le formulaire
     proposeSection.style.display = "block";
     proposeSection.innerHTML = `
-      <form id="userQuestionForm" class="user-question-form">
-        <h3 data-i18n="ui.submitQuestionTitle">💡 Proposer une nouvelle question</h3>
+        <form id="userQuestionForm" class="user-question-form">
+          <h3 data-i18n="ui.submitQuestionTitle"></h3>
+      
+          <label for="userKey" data-i18n="ui.userKeyLabel"></label>
+          <input type="text" id="userKey" name="userKey" required />
+      
+          <label for="questionText" data-i18n="ui.questionLabel"></label>
+          <textarea id="questionText" name="questionText" rows="2" required></textarea>
+      
+          <label for="correctAnswer" data-i18n="ui.correctAnswerLabel"></label>
+          <input type="text" id="correctAnswer" name="correctAnswer" required />
+      
+          ${Array.from({ length: 6 }, (_, i) => `
+            <label for="wrongAnswer${i+1}" data-i18n="ui.wrongAnswerLabel"></label>
+            <input type="text" id="wrongAnswer${i+1}" name="wrongAnswer${i+1}" />
+          `).join("")}
+      
+          <label for="category" data-i18n="ui.categoryLabel"></label>
+          <input type="text" id="category" name="category" placeholder="(optionnel)" />
+      
+          <button type="submit" id="sendQuestionBtn" data-i18n="ui.sendButton"></button>
+        </form>
+      `;
+      
+      // Après l’injection du HTML, on traduit immédiatement le contenu
+      if (typeof updateUITexts === "function") updateUITexts();
 
-        <label for="userKey">🔑 Clé d'accès :</label>
-        <input type="text" id="userKey" name="userKey" placeholder="Votre clé d'accès" required />
-
-        <label for="questionText">❓ Question :</label>
-        <textarea id="questionText" name="questionText" rows="2" required></textarea>
-
-        <label for="correctAnswer">✅ Bonne réponse :</label>
-        <input type="text" id="correctAnswer" name="correctAnswer" required />
-
-        ${Array.from({ length: 6 }, (_, i) => `
-          <label for="wrongAnswer${i+1}">❌ Mauvaise réponse ${i+1} :</label>
-          <input type="text" id="wrongAnswer${i+1}" name="wrongAnswer${i+1}" />
-        `).join("")}
-
-        <label for="category">🏷️ Catégorie :</label>
-        <input type="text" id="category" name="category" placeholder="(optionnel)" />
-
-        <button type="submit" id="sendQuestionBtn">📤 Envoyer</button>
-      </form>
-    `;
 
     // On gérera l’envoi à Google Sheets plus tard
     const form = document.getElementById("userQuestionForm");
