@@ -207,23 +207,33 @@ async function applyAccroches(mode = "general") {
 // ============================================================
 // 📤 Gestion complète du formulaire de proposition de question
 // ============================================================
+// ============================================================
+// 📤 Gestion complète du formulaire de proposition de question
+// ============================================================
 
 const proposeBtn = document.getElementById("proposeBtn");
 const proposeSection = document.getElementById("proposeSection");
 
 if (proposeBtn && proposeSection) {
   proposeBtn.addEventListener("click", () => {
-    // 🔁 Toggle d'affichage du formulaire
+    // 🔁 Toggle d'affichage du formulaire avec transition fade déjà existante
     if (proposeSection.style.display === "block") {
-      proposeSection.style.display = "none";
-      proposeSection.innerHTML = "";
+      proposeSection.classList.remove("show"); // fade-out
+      setTimeout(() => {
+        proposeSection.style.display = "none";
+        proposeSection.innerHTML = "";
+        proposeSection.classList.remove("fade");
+      }, 800);
       return;
     }
 
-    // ✅ Création du formulaire
+    // ✅ Création du formulaire avec effet fade déjà défini en CSS
     proposeSection.style.display = "block";
+    proposeSection.classList.add("fade");
+    setTimeout(() => proposeSection.classList.add("show"), 50);
+
     proposeSection.innerHTML = `
-      <form id="userQuestionForm" class="user-question-form fade-in">
+      <form id="userQuestionForm" class="user-question-form">
         <h3 data-i18n="ui.submitQuestionTitle">💡 Proposer une nouvelle question</h3>
 
         <div class="form-group">
@@ -302,13 +312,12 @@ if (proposeBtn && proposeSection) {
           messageBox.textContent = getI18nText("ui.sendSuccess", "✅ Question envoyée avec succès ! Merci 🙌");
           messageBox.style.color = "green";
 
-          // ✨ Animation fade-out après succès
-          form.classList.add("fade-out");
+          // ✨ Masquer le formulaire avec fade-out existant
+          proposeSection.classList.remove("show");
           setTimeout(() => {
-            form.reset();
             proposeSection.style.display = "none";
-            form.classList.remove("fade-out");
-          }, 1200);
+            form.reset();
+          }, 1000);
 
         } else {
           messageBox.textContent = getI18nText("ui.sendError", "⚠️ Erreur lors de l'envoi. Réessaie plus tard.");
