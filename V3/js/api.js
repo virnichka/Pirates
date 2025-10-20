@@ -96,20 +96,30 @@ async function sendScore(nom, score, total, mode = "general") {
 // 📡 Envoi d'une question utilisateur vers Google Sheets
 // ===============================
 async function sendUserQuestion(data) {
-  const scriptURL = CONFIG.GOOGLE_SCRIPT_URL; // définie dans config.js
+  const url = CONFIG.GOOGLE_APPS_SCRIPT_URL;
 
   const payload = {
     action: "add_user_question",
     ...data
   };
 
-  const response = await fetch(scriptURL, {
-    method: "POST",
-    mode: "cors",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload)
-  });
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      mode: "no-cors", // ✅ contourne le blocage CORS
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
 
-  return response.json();
+    // ⚠️ on ne peut pas lire la réponse en no-cors
+    console.log("✅ Requête envoyée à Google Apps Script :", payload);
+    return { status: "success" };
+
+  } catch (error) {
+    console.error("❌ Erreur lors de l’envoi à Google Apps Script :", error);
+    return { status: "error", message: error.message };
+  }
 }
 
