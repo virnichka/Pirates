@@ -227,7 +227,7 @@ h3 {
   margin-top: 0.8rem;
 }
 
-/* 📤 Conteneur du bouton Upload */
+/* 📤 Conteneur du bouton Soumettre / Upload */
 #proposeContainer {
   display: flex;
   flex-direction: column;
