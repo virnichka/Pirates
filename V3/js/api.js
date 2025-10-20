@@ -96,7 +96,7 @@ async function sendScore(nom, score, total, mode = "general") {
 // 📡 Envoi d'une question utilisateur vers Google Sheets
 // ===============================
 async function sendUserQuestion(data) {
-  const scriptURL = CONFIG.GOOGLE_APPS_SCRIPT_URL; // définie dans config.js
+  const url = CONFIG.GOOGLE_SCRIPT_URL; // définie dans config.js
 
   const payload = {
     action: "add_user_question",
