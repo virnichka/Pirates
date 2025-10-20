@@ -227,33 +227,39 @@ h3 {
   margin-top: 0.8rem;
 }
 
-/* 📤 Conteneur du bouton Soumettre / Upload */
+
+/* -----------------------------------------------------------
+   💡 Bouton Soumettre une question (Upload)
+   ----------------------------------------------------------- */
 #proposeContainer {
   display: flex;
-  flex-direction: column;
+  flex-direction: column; /* icône au-dessus, bouton dessous */
   align-items: center;
-  justify-content: flex-start;
-  gap: 0.3rem;
-  min-width: 100px; /* garde une base similaire aux selects */
+  justify-content: center;
+  gap: 0.4rem;
+  margin-top: 0.8rem;
 }
 
-/* Icône au-dessus du bouton */
-.upload-icon {
-  font-size: 1.3rem;
-  line-height: 1;
-  user-select: none;
+#proposeContainer .upload-icon {
+  font-weight: 600;
+  color: var(--text-color);
+  font-size: 1.1rem;
 }
 
-/* Bouton aligné visuellement avec les selects */
-.propose-btn {
-  width: 100%;
-  min-width: 110px; /* largeur cohérente avec tes selects */
-  height: 38px; /* même hauteur que les selects */
-  border-radius: 10px; /* arrondi identique */
-  text-align: center;
-  font-size: 1rem;
-  font-weight: 500;
+#proposeContainer .propose-btn {
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background-color: var(--button-bg);
+  color: var(--button-text);
   cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+#proposeContainer .propose-btn:hover {
+  background-color: var(--accent-color);
+  color: #fff;
 }
 
 
