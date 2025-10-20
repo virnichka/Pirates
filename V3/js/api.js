@@ -146,6 +146,9 @@ document.addEventListener("DOMContentLoaded", () => {
       sendBtn.disabled = false;
       sendBtn.textContent = getI18nText("ui.sendButton", "📤 Envoyer");
     }
+
+    console.log("🟢 Fin de api.js atteinte avec succès ✅");
+
   });
 });
 
