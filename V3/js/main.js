@@ -203,3 +203,56 @@ async function applyAccroches(mode = "general") {
 }
 
 
+// ==============================
+// 📤 Formulaire de proposition de question
+// ==============================
+const proposeBtn = document.getElementById("proposeBtn");
+const proposeSection = document.getElementById("proposeSection");
+
+if (proposeBtn && proposeSection) {
+  proposeBtn.addEventListener("click", () => {
+    // Si le formulaire est déjà visible, on le masque
+    if (proposeSection.style.display === "block") {
+      proposeSection.style.display = "none";
+      proposeSection.innerHTML = "";
+      return;
+    }
+
+    // Sinon, on l'affiche avec le formulaire
+    proposeSection.style.display = "block";
+    proposeSection.innerHTML = `
+      <form id="userQuestionForm" class="user-question-form">
+        <h3 data-i18n="ui.submitQuestionTitle">💡 Proposer une nouvelle question</h3>
+
+        <label for="userKey">🔑 Clé d'accès :</label>
+        <input type="text" id="userKey" name="userKey" placeholder="Votre clé d'accès" required />
+
+        <label for="questionText">❓ Question :</label>
+        <textarea id="questionText" name="questionText" rows="2" required></textarea>
+
+        <label for="correctAnswer">✅ Bonne réponse :</label>
+        <input type="text" id="correctAnswer" name="correctAnswer" required />
+
+        ${Array.from({ length: 6 }, (_, i) => `
+          <label for="wrongAnswer${i+1}">❌ Mauvaise réponse ${i+1} :</label>
+          <input type="text" id="wrongAnswer${i+1}" name="wrongAnswer${i+1}" />
+        `).join("")}
+
+        <label for="category">🏷️ Catégorie :</label>
+        <input type="text" id="category" name="category" placeholder="(optionnel)" />
+
+        <button type="submit" id="sendQuestionBtn">📤 Envoyer</button>
+      </form>
+    `;
+
+    // On gérera l’envoi à Google Sheets plus tard
+    const form = document.getElementById("userQuestionForm");
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      alert("✅ Formulaire prêt — la logique d’envoi vers Google Sheets arrive à l’étape suivante !");
+    });
+  });
+}
+
+
+
