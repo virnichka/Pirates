@@ -227,31 +227,34 @@ h3 {
   margin-top: 0.8rem;
 }
 
-/* -------- Bouton "Proposer une question" -------- *
+/* 📤 Conteneur du bouton Upload */
 #proposeContainer {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
+  justify-content: flex-start;
+  gap: 0.3rem;
+  min-width: 100px; /* garde une base similaire aux selects */
 }
 
-/* Le bouton doit hériter du style des selects */
+/* Icône au-dessus du bouton */
+.upload-icon {
+  font-size: 1.3rem;
+  line-height: 1;
+  user-select: none;
+}
+
+/* Bouton aligné visuellement avec les selects */
 .propose-btn {
-  appearance: none;
-  border: none;
-  border-radius: var(--radius, 12px);
-  font: inherit;
-  padding: 0.6rem 1rem;
+  width: 100%;
+  min-width: 110px; /* largeur cohérente avec tes selects */
+  height: 38px; /* même hauteur que les selects */
+  border-radius: 10px; /* arrondi identique */
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 500;
   cursor: pointer;
-  background: inherit; /* hérite du thème courant */
-  color: inherit;
-  box-shadow: var(--shadow, none);
-  transition: transform 0.15s ease;
 }
-
-.propose-btn:hover {
-  transform: translateY(-1px);
-}
-
 
 
 
