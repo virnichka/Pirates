@@ -119,6 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const data = collectQuestionData(); // fonction existante dans ton code
 
     try {
+      console.log("🟢 Déclaration de sendUserQuestion()");
       const result = await sendUserQuestion(data);
 
       if (result.status === "success") {
