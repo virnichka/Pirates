@@ -9,7 +9,8 @@
           "chooseMode": "🎮",
           "modeGeneral": "Général 🌞",
           "modeFun": "Fun 🤪",
-          "modeDark": "Full Dark 🏴‍☠️",
+          "modeDark": "Dark 🏴‍☠️",
+          "submitQuestion": "Soumettre"
           "toggleDark": "Basculer en mode sombre",
           "toggleLight": "Basculer en mode clair",
           "startQuiz": "Démarrer le quiz",
