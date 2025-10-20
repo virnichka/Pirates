@@ -155,13 +155,3 @@ function getI18nText(key, fallback) {
   return fallback;
 }
 
-// ============================================================
-// 🗂️ Clés à ajouter dans texts.json
-// ------------------------------------------------------------
-// "ui.sending": "📤 Envoi en cours...",
-// "ui.sendSuccess": "✅ Question envoyée avec succès ! Merci 🙌",
-// "ui.sendError": "⚠️ Erreur lors de l'envoi. Réessaie plus tard.",
-// "ui.networkError": "❌ Une erreur est survenue pendant l'envoi.",
-// "ui.sendButton": "📤 Envoyer"
-// ============================================================
-
