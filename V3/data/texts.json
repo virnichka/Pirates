@@ -23,7 +23,15 @@
           "quizFinished": "Quiz terminé 🎉",
           "youGot": "Tu as eu",
           "outOf": "sur",
-          "badPassword": "Mot de passe incorrect. Accès refusé."
+          "badPassword": "Mot de passe incorrect. Accès refusé.",
+          "submitQuestionTitle": "💡 Proposer une nouvelle question",
+          "userKeyLabel": "🔑 Clé d'accès",
+          "questionLabel": "❓ Question",
+          "correctAnswerLabel": "✅ Bonne réponse",
+          "wrongAnswerLabel": "❌ Mauvaise réponse",
+          "categoryLabel": "🏷️ Catégorie",
+          "sendButton": "📤 Envoyer"
+
         },
 
 
@@ -174,7 +182,15 @@
           "quizFinished": "Quiz finished 🎉",
           "youGot": "You got",
           "outOf": "out of",
-          "badPassword": "Incorrect password. Access denied."
+          "badPassword": "Incorrect password. Access denied.",
+          "submitQuestionTitle": "💡 Submit a new question",
+          "userKeyLabel": "🔑 Access key",
+          "questionLabel": "❓ Question",
+          "correctAnswerLabel": "✅ Correct answer",
+          "wrongAnswerLabel": "❌ Wrong answer",
+          "categoryLabel": "🏷️ Category",
+          "sendButton": "📤 Send"
+
         },
 
 
@@ -327,7 +343,15 @@
           "quizFinished": "Cuestionario terminado 🎉",
           "youGot": "Has conseguido",
           "outOf": "de",
-          "badPassword": "Contraseña incorrecta. Acceso denegado."
+          "badPassword": "Contraseña incorrecta. Acceso denegado.",
+          "submitQuestionTitle": "💡 Enviar una nueva pregunta",
+          "userKeyLabel": "🔑 Clave de acceso",
+          "questionLabel": "❓ Pregunta",
+          "correctAnswerLabel": "✅ Respuesta correcta",
+          "wrongAnswerLabel": "❌ Respuesta incorrecta",
+          "categoryLabel": "🏷️ Categoría",
+          "sendButton": "📤 Enviar"
+
         },
 
   "quiz": {
@@ -479,7 +503,15 @@
         "quizFinished": "Test finalizat 🎉",
         "youGot": "Ai obținut",
         "outOf": "din",
-        "badPassword": "Parolă incorectă. Acces interzis."
+        "badPassword": "Parolă incorectă. Acces interzis.",
+        "submitQuestionTitle": "💡 Propune o întrebare nouă",
+        "userKeyLabel": "🔑 Cheie de acces",
+        "questionLabel": "❓ Întrebare",
+        "correctAnswerLabel": "✅ Răspuns corect",
+        "wrongAnswerLabel": "❌ Răspuns greșit",
+        "categoryLabel": "🏷️ Categorie",
+        "sendButton": "📤 Trimite"
+
       },
 
   "quiz": {
