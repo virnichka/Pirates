@@ -6,4 +6,8 @@ const CONFIG = {
   QUIZ_LIMIT: 5,
   FULL_DARK_PASS: "🖕" // 🗝️ mot de passe pour le mode Full Dark
 
+
+  window.CONFIG = CONFIG;
+  console.log("🌍 CONFIG exposé globalement :", window.CONFIG);
+
 };
