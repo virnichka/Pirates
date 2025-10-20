@@ -97,60 +97,57 @@ async function sendScore(nom, score, total, mode = "general") {
 // ============================================================
 // 📩 Gestion de la soumission de la question utilisateur (multilingue + animation)
 // ============================================================
+// ============================================================
+// 🧩 Debug version : sendUserQuestion (toujours accessible)
+// ============================================================
 
+// Vérification du chargement du fichier
 document.addEventListener("DOMContentLoaded", () => {
-  const proposeSection = document.getElementById("proposeSection");
-  const form = document.getElementById("submitQuestionForm");
-  const sendBtn = document.getElementById("sendQuestionBtn");
-  const messageBox = document.createElement("div");
-  messageBox.id = "sendMessage";
-  messageBox.classList.add("send-status");
-  proposeSection.appendChild(messageBox);
-
-  if (!form) return;
-
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    sendBtn.disabled = true;
-    sendBtn.textContent = getI18nText("ui.sending", "📤 Envoi en cours...");
-    messageBox.textContent = "";
-
-    console.log("🟢 Chargement de api.js commencé");
-    const data = collectQuestionData(); // fonction existante dans ton code
-
-    try {
-      console.log("🟢 Déclaration de sendUserQuestion()");
-      const result = await sendUserQuestion(data);
-
-      if (result.status === "success") {
-        messageBox.textContent = getI18nText("ui.sendSuccess", "✅ Question envoyée avec succès ! Merci 🙌");
-        messageBox.style.color = "green";
-
-        // Animation fade-out douce avant masquage
-        proposeSection.classList.add("fade-out");
-        setTimeout(() => {
-          proposeSection.style.display = "none";
-          form.reset();
-          proposeSection.classList.remove("fade-out");
-        }, 1000);
-      } else {
-        messageBox.textContent = getI18nText("ui.sendError", "⚠️ Erreur lors de l'envoi. Réessaie plus tard.");
-        messageBox.style.color = "orange";
-      }
-    } catch (err) {
-      console.error("Erreur lors de l'envoi :", err);
-      messageBox.textContent = getI18nText("ui.networkError", "❌ Une erreur est survenue pendant l'envoi.");
-      messageBox.style.color = "red";
-    } finally {
-      sendBtn.disabled = false;
-      sendBtn.textContent = getI18nText("ui.sendButton", "📤 Envoyer");
-    }
-
-    console.log("🟢 Fin de api.js atteinte avec succès ✅");
-
-  });
+  console.log("🟢 api.js chargé — début d'exécution");
 });
+
+// Définition au niveau global (pas dans un bloc local)
+window.sendUserQuestion = async function (data) {
+  console.log("🚀 sendUserQuestion appelée avec :", data);
+
+  if (!window.CONFIG || !CONFIG.GOOGLE_SCRIPT_URL) {
+    console.error("❌ CONFIG.GOOGLE_SCRIPT_URL est introuvable !");
+    return { status: "error", message: "URL manquante" };
+  }
+
+  const url = CONFIG.GOOGLE_SCRIPT_URL;
+  const payload = {
+    action: "add_user_question",
+    ...data,
+  };
+
+  console.log("📤 Préparation envoi vers :", url);
+  console.log("📦 Données envoyées :", payload);
+
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      mode: "no-cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
+
+    console.log("✅ Requête envoyée à Google Apps Script (mode no-cors)");
+    return { status: "success" };
+  } catch (error) {
+    console.error("❌ Erreur lors de l'envoi à Google Apps Script :", error);
+    return { status: "error", message: error.message };
+  }
+};
+
+// Vérification immédiate que la fonction existe bien globalement
+if (typeof window.sendUserQuestion === "function") {
+  console.log("🧠 Vérification OK : sendUserQuestion est bien définie globalement ✅");
+} else {
+  console.error("🚨 Problème : sendUserQuestion n'est PAS définie globalement ❌");
+}
 
 // ============================================================
 // 🧠 Utilitaire pour récupérer une clé multilingue avec fallback
