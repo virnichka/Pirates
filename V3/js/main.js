@@ -202,9 +202,6 @@ async function applyAccroches(mode = "general") {
   }
 }
 
-
-// ==============================
-// 📤 Formulaire de proposition de question (version améliorée)
 // ==============================
 const proposeBtn = document.getElementById("proposeBtn");
 const proposeSection = document.getElementById("proposeSection");
@@ -282,6 +279,5 @@ alert("✅ Formulaire prêt — prochaine étape : envoi à Google Sheets.");
 });
 });
 }
-
 
 
