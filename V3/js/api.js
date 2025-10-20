@@ -105,7 +105,7 @@ async function sendScore(nom, score, total, mode = "general") {
 * (CORS) lorsque le site est hébergé sur un domaine différent (ex: GitHub Pages).
 */
 async function sendUserQuestion(data) {
-const url = CONFIG.GOOGLE_APPS_SCRIPT_URL; // ✅ doit pointer vers ton Apps Script déployé
+const url = CONFIG.GOOGLE_SCRIPT_URL; // ✅ doit pointer vers ton Apps Script déployé
 
 
 const payload = {
