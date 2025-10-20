@@ -92,34 +92,48 @@ async function sendScore(nom, score, total, mode = "general") {
   }
 }
 
-// ===============================
-// 📡 Envoi d'une question utilisateur vers Google Sheets
-// ===============================
+
+
+// ============================================================
+// 📤 Fonction d'envoi de question utilisateur vers Google Sheets
+// ============================================================
+
+
+/**
+* Envoie une question proposée par un utilisateur au script Google Apps Script.
+* Utilise mode: 'no-cors' pour contourner la politique de sécurité du navigateur
+* (CORS) lorsque le site est hébergé sur un domaine différent (ex: GitHub Pages).
+*/
 async function sendUserQuestion(data) {
-  const url = CONFIG.GOOGLE_APPS_SCRIPT_URL;
+const url = CONFIG.GOOGLE_APPS_SCRIPT_URL; // ✅ doit pointer vers ton Apps Script déployé
 
-  const payload = {
-    action: "add_user_question",
-    ...data
-  };
 
-  try {
-    const response = await fetch(url, {
-      method: "POST",
-      mode: "no-cors", // ✅ contourne le blocage CORS
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(payload),
-    });
+const payload = {
+action: "add_user_question",
+...data
+};
 
-    // ⚠️ on ne peut pas lire la réponse en no-cors
-    console.log("✅ Requête envoyée à Google Apps Script :", payload);
-    return { status: "success" };
 
-  } catch (error) {
-    console.error("❌ Erreur lors de l’envoi à Google Apps Script :", error);
-    return { status: "error", message: error.message };
-  }
+try {
+const response = await fetch(url, {
+method: "POST",
+mode: "no-cors", // ✅ Contourne le blocage CORS entre GitHub Pages et Google Apps Script
+headers: {
+"Content-Type": "application/json",
+},
+body: JSON.stringify(payload),
+});
+
+
+// ⚠️ En mode no-cors, la réponse n'est pas lisible depuis le navigateur.
+// On suppose donc que si aucune erreur n'a été levée, la requête est partie.
+console.log("✅ Requête envoyée à Google Apps Script :", payload);
+return { status: "success" };
+
+
+} catch (error) {
+console.error("❌ Erreur lors de l'envoi à Google Apps Script :", error);
+return { status: "error", message: error.message };
+}
 }
 
