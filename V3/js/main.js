@@ -203,25 +203,27 @@ async function applyAccroches(mode = "general") {
 }
 
 
-// ==============================
-// 📤 Formulaire de proposition de question
-// ==============================
+
+// ============================================================
+// 📤 Gestion complète du formulaire de proposition de question
+// ============================================================
+
 const proposeBtn = document.getElementById("proposeBtn");
 const proposeSection = document.getElementById("proposeSection");
 
 if (proposeBtn && proposeSection) {
   proposeBtn.addEventListener("click", () => {
-    // Si le formulaire est déjà visible, on le masque
+    // 🔁 Toggle d'affichage du formulaire
     if (proposeSection.style.display === "block") {
       proposeSection.style.display = "none";
       proposeSection.innerHTML = "";
       return;
     }
 
-    // Sinon, on l'affiche
+    // ✅ Création du formulaire
     proposeSection.style.display = "block";
     proposeSection.innerHTML = `
-      <form id="userQuestionForm" class="user-question-form">
+      <form id="userQuestionForm" class="user-question-form fade-in">
         <h3 data-i18n="ui.submitQuestionTitle">💡 Proposer une nouvelle question</h3>
 
         <div class="form-group">
@@ -255,17 +257,21 @@ if (proposeBtn && proposeSection) {
           </select>
         </div>
 
+        <div id="sendMessage" class="send-status"></div>
+
         <div class="form-group center">
           <button type="submit" id="sendQuestionBtn" data-i18n="ui.sendButton">📤 Envoyer</button>
         </div>
       </form>
     `;
 
-    // Mise à jour des traductions
+    // 🔠 Mise à jour des traductions
     if (typeof updateUITexts === "function") updateUITexts();
 
-    // Gestion du formulaire
     const form = document.getElementById("userQuestionForm");
+    const sendBtn = document.getElementById("sendQuestionBtn");
+    const messageBox = document.getElementById("sendMessage");
+
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
 
@@ -278,24 +284,46 @@ if (proposeBtn && proposeSection) {
       };
 
       if (!data.userKey || !data.question || !data.correctAnswer) {
-        alert("⚠️ Merci de remplir la clé, la question et la bonne réponse.");
+        messageBox.textContent = getI18nText("ui.missingFields", "⚠️ Merci de remplir la clé, la question et la bonne réponse.");
+        messageBox.style.color = "orange";
         return;
       }
 
+      // 🟡 Envoi en cours...
+      sendBtn.disabled = true;
+      sendBtn.textContent = getI18nText("ui.sending", "📤 Envoi en cours...");
+      messageBox.textContent = "";
+
       try {
-         console.log("📦 Données prêtes à l’envoi :", data); // 👈 AJOUTE CETTE LIGNE
+        console.log("📦 Données prêtes à l’envoi :", data);
         const result = await sendUserQuestion(data);
+
         if (result?.status === "success") {
-          alert("✅ Question envoyée avec succès !");
-          form.reset();
+          messageBox.textContent = getI18nText("ui.sendSuccess", "✅ Question envoyée avec succès ! Merci 🙌");
+          messageBox.style.color = "green";
+
+          // ✨ Animation fade-out après succès
+          form.classList.add("fade-out");
+          setTimeout(() => {
+            form.reset();
+            proposeSection.style.display = "none";
+            form.classList.remove("fade-out");
+          }, 1200);
+
         } else {
-          alert("❌ Une erreur est survenue lors de l'envoi.");
+          messageBox.textContent = getI18nText("ui.sendError", "⚠️ Erreur lors de l'envoi. Réessaie plus tard.");
+          messageBox.style.color = "orange";
         }
       } catch (err) {
         console.error(err);
-        alert("⚠️ Impossible de contacter Google Sheets.");
+        messageBox.textContent = getI18nText("ui.networkError", "❌ Une erreur est survenue pendant l'envoi.");
+        messageBox.style.color = "red";
+      } finally {
+        sendBtn.disabled = false;
+        sendBtn.textContent = getI18nText("ui.sendButton", "📤 Envoyer");
       }
     });
   });
 }
+
 
