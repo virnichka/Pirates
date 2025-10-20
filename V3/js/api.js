@@ -116,6 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
     sendBtn.textContent = getI18nText("ui.sending", "📤 Envoi en cours...");
     messageBox.textContent = "";
 
+    console.log("🟢 Chargement de api.js commencé");
     const data = collectQuestionData(); // fonction existante dans ton code
 
     try {
