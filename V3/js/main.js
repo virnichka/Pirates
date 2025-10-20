@@ -204,58 +204,83 @@ async function applyAccroches(mode = "general") {
 
 
 // ==============================
-// 📤 Formulaire de proposition de question
+// 📤 Formulaire de proposition de question (version améliorée)
 // ==============================
 const proposeBtn = document.getElementById("proposeBtn");
 const proposeSection = document.getElementById("proposeSection");
 
+
 if (proposeBtn && proposeSection) {
-  proposeBtn.addEventListener("click", () => {
-    // Si le formulaire est déjà visible, on le masque
-    if (proposeSection.style.display === "block") {
-      proposeSection.style.display = "none";
-      proposeSection.innerHTML = "";
-      return;
-    }
-
-    // Sinon, on l'affiche avec le formulaire
-    proposeSection.style.display = "block";
-    proposeSection.innerHTML = `
-        <form id="userQuestionForm" class="user-question-form">
-          <h3 data-i18n="ui.submitQuestionTitle"></h3>
-      
-          <label for="userKey" data-i18n="ui.userKeyLabel"></label>
-          <input type="text" id="userKey" name="userKey" required />
-      
-          <label for="questionText" data-i18n="ui.questionLabel"></label>
-          <textarea id="questionText" name="questionText" rows="2" required></textarea>
-      
-          <label for="correctAnswer" data-i18n="ui.correctAnswerLabel"></label>
-          <input type="text" id="correctAnswer" name="correctAnswer" required />
-      
-          ${Array.from({ length: 6 }, (_, i) => `
-            <label for="wrongAnswer${i+1}" data-i18n="ui.wrongAnswerLabel"></label>
-            <input type="text" id="wrongAnswer${i+1}" name="wrongAnswer${i+1}" />
-          `).join("")}
-      
-          <label for="category" data-i18n="ui.categoryLabel"></label>
-          <input type="text" id="category" name="category" placeholder="(optionnel)" />
-      
-          <button type="submit" id="sendQuestionBtn" data-i18n="ui.sendButton"></button>
-        </form>
-      `;
-      
-      // Après l’injection du HTML, on traduit immédiatement le contenu
-      if (typeof updateUITexts === "function") updateUITexts();
+proposeBtn.addEventListener("click", () => {
+// Si le formulaire est déjà visible, on le masque
+if (proposeSection.style.display === "block") {
+proposeSection.style.display = "none";
+proposeSection.innerHTML = "";
+return;
+}
 
 
-    // On gérera l’envoi à Google Sheets plus tard
-    const form = document.getElementById("userQuestionForm");
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-      alert("✅ Formulaire prêt — la logique d’envoi vers Google Sheets arrive à l’étape suivante !");
-    });
-  });
+// Sinon, on affiche le formulaire avec une mise en page plus fluide
+proposeSection.style.display = "block";
+proposeSection.innerHTML = `
+<form id="userQuestionForm" class="user-question-form">
+<h3 data-i18n="ui.submitQuestionTitle">💡 Proposer une nouvelle question</h3>
+
+
+<div class="form-group">
+<label for="userKey" data-i18n="ui.userKeyLabel">🔑 Clé d'accès :</label>
+<input type="text" id="userKey" name="userKey" placeholder="Votre clé d'accès" required />
+</div>
+
+
+<div class="form-group">
+<label for="questionText" data-i18n="ui.questionLabel">❓ Question :</label>
+<textarea id="questionText" name="questionText" rows="2" required></textarea>
+</div>
+
+
+<div class="form-group">
+<label for="correctAnswer" data-i18n="ui.correctAnswerLabel">✅ Bonne réponse :</label>
+<input type="text" id="correctAnswer" name="correctAnswer" required />
+</div>
+
+
+<fieldset class="wrong-answers">
+<legend>❌ <span data-i18n="ui.wrongAnswersGroup">Mauvaises réponses</span></legend>
+${Array.from({ length: 6 }, (_, i) => `
+<input type="text" id="wrongAnswer${i+1}" name="wrongAnswer${i+1}" placeholder="Mauvaise réponse ${i+1}" />
+`).join("")}
+</fieldset>
+
+
+<div class="form-group">
+<label for="category" data-i18n="ui.categoryLabel">🏷️ Catégorie :</label>
+<select id="category" name="category" required>
+<option value="general">Général 🦁</option>
+<option value="fun">Fun 🤪</option>
+<option value="full_dark">Full Dark 🏴‍☠️</option>
+</select>
+</div>
+
+
+<div class="form-group center">
+<button type="submit" id="sendQuestionBtn" data-i18n="ui.sendButton">📤 Envoyer</button>
+</div>
+</form>
+`;
+
+
+// Mise à jour des traductions selon la langue active
+if (typeof updateUITexts === "function") updateUITexts();
+
+
+// Gestion du formulaire (logique d'envoi à venir)
+const form = document.getElementById("userQuestionForm");
+form.addEventListener("submit", (e) => {
+e.preventDefault();
+alert("✅ Formulaire prêt — prochaine étape : envoi à Google Sheets.");
+});
+});
 }
 
 
