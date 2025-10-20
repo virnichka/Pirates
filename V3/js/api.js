@@ -95,45 +95,73 @@ async function sendScore(nom, score, total, mode = "general") {
 
 
 // ============================================================
-// 📤 Fonction d'envoi de question utilisateur vers Google Sheets
+// 📩 Gestion de la soumission de la question utilisateur (multilingue + animation)
 // ============================================================
 
+document.addEventListener("DOMContentLoaded", () => {
+  const proposeSection = document.getElementById("proposeSection");
+  const form = document.getElementById("submitQuestionForm");
+  const sendBtn = document.getElementById("sendQuestionBtn");
+  const messageBox = document.createElement("div");
+  messageBox.id = "sendMessage";
+  messageBox.classList.add("send-status");
+  proposeSection.appendChild(messageBox);
 
-/**
-* Envoie une question proposée par un utilisateur au script Google Apps Script.
-* Utilise mode: 'no-cors' pour contourner la politique de sécurité du navigateur
-* (CORS) lorsque le site est hébergé sur un domaine différent (ex: GitHub Pages).
-*/
-async function sendUserQuestion(data) {
-const url = CONFIG.GOOGLE_SCRIPT_URL; // ✅ doit pointer vers ton Apps Script déployé
+  if (!form) return;
 
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-const payload = {
-action: "add_user_question",
-...data
-};
+    sendBtn.disabled = true;
+    sendBtn.textContent = getI18nText("ui.sending", "📤 Envoi en cours...");
+    messageBox.textContent = "";
 
+    const data = collectQuestionData(); // fonction existante dans ton code
 
-try {
-const response = await fetch(url, {
-method: "POST",
-mode: "no-cors", // ✅ Contourne le blocage CORS entre GitHub Pages et Google Apps Script
-headers: {
-"Content-Type": "application/json",
-},
-body: JSON.stringify(payload),
+    try {
+      const result = await sendUserQuestion(data);
+
+      if (result.status === "success") {
+        messageBox.textContent = getI18nText("ui.sendSuccess", "✅ Question envoyée avec succès ! Merci 🙌");
+        messageBox.style.color = "green";
+
+        // Animation fade-out douce avant masquage
+        proposeSection.classList.add("fade-out");
+        setTimeout(() => {
+          proposeSection.style.display = "none";
+          form.reset();
+          proposeSection.classList.remove("fade-out");
+        }, 1000);
+      } else {
+        messageBox.textContent = getI18nText("ui.sendError", "⚠️ Erreur lors de l'envoi. Réessaie plus tard.");
+        messageBox.style.color = "orange";
+      }
+    } catch (err) {
+      console.error("Erreur lors de l'envoi :", err);
+      messageBox.textContent = getI18nText("ui.networkError", "❌ Une erreur est survenue pendant l'envoi.");
+      messageBox.style.color = "red";
+    } finally {
+      sendBtn.disabled = false;
+      sendBtn.textContent = getI18nText("ui.sendButton", "📤 Envoyer");
+    }
+  });
 });
 
-
-// ⚠️ En mode no-cors, la réponse n'est pas lisible depuis le navigateur.
-// On suppose donc que si aucune erreur n'a été levée, la requête est partie.
-console.log("✅ Requête envoyée à Google Apps Script :", payload);
-return { status: "success" };
-
-
-} catch (error) {
-console.error("❌ Erreur lors de l'envoi à Google Apps Script :", error);
-return { status: "error", message: error.message };
+// ============================================================
+// 🧠 Utilitaire pour récupérer une clé multilingue avec fallback
+// ------------------------------------------------------------
+function getI18nText(key, fallback) {
+  if (window.i18n && window.i18n[key]) return window.i18n[key];
+  return fallback;
 }
-}
+
+// ============================================================
+// 🗂️ Clés à ajouter dans texts.json
+// ------------------------------------------------------------
+// "ui.sending": "📤 Envoi en cours...",
+// "ui.sendSuccess": "✅ Question envoyée avec succès ! Merci 🙌",
+// "ui.sendError": "⚠️ Erreur lors de l'envoi. Réessaie plus tard.",
+// "ui.networkError": "❌ Une erreur est survenue pendant l'envoi.",
+// "ui.sendButton": "📤 Envoyer"
+// ============================================================
 
