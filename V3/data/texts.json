@@ -31,11 +31,11 @@
           "wrongAnswerLabel": "❌ Mauvaise réponse",
           "categoryLabel": "🏷️ Catégorie",
           "sendButton": "📤 Envoyer",
-          "ui.sending": "📤 Envoi en cours...",
-          "ui.sendSuccess": "✅ Question envoyée avec succès ! Merci 🙌",
-          "ui.sendError": "⚠️ Erreur lors de l'envoi. Réessaie plus tard.",
-          "ui.networkError": "❌ Une erreur est survenue pendant l'envoi.",
-          "ui.sendButton": "📤 Envoyer"
+          "sending": "📤 Envoi en cours...",
+          "sendSuccess": "✅ Question envoyée avec succès ! Merci 🙌",
+          "sendError": "⚠️ Erreur lors de l'envoi. Réessaie plus tard.",
+          "networkError": "❌ Une erreur est survenue pendant l'envoi.",
+          "sendButton": "📤 Envoyer"
         },
 
 
@@ -194,11 +194,11 @@
           "wrongAnswerLabel": "❌ Wrong answer",
           "categoryLabel": "🏷️ Category",
           "sendButton": "📤 Send",
-          "ui.sending": "📤 Sending...",
-          "ui.sendSuccess": "✅ Question submitted successfully! Thank you 🙌",
-          "ui.sendError": "⚠️ Error while sending. Please try again later.",
-          "ui.networkError": "❌ A network error occurred during submission.",
-          "ui.sendButton": "📤 Submit"
+          "sending": "📤 Sending...",
+          "sendSuccess": "✅ Question submitted successfully! Thank you 🙌",
+          "sendError": "⚠️ Error while sending. Please try again later.",
+          "networkError": "❌ A network error occurred during submission.",
+          "sendButton": "📤 Submit"
         },
 
 
@@ -359,11 +359,11 @@
           "wrongAnswerLabel": "❌ Respuesta incorrecta",
           "categoryLabel": "🏷️ Categoría",
           "sendButton": "📤 Enviar",
-          "ui.sending": "📤 Enviando...",
-          "ui.sendSuccess": "✅ ¡Pregunta enviada con éxito! ¡Gracias 🙌!",
-          "ui.sendError": "⚠️ Error al enviar. Inténtalo de nuevo más tarde.",
-          "ui.networkError": "❌ Ocurrió un error de red durante el envío.",
-          "ui.sendButton": "📤 Enviar"
+          "sending": "📤 Enviando...",
+          "sendSuccess": "✅ ¡Pregunta enviada con éxito! ¡Gracias 🙌!",
+          "sendError": "⚠️ Error al enviar. Inténtalo de nuevo más tarde.",
+          "networkError": "❌ Ocurrió un error de red durante el envío.",
+          "sendButton": "📤 Enviar"
         },
 
   "quiz": {
@@ -523,11 +523,11 @@
         "wrongAnswerLabel": "❌ Răspuns greșit",
         "categoryLabel": "🏷️ Categorie",
         "sendButton": "📤 Trimite",
-        "ui.sending": "📤 Se trimite...",
-        "ui.sendSuccess": "✅ Întrebarea a fost trimisă cu succes! Mulțumim 🙌",
-        "ui.sendError": "⚠️ Eroare la trimitere. Încearcă din nou mai târziu.",
-        "ui.networkError": "❌ A apărut o eroare de rețea în timpul trimiterii.",
-        "ui.sendButton": "📤 Trimite"
+        "sending": "📤 Se trimite...",
+        "sendSuccess": "✅ Întrebarea a fost trimisă cu succes! Mulțumim 🙌",
+        "sendError": "⚠️ Eroare la trimitere. Încearcă din nou mai târziu.",
+        "networkError": "❌ A apărut o eroare de rețea în timpul trimiterii.",
+        "sendButton": "📤 Trimite"
       },
 
   "quiz": {
