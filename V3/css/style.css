@@ -253,9 +253,12 @@ h3 {
   background-color: var(--button-bg);
   color: var(--button-text);
   cursor: pointer;
-  font-weight: 600;
+  font-size: 1rem;
+  font-weight: normal; 
+  font-family: inherit;
   transition: background-color 0.3s, color 0.3s;
 }
+
 
 #proposeContainer .propose-btn:hover {
   background-color: var(--accent-color);
