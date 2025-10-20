@@ -202,105 +202,99 @@ async function applyAccroches(mode = "general") {
   }
 }
 
+
+// ==============================
+// 📤 Formulaire de proposition de question
 // ==============================
 const proposeBtn = document.getElementById("proposeBtn");
 const proposeSection = document.getElementById("proposeSection");
 
-
 if (proposeBtn && proposeSection) {
-   proposeBtn.addEventListener("click", () => {
-   // Si le formulaire est déjà visible, on le masque
-   if (proposeSection.style.display === "block") {
-   proposeSection.style.display = "none";
-   proposeSection.innerHTML = "";
-   return;
-   }
-   
-   
-   // Sinon, on affiche le formulaire avec une mise en page plus fluide
-   proposeSection.style.display = "block";
-   proposeSection.innerHTML = `
-   <form id="userQuestionForm" class="user-question-form">
-   <h3 data-i18n="ui.submitQuestionTitle">💡 Proposer une nouvelle question</h3>
-   
-   
-   <div class="form-group">
-   <label for="userKey" data-i18n="ui.userKeyLabel">🔑 Clé d'accès :</label>
-   <input type="text" id="userKey" name="userKey" placeholder="Votre clé d'accès" required />
-   </div>
-   
-   
-   <div class="form-group">
-   <label for="questionText" data-i18n="ui.questionLabel">❓ Question :</label>
-   <textarea id="questionText" name="questionText" rows="2" required></textarea>
-   </div>
-   
-   
-   <div class="form-group">
-   <label for="correctAnswer" data-i18n="ui.correctAnswerLabel">✅ Bonne réponse :</label>
-   <input type="text" id="correctAnswer" name="correctAnswer" required />
-   </div>
-   
-   
-   <fieldset class="wrong-answers">
-   <legend>❌ <span data-i18n="ui.wrongAnswersGroup">Mauvaises réponses</span></legend>
-   ${Array.from({ length: 6 }, (_, i) => `
-   <input type="text" id="wrongAnswer${i+1}" name="wrongAnswer${i+1}" placeholder="Mauvaise réponse ${i+1}" />
-   `).join("")}
-   </fieldset>
-   
-   
-   <div class="form-group">
-   <label for="category" data-i18n="ui.categoryLabel">🏷️ Catégorie :</label>
-   <select id="category" name="category" required>
-   <option value="general">Général 🦁</option>
-   <option value="fun">Fun 🤪</option>
-   <option value="full_dark">Full Dark 🏴‍☠️</option>
-   </select>
-   </div>
-   
-   
-   <div class="form-group center">
-   <button type="submit" id="sendQuestionBtn" data-i18n="ui.sendButton">📤 Envoyer</button>
-   </div>
-   </form>
-   `;
-   
-   
-   // Mise à jour des traductions selon la langue active
-   if (typeof updateUITexts === "function") updateUITexts();
-   
-   
-   // Gestion du formulaire (logique d'envoi à venir)
-   const form = document.getElementById("userQuestionForm");
-   form.addEventListener("submit", async (e) => {
-  e.preventDefault();
-
-  const data = {
-    userKey: form.userKey.value.trim(),
-    question: form.questionText.value.trim(),
-    correctAnswer: form.correctAnswer.value.trim(),
-    wrongAnswers: Array.from({ length: 6 }, (_, i) => form[`wrongAnswer${i + 1}`].value.trim()).filter(v => v),
-    category: form.category.value
-  };
-
-  if (!data.userKey || !data.question || !data.correctAnswer) {
-    alert("⚠️ Merci de remplir au minimum la clé, la question et la bonne réponse.");
-    return;
-  }
-
-  try {
-    const result = await sendUserQuestion(data);
-    if (result?.status === "success") {
-      alert("✅ Question envoyée avec succès !");
-      form.reset();
-    } else {
-      alert("❌ Une erreur est survenue lors de l'envoi.");
+  proposeBtn.addEventListener("click", () => {
+    // Si le formulaire est déjà visible, on le masque
+    if (proposeSection.style.display === "block") {
+      proposeSection.style.display = "none";
+      proposeSection.innerHTML = "";
+      return;
     }
-  } catch (err) {
-    console.error(err);
-    alert("⚠️ Impossible de contacter le serveur Google Sheets.");
-  }
-});
 
+    // Sinon, on l'affiche
+    proposeSection.style.display = "block";
+    proposeSection.innerHTML = `
+      <form id="userQuestionForm" class="user-question-form">
+        <h3 data-i18n="ui.submitQuestionTitle">💡 Proposer une nouvelle question</h3>
+
+        <div class="form-group">
+          <label for="userKey" data-i18n="ui.userKeyLabel">🔑 Clé d'accès :</label>
+          <input type="text" id="userKey" name="userKey" required />
+        </div>
+
+        <div class="form-group">
+          <label for="questionText" data-i18n="ui.questionLabel">❓ Question :</label>
+          <textarea id="questionText" name="questionText" rows="2" required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="correctAnswer" data-i18n="ui.correctAnswerLabel">✅ Bonne réponse :</label>
+          <input type="text" id="correctAnswer" name="correctAnswer" required />
+        </div>
+
+        <fieldset class="wrong-answers">
+          <legend>❌ <span data-i18n="ui.wrongAnswersGroup">Mauvaises réponses</span></legend>
+          ${Array.from({ length: 6 }, (_, i) => `
+            <input type="text" id="wrongAnswer${i+1}" name="wrongAnswer${i+1}" placeholder="Mauvaise réponse ${i+1}" />
+          `).join("")}
+        </fieldset>
+
+        <div class="form-group">
+          <label for="category" data-i18n="ui.categoryLabel">🏷️ Catégorie :</label>
+          <select id="category" name="category" required>
+            <option value="general">Général 🦁</option>
+            <option value="fun">Fun 🤪</option>
+            <option value="full_dark">Full Dark 🏴‍☠️</option>
+          </select>
+        </div>
+
+        <div class="form-group center">
+          <button type="submit" id="sendQuestionBtn" data-i18n="ui.sendButton">📤 Envoyer</button>
+        </div>
+      </form>
+    `;
+
+    // Mise à jour des traductions
+    if (typeof updateUITexts === "function") updateUITexts();
+
+    // Gestion du formulaire
+    const form = document.getElementById("userQuestionForm");
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const data = {
+        userKey: form.userKey.value.trim(),
+        question: form.questionText.value.trim(),
+        correctAnswer: form.correctAnswer.value.trim(),
+        wrongAnswers: Array.from({ length: 6 }, (_, i) => form[`wrongAnswer${i + 1}`].value.trim()).filter(v => v),
+        category: form.category.value
+      };
+
+      if (!data.userKey || !data.question || !data.correctAnswer) {
+        alert("⚠️ Merci de remplir la clé, la question et la bonne réponse.");
+        return;
+      }
+
+      try {
+        const result = await sendUserQuestion(data);
+        if (result?.status === "success") {
+          alert("✅ Question envoyée avec succès !");
+          form.reset();
+        } else {
+          alert("❌ Une erreur est survenue lors de l'envoi.");
+        }
+      } catch (err) {
+        console.error(err);
+        alert("⚠️ Impossible de contacter Google Sheets.");
+      }
+    });
+  });
+}
 
