@@ -303,6 +303,4 @@ if (proposeBtn && proposeSection) {
   }
 });
 
-}
-
 
