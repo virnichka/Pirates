@@ -30,8 +30,12 @@
           "correctAnswerLabel": "✅ Bonne réponse",
           "wrongAnswerLabel": "❌ Mauvaise réponse",
           "categoryLabel": "🏷️ Catégorie",
-          "sendButton": "📤 Envoyer"
-
+          "sendButton": "📤 Envoyer",
+          "ui.sending": "📤 Envoi en cours...",
+          "ui.sendSuccess": "✅ Question envoyée avec succès ! Merci 🙌",
+          "ui.sendError": "⚠️ Erreur lors de l'envoi. Réessaie plus tard.",
+          "ui.networkError": "❌ Une erreur est survenue pendant l'envoi.",
+          "ui.sendButton": "📤 Envoyer"
         },
 
 
@@ -189,8 +193,12 @@
           "correctAnswerLabel": "✅ Correct answer",
           "wrongAnswerLabel": "❌ Wrong answer",
           "categoryLabel": "🏷️ Category",
-          "sendButton": "📤 Send"
-
+          "sendButton": "📤 Send",
+          "ui.sending": "📤 Sending...",
+          "ui.sendSuccess": "✅ Question submitted successfully! Thank you 🙌",
+          "ui.sendError": "⚠️ Error while sending. Please try again later.",
+          "ui.networkError": "❌ A network error occurred during submission.",
+          "ui.sendButton": "📤 Submit"
         },
 
 
@@ -350,8 +358,12 @@
           "correctAnswerLabel": "✅ Respuesta correcta",
           "wrongAnswerLabel": "❌ Respuesta incorrecta",
           "categoryLabel": "🏷️ Categoría",
-          "sendButton": "📤 Enviar"
-
+          "sendButton": "📤 Enviar",
+          "ui.sending": "📤 Enviando...",
+          "ui.sendSuccess": "✅ ¡Pregunta enviada con éxito! ¡Gracias 🙌!",
+          "ui.sendError": "⚠️ Error al enviar. Inténtalo de nuevo más tarde.",
+          "ui.networkError": "❌ Ocurrió un error de red durante el envío.",
+          "ui.sendButton": "📤 Enviar"
         },
 
   "quiz": {
@@ -510,8 +522,12 @@
         "correctAnswerLabel": "✅ Răspuns corect",
         "wrongAnswerLabel": "❌ Răspuns greșit",
         "categoryLabel": "🏷️ Categorie",
-        "sendButton": "📤 Trimite"
-
+        "sendButton": "📤 Trimite",
+        "ui.sending": "📤 Se trimite...",
+        "ui.sendSuccess": "✅ Întrebarea a fost trimisă cu succes! Mulțumim 🙌",
+        "ui.sendError": "⚠️ Eroare la trimitere. Încearcă din nou mai târziu.",
+        "ui.networkError": "❌ A apărut o eroare de rețea în timpul trimiterii.",
+        "ui.sendButton": "📤 Trimite"
       },
 
   "quiz": {
