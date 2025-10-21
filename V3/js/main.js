@@ -207,9 +207,6 @@ async function applyAccroches(mode = "general") {
 // ============================================================
 // 📤 Gestion complète du formulaire de proposition de question
 // ============================================================
-// ============================================================
-// 📤 Gestion complète du formulaire de proposition de question
-// ============================================================
 
 const proposeBtn = document.getElementById("proposeBtn");
 const proposeSection = document.getElementById("proposeSection");
@@ -304,6 +301,8 @@ if (proposeBtn && proposeSection) {
       sendBtn.textContent = getI18nText("ui.sending", "📤 Envoi en cours...");
       messageBox.textContent = "";
 
+      
+       
       try {
         console.log("📦 Données prêtes à l’envoi :", data);
         const result = await sendUserQuestion(data);
