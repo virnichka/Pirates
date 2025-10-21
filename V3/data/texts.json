@@ -35,7 +35,8 @@
           "sendSuccess": "✅ Question envoyée avec succès ! Merci 🙌",
           "sendError": "⚠️ Erreur lors de l'envoi. Réessaie plus tard.",
           "networkError": "❌ Une erreur est survenue pendant l'envoi.",
-          "sendButton": "📤 Envoyer"
+          "sendButton": "📤 Envoyer",
+          "invalidKey": "Clé d’accès invalide ❌"
         },
 
 
@@ -198,7 +199,8 @@
           "sendSuccess": "✅ Question submitted successfully! Thank you 🙌",
           "sendError": "⚠️ Error while sending. Please try again later.",
           "networkError": "❌ A network error occurred during submission.",
-          "sendButton": "📤 Submit"
+          "sendButton": "📤 Submit",
+          "invalidKey": "Invalid access key ❌"
         },
 
 
@@ -363,7 +365,8 @@
           "sendSuccess": "✅ ¡Pregunta enviada con éxito! ¡Gracias 🙌!",
           "sendError": "⚠️ Error al enviar. Inténtalo de nuevo más tarde.",
           "networkError": "❌ Ocurrió un error de red durante el envío.",
-          "sendButton": "📤 Enviar"
+          "sendButton": "📤 Enviar",
+          "invalidKey": "Clave de acceso no válida ❌"
         },
 
   "quiz": {
@@ -527,7 +530,8 @@
         "sendSuccess": "✅ Întrebarea a fost trimisă cu succes! Mulțumim 🙌",
         "sendError": "⚠️ Eroare la trimitere. Încearcă din nou mai târziu.",
         "networkError": "❌ A apărut o eroare de rețea în timpul trimiterii.",
-        "sendButton": "📤 Trimite"
+        "sendButton": "📤 Trimite",
+        "invalidKey": "Cheie de acces invalidă ❌"
       },
 
   "quiz": {
