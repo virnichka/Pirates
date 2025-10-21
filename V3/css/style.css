@@ -206,69 +206,38 @@ h3 {
 }
 
 
-/* -----------------------------------------------------------
-   🎮 ZONE DE QUIZ
-   ----------------------------------------------------------- */
-/* -----------------------------------------------------------
-   🎮 Sélecteur de mode (en bas du site)
-   ----------------------------------------------------------- */
-#mode-selector-footer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.4rem;
-  margin-top: 0.8rem;
-}
-
-#mode-selector-footer label {
-  font-weight: 600;
-  color: var(--text-color);
-}
-
-#mode-selector-footer select {
-  padding: 0.4rem 0.8rem;
-  border-radius: 8px;
-  border: 1px solid var(--border-color);
-  background-color: var(--button-bg);
-  color: var(--button-text);
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-#mode-selector-footer select:hover {
-  background-color: var(--accent-color);
-  color: #fff;
-}
-
-#lang-selector-footer {
-  display: flex;
-  flex-direction: column;  /* ✅ icône au-dessus de la liste */
-  align-items: center;
-  justify-content: center;
-  gap: 0.4rem;
-  margin-top: 0.8rem;
-}
-
 
 /* -----------------------------------------------------------
-   💡 Bouton Soumettre une question (Upload)
+   🎮🌍📤 Boutons du footer (mode / langue / upload)
    ----------------------------------------------------------- */
+
+/* Structure commune */
+#mode-selector-footer,
+#lang-selector-footer,
 #proposeContainer {
   display: flex;
-  flex-direction: column; /* icône au-dessus, bouton dessous */
+  flex-direction: column;   /* icône au-dessus, bouton dessous */
   align-items: center;
   justify-content: center;
   gap: 0.4rem;
   margin-top: 0.8rem;
+  flex: 1 1 120px;          /* largeur minimale commune */
+  max-width: 140px;         /* évite les écarts de taille */
+  text-align: center;
 }
 
+/* Icônes */
+#mode-selector-footer label,
+#lang-selector-footer label,
 #proposeContainer .upload-icon {
   font-weight: 600;
   color: var(--text-color);
   font-size: 1.1rem;
 }
 
+/* Boutons et sélecteurs */
+#mode-selector-footer select,
+#lang-selector-footer select,
 #proposeContainer .propose-btn {
   padding: 0.4rem 0.8rem;
   border-radius: 8px;
@@ -276,17 +245,21 @@ h3 {
   background-color: var(--button-bg);
   color: var(--button-text);
   cursor: pointer;
-  font-size: 1rem;
-  font-weight: normal; 
+  font-size: 0.95rem;
+  font-weight: normal;
   font-family: inherit;
+  height: 38px;             /* ✅ Hauteur unifiée */
   transition: background-color 0.3s, color 0.3s;
 }
 
-
+/* Survol */
+#mode-selector-footer select:hover,
+#lang-selector-footer select:hover,
 #proposeContainer .propose-btn:hover {
   background-color: var(--accent-color);
   color: #fff;
 }
+
 
 
 
