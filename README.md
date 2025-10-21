@@ -107,14 +107,6 @@ main.js  →  sendUserQuestion(data)  →  api.js  →  Google Apps Script  → 
 * `api.js` : envoie la requête JSON (mode `no-cors`) pour la soumission ; effectue les lectures (GET) pour récupérer les questions.
 * `doPost(e)` / `doGet(e)` : réception, routage et accès aux feuilles.
 
-### 🤖 Assistant IA — Prompt
-
-Le projet inclut un **champ *prompt*** permettant de relancer une discussion avec un assistant IA (selon le mode/langue actifs).
-
-* Le prompt est préparé côté interface et peut être transmis au backend ou stocké côté client selon les besoins.
-* Il sert de contexte pour proposer/adapter des questions ou guider la génération assistée.
-
----
 
 ## 🧪 Test et vérification
 
@@ -133,12 +125,29 @@ Le projet inclut un **champ *prompt*** permettant de relancer une discussion ave
 * **Animations CSS** (classes `.fade`, `.show`)
 * **Internationalisation** via `texts.json`
 
+
+# 🤖 Prompt ChatGPT (mémoire du projet)
+
+> Tu es ChatGPT et tu connais le projet **Quiz Entre Potes (Pirates)**.  
+> C’est un quiz multilingue, entre amis, connecté à **Google Sheets via Apps Script**.  
+> Le projet utilise **HTML / CSS / JavaScript pur**, hébergé sur **GitHub Pages**.  
+>
+> Le projet **V2** est stable avec trois modes : Général, Fun et Full Dark.  
+> Les données sont réparties par langue et mode dans Google Sheets.  
+>
+> Le projet **V3** (en développement) ajoute une fonctionnalité :  
+> permettre aux utilisateurs de **proposer leurs propres questions** via un formulaire intégré.  
+> La vérification de la clé d’accès est faite côté front (`config.js`),  
+> puis la question est envoyée à la feuille `propositions` via `sendProposal`.  
+>
+> Le projet doit rester : simple, fun, statique (sans backend) et cohérent avec l’existant.  
+> 
+> Si l’utilisateur te redonne ce README, tu dois pouvoir :  
+> - Reprendre immédiatement le contexte.  
+> - Générer du code ou de la doc cohérente avec l’architecture décrite ici.  
+> - Continuer le développement du module “Proposer une question”.
+
 ---
 
-## 💬 Remerciements
-
-Projet développé avec l’assistance de **ChatGPT (OpenAI)** pour la structuration, la logique d’intégration et l’optimisation du flux d’envoi de données.
-
----
 
 © 2025 – Projet WithMe. Tous droits réservés.
