@@ -163,43 +163,35 @@ function applyTheme(mode) {
   localStorage.setItem("selectedMode", mode);
 }
 
-async function applyAccroches(mode = "general") {
-  try {
-    // 🔹 Si les textes ne sont pas encore chargés, on les charge une fois
-    if (!window.TEXTS) {
-      const response = await fetch("./data/texts.json");
-      const allTexts = await response.json();
-      const lang = window.currentLang || localStorage.getItem("lang") || "fr";
-      window.TEXTS = allTexts[lang];
+
+
+function applyAccroches(mode) {
+  const updateTitles = () => {
+    const mainTitle = document.getElementById("mainTitle");
+    const subtitle = document.getElementById("subtitle");
+
+    if (!mainTitle || !subtitle) return false;
+
+    const modeTexts = texts[lang]?.ui || texts["fr"].ui; // fallback fr
+    mainTitle.textContent = modeTexts.mainTitle;
+    subtitle.textContent = modeTexts.title;
+    return true;
+  };
+
+  // 🔹 Étape 1 : essai immédiat
+  if (updateTitles()) return;
+
+  // 🔹 Étape 2 : sinon on observe le DOM
+  const observer = new MutationObserver(() => {
+    if (updateTitles()) {
+      observer.disconnect(); // on arrête dès que c’est fait
     }
+  });
 
-    // 🔹 Récupère le bloc du mode courant (depuis texts.json)
-    const modeData =
-      window.TEXTS?.accroches?.modes?.[mode] ||
-      window.TEXTS?.accroches?.modes?.general;
-
-    if (!modeData) {
-      console.warn(`[i18n] Aucun bloc trouvé pour le mode "${mode}"`);
-      return;
-    }
-
-    // 🔹 Applique le titre et le sous-titre dans le DOM
-    const titre = randomItem(modeData.titres);
-    const sousTitre = randomItem(modeData.sousTitres);
-
-    const titleEl =
-      document.getElementById("quizTitle") || document.getElementById("titre");
-    const subTitleEl =
-      document.getElementById("quizSubtitle") || document.getElementById("sousTitre");
-
-    if (titleEl) titleEl.innerText = titre;
-    if (subTitleEl) subTitleEl.innerText = sousTitre;
-
-    // 🔹 Sauvegarde les phrases de fin du mode
-    window.currentComments = modeData.commentairesFin;
-  } catch (err) {
-    console.error("❌ Erreur lors du chargement des textes :", err);
-  }
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true
+  });
 }
 
 
