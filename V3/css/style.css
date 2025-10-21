@@ -168,20 +168,26 @@ header {
   text-align: center; /* ✅ Centre tout le contenu du header */
 }
 
+/* 🎨 Ajustement du titre et sous-titre du header */
 header h1 {
-  font-size: clamp(1.5rem, 4vw, 1.8rem); /* ↓ réduit de ~15%, s'adapte à l'écran */
-  font-weight: 500;
-  line-height: 1.2; /* un peu plus compact */
-  margin-bottom: 0.35rem;
+  font-size: clamp(1.3rem, 3vw, 1.7rem); /* ↓ légèrement réduit (~10–15%) */
+  font-weight: 700;
+  line-height: 1.25; /* un peu plus d’air vertical */
+  margin-bottom: 0.4rem;
   color: var(--text-color);
+  text-align: center;
 }
 
 header em {
-  font-size: clamp(0.9rem, 2.5vw, 1rem); /* ↓ réduit d'une taille environ */
+  font-size: clamp(0.9rem, 2vw, 1.1rem); /* ↓ un peu plus petit */
   font-style: normal;
-  color: var(--accent-color);
-  opacity: 0.9; /* optionnel : rend le sous-titre légèrement plus doux */
+  color: var(--text-color); /* cohérent avec le thème clair/sombre */
+  opacity: 0.85; /* contraste plus doux */
+  text-align: center;
+  display: block; /* s’assure que le sous-titre s’aligne bien seul sous le titre */
 }
+
+
 
 
 
