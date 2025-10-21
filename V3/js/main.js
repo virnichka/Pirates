@@ -301,7 +301,31 @@ if (proposeBtn && proposeSection) {
       sendBtn.textContent = getI18nText("ui.sending", "📤 Envoi en cours...");
       messageBox.textContent = "";
 
+      // ✅ Vérification de la clé d’accès
+      const userKey = document.getElementById("userKey")?.value?.trim();
+      const validKeys = CONFIG.VALID_KEYS || {};
+      const submitted_by = validKeys[userKey]; // renvoie le prénom si la clé est bonne
       
+      if (!submitted_by) {
+        const msg = window.TEXTS?.ui?.invalidKey || "Clé d’accès invalide ❌";
+        alert(msg);
+        return; // ⛔ stoppe l’envoi
+      }
+      
+      // Si la clé est valide, on ne l’envoie pas au serveur : on envoie seulement le prénom
+      const payload = {
+        submitted_by,
+        questionText: document.getElementById("questionText").value.trim(),
+        correctAnswer: document.getElementById("correctAnswer").value.trim(),
+        wrongAnswers: Array.from({ length: 6 }, (_, i) =>
+          document.getElementById(`wrongAnswer${i + 1}`).value.trim()
+        ).filter(x => x),
+        category: document.getElementById("category").value
+      };
+      
+      // Envoi de la question
+      await sendUserQuestion(payload);
+
        
       try {
         console.log("📦 Données prêtes à l’envoi :", data);
