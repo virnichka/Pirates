@@ -1,77 +1,84 @@
-
-# 📘 Site Gitehub Pirates -- Plateforme de quiz interactive
+# 📘 Quiz Pirates – Plateforme de quiz interactive (V3)
 
 ## 🎯 Description
 
-**Site Gitehub Pirates** est une plateforme web interactive permettant aux
-utilisateurs de jouer à des quiz selon plusieurs modes, langues et
-thèmes.\
-Elle est conçue pour être simple, fluide et responsive, tout en
-permettant à la communauté de proposer de nouvelles questions
-directement depuis l'interface.
+**Quiz Pirates** est une application web de quiz multilingue et multi-mode, pensée pour être simple, rapide et collaborative. Elle permet désormais aux utilisateurs de **soumettre leurs propres questions** directement depuis l’interface du site.
 
-------------------------------------------------------------------------
+Cette version (V3) consolide les fonctionnalités principales, y compris l’intégration complète avec **Google Sheets** pour la gestion des scores et des propositions de questions.
+
+---
 
 ## 🚀 Fonctionnalités principales
 
 ### 🎮 Modes de jeu
 
--   **Général 🦁**
--   **Fun 🤪**
--   **Full Dark 🏴‍☠️** (mode caché avec mot de passe défini dans
-    `config.js`)
+* **Général 🦁** – Culture générale.
+* **Fun 🤪** – Questions plus légères et ludiques.
+* **Full Dark 🏴‍☠️** – Mode caché nécessitant un mot de passe (défini dans `config.js`).
 
 ### 🌍 Multilingue
 
-Le site prend en charge plusieurs langues (Français, Anglais, Espagnol,
-Roumain).\
-Les textes sont gérés dans le fichier `texts.json` et traduits
-automatiquement selon la langue sélectionnée.
+Le site est disponible en plusieurs langues (Français, Anglais, Espagnol, Roumain).
+Les textes sont gérés dans `texts.json` et automatiquement traduits selon la langue sélectionnée dans le pied de page.
 
-### 📤 Soumission de questions
+### 🧠 Quiz interactif
 
-Les utilisateurs peuvent proposer leurs propres questions : clé d'accès,
-question, bonne réponse, six mauvaises réponses, catégorie.\
-L'interface affiche un retour visuel fluide (messages localisés,
-animation fade) et envoie les données au script Google configuré.
+* Sélection automatique du mode et de la langue.
+* Limitation configurable du nombre de questions (`QUIZ_LIMIT`).
+* Enregistrement automatique des scores dans Google Sheets.
+
+### 📤 Proposition de questions (nouvelle fonctionnalité)
+
+Les utilisateurs peuvent proposer de nouvelles questions depuis l’interface du site :
+
+* Le bouton **📤 Soumettre une question** affiche un formulaire dynamique.
+* L’utilisateur saisit : une **clé d’accès**, la **question**, la **bonne réponse**, jusqu’à **6 mauvaises réponses**, et la **catégorie** (mode du quiz).
+* L’interface est multilingue et s’adapte à la langue de l’utilisateur.
+* Un message animé (fade-in/fade-out) confirme la réussite de l’envoi.
+* Les données sont transmises à Google Sheets via **Google Apps Script**.
 
 ### ☁️ Intégration Google Sheets
 
-Toutes les données sont centralisées dans un **tableur Google Sheets**
-:\
-- Feuille `scores` : enregistre les résultats.\
-- Feuille `questions_users` : reçoit les propositions des utilisateurs.\
-Un script Google Apps Script reçoit les données via `doPost(e)` et les
-insère dans la feuille correspondante.
+L’application s’appuie sur un **script Google Apps Script** connecté à un tableur contenant plusieurs feuilles :
 
-------------------------------------------------------------------------
+* `scores` → enregistre les résultats des joueurs.
+* `questions_users` → stocke les propositions envoyées par les utilisateurs (question, bonne réponse, mauvaises réponses fusionnées, soumis_par, mode/catégorie).
+* Feuilles de questions **par Mode × Langue** (lecture par le site) :
+
+  * `Général FR`, `Général EN`, `Général ES`, `Général RO`
+  * `Fun FR`, `Fun EN`, `Fun ES`, `Fun RO`
+  * `Full Dark FR`, `Full Dark EN`, `Full Dark ES`, `Full Dark RO`
+
+Chaque feuille de questions suit la structure : **question | bonne_reponse | reponses (liste séparée par des virgules) | explication (optionnelle)**.
+
+Le script traite les données reçues via la fonction `doPost(e)` :
+
+* Si le `payload` contient un score → enregistrement dans `scores`.
+* Si le `payload` contient une question utilisateur (`action: add_user_question`) → ajout dans `questions_users`.
+
+Un `doGet(e)` peut être exposé pour **fournir les questions** selon `mode` et `lang` (filtrage par feuille correspondante).
+
+---
 
 ## ⚙️ Structure du projet
 
-    /index.html
-    /style.css
-    /main.js
-    /ui.js
-    /api.js
-    /config.js
-    /texts.json
+```
+index.html         → Structure principale du site
+style.css          → Thèmes, animations et disposition (.fade, .show)
+main.js            → Logique générale, gestion du formulaire utilisateur et UI
+ui.js              → Gestion des textes et traduction dynamique (data-i18n)
+api.js             → Communication avec Google Apps Script (GET/POST)
+config.js          → Configuration (URL du script Google, limite du quiz, clé Full Dark) + exposition globale
+texts.json         → Traductions multilingues (FR/EN/ES/RO)
+```
 
-------------------------------------------------------------------------
-
-## 🧩 Technologies utilisées
-
--   HTML5, CSS3, JavaScript Vanilla\
--   Google Apps Script\
--   Animations CSS (`fade`, `show`)\
--   Internationalisation JSON
-
-------------------------------------------------------------------------
+---
 
 ## 🔑 Configuration
 
 Dans `config.js` :
 
-``` js
+```js
 const CONFIG = {
   GOOGLE_SCRIPT_URL: "https://script.google.com/macros/s/XXXX/exec",
   QUIZ_LIMIT: 5,
@@ -80,24 +87,58 @@ const CONFIG = {
 window.CONFIG = CONFIG;
 ```
 
-------------------------------------------------------------------------
+### Script Google Apps Script (aperçu fonctionnel)
 
-## 🧠 Logique d'envoi
+* **`doPost(e)`** : reçoit des données JSON depuis le site, distingue l’action (score ou question utilisateur) et écrit la ligne dans la feuille cible (`scores` ou `questions_users`).
+* **`doGet(e)`** : renvoie des questions prêtes à l’emploi selon les paramètres `mode` et `lang`, en lisant la feuille correspondante (ex. `Général FR`).
+* **Utilitaires** : extraction du payload, logs, création de feuille si manquante.
 
-    main.js → sendUserQuestion(data) → api.js → Google Apps Script → Google Sheets
+> Remarque : le site utilise un `fetch` en `POST` (mode `no-cors`) pour la soumission de questions ; les chargements de questions se font en `GET` paramétré.
 
--   `main.js` : collecte et valide les données utilisateur.\
--   `api.js` : envoie les données JSON vers Google Apps Script.\
--   Le script Google insère la ligne dans `questions_users`.
+---
 
-------------------------------------------------------------------------
+## 🧩 Logique de fonctionnement
 
-## 🧪 Test
+```
+main.js  →  sendUserQuestion(data)  →  api.js  →  Google Apps Script  →  Google Sheets
+```
 
-1.  Ouvrir la console.\
-2.  Soumettre une question.\
-3.  Observer les logs et vérifier la feuille Google Sheets.
+* `main.js` : gère l’interface (footer, formulaire, messages localisés, transitions `.fade/.show`) et la collecte.
+* `api.js` : envoie la requête JSON (mode `no-cors`) pour la soumission ; effectue les lectures (GET) pour récupérer les questions.
+* `doPost(e)` / `doGet(e)` : réception, routage et accès aux feuilles.
 
-------------------------------------------------------------------------
+### 🤖 Assistant IA — Prompt
 
-© 2025 -- Projet Site Gitehub Pirates. Tous droits réservés.
+Le projet inclut un **champ *prompt*** permettant de relancer une discussion avec un assistant IA (selon le mode/langue actifs).
+
+* Le prompt est préparé côté interface et peut être transmis au backend ou stocké côté client selon les besoins.
+* Il sert de contexte pour proposer/adapter des questions ou guider la génération assistée.
+
+---
+
+## 🧪 Test et vérification
+
+1. Ouvrir la console du navigateur (F12 → Console).
+2. Cliquer sur **📤 Soumettre une question** et remplir le formulaire.
+3. Vérifier les logs : `📦 Données prêtes à l’envoi` et `✅ Question envoyée avec succès !`.
+4. Confirmer la réception dans la feuille Google Sheets `questions_users`.
+
+---
+
+## 🧠 Technologies utilisées
+
+* **HTML5**, **CSS3**, **JavaScript Vanilla**
+* **Google Apps Script** (communication backend)
+* **Google Sheets** (base de données simple)
+* **Animations CSS** (classes `.fade`, `.show`)
+* **Internationalisation** via `texts.json`
+
+---
+
+## 💬 Remerciements
+
+Projet développé avec l’assistance de **ChatGPT (OpenAI)** pour la structuration, la logique d’intégration et l’optimisation du flux d’envoi de données.
+
+---
+
+© 2025 – Projet WithMe. Tous droits réservés.
