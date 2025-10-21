@@ -205,7 +205,7 @@ async function applyAccroches(mode = "general") {
 
 
 // ============================================================
-// 📤 Gestion complète du formulaire de proposition de question
+// 📤 Gestion complète du formulaire de proposition de question (version enrichie)
 // ============================================================
 
 const proposeBtn = document.getElementById("proposeBtn");
@@ -213,7 +213,7 @@ const proposeSection = document.getElementById("proposeSection");
 
 if (proposeBtn && proposeSection) {
   proposeBtn.addEventListener("click", () => {
-    // 🔁 Toggle d'affichage du formulaire avec transition fade déjà existante
+    // 🔁 Toggle d'affichage du formulaire avec transition fade
     if (proposeSection.style.display === "block") {
       proposeSection.classList.remove("show"); // fade-out
       setTimeout(() => {
@@ -224,7 +224,7 @@ if (proposeBtn && proposeSection) {
       return;
     }
 
-    // ✅ Création du formulaire avec effet fade déjà défini en CSS
+    // ✅ Création du formulaire avec effet fade
     proposeSection.style.display = "block";
     proposeSection.classList.add("fade");
     setTimeout(() => proposeSection.classList.add("show"), 50);
@@ -236,6 +236,27 @@ if (proposeBtn && proposeSection) {
         <div class="form-group">
           <label for="userKey" data-i18n="ui.userKeyLabel">🔑 Clé d'accès :</label>
           <input type="text" id="userKey" name="userKey" required />
+        </div>
+
+        <!-- 🆕 Mode juste après la clé -->
+        <div class="form-group">
+          <label for="category" data-i18n="ui.categoryLabel">🏷️ Catégorie :</label>
+          <select id="category" name="category" required>
+            <option value="general">Général 🦁</option>
+            <option value="fun">Fun 🤪</option>
+            <option value="full_dark">Full Dark 🏴‍☠️</option>
+          </select>
+        </div>
+
+        <!-- 🆕 Sélecteur de langue de la question -->
+        <div class="form-group">
+          <label for="questionLang" data-i18n="ui.languageLabel">🌍 Langue de la question :</label>
+          <select id="questionLang" name="questionLang" required>
+            <option value="fr">Français 🇫🇷</option>
+            <option value="en">English 🇬🇧</option>
+            <option value="es">Español 🇪🇸</option>
+            <option value="ro">Română 🇷🇴</option>
+          </select>
         </div>
 
         <div class="form-group">
@@ -255,13 +276,10 @@ if (proposeBtn && proposeSection) {
           `).join("")}
         </fieldset>
 
+        <!-- 🆕 Explication -->
         <div class="form-group">
-          <label for="category" data-i18n="ui.categoryLabel">🏷️ Catégorie :</label>
-          <select id="category" name="category" required>
-            <option value="general">Général 🦁</option>
-            <option value="fun">Fun 🤪</option>
-            <option value="full_dark">Full Dark 🏴‍☠️</option>
-          </select>
+          <label for="explanationText" data-i18n="ui.explanationLabel">📝 Explication (optionnelle) :</label>
+          <textarea id="explanationText" name="explanationText" rows="3" placeholder="Pourquoi cette réponse est correcte ? (sources, contexte, etc.)"></textarea>
         </div>
 
         <div id="sendMessage" class="send-status"></div>
@@ -272,83 +290,76 @@ if (proposeBtn && proposeSection) {
       </form>
     `;
 
-    // 🔠 Mise à jour des traductions
     if (typeof updateUITexts === "function") updateUITexts();
 
     const form = document.getElementById("userQuestionForm");
     const sendBtn = document.getElementById("sendQuestionBtn");
     const messageBox = document.getElementById("sendMessage");
 
-    // ✅ Version améliorée : vérifie proprement la clé avant l'envoi et gère l'affichage du message
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
 
-   form.addEventListener("submit", async (e) => {
-        e.preventDefault();
-      
-        const ui = window.TEXTS?.ui || {};
-        const sendBtn = document.getElementById("sendQuestionBtn");
-        const messageBox = document.getElementById("sendMessage");
-      
-        // Récupération des valeurs
-        const userKey = form.userKey.value.trim();
-        const questionText = form.questionText.value.trim();
-        const correctAnswer = form.correctAnswer.value.trim();
-        const wrongAnswers = Array.from({ length: 6 }, (_, i) => form[`wrongAnswer${i + 1}`].value.trim()).filter(v => v);
-        const category = form.category.value;
-      
-        // Validation basique des champs obligatoires
-        if (!userKey || !questionText || !correctAnswer) {
-          messageBox.textContent = ui.missingFields || "⚠️ Merci de remplir la clé, la question et la bonne réponse.";
+      const ui = window.TEXTS?.ui || {};
+
+      // Récupération des valeurs
+      const userKey = form.userKey.value.trim();
+      const category = form.category.value;
+      const questionLang = form.questionLang.value;
+      const questionText = form.questionText.value.trim();
+      const correctAnswer = form.correctAnswer.value.trim();
+      const wrongAnswers = Array.from({ length: 6 }, (_, i) => form[`wrongAnswer${i + 1}`].value.trim()).filter(Boolean);
+      const explanation = form.explanationText.value.trim();
+
+      if (!userKey || !questionText || !correctAnswer) {
+        messageBox.textContent = ui.missingFields || "⚠️ Merci de remplir la clé, la question et la bonne réponse.";
+        messageBox.style.color = "orange";
+        return;
+      }
+
+      // Vérification de la clé d’accès
+      const validKeys = CONFIG.VALID_KEYS || {};
+      const submitted_by = validKeys[userKey];
+      if (!submitted_by) {
+        messageBox.textContent = ui.invalidKey || "❌ Clé d’accès invalide.";
+        messageBox.style.color = "red";
+        return;
+      }
+
+      const payload = {
+        submitted_by,
+        questionText,
+        correctAnswer,
+        wrongAnswers,
+        explanation,
+        lang: questionLang,
+        category
+      };
+
+      try {
+        sendBtn.disabled = true;
+        sendBtn.textContent = ui.sending || "📤 Envoi en cours...";
+        messageBox.textContent = "";
+
+        console.log("📦 Données prêtes à l’envoi :", payload);
+        const result = await sendUserQuestion(payload);
+
+        if (result?.status === "success") {
+          messageBox.textContent = ui.sendSuccess || "✅ Question envoyée avec succès ! Merci 🙌";
+          messageBox.style.color = "green";
+          form.reset();
+        } else {
+          messageBox.textContent = ui.sendError || "⚠️ Erreur lors de l'envoi. Réessaie plus tard.";
           messageBox.style.color = "orange";
-          return;
         }
-      
-        // Vérification de la clé d’accès
-        const validKeys = CONFIG.VALID_KEYS || {};
-        const submitted_by = validKeys[userKey];
-      
-        if (!submitted_by) {
-          // 🔴 Cas clé invalide : message localisé et blocage complet
-          messageBox.textContent = ui.invalidKey || "❌ Clé d’accès invalide.";
-          messageBox.style.color = "red";
-          sendBtn.disabled = false;
-          sendBtn.textContent = ui.sendButton || "📤 Envoyer";
-          return; // ⛔ Stoppe complètement l'envoi
-        }
-      
-        // 🟢 Clé valide → préparation du payload
-        const payload = {
-          submitted_by,
-          questionText,
-          correctAnswer,
-          wrongAnswers,
-          category
-        };
-      
-        try {
-          sendBtn.disabled = true;
-          sendBtn.textContent = ui.sending || "📤 Envoi en cours...";
-          messageBox.textContent = "";
-      
-          console.log("📦 Données prêtes à l’envoi :", payload);
-          const result = await sendUserQuestion(payload);
-      
-          if (result?.status === "success") {
-            messageBox.textContent = ui.sendSuccess || "✅ Question envoyée avec succès ! Merci 🙌";
-            messageBox.style.color = "green";
-            form.reset();
-          } else {
-            messageBox.textContent = ui.sendError || "⚠️ Erreur lors de l'envoi. Réessaie plus tard.";
-            messageBox.style.color = "orange";
-          }
-        } catch (err) {
-          console.error("❌ Erreur lors de l'envoi :", err);
-          messageBox.textContent = ui.networkError || "❌ Une erreur est survenue pendant l'envoi.";
-          messageBox.style.color = "red";
-        } finally {
-          sendBtn.disabled = false;
-          sendBtn.textContent = ui.sendButton || "📤 Envoyer";
-        }
-      });
-  }); 
+      } catch (err) {
+        console.error("❌ Erreur lors de l'envoi :", err);
+        messageBox.textContent = ui.networkError || "❌ Une erreur est survenue pendant l'envoi.";
+        messageBox.style.color = "red";
+      } finally {
+        sendBtn.disabled = false;
+        sendBtn.textContent = ui.sendButton || "📤 Envoyer";
+      }
+    });
+  });
 }
 
