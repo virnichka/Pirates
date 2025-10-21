@@ -282,72 +282,73 @@ if (proposeBtn && proposeSection) {
     // ✅ Version améliorée : vérifie proprement la clé avant l'envoi et gère l'affichage du message
 
    form.addEventListener("submit", async (e) => {
-  e.preventDefault();
-
-  const ui = window.TEXTS?.ui || {};
-  const sendBtn = document.getElementById("sendQuestionBtn");
-  const messageBox = document.getElementById("sendMessage");
-
-  // Récupération des valeurs
-  const userKey = form.userKey.value.trim();
-  const questionText = form.questionText.value.trim();
-  const correctAnswer = form.correctAnswer.value.trim();
-  const wrongAnswers = Array.from({ length: 6 }, (_, i) => form[`wrongAnswer${i + 1}`].value.trim()).filter(v => v);
-  const category = form.category.value;
-
-  // Validation basique des champs obligatoires
-  if (!userKey || !questionText || !correctAnswer) {
-    messageBox.textContent = ui.missingFields || "⚠️ Merci de remplir la clé, la question et la bonne réponse.";
-    messageBox.style.color = "orange";
-    return;
-  }
-
-  // Vérification de la clé d’accès
-  const validKeys = CONFIG.VALID_KEYS || {};
-  const submitted_by = validKeys[userKey];
-
-  if (!submitted_by) {
-    // 🔴 Cas clé invalide : message localisé et blocage complet
-    messageBox.textContent = ui.invalidKey || "❌ Clé d’accès invalide.";
-    messageBox.style.color = "red";
-    sendBtn.disabled = false;
-    sendBtn.textContent = ui.sendButton || "📤 Envoyer";
-    return; // ⛔ Stoppe complètement l'envoi
-  }
-
-  // 🟢 Clé valide → préparation du payload
-  const payload = {
-    submitted_by,
-    questionText,
-    correctAnswer,
-    wrongAnswers,
-    category
-  };
-
-  try {
-    sendBtn.disabled = true;
-    sendBtn.textContent = ui.sending || "📤 Envoi en cours...";
-    messageBox.textContent = "";
-
-    console.log("📦 Données prêtes à l’envoi :", payload);
-    const result = await sendUserQuestion(payload);
-
-    if (result?.status === "success") {
-      messageBox.textContent = ui.sendSuccess || "✅ Question envoyée avec succès ! Merci 🙌";
-      messageBox.style.color = "green";
-      form.reset();
-    } else {
-      messageBox.textContent = ui.sendError || "⚠️ Erreur lors de l'envoi. Réessaie plus tard.";
-      messageBox.style.color = "orange";
-    }
-  } catch (err) {
-    console.error("❌ Erreur lors de l'envoi :", err);
-    messageBox.textContent = ui.networkError || "❌ Une erreur est survenue pendant l'envoi.";
-    messageBox.style.color = "red";
-  } finally {
-    sendBtn.disabled = false;
-    sendBtn.textContent = ui.sendButton || "📤 Envoyer";
-  }
-});
-
+        e.preventDefault();
+      
+        const ui = window.TEXTS?.ui || {};
+        const sendBtn = document.getElementById("sendQuestionBtn");
+        const messageBox = document.getElementById("sendMessage");
+      
+        // Récupération des valeurs
+        const userKey = form.userKey.value.trim();
+        const questionText = form.questionText.value.trim();
+        const correctAnswer = form.correctAnswer.value.trim();
+        const wrongAnswers = Array.from({ length: 6 }, (_, i) => form[`wrongAnswer${i + 1}`].value.trim()).filter(v => v);
+        const category = form.category.value;
+      
+        // Validation basique des champs obligatoires
+        if (!userKey || !questionText || !correctAnswer) {
+          messageBox.textContent = ui.missingFields || "⚠️ Merci de remplir la clé, la question et la bonne réponse.";
+          messageBox.style.color = "orange";
+          return;
+        }
+      
+        // Vérification de la clé d’accès
+        const validKeys = CONFIG.VALID_KEYS || {};
+        const submitted_by = validKeys[userKey];
+      
+        if (!submitted_by) {
+          // 🔴 Cas clé invalide : message localisé et blocage complet
+          messageBox.textContent = ui.invalidKey || "❌ Clé d’accès invalide.";
+          messageBox.style.color = "red";
+          sendBtn.disabled = false;
+          sendBtn.textContent = ui.sendButton || "📤 Envoyer";
+          return; // ⛔ Stoppe complètement l'envoi
+        }
+      
+        // 🟢 Clé valide → préparation du payload
+        const payload = {
+          submitted_by,
+          questionText,
+          correctAnswer,
+          wrongAnswers,
+          category
+        };
+      
+        try {
+          sendBtn.disabled = true;
+          sendBtn.textContent = ui.sending || "📤 Envoi en cours...";
+          messageBox.textContent = "";
+      
+          console.log("📦 Données prêtes à l’envoi :", payload);
+          const result = await sendUserQuestion(payload);
+      
+          if (result?.status === "success") {
+            messageBox.textContent = ui.sendSuccess || "✅ Question envoyée avec succès ! Merci 🙌";
+            messageBox.style.color = "green";
+            form.reset();
+          } else {
+            messageBox.textContent = ui.sendError || "⚠️ Erreur lors de l'envoi. Réessaie plus tard.";
+            messageBox.style.color = "orange";
+          }
+        } catch (err) {
+          console.error("❌ Erreur lors de l'envoi :", err);
+          messageBox.textContent = ui.networkError || "❌ Une erreur est survenue pendant l'envoi.";
+          messageBox.style.color = "red";
+        } finally {
+          sendBtn.disabled = false;
+          sendBtn.textContent = ui.sendButton || "📤 Envoyer";
+        }
+      });
+  }); 
+}
 
