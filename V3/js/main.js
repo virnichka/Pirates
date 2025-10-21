@@ -252,10 +252,10 @@ if (proposeBtn && proposeSection) {
         <div class="form-group">
           <label for="questionLang" data-i18n="ui.languageLabel">🌍 Langue de la question :</label>
           <select id="questionLang" name="questionLang" required>
-            <option value="fr">Français 🇫🇷</option>
-            <option value="en">English 🇬🇧</option>
-            <option value="es">Español 🇪🇸</option>
-            <option value="ro">Română 🇷🇴</option>
+            <option value="fr">🇫🇷</option>
+            <option value="en">🇬🇧</option>
+            <option value="es">🇪🇸</option>
+            <option value="ro">🇷🇴</option>
           </select>
         </div>
 
