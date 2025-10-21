@@ -12,15 +12,17 @@ const CONFIG = {
     "INSA": "Gilo",
     "Juziers": "Simon",
     "Judo": "Thomas",
-    "Maxence": "Maxence",
     "Perseides": "Annabelle",
     "Pikachu": "Sacha",
     "BatGab": "Gabriel",
     "PoumonDOr": "Vladimir",
     "Gargenville": "Alexis",
     "111": "Maxime",
-    "Maxence": "Maxence",
-    "Autres": "78"
+    "Mezy": "Arthur",
+    "Toulouse": "Hugo",
+    "78": "Autres",
+    "Villon": "Florent",
+    "Timisoara": "Maxence"
   }
 };
 
