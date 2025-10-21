@@ -164,34 +164,63 @@ function applyTheme(mode) {
 }
 
 
-
-function applyAccroches(mode) {
-  const updateTitles = () => {
-    const mainTitle = document.getElementById("mainTitle");
-    const subtitle = document.getElementById("subtitle");
-
-    if (!mainTitle || !subtitle) return false;
-
-    const modeTexts = texts[lang]?.ui || texts["fr"].ui; // fallback fr
-    mainTitle.textContent = modeTexts.mainTitle;
-    subtitle.textContent = modeTexts.title;
-    return true;
-  };
-
-  // 🔹 Étape 1 : essai immédiat
-  if (updateTitles()) return;
-
-  // 🔹 Étape 2 : sinon on observe le DOM
-  const observer = new MutationObserver(() => {
-    if (updateTitles()) {
-      observer.disconnect(); // on arrête dès que c’est fait
+async function applyAccroches(mode = "general") {
+  try {
+    // 🔹 Si les textes ne sont pas encore chargés, on les charge une fois
+    if (!window.TEXTS) {
+      const response = await fetch("./data/texts.json");
+      const allTexts = await response.json();
+      const lang = window.currentLang || localStorage.getItem("lang") || "fr";
+      window.TEXTS = allTexts[lang];
     }
-  });
 
-  observer.observe(document.body, {
-    childList: true,
-    subtree: true
-  });
+    // 🔹 Récupère le bloc du mode courant (depuis texts.json)
+    const modeData =
+      window.TEXTS?.accroches?.modes?.[mode] ||
+      window.TEXTS?.accroches?.modes?.general;
+
+    if (!modeData) {
+      console.warn(`[i18n] Aucun bloc trouvé pour le mode "${mode}"`);
+      return;
+    }
+
+    // 🔹 Sélectionne aléatoirement un titre et un sous-titre
+    const titre = randomItem(modeData.titres);
+    const sousTitre = randomItem(modeData.sousTitres);
+
+    // Fonction interne pour appliquer les textes si les éléments existent
+    const updateTitles = () => {
+      const titleEl =
+        document.getElementById("quizTitle") || document.getElementById("titre");
+      const subTitleEl =
+        document.getElementById("quizSubtitle") || document.getElementById("sousTitre");
+
+      if (titleEl && subTitleEl) {
+        titleEl.innerText = titre;
+        subTitleEl.innerText = sousTitre;
+        window.currentComments = modeData.commentairesFin;
+        return true; // succès
+      }
+      return false; // pas encore dispo
+    };
+
+    // 🔹 Premier essai immédiat
+    if (updateTitles()) return;
+
+    // 🔹 Sinon, on observe le DOM jusqu’à ce qu’ils apparaissent
+    const observer = new MutationObserver(() => {
+      if (updateTitles()) {
+        observer.disconnect(); // stoppe dès que c’est fait
+      }
+    });
+
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true
+    });
+  } catch (err) {
+    console.error("❌ Erreur lors du chargement des textes :", err);
+  }
 }
 
 
