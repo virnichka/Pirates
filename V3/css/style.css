@@ -99,9 +99,6 @@ html[data-theme="full_dark"] {
   --button-text: #f0f0f0;
   --border-color: #333333;
 }
-/* -----------------------------------------------------------
-   🔧 CORRECTIONS ET AMÉLIORATIONS VISUELLES — MODE FULL DARK
-   ----------------------------------------------------------- */
 
 /* 1. Question principale : plus lisible */
 html[data-theme="full_dark"] #quizQuestion {
@@ -129,6 +126,12 @@ html[data-theme="full_dark"] #quizQuestion.finished {
   color: #f2f2f2;
 }
 
+/* 5. Titres en mode Full Dark : couleur claire */
+html[data-theme="full_dark"] h2,
+html[data-theme="full_dark"] h3,
+html[data-theme="full_dark"] .subtitle {
+  color: var(--text-color); /* hérite de #f0f0f0 défini plus haut */
+}
 
 
 
