@@ -716,5 +716,16 @@ html[data-theme="full_dark"] .lang-option:hover {
   margin-top: 1rem;
 }
 
+/* 🧱 Espacement ciblé dans le formulaire */
+.user-question-form h3 {
+  margin-bottom: 1.5rem; /* espace après le titre principal */
+}
+
+.user-question-form fieldset.wrong-answers {
+  margin-top: 1.2rem;  /* espace avant la zone Mauvaises réponses */
+  margin-bottom: 1.2rem; /* espace après pour respirer */
+}
+
+
 }
 
