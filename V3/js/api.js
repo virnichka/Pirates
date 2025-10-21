@@ -142,13 +142,6 @@ window.sendUserQuestion = async function (data) {
   }
 };
 
-// Vérification immédiate que la fonction existe bien globalement
-if (typeof window.sendUserQuestion === "function") {
-  console.log("🧠 Vérification OK : sendUserQuestion est bien définie globalement ✅");
-} else {
-  console.error("🚨 Problème : sendUserQuestion n'est PAS définie globalement ❌");
-}
-
 // ============================================================
 // 🧠 Utilitaire pour récupérer une clé multilingue avec fallback
 // ------------------------------------------------------------
