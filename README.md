@@ -1,9 +1,9 @@
 
-# 📘 WithMe -- Plateforme de quiz interactive
+# 📘 Site Gitehub Pirates -- Plateforme de quiz interactive
 
 ## 🎯 Description
 
-**WithMe** est une plateforme web interactive permettant aux
+**Site Gitehub Pirates** est une plateforme web interactive permettant aux
 utilisateurs de jouer à des quiz selon plusieurs modes, langues et
 thèmes.\
 Elle est conçue pour être simple, fluide et responsive, tout en
@@ -100,4 +100,4 @@ window.CONFIG = CONFIG;
 
 ------------------------------------------------------------------------
 
-© 2025 -- Projet WithMe. Tous droits réservés.
+© 2025 -- Projet Site Gitehub Pirates. Tous droits réservés.
