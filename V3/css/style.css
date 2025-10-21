@@ -666,9 +666,10 @@ html[data-theme="full_dark"] .lang-option:hover {
 
 
 .user-question-form .form-group {
-   display: flex;
-   flex-direction: column;
-   gap: 0.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;           /* un peu plus d’espace entre label et input */
+  margin-bottom: 1.2rem; /* espace entre chaque bloc de champ */
 }
 
 
