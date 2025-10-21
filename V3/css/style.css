@@ -649,52 +649,68 @@ html[data-theme="full_dark"] .lang-option:hover {
 // -----------------------------------------------------------
 
 .user-question-form {
-margin-top: 1rem;
-display: flex;
-flex-direction: column;
-gap: 1rem;
-background: var(--button-bg);
-border: 1px solid var(--border-color);
-border-radius: 10px;
-padding: 1.2rem;
-width: 100%;
-max-width: 420px;
+   margin-top: 1rem;
+   display: flex;
+   flex-direction: column;
+   gap: 1rem;
+   background: var(--button-bg);
+   border: 1px solid var(--border-color);
+   border-radius: 10px;
+   padding: 1.2rem;
+   width: 100%;
+   max-width: 420px;
 }
 
 
 .user-question-form .form-group {
-display: flex;
-flex-direction: column;
-gap: 0.4rem;
+   display: flex;
+   flex-direction: column;
+   gap: 0.4rem;
 }
 
 
 .user-question-form fieldset.wrong-answers {
-border: 1px solid var(--border-color);
-border-radius: 6px;
-padding: 0.8rem;
-display: flex;
-flex-direction: column;
-gap: 0.5rem;
+   border: 1px solid var(--border-color);
+   border-radius: 6px;
+   padding: 0.8rem;
+   display: flex;
+   flex-direction: column;
+   gap: 0.5rem;
 }
 
 
 .user-question-form legend {
-font-weight: 600;
-margin-bottom: 0.4rem;
-color: var(--text-color);
+   font-weight: 600;
+   margin-bottom: 0.4rem;
+   color: var(--text-color);
 }
 
 
 .user-question-form input,
 .user-question-form textarea,
 .user-question-form select {
-border: 1px solid var(--border-color);
-border-radius: 6px;
-padding: 0.5rem 0.6rem;
-background-color: var(--bg-color);
-color: var(--text-color);
-font-size: 1rem;
+   border: 1px solid var(--border-color);
+   border-radius: 6px;
+   padding: 0.5rem 0.6rem;
+   background-color: var(--bg-color);
+   color: var(--text-color);
+   font-size: 1rem;
+   }
+
+#proposeSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 1.5rem;
 }
+
+.user-question-form {
+  width: min(500px, 90%);
+  text-align: center;
+  margin-top: 1rem;
+}
+
 }
 
