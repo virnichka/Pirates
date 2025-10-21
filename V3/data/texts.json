@@ -36,7 +36,10 @@
           "sendError": "⚠️ Erreur lors de l'envoi. Réessaie plus tard.",
           "networkError": "❌ Une erreur est survenue pendant l'envoi.",
           "sendButton": "📤 Envoyer",
-          "invalidKey": "Clé d’accès invalide ❌"
+          "invalidKey": "Clé d’accès invalide ❌",
+          "languageLabel": "Langue de la question",
+          "explanationLabel": "📝 Explication (optionnelle)",
+          "missingFields": "⚠️ Merci de remplir la clé, la question et la bonne réponse."
         },
 
 
@@ -200,7 +203,11 @@
           "sendError": "⚠️ Error while sending. Please try again later.",
           "networkError": "❌ A network error occurred during submission.",
           "sendButton": "📤 Submit",
-          "invalidKey": "Invalid access key ❌"
+          "invalidKey": "Invalid access key ❌",
+          "languageLabel": "Question language",
+          "explanationLabel": "📝 Explanation (optional)",
+          "missingFields": "⚠️ Please fill in the key, the question and the correct answer."
+
         },
 
 
@@ -366,7 +373,11 @@
           "sendError": "⚠️ Error al enviar. Inténtalo de nuevo más tarde.",
           "networkError": "❌ Ocurrió un error de red durante el envío.",
           "sendButton": "📤 Enviar",
-          "invalidKey": "Clave de acceso no válida ❌"
+          "invalidKey": "Clave de acceso no válida ❌",
+          "languageLabel": "Idioma de la pregunta",
+          "explanationLabel": "📝 Explicación (opcional)",
+          "missingFields": "⚠️ Por favor completa la clave, la pregunta y la respuesta correcta."
+
         },
 
   "quiz": {
@@ -531,7 +542,11 @@
         "sendError": "⚠️ Eroare la trimitere. Încearcă din nou mai târziu.",
         "networkError": "❌ A apărut o eroare de rețea în timpul trimiterii.",
         "sendButton": "📤 Trimite",
-        "invalidKey": "Cheie de acces invalidă ❌"
+        "invalidKey": "Cheie de acces invalidă ❌",
+        "languageLabel": "Limba întrebării",
+        "explanationLabel": "📝 Explicație (opțional)",
+        "missingFields": "⚠️ Te rugăm să completezi cheia, întrebarea și răspunsul corect."
+
       },
 
   "quiz": {
