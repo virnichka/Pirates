@@ -279,83 +279,75 @@ if (proposeBtn && proposeSection) {
     const sendBtn = document.getElementById("sendQuestionBtn");
     const messageBox = document.getElementById("sendMessage");
 
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
+    // ✅ Version améliorée : vérifie proprement la clé avant l'envoi et gère l'affichage du message
 
-      const data = {
-        userKey: form.userKey.value.trim(),
-        question: form.questionText.value.trim(),
-        correctAnswer: form.correctAnswer.value.trim(),
-        wrongAnswers: Array.from({ length: 6 }, (_, i) => form[`wrongAnswer${i + 1}`].value.trim()).filter(v => v),
-        category: form.category.value
-      };
+   form.addEventListener("submit", async (e) => {
+  e.preventDefault();
 
-      if (!data.userKey || !data.question || !data.correctAnswer) {
-        messageBox.textContent = getI18nText("ui.missingFields", "⚠️ Merci de remplir la clé, la question et la bonne réponse.");
-        messageBox.style.color = "orange";
-        return;
-      }
+  const ui = window.TEXTS?.ui || {};
+  const sendBtn = document.getElementById("sendQuestionBtn");
+  const messageBox = document.getElementById("sendMessage");
 
-      // 🟡 Envoi en cours...
-      sendBtn.disabled = true;
-      sendBtn.textContent = getI18nText("ui.sending", "📤 Envoi en cours...");
-      messageBox.textContent = "";
+  // Récupération des valeurs
+  const userKey = form.userKey.value.trim();
+  const questionText = form.questionText.value.trim();
+  const correctAnswer = form.correctAnswer.value.trim();
+  const wrongAnswers = Array.from({ length: 6 }, (_, i) => form[`wrongAnswer${i + 1}`].value.trim()).filter(v => v);
+  const category = form.category.value;
 
-      // ✅ Vérification de la clé d’accès
-      const userKey = document.getElementById("userKey")?.value?.trim();
-      const validKeys = CONFIG.VALID_KEYS || {};
-      const submitted_by = validKeys[userKey]; // renvoie le prénom si la clé est bonne
-      
-      if (!submitted_by) {
-        const msg = window.TEXTS?.ui?.invalidKey || "Clé d’accès invalide ❌";
-        alert(msg);
-        return; // ⛔ stoppe l’envoi
-      }
-      
-      // Si la clé est valide, on ne l’envoie pas au serveur : on envoie seulement le prénom
-      const payload = {
-        submitted_by,
-        questionText: document.getElementById("questionText").value.trim(),
-        correctAnswer: document.getElementById("correctAnswer").value.trim(),
-        wrongAnswers: Array.from({ length: 6 }, (_, i) =>
-          document.getElementById(`wrongAnswer${i + 1}`).value.trim()
-        ).filter(x => x),
-        category: document.getElementById("category").value
-      };
-      
-      // Envoi de la question
-      await sendUserQuestion(payload);
+  // Validation basique des champs obligatoires
+  if (!userKey || !questionText || !correctAnswer) {
+    messageBox.textContent = ui.missingFields || "⚠️ Merci de remplir la clé, la question et la bonne réponse.";
+    messageBox.style.color = "orange";
+    return;
+  }
 
-       
-      try {
-        console.log("📦 Données prêtes à l’envoi :", data);
-        const result = await sendUserQuestion(data);
+  // Vérification de la clé d’accès
+  const validKeys = CONFIG.VALID_KEYS || {};
+  const submitted_by = validKeys[userKey];
 
-        if (result?.status === "success") {
-          messageBox.textContent = getI18nText("ui.sendSuccess", "✅ Question envoyée avec succès ! Merci 🙌");
-          messageBox.style.color = "green";
+  if (!submitted_by) {
+    // 🔴 Cas clé invalide : message localisé et blocage complet
+    messageBox.textContent = ui.invalidKey || "❌ Clé d’accès invalide.";
+    messageBox.style.color = "red";
+    sendBtn.disabled = false;
+    sendBtn.textContent = ui.sendButton || "📤 Envoyer";
+    return; // ⛔ Stoppe complètement l'envoi
+  }
 
-          // ✨ Masquer le formulaire avec fade-out existant
-          proposeSection.classList.remove("show");
-          setTimeout(() => {
-            proposeSection.style.display = "none";
-            form.reset();
-          }, 1000);
+  // 🟢 Clé valide → préparation du payload
+  const payload = {
+    submitted_by,
+    questionText,
+    correctAnswer,
+    wrongAnswers,
+    category
+  };
 
-        } else {
-          messageBox.textContent = getI18nText("ui.sendError", "⚠️ Erreur lors de l'envoi. Réessaie plus tard.");
-          messageBox.style.color = "orange";
-        }
-      } catch (err) {
-        console.error(err);
-        messageBox.textContent = getI18nText("ui.networkError", "❌ Une erreur est survenue pendant l'envoi.");
-        messageBox.style.color = "red";
-      } finally {
-        sendBtn.disabled = false;
-        sendBtn.textContent = getI18nText("ui.sendButton", "📤 Envoyer");
-      }
-    });
-  });
-}
+  try {
+    sendBtn.disabled = true;
+    sendBtn.textContent = ui.sending || "📤 Envoi en cours...";
+    messageBox.textContent = "";
+
+    console.log("📦 Données prêtes à l’envoi :", payload);
+    const result = await sendUserQuestion(payload);
+
+    if (result?.status === "success") {
+      messageBox.textContent = ui.sendSuccess || "✅ Question envoyée avec succès ! Merci 🙌";
+      messageBox.style.color = "green";
+      form.reset();
+    } else {
+      messageBox.textContent = ui.sendError || "⚠️ Erreur lors de l'envoi. Réessaie plus tard.";
+      messageBox.style.color = "orange";
+    }
+  } catch (err) {
+    console.error("❌ Erreur lors de l'envoi :", err);
+    messageBox.textContent = ui.networkError || "❌ Une erreur est survenue pendant l'envoi.";
+    messageBox.style.color = "red";
+  } finally {
+    sendBtn.disabled = false;
+    sendBtn.textContent = ui.sendButton || "📤 Envoyer";
+  }
+});
 
 
