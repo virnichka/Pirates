@@ -384,3 +384,42 @@ if (proposeBtn && proposeSection) {
   });
 }
 
+
+
+
+// ============================================================
+// 🏆 Gestion du bouton Classement
+// ============================================================
+
+const rankingBtn = document.getElementById("rankingBtn");
+const rankingSection = document.getElementById("rankingSection");
+
+if (rankingBtn && rankingSection) {
+  rankingBtn.addEventListener("click", () => {
+    // 🔁 Toggle d'affichage
+    if (rankingSection.style.display === "block") {
+      rankingSection.classList.remove("show");
+      setTimeout(() => {
+        rankingSection.style.display = "none";
+        rankingSection.innerHTML = "";
+        rankingSection.classList.remove("fade");
+      }, 800);
+      return;
+    }
+
+    // ✅ Affichage du conteneur vide (fade-in)
+    rankingSection.style.display = "block";
+    rankingSection.classList.add("fade");
+    setTimeout(() => rankingSection.classList.add("show"), 50);
+
+    // 🧩 Contenu temporaire (placeholder)
+    rankingSection.innerHTML = `
+      <div class="ranking-content">
+        <h3>🏆 Classement des amis</h3>
+        <p>Chargement du classement...</p>
+      </div>
+    `;
+  });
+}
+
+
