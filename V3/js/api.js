@@ -7,38 +7,41 @@
  * ------------------------------------------------------------
  */
 
+
 /* ==============================================
- *  🧩 Chargement des questions selon le mode et la langue
+ *  🧩 Chargement des questions (nouvelle version)
  * ==============================================*/
 async function fetchQuestions(mode = null) {
   try {
-    // 1️⃣ Récupère le mode sélectionné ou "general" par défaut
+    // 1️⃣ Mode et langue
     const selectedMode = mode || localStorage.getItem("selectedMode") || "general";
-
-    // 2️⃣ Récupère la langue active du site (par défaut : fr)
     const currentLang = window.currentLang || localStorage.getItem("lang") || "fr";
 
-    // 3️⃣ Construit l’URL vers ton Google Apps Script
-    // On récupère la limite de questions depuis le fichier config.js
+    // 2️⃣ Construit l’URL (nouvelle logique : Questions_All)
     const limit = CONFIG.QUIZ_LIMIT || 5;
-    // Ajout du paramètre shuffle=1 pour demander un tirage aléatoire
-    const url = `${CONFIG.GOOGLE_SCRIPT_URL}?action=getQuestions&sheet=${encodeURIComponent(selectedMode)}&lang=${encodeURIComponent(currentLang)}&limit=${limit}&shuffle=1`;
+    const url = `${CONFIG.GOOGLE_SCRIPT_URL}?action=getQuestions&mode=${encodeURIComponent(selectedMode)}&lang=${encodeURIComponent(currentLang)}&limit=${limit}&shuffle=1`;
 
     console.log("🌐 URL API utilisée :", url);
 
-    // 4️⃣ Appel API (GET)
+    // 3️⃣ Appel API
     const response = await fetch(url, { method: "GET", cache: "no-store" });
-
     if (!response.ok) {
       console.warn(`⚠️ Erreur HTTP (${response.status})`);
       return [];
     }
 
+    // 4️⃣ Lecture du JSON
     const questions = await response.json();
 
-    if (!Array.isArray(questions)) {
-      console.warn("⚠️ Réponse inattendue :", questions);
+    if (!Array.isArray(questions) || questions.length === 0) {
+      console.warn("⚠️ Aucune question reçue :", questions);
       return [];
+    }
+
+    // 5️⃣ Validation du format
+    const valid = questions.every(q => q.question && q.bonne_reponse && Array.isArray(q.reponses));
+    if (!valid) {
+      console.warn("⚠️ Format inattendu de certaines questions :", questions);
     }
 
     console.log(`✅ ${questions.length} questions chargées (${selectedMode}, ${currentLang})`);
