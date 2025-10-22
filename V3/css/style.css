@@ -260,6 +260,44 @@ h3 {
   color: #fff;
 }
 
+/* -----------------------------------------------------------
+   🏆 Bouton Classement (footer)
+   ----------------------------------------------------------- */
+#rankingContainer {
+  display: flex;
+  flex-direction: column; /* icône au-dessus, bouton dessous */
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  margin-top: 0.8rem;
+}
+
+#rankingContainer .ranking-icon {
+  font-weight: 600;
+  color: var(--text-color);
+  font-size: 1.1rem;
+}
+
+#rankingContainer .ranking-btn {
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  cursor: pointer;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: background-color 0.3s, color 0.3s;
+  width: 100%; /* 👌 pour harmoniser avec les autres */
+  max-width: 120px;
+}
+
+#rankingContainer .ranking-btn:hover {
+  background-color: var(--accent-color);
+  color: #fff;
+}
+
+
 
 
 
