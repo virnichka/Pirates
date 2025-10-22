@@ -799,5 +799,30 @@ html[data-theme="full_dark"] .lang-option:hover {
 }
 
 
+/* -----------------------------------------------------------
+   📊 Classement (affiché sous le footer)
+   ----------------------------------------------------------- */
+#rankingSection {
+  display: none;
+  position: relative;
+  top: 1.5rem;                /* léger espace sous le footer */
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  background: var(--button-bg);
+  color: var(--text-color);
+  transition: opacity 0.5s ease-in-out;
+  opacity: 0;
+}
+
+#rankingSection.fade.show {
+  opacity: 1;
+}
+
+
 }
 
