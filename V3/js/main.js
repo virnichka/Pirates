@@ -396,6 +396,9 @@ const rankingSection = document.getElementById("rankingSection");
 
 if (rankingBtn && rankingSection) {
   rankingBtn.addEventListener("click", () => {
+
+     console.log("🏁 Initialisation du bouton Classement...");
+
     // 🔁 Toggle d'affichage
     if (rankingSection.style.display === "block") {
       rankingSection.classList.remove("show");
