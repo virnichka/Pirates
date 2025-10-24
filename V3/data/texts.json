@@ -39,7 +39,11 @@
           "invalidKey": "Clé d’accès invalide ❌",
           "languageLabel": "Langue de la question",
           "explanationLabel": "📝 Explication (optionnelle)",
-          "missingFields": "⚠️ Merci de remplir la clé, la question et la bonne réponse."
+          "missingFields": "⚠️ Merci de remplir la clé, la question et la bonne réponse.",
+          "rankingTitle": "🏆 Classement des amis",
+          "noRanking": "🤷‍♂️ Aucun score",
+          "wrongAnswersGroup": "❌ Mauvaises réponses",
+          "explanationPlaceholder": "Pourquoi cette réponse est correcte ? (sources, contexte, etc.)"
         },
 
 
