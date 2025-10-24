@@ -6,7 +6,6 @@
  * - Fournit des utilitaires (shuffle, prénoms aléatoires)
  */
 
-
 /* =======================================
    🔤 RÉCUPÉRATION DES TEXTES MULTILINGUES
    ======================================= */
@@ -24,6 +23,13 @@ if (typeof TEXTS === "undefined" || !TEXTS?.ui) {
  */
 function getRandomItem(list) {
   return list[Math.floor(Math.random() * list.length)];
+}
+
+/**
+ * 🎲 Mélange un tableau (utile pour les questions / réponses)
+ */
+function shuffle(array) {
+  return array.sort(() => Math.random() - 0.5);
 }
 
 /**
@@ -99,6 +105,9 @@ function updateUITexts() {
 
 
 
+
+
+
 /* =======================================
    ⏳ Attente du chargement de TEXTS
    ======================================= */
@@ -114,15 +123,6 @@ function waitForTexts() {
 // 🚀 Lancement automatique
 waitForTexts();
 
-
-/**
- * 🎲 Mélange un tableau (utile pour les questions / réponses)
- */
-function shuffle(array) {
-  return array.sort(() => Math.random() - 0.5);
-}
-
-window.shuffle = shuffle;
 
 // 🌍 Initialisation + gestion du changement de langue (bloc unique)
 document.addEventListener("DOMContentLoaded", () => {
@@ -183,41 +183,23 @@ document.addEventListener("DOMContentLoaded", () => {
 // ===== 🌞 Mode popover =====
 const themeBtn = document.getElementById("themeBtn");
 const themeMenu = document.getElementById("themeMenu");
+const themeSelect = document.getElementById("themeMode");
 
-if (themeBtn && themeMenu) {
-
-  // Ouverture / fermeture du menu
+if (themeBtn && themeMenu && themeSelect) {
   themeBtn.addEventListener("click", (e) => {
     e.stopPropagation();
     themeMenu.classList.toggle("show");
-
-    // ferme le menu langue si ouvert
-    if (typeof langMenu !== "undefined") {
-      langMenu.classList.remove("show");
-    }
+    langMenu?.style && (langMenu.style.display = "none");
   });
 
-  // Sélection d'un mode
-  themeMenu.addEventListener("click", async (e) => {
-    const mode = e.target?.dataset?.mode;
+  themeMenu.addEventListener("click", (e) => {
+    const mode = e.target.dataset.mode;
     if (!mode) return;
-
-    localStorage.setItem("selectedMode", mode);
-
-    if (typeof applyTheme === "function") applyTheme(mode);
-    if (typeof applyAccroches === "function") await applyAccroches(mode);
-
-    if (typeof fetchQuestions === "function" && typeof startQuiz === "function") {
-      const newQs = await fetchQuestions(mode);
-      startQuiz(newQs);
-    }
-
-    themeMenu.classList.remove("show");
+    themeSelect.value = mode;
+    if (typeof updateThemeMode === "function") updateThemeMode();
+    themeMenu.style.display = "none";
   });
-
 }
-
-
 
 // ===== 🌍 Lang popover =====
 const langBtn = document.getElementById("langBtn");
@@ -225,27 +207,28 @@ const langMenu = document.getElementById("langMenu");
 const langSelectEl = document.getElementById("langSelect");
 
 if (langBtn && langMenu && langSelectEl) {
-   langBtn.addEventListener("click", (e) => {
-     e.stopPropagation();
-     langMenu.classList.toggle("show");  // ✅ propre
-     themeMenu.classList.remove("show");
-   });
-
+  langBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    langMenu.style.display = langMenu.style.display === "flex" ? "none" : "flex";
+    themeMenu?.style && (themeMenu.style.display = "none");
+  });
 
   langMenu.addEventListener("click", (e) => {
-     const lang = e.target.dataset.lang;
-     if (!lang) return;
-     langSelectEl.value = lang;
-     localStorage.setItem("lang", lang);
-     if (typeof updateUITexts === "function") updateUITexts();
-     langMenu.classList.remove("show"); // ✅ propre
-   });
-
-
-   window.addEventListener("click", () => {
-     themeMenu.classList.remove("show");
-     langMenu.classList.remove("show");
-   });
+    const lang = e.target.dataset.lang;
+    if (!lang) return;
+    langSelectEl.value = lang;
+    localStorage.setItem("lang", lang);
+    if (typeof updateUITexts === "function") updateUITexts();
+    langMenu.style.display = "none";
+  });
 }
+
+// Fermer popovers si on clique ailleurs
+window.addEventListener("click", () => {
+  if (themeMenu) themeMenu.style.display = "none";
+  if (langMenu) langMenu.style.display = "none";
+});
+
+
 
 
