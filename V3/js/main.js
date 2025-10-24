@@ -376,9 +376,10 @@ function createProposeForm() {
         sendBtn.disabled = false;
         sendBtn.textContent = ui.sendButton || "📤 Envoyer";
       }
-    };
+    });
 
     // Marquer le formulaire comme initialisé
+    proposeFormInitialized = true;
     proposeFormInitialized = true;
   proposeFormInitialized = true;
 }
