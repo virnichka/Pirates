@@ -213,7 +213,7 @@
           "missingFields": "⚠️ Please fill in the key, the question and the correct answer.",
           "rankingTitle": "🏆 Leaderboard",
           "noRanking": "🤷‍♂️ No score yet",
-          "wrongAnswersGroup": "❌ Wrong answers",
+          "wrongAnswersGroup": "🔀 Possible answers",
           "explanationPlaceholder": "Why is this the correct answer? (context, source, etc.)"
         },
 
@@ -386,7 +386,7 @@
           "missingFields": "⚠️ Por favor completa la clave, la pregunta y la respuesta correcta.",
           "rankingTitle": "🏆 Clasificación de amigos",
           "noRanking": "🤷‍♂️ Sin resultados",
-          "wrongAnswersGroup": "❌ Respuestas incorrectas",
+          "wrongAnswersGroup": "🔀 Respuestas posibles",
           "explanationPlaceholder": "¿Por qué esta respuesta es correcta? (fuente, contexto, etc.)",
         },
 
@@ -558,7 +558,7 @@
         "missingFields": "⚠️ Te rugăm să completezi cheia, întrebarea și răspunsul corect.",
         "rankingTitle": "🏆 Clasamentul prietenilor",
         "noRanking": "🤷‍♂️ Niciun scor",
-        "wrongAnswersGroup": "❌ Răspunsuri greșite",
+        "wrongAnswersGroup": "🔀 Răspunsuri posibile",
         "explanationPlaceholder": "De ce acesta este răspunsul corect? (context, surse, etc.)"
       },
 
