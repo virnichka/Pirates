@@ -192,7 +192,7 @@ const themeBtn = document.getElementById("themeBtn");
 const themeMenu = document.getElementById("themeMenu");
 const themeSelect = document.getElementById("themeMode");
 
-if (themeBtn && themeMenu && themeSelect) {
+if (themeBtn && themeMenu) {
   themeBtn.addEventListener("click", (e) => {
     e.stopPropagation();
     themeMenu.classList.toggle("show");
