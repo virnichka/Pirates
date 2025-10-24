@@ -405,10 +405,19 @@ function hideProposeSection() {
 // 🔁 Bascule l'affichage du formulaire (et ferme le classement si ouvert)
 function toggleProposeSection() {
   const isOpen = proposeSection.style.display === "block";
+
   hideRankingSection();
-  if (isOpen) hideProposeSection();
-  else showProposeSection();
+
+  if (isOpen) {
+    hideProposeSection();
+  } else {
+    showProposeSection();
+    setTimeout(() => {
+      proposeSection.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 50);
+  }
 }
+
 
 // 🏆 Affiche la section classement avec animation
 function showRankingSection() {
@@ -435,6 +444,8 @@ async function toggleRankingSection() {
     showRankingSection();
     if (typeof loadRanking === "function") await loadRanking();
   }
+   proposeSection.scrollIntoView({ behavior: "smooth", block: "start" });
+
 }
 
 
