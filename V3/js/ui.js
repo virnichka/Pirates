@@ -192,7 +192,7 @@ const themeBtn = document.getElementById("themeBtn");
 const themeMenu = document.getElementById("themeMenu");
 const themeSelect = document.getElementById("themeMode");
 
-if (themeBtn && themeMenu) {
+if (themeBtn && themeMenu && themeSelect) {
   themeBtn.addEventListener("click", (e) => {
     e.stopPropagation();
     themeMenu.classList.toggle("show");
@@ -202,10 +202,12 @@ if (themeBtn && themeMenu) {
   themeMenu.addEventListener("click", (e) => {
      const mode = e.target.dataset.mode;
      if (!mode) return;
+     themeSelect.value = mode;
      if (typeof updateThemeMode === "function") updateThemeMode();
-     themeMenu.classList.remove("show"); // ✅ propre
+     themeMenu.classList.remove("show");
    });
 }
+
 
 // ===== 🌍 Lang popover =====
 const langBtn = document.getElementById("langBtn");
