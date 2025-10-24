@@ -224,6 +224,22 @@ async function applyAccroches(mode = "general") {
 }
 
 
+
+// ============================================================
+// 🔗 Connexion des boutons du footer aux fonctions Toggle-logic
+// ============================================================
+
+const proposeBtn = document.getElementById("proposeBtn");
+const rankingBtn = document.getElementById("rankingBtn");
+
+if (proposeBtn) {
+  proposeBtn.addEventListener("click", toggleProposeSection);
+}
+
+if (rankingBtn) {
+  rankingBtn.addEventListener("click", toggleRankingSection);
+}
+
 // 🎚️ Logique unifiée d'ouverture / fermeture des deux panneaux
 
 const proposeSection = document.getElementById("proposeSection");
