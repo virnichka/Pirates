@@ -457,31 +457,36 @@ async function loadRanking() {
   }
 
   // Affichage
-  list.innerHTML = rows
-    .map((r, index) => {
-      const [name, score, total, percent] = r;
+list.innerHTML = rows
+  .map((r, index) => {
+    const [name, score, total, percent] = r;
 
-      // 🧮 Convertir le pourcentage proprement
-      const pct =
-        typeof percent === "number"
-          ? Math.round(percent * 100) + "%"
-          : String(percent).includes("%")
-          ? percent
-          : percent + "%";
+    // 🧮 convertit 0.8 → 80%
+    const pct =
+      typeof percent === "number"
+        ? Math.round(percent * 100) + "%"
+        : String(percent).includes("%")
+        ? percent
+        : percent + "%";
 
-      // 🥇🥈🥉 Classe podium en fonction du rang
-      let rankClass = "";
-      if (index === 0) rankClass = "rank-gold";
-      else if (index === 1) rankClass = "rank-silver";
-      else if (index === 2) rankClass = "rank-bronze";
+    // 🥇 🥈 🥉 Médailles
+    const medals = ["🥇", "🥈", "🥉"];
+    const medal = medals[index] || "";
 
-      return `
-        <li class="${rankClass}">
-          <span class="player-name">${name}</span>
-          <span class="player-score">${score} ✅ — ${pct}</span>
-        </li>`;
-    })
-    .join("");
+    // Classe podium
+    let rankClass = "";
+    if (index === 0) rankClass = "rank-gold";
+    else if (index === 1) rankClass = "rank-silver";
+    else if (index === 2) rankClass = "rank-bronze";
+
+    return `
+      <li class="${rankClass}">
+        <span class="player-name">${medal} ${name}</span>
+        <span class="player-score">${score} ✅ — ${pct}</span>
+      </li>`;
+  })
+  .join("");
+
 }
 
 
