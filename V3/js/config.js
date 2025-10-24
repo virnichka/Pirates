@@ -11,17 +11,19 @@ const CONFIG = {
   VALID_KEYS: {
     "INSA": "Gilo",
     "Juziers": "Simon",
-    "Judo": "Thomas",
+    "Judo": "Tho",
     "Perseides": "Annabelle",
     "Pikachu": "Sacha",
-    "BatGab": "Gabriel",
-    "PoumonDOr": "Vladimir",
+    "BatGab": "Gabroche",
+    "PoumonDOr": "Vladimir Cauchemar",
     "Gargenville": "Alexis",
-    "111": "Maxime",
-    "Mezy": "Arthur",
-    "Toulouse": "Hugo",
+    "111": "Maximus",
+    "Mezy": "Arthuro",
+    "Toulouse": "Hugolin",
     "78": "Autres",
-    "Villon": "Florent",
+    "Villon": "Denes",
+    "Lille": "Pere Giletos",
+    "Mercedes": "Pere Lombard",
     "Timisoara": "Maxence"
   }
 };
