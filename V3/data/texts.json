@@ -40,7 +40,7 @@
           "languageLabel": "Langue de la question",
           "explanationLabel": "📝 Explication (optionnelle)",
           "missingFields": "⚠️ Merci de remplir la clé, la question et la bonne réponse.",
-          "rankingTitle": "🏆 Classement des amis",
+          "rankingTitle": "🏆 Classement",
           "noRanking": "🤷‍♂️ Aucun score",
           "wrongAnswersGroup": "❌ Mauvaises réponses",
           "explanationPlaceholder": "Pourquoi cette réponse est correcte ? (sources, contexte, etc.)"
@@ -210,8 +210,11 @@
           "invalidKey": "Invalid access key ❌",
           "languageLabel": "Question language",
           "explanationLabel": "📝 Explanation (optional)",
-          "missingFields": "⚠️ Please fill in the key, the question and the correct answer."
-
+          "missingFields": "⚠️ Please fill in the key, the question and the correct answer.",
+          "rankingTitle": "🏆 Leaderboard",
+          "noRanking": "🤷‍♂️ No score yet",
+          "wrongAnswersGroup": "❌ Wrong answers",
+          "explanationPlaceholder": "Why is this the correct answer? (context, source, etc.)"
         },
 
 
@@ -380,8 +383,11 @@
           "invalidKey": "Clave de acceso no válida ❌",
           "languageLabel": "Idioma de la pregunta",
           "explanationLabel": "📝 Explicación (opcional)",
-          "missingFields": "⚠️ Por favor completa la clave, la pregunta y la respuesta correcta."
-
+          "missingFields": "⚠️ Por favor completa la clave, la pregunta y la respuesta correcta.",
+          "rankingTitle": "🏆 Clasificación de amigos",
+          "noRanking": "🤷‍♂️ Sin resultados",
+          "wrongAnswersGroup": "❌ Respuestas incorrectas",
+          "explanationPlaceholder": "¿Por qué esta respuesta es correcta? (fuente, contexto, etc.)",
         },
 
   "quiz": {
@@ -549,8 +555,11 @@
         "invalidKey": "Cheie de acces invalidă ❌",
         "languageLabel": "Limba întrebării",
         "explanationLabel": "📝 Explicație (opțional)",
-        "missingFields": "⚠️ Te rugăm să completezi cheia, întrebarea și răspunsul corect."
-
+        "missingFields": "⚠️ Te rugăm să completezi cheia, întrebarea și răspunsul corect.",
+        "rankingTitle": "🏆 Clasamentul prietenilor",
+        "noRanking": "🤷‍♂️ Niciun scor",
+        "wrongAnswersGroup": "❌ Răspunsuri greșite",
+        "explanationPlaceholder": "De ce acesta este răspunsul corect? (context, surse, etc.)"
       },
 
   "quiz": {
