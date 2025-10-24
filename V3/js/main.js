@@ -461,7 +461,7 @@ async function loadRanking() {
   list.innerHTML = rows
     .map(r => {
       const [name, score, total, percent] = r;
-      return `<li><strong>${name}</strong><span>${score}/${total} — ${percent}</span></li>`;
+      return `<li><strong>${name}</strong><span>${score} ✅ — ${percent}</span></li>;
     })
     .join("");
 }
