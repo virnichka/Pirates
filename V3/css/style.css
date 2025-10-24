@@ -662,5 +662,9 @@ body {
   padding: 0.4rem;
 }
 
+.popover.show {
+  display: flex;
+}
+
 
 
