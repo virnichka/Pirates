@@ -211,40 +211,51 @@ h3 {
    🎮🌍📤🏆 Boutons du footer (mode / langue / upload / ranking)
    ----------------------------------------------------------- */
 
-.footer-item {
+/* ✅ Footer propre, unifié */
+.footer-bar {
+  display: flex;
+  justify-content: space-between; /* chaque bouton occupe son espace */
+  align-items: center;
+  padding: 0.8rem 1rem;
+  border-top: 1px solid var(--border-color);
+  gap: 0.8rem;
+  flex-wrap: wrap; /* repasse en 2 lignes si écran étroit */
+}
+
+/* ✅ Chaque bloc du footer (mode, langue, proposer, classement) */
+.footer-item { /* <- C’est notre classe commune */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 0.4rem;
-  margin-top: 0.8rem;
   flex: 1 1 120px;
-  max-width: 140px;
+  max-width: 150px;
   text-align: center;
 }
 
-/* ✅ Style commun aux icônes (🎮 🌍 ✉️ 🏆) */
+
+/* Icône au-dessus */
 .footer-item > *:first-child {
+  font-size: 1.2rem;
   font-weight: 600;
   color: var(--text-color);
-  font-size: 1.1rem;
 }
 
-/* ✅ Style commun aux éléments cliquables (select + buttons) */
+/* Boutons & selects uniformisés */
 .footer-item select,
 .footer-item button {
-  padding: 0.4rem 0.8rem;
+  padding: 0.45rem 0.7rem;
   border-radius: 8px;
   border: 1px solid var(--border-color);
-  background-color: var(--button-bg);
+  background: var(--button-bg);
   color: var(--button-text);
   cursor: pointer;
   font-size: 0.95rem;
   height: 38px;
-  transition: background-color 0.3s, color 0.3s;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* ✅ Hover commun */
 .footer-item select:hover,
 .footer-item button:hover {
   background-color: var(--accent-color);
@@ -466,124 +477,6 @@ button:hover {
 /* --- Bouton REJOUER (dans .buttons) --- */
 #restartBtn {
   margin: 0 auto;
-}
-
-
-/* ===========================================================
-   ⚙️ PIED DE PAGE HARMONISÉ — MODE + LANGUE
-   =========================================================== */
-.footer-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
-  margin-top: 2rem;
-  border-top: 1px solid var(--border-color);
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-.footer-left,
-.footer-right {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  position: relative;
-}
-
-/* === 🎮 Sélecteur de mode === */
-#themeMode {
-  padding: 0.45rem 0.7rem;
-  border-radius: 8px;
-  border: 1px solid var(--border-color);
-  background: var(--button-bg);
-  color: var(--button-text);
-  cursor: pointer;
-  font-size: 0.95rem;
-  transition: all 0.15s ease-in-out;
-}
-
-#themeMode:hover {
-  background: var(--accent-color);
-  color: #fff;
-}
-
-
-
-/* ==========================================================
-   ⚙️ Pied de page — sélecteurs mode et langue
-   ========================================================== */
-
-.footer-bar {
-  display: flex;
-  justify-content: center;   /* centre horizontalement */
-  align-items: center;       /* aligne verticalement */
-  gap: 0.8rem;               /* espace entre les deux blocs */
-  flex-wrap: nowrap;         /* ❗ reste sur une seule ligne */
-  padding: 0.6rem 0.8rem;
-  background: var(--bg-secondary);
-  border-top: 1px solid var(--border-color);
-}
-
-/* Chaque bloc (mode + langue) */
-.footer-bar > div {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  margin-top: 0;             /* évite un décalage vertical */
-}
-
-/* Labels (emojis 🎮 / 🌍) */
-.footer-bar label {
-  font-size: 1rem;
-  color: var(--text-color);
-  font-weight: 600;
-}
-
-/* Sélecteurs */
-.footer-bar select {
-  padding: 0.4rem 0.7rem;
-  border-radius: 8px;
-  border: 1px solid var(--border-color);
-  background-color: var(--button-bg);
-  color: var(--button-text);
-  font-size: 0.95rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
-  max-width: 44vw;           /* pour que les 2 tiennent côte à côte */
-}
-
-.footer-bar select:hover {
-  background-color: var(--accent-color);
-  color: #fff;
-}
-
-/* -----------------------------------------------------------
-   📱 Ajustement du footer pour 3 éléments (mode / langue / upload)
-   ----------------------------------------------------------- */
-.footer-bar {
-  justify-content: space-between; /* les 3 blocs se répartissent bien */
-  gap: 0.6rem;
-  flex-wrap: wrap; /* permet de repasser sur 2 lignes si besoin */
-}
-
-.footer-bar select,
-#proposeContainer .propose-btn {
-  width: 100%;
-  max-width: 30vw; /* environ un tiers chacun */
-  font-size: 0.9rem;
-  text-align: center;
-}
-
-/* Petits écrans : on repasse sur 2 lignes proprement */
-@media (max-width: 420px) {
-  .footer-bar {
-    flex-wrap: wrap;
-  }
-  .footer-bar select,
-  #proposeContainer .propose-btn {
-    max-width: 45vw;
-  }
 }
 
 
