@@ -386,7 +386,7 @@ if (proposeBtn && proposeSection) {
 
 
 // ============================================================
-// 📤 Gestion complète de l'affichage du classement
+// 🏆 Gestion complète de l'affichage du classement
 // ============================================================
 
 const rankingBtn = document.getElementById("rankingBtn");
@@ -418,7 +418,7 @@ if (rankingBtn && rankingSection) {
 
 
 // ============================================================
-// 📤 Chargement du classement (pas affichage)
+// 🏆 Chargement du classement (pas affichage)
 // ============================================================
 
 async function loadRanking() {
