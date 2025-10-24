@@ -188,7 +188,7 @@ const themeSelect = document.getElementById("themeMode");
 if (themeBtn && themeMenu && themeSelect) {
   themeBtn.addEventListener("click", (e) => {
     e.stopPropagation();
-    themeMenu.style.display = themeMenu.style.display === "flex" ? "none" : "flex";
+    themeMenu.classList.toggle("show");
     langMenu?.style && (langMenu.style.display = "none");
   });
 
