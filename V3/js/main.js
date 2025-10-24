@@ -224,33 +224,18 @@ async function applyAccroches(mode = "general") {
 }
 
 
+// 🎚️ Logique unifiée d'ouverture / fermeture des deux panneaux
 
-// ============================================================
-// 📤 Gestion complète du formulaire de proposition de question (version enrichie)
-// ============================================================
-
-const proposeBtn = document.getElementById("proposeBtn");
 const proposeSection = document.getElementById("proposeSection");
+const rankingSection = document.getElementById("rankingSection");
 
-if (proposeBtn && proposeSection) {
-  proposeBtn.addEventListener("click", () => {
-    // 🔁 Toggle d'affichage du formulaire avec transition fade
-    if (proposeSection.style.display === "block") {
-      proposeSection.classList.remove("show"); // fade-out
-      setTimeout(() => {
-        proposeSection.style.display = "none";
-        proposeSection.innerHTML = "";
-        proposeSection.classList.remove("fade");
-      }, 800);
-      return;
-    }
-
-    // ✅ Création du formulaire avec effet fade
-    proposeSection.style.display = "block";
-    proposeSection.classList.add("fade");
-    setTimeout(() => proposeSection.classList.add("show"), 50);
-
-    proposeSection.innerHTML = `
+// Durée cohérente avec l'animation CSS existante
+const FADE_DURATION = 400; // ms
+let proposeFormInitialized = false;
+// 📄 Crée le formulaire si pas déjà généré (et conserve les valeurs déjà saisies)
+function createProposeForm() {
+  if (proposeFormInitialized) return;
+  proposeSection.innerHTML = `
       <form id="userQuestionForm" class="user-question-form">
         <h3 data-i18n="ui.submitQuestionTitle">💡 Proposer une nouvelle question</h3>
 
@@ -259,7 +244,6 @@ if (proposeBtn && proposeSection) {
           <input type="text" id="userKey" name="userKey" required />
         </div>
 
-        <!-- 🆕 Mode juste après la clé -->
         <div class="form-group">
           <label for="category" data-i18n="ui.categoryLabel">🏷️ Catégorie :</label>
           <select id="category" name="category" required>
@@ -269,7 +253,6 @@ if (proposeBtn && proposeSection) {
           </select>
         </div>
 
-        <!-- 🆕 Sélecteur de langue de la question -->
         <div class="form-group">
           <label for="questionLang" data-i18n="ui.languageLabel">🌍 Langue de la question :</label>
           <select id="questionLang" name="questionLang" required>
@@ -297,7 +280,6 @@ if (proposeBtn && proposeSection) {
           `).join("")}
         </fieldset>
 
-        <!-- 🆕 Explication -->
         <div class="form-group">
           <label for="explanationText" data-i18n="ui.explanationLabel">📝 Explication (optionnelle) :</label>
           <textarea id="explanationText" name="explanationText" rows="3" placeholder="Pourquoi cette réponse est correcte ? (sources, contexte, etc.)"></textarea>
@@ -322,7 +304,6 @@ if (proposeBtn && proposeSection) {
 
       const ui = window.TEXTS?.ui || {};
 
-      // Récupération des valeurs
       const userKey = form.userKey.value.trim();
       const category = form.category.value;
       const questionLang = form.questionLang.value;
@@ -337,7 +318,6 @@ if (proposeBtn && proposeSection) {
         return;
       }
 
-      // Vérification de la clé d’accès
       const validKeys = CONFIG.VALID_KEYS || {};
       const submitted_by = validKeys[userKey];
       if (!submitted_by) {
@@ -380,40 +360,66 @@ if (proposeBtn && proposeSection) {
         sendBtn.disabled = false;
         sendBtn.textContent = ui.sendButton || "📤 Envoyer";
       }
-    });
-  });
+    };
+
+    // Marquer le formulaire comme initialisé
+    proposeFormInitialized = true;
+  proposeFormInitialized = true;
 }
 
-
-// ============================================================
-// 🏆 Gestion complète de l'affichage du classement
-// ============================================================
-
-const rankingBtn = document.getElementById("rankingBtn");
-const rankingSection = document.getElementById("rankingSection");
-
-if (rankingBtn && rankingSection) {
-  rankingBtn.addEventListener("click", async () => {
-
-    // Si le formulaire est ouvert → on le ferme
-    if (proposeSection.style.display === "block") {
-      proposeSection.style.display = "none";
-      proposeSection.innerHTML = "";
-    }
-
-    // Toggle classement
-    if (rankingSection.style.display === "block") {
-      rankingSection.style.display = "none";
-      return;
-    }
-
-    // Afficher avec effet
-    rankingSection.style.display = "block";
-
-    // Charger contenu
-    await loadRanking();
-  });
+// 🎯 Affiche la section de proposition avec animation (fade-in)
+function showProposeSection() {
+  createProposeForm();
+  proposeSection.style.display = "block";
+  proposeSection.classList.add("fade");
+  setTimeout(() => proposeSection.classList.add("show"), 20);
 }
+
+// 🚪 Cache la section de proposition avec fade-out (sans effacer les champs)
+function hideProposeSection() {
+  proposeSection.classList.remove("show");
+  setTimeout(() => {
+    proposeSection.style.display = "none";
+    // Pas de reset du formulaire → on conserve les valeurs
+    proposeSection.classList.remove("fade");
+  }, FADE_DURATION);
+}
+
+// 🔁 Bascule l'affichage du formulaire (et ferme le classement si ouvert)
+function toggleProposeSection() {
+  const isOpen = proposeSection.style.display === "block";
+  hideRankingSection();
+  if (isOpen) hideProposeSection();
+  else showProposeSection();
+}
+
+// 🏆 Affiche la section classement avec animation
+function showRankingSection() {
+  rankingSection.style.display = "block";
+  rankingSection.classList.add("fade");
+  setTimeout(() => rankingSection.classList.add("show"), 20);
+}
+
+// 🫗 Cache la section classement en douceur
+function hideRankingSection() {
+  rankingSection.classList.remove("show");
+  setTimeout(() => {
+    rankingSection.style.display = "none";
+    rankingSection.classList.remove("fade");
+  }, FADE_DURATION);
+}
+
+// 🔁 Bascule l'affichage du classement (et ferme le formulaire si ouvert)
+async function toggleRankingSection() {
+  const isOpen = rankingSection.style.display === "block";
+  hideProposeSection();
+  if (isOpen) hideRankingSection();
+  else {
+    showRankingSection();
+    if (typeof loadRanking === "function") await loadRanking();
+  }
+}
+
 
 
 
