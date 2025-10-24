@@ -631,24 +631,29 @@ html[data-theme="full_dark"] .lang-option:hover {
   100% { opacity: 1; transform: translateY(0); }
 }
 
-/* 🥇🥈🥉 Styles podium */
+/* 🥇🥈🥉 Podium couleurs fixes — pas impacté par mode FUN */
 .rank-gold {
-  background: linear-gradient(to right, #ffeaa7, #fdd76e);
-  border-color: #d6b85b;
+  background: linear-gradient(to right, #ffeaa7, #fdd76e) !important;
+  border-color: #d6b85b !important;
   font-weight: 600;
 }
 
 .rank-silver {
-  background: linear-gradient(to right, #e6e6e6, #cccccc);
-  border-color: #b3b3b3;
+  background: linear-gradient(to right, #e6e6e6, #cccccc) !important;
+  border-color: #b3b3b3 !important;
   font-weight: 600;
 }
 
 .rank-bronze {
-  background: linear-gradient(to right, #ffd5a5, #e6b07d);
-  border-color: #c48a4a;
+  background: linear-gradient(to right, #ffd5a5, #e6b07d) !important;
+  border-color: #c48a4a !important;
   font-weight: 600;
 }
+
+/* lisibilité */
+.player-name { font-weight: 600; }
+.player-score { opacity: 0.85; }
+
 
 
 
