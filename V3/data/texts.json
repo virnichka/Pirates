@@ -42,7 +42,7 @@
           "missingFields": "⚠️ Merci de remplir la clé, la question et la bonne réponse.",
           "rankingTitle": "🏆 Classement",
           "noRanking": "🤷‍♂️ Aucun score",
-          "wrongAnswersGroup": "❌ Mauvaises réponses",
+          "wrongAnswersGroup": "🔀 Réponses possibles",
           "explanationPlaceholder": "Pourquoi cette réponse est correcte ? (sources, contexte, etc.)"
         },
 
