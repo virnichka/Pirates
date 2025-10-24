@@ -252,6 +252,8 @@ h3 {
   cursor: pointer;
   font-size: 0.95rem;
   height: 38px;
+  text-align: center; /* ✅ Centre le texte */
+  appearance: none;   /* ✅ Retire l’alignement natif du select */
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
@@ -260,6 +262,7 @@ h3 {
   background-color: var(--accent-color);
   color: #fff;
 }
+
 
 
 
