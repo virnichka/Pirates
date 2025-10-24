@@ -638,8 +638,27 @@ body {
   .footer-item {
     flex: 1;
   }
-}
 
 
+
+.popover {
+  position: absolute;
+  bottom: 60px; /* apparaît juste au-dessus du bouton */
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 0.4rem;
+  display: none; /* caché au départ */
+  flex-direction: column;
+  gap: 0.4rem;
+  z-index: 99999;
 }
+
+.popover button {
+  font-size: 1.4rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
 
