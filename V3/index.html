@@ -77,12 +77,13 @@
   
       <!-- 🌍 Sélecteur de langue simplifié -->
       <div id="lang-selector-footer" class="footer-item">
-        <select id="langSelect">
-          <option value="fr">🇫🇷</option>
-          <option value="en">🇬🇧</option>
-          <option value="es">🇪🇸</option>
-          <option value="ro">🇷🇴</option>
-        </select>
+        <button id="langBtn">🇫🇷</button>
+        <div id="langMenu" class="popover">
+          <button data-lang="fr">🇫🇷</button>
+          <button data-lang="en">🇬🇧</button>
+          <button data-lang="es">🇪🇸</button>
+          <button data-lang="ro">🇷🇴</button>
+        </div>
       </div>
 
       <!-- 💡 Bouton pour proposer une question -->
