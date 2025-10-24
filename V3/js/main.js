@@ -459,15 +459,22 @@ async function loadRanking() {
 
   // Affichage
   list.innerHTML = rows
-    .map(r => {
-      const [name, score, total, percent] = r;
-      return `
-     <li>
-       <strong>${name}</strong>
-       <span>${score} ✅ — ${percent}</span>
-     </li>
-   `;
-    })
-    .join("");
+  .map((r, index) => {
+    const [name, score, total, percent] = r;
+
+    // Classe podium en fonction du rang
+    let rankClass = "";
+    if (index === 0) rankClass = "rank-gold";
+    else if (index === 1) rankClass = "rank-silver";
+    else if (index === 2) rankClass = "rank-bronze";
+
+    return `
+      <li class="${rankClass}">
+        <span class="player-name">${name}</span>
+        <span class="player-score">${score} ✅ — ${percent}</span>
+      </li>`;
+  })
+  .join("");
+
 }
 
