@@ -290,7 +290,7 @@ function createProposeForm() {
         </div>
 
         <fieldset class="wrong-answers">
-          <legend>❌ <span data-i18n="ui.wrongAnswersGroup">Mauvaises réponses</span></legend>
+          <legend data-i18n="ui.wrongAnswersGroup">🔀 Réponses possibles</legend>
           ${Array.from({ length: 6 }, (_, i) => `
             <input type="text" id="wrongAnswer${i+1}" name="wrongAnswer${i+1}" placeholder="Mauvaise réponse ${i+1}" />
           `).join("")}
