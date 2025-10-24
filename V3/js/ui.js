@@ -26,16 +26,6 @@ function getRandomItem(list) {
 }
 
 /**
- * 🎲 Mélange un tableau (utile pour les questions / réponses)
- */
-function shuffle(array) {
-  return array.sort(() => Math.random() - 0.5);
-}
-
-window.shuffle = shuffle;
-
-
-/**
  * ======================================================
  *  🧠 getCommentaire(pourcentage)
  *  Renvoie la phrase finale selon le score ET le mode
@@ -107,7 +97,14 @@ function updateUITexts() {
 }
 
 
+/**
+ * 🎲 Mélange un tableau (utile pour les questions / réponses)
+ */
+function shuffle(array) {
+  return array.sort(() => Math.random() - 0.5);
+}
 
+window.shuffle = shuffle;
 
 
 
