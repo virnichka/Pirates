@@ -653,7 +653,7 @@ body {
   display: none; /* ✅ Rend le menu invisible au départ */
   flex-direction: column;
   gap: 0.4rem;
-  z-index: 99999;
+  z-index: 2147483647;
 }
 
 .popover button {
