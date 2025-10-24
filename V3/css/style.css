@@ -649,7 +649,6 @@ body {
 /* -----------------------------------------------------------
    🎈 Popovers — Menus Langue & Mode
    ----------------------------------------------------------- */
-.popover /* Popover (menu flottant) caché au départ */
 .popover {
   position: absolute;
   bottom: 60px;
@@ -657,7 +656,7 @@ body {
   border: 1px solid var(--border-color);
   border-radius: 10px;
   padding: 0.4rem;
-  display: none; /* ✅ Rend le menu invisible au départ */
+  display: none;
   flex-direction: column;
   gap: 0.4rem;
   z-index: 2147483647;
@@ -672,9 +671,8 @@ body {
 }
 
 .popover.show {
-  display: flex !important;  /* ✅ écrase le !display:none du navigateur */
+  display: flex !important;
 }
-
 
 
 
