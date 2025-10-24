@@ -298,8 +298,8 @@ function createProposeForm() {
 
         <div class="form-group">
           <label for="explanationText" data-i18n="ui.explanationLabel">📝 Explication (optionnelle) :</label>
-          <textarea id="explanationText" name="explanationText" rows="3" placeholder="Pourquoi cette réponse est correcte ? (sources, contexte, etc.)"></textarea>
-        </div>
+          <textarea id="explanationText" name="explanationText" rows="3" data-i18n-ph="ui.explanationPlaceholder"></textarea>
+          </div>
 
         <div id="sendMessage" class="send-status"></div>
 
