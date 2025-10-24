@@ -202,71 +202,6 @@ h3 {
 
 
 
-
-
-/* -----------------------------------------------------------
-   🎮🌍📤🏆 Boutons du footer (mode / langue / upload / ranking)
-   ----------------------------------------------------------- */
-
-/* ✅ Footer propre, unifié */
-.footer-bar {
-  display: flex;
-  justify-content: center; /* on centre la rangée */
-  align-items: center;
-  padding: 0.8rem 1rem;
-  border-top: 1px solid var(--border-color);
-  column-gap: 1rem; /* espace horizontal régulier */
-  row-gap: 1rem;    /* espace vertical si ça wrap */
-  flex-wrap: wrap;  /* peut passer sur 2 lignes en petit écran */
-}
-
-/* ✅ Chaque bloc du footer (mode, langue, proposer, classement) */
-.footer-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.4rem;
-  flex: 0 0 150px;   /* largeur FIXE harmonisée */
-  max-width: 150px;  /* empêche de s’étirer */
-  text-align: center;
-}
-
-
-/* Icône au-dessus */
-.footer-item > *:first-child {
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: var(--text-color);
-}
-
-/* Boutons & selects uniformisés */
-.footer-item select,
-.footer-item button {
-  width: 100%;
-  padding: 0.45rem 0.7rem;
-  border-radius: 8px;
-  border: 1px solid var(--border-color);
-  background: var(--button-bg);
-  color: var(--button-text);
-  cursor: pointer;
-  font-size: 0.95rem;
-  height: 38px;
-  text-align: center; /* ✅ Centre le texte */
-  appearance: none;   /* ✅ Retire l’alignement natif du select */
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.footer-item select:hover,
-.footer-item button:hover {
-  background-color: var(--accent-color);
-  color: #fff;
-}
-
-
-
-
-
 /* -----------------------------------------------------------
    ❓ QUESTIONS ET MESSAGES DE FIN
    ----------------------------------------------------------- */
@@ -503,6 +438,9 @@ html[data-theme="full_dark"] .lang-option:hover {
 
 
 
+
+
+
 // -----------------------------------------------------------
 // 💅 Style du formulaire de soumission des questions
 // -----------------------------------------------------------
@@ -711,6 +649,8 @@ html[data-theme="full_dark"] .lang-option:hover {
 #rankingSection {
   margin-bottom: 90px; /* espace nécessaire pour rester au-dessus du footer */
 }
+
+
 
 
 
