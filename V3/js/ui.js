@@ -215,14 +215,14 @@ if (langBtn && langMenu && langSelectEl) {
 
 
   langMenu.addEventListener("click", (e) => {
-    const lang = e.target.dataset.lang;
-    if (!lang) return;
-    langSelectEl.value = lang;
-    localStorage.setItem("lang", lang);
-    if (typeof updateUITexts === "function") updateUITexts();
-    langMenu.style.display = "none";
-  });
-}
+     const lang = e.target.dataset.lang;
+     if (!lang) return;
+     langSelectEl.value = lang;
+     localStorage.setItem("lang", lang);
+     if (typeof updateUITexts === "function") updateUITexts();
+     langMenu.classList.remove("show"); // ✅ propre
+   });
+
 
 // Fermer popovers si on clique ailleurs
 window.addEventListener("click", () => {
