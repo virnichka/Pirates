@@ -443,7 +443,6 @@ async function toggleRankingSection() {
 // ============================================================
 // 🏆 Chargement du classement (pas affichage)
 // ============================================================
-
 async function loadRanking() {
   const list = document.getElementById("rankingList");
   if (!list) return;
@@ -459,22 +458,30 @@ async function loadRanking() {
 
   // Affichage
   list.innerHTML = rows
-  .map((r, index) => {
-    const [name, score, total, percent] = r;
+    .map((r, index) => {
+      const [name, score, total, percent] = r;
 
-    // Classe podium en fonction du rang
-    let rankClass = "";
-    if (index === 0) rankClass = "rank-gold";
-    else if (index === 1) rankClass = "rank-silver";
-    else if (index === 2) rankClass = "rank-bronze";
+      // 🧮 Convertir le pourcentage proprement
+      const pct =
+        typeof percent === "number"
+          ? Math.round(percent * 100) + "%"
+          : String(percent).includes("%")
+          ? percent
+          : percent + "%";
 
-    return `
-      <li class="${rankClass}">
-        <span class="player-name">${name}</span>
-        <span class="player-score">${score} ✅ — ${percent}</span>
-      </li>`;
-  })
-  .join("");
+      // 🥇🥈🥉 Classe podium en fonction du rang
+      let rankClass = "";
+      if (index === 0) rankClass = "rank-gold";
+      else if (index === 1) rankClass = "rank-silver";
+      else if (index === 2) rankClass = "rank-bronze";
 
+      return `
+        <li class="${rankClass}">
+          <span class="player-name">${name}</span>
+          <span class="player-score">${score} ✅ — ${pct}</span>
+        </li>`;
+    })
+    .join("");
 }
+
 
