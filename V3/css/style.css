@@ -437,9 +437,8 @@ html[data-theme="full_dark"] .lang-option:hover {
 }
 
 
-
 /* -----------------------------------------------------------
-   ✉️ Formulaire d’envoi d’une question
+   ✉️ Formulaire d’envoi (COLLER TON CODE ICI)
    ----------------------------------------------------------- */
 
 .user-question-form {
@@ -499,7 +498,7 @@ html[data-theme="full_dark"] .lang-option:hover {
 
 
 /* -----------------------------------------------------------
-   🏆 Tableau du classement
+   🏆 Classement (COLLER TON CODE ICI)
    ----------------------------------------------------------- */
 
 #rankingSection {
@@ -567,8 +566,9 @@ html[data-theme="full_dark"] .lang-option:hover {
 .player-score { opacity: 0.85; }
 
 
+
 /* -----------------------------------------------------------
-   🎮🌍📤🏆 Footer & Boutons
+   🎮🌍📤🏆 Footer & Boutons (COLLER TON CODE ICI)
    ----------------------------------------------------------- */
 
 /* Supprime la flèche native des select pour un rendu emoji centré */
@@ -640,9 +640,16 @@ body {
   .footer-item {
     flex: 1;
   }
+}
+  .footer-item {
+    flex: 1;
+  }
 
 
-/* Popover (menu flottant) caché au départ */
+/* -----------------------------------------------------------
+   🎈 Popovers — Menus Langue & Mode
+   ----------------------------------------------------------- */
+.popover /* Popover (menu flottant) caché au départ */
 .popover {
   position: absolute;
   bottom: 60px;
@@ -667,6 +674,8 @@ body {
 .popover.show {
   display: flex !important;  /* ✅ écrase le !display:none du navigateur */
 }
+
+
 
 
 
