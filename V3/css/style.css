@@ -640,15 +640,15 @@ body {
   }
 
 
-
+/* Popover (menu flottant) caché au départ */
 .popover {
   position: absolute;
-  bottom: 60px; /* apparaît juste au-dessus du bouton */
+  bottom: 60px;
   background: var(--bg-secondary);
   border: 1px solid var(--border-color);
   border-radius: 10px;
   padding: 0.4rem;
-  display: none; /* caché au départ */
+  display: none; /* ✅ Rend le menu invisible au départ */
   flex-direction: column;
   gap: 0.4rem;
   z-index: 99999;
@@ -659,6 +659,8 @@ body {
   background: transparent;
   border: none;
   cursor: pointer;
+  padding: 0.4rem;
 }
+
 
 
