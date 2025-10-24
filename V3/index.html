@@ -66,11 +66,13 @@
   <footer class="footer-bar">
     <!-- 🎮 Sélecteur de mode -->
     <div id="mode-selector-footer" class="footer-item">
-      <select id="themeMode">
-        <option value="general" data-i18n="ui.modeGeneral">Général 🌞</option>
-        <option value="fun" data-i18n="ui.modeFun">Fun 🤪</option>
-        <option value="full_dark" data-i18n="ui.modeDark">Full Dark 🏴‍☠️</option>
-      </select>
+      <button id="themeBtn">😜</button>
+      <div id="themeMenu" class="popover">
+        <button data-mode="general">😜</button>
+        <button data-mode="fun">🤪</button>
+        <button data-mode="full_dark">🏴‍☠️</button>
+      </div>
+
     </div>
   
       <!-- 🌍 Sélecteur de langue simplifié -->
