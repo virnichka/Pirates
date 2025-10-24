@@ -650,7 +650,7 @@ body {
    🎈 Popovers — Menus Langue & Mode
    ----------------------------------------------------------- */
 .popover {
-  position: absolute;
+  position: fixed;
   bottom: 60px;
   background: var(--bg-secondary);
   border: 1px solid var(--border-color);
