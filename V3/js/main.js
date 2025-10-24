@@ -414,3 +414,32 @@ if (rankingBtn && rankingSection) {
     await loadRanking();
   });
 }
+
+
+
+// ============================================================
+// 📤 Chargement du classement (pas affichage)
+// ============================================================
+
+async function loadRanking() {
+  const list = document.getElementById("rankingList");
+  if (!list) return;
+
+  list.innerHTML = `<li>⏳ Chargement...</li>`;
+
+  const rows = await getRanking();
+
+  if (!rows.length) {
+    list.innerHTML = `<li>🤷‍♂️ Aucun score trouvé</li>`;
+    return;
+  }
+
+  // Affichage
+  list.innerHTML = rows
+    .map(r => {
+      const [name, score, total, percent] = r;
+      return `<li><strong>${name}</strong><span>${score}/${total} — ${percent}</span></li>`;
+    })
+    .join("");
+}
+
