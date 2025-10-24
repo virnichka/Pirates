@@ -207,6 +207,8 @@ h3 {
 
 
 
+
+
 /* -----------------------------------------------------------
    🎮🌍📤🏆 Boutons du footer (mode / langue / upload / ranking)
    ----------------------------------------------------------- */
@@ -243,7 +245,7 @@ h3 {
 }
 
 /* Boutons & selects uniformisés */
-..footer-item select,
+.footer-item select,
 .footer-item button {
   width: 100%;
   padding: 0.45rem 0.7rem;
@@ -255,7 +257,6 @@ h3 {
   font-size: 0.95rem;
   height: 38px;
   transition: background-color 0.3s ease, color 0.3s ease;
-}
 }
 
 .footer-item select:hover,
