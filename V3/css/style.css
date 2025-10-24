@@ -502,6 +502,7 @@ html[data-theme="full_dark"] .lang-option:hover {
 }
 
 
+
 // -----------------------------------------------------------
 // 💅 Style du formulaire de soumission des questions
 // -----------------------------------------------------------
@@ -656,6 +657,25 @@ html[data-theme="full_dark"] .lang-option:hover {
 
 
 /* 🎨 Footer compact sans icônes au-dessus */
+.footer-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border-color);
+  padding: 0.4rem 0.6rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 9999;
+}
+
+.body, body {
+  padding-bottom: 80px;
+}
+
+/* 🎨 Footer compact sans icônes au-dessus */
 .footer-item {
   display: flex;
   justify-content: center;
@@ -687,6 +707,8 @@ html[data-theme="full_dark"] .lang-option:hover {
     flex: 1;
   }
 }
+
+
 
 
 }
