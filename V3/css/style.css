@@ -437,8 +437,9 @@ html[data-theme="full_dark"] .lang-option:hover {
 }
 
 
+
 /* -----------------------------------------------------------
-   ✉️ Formulaire d’envoi (COLLER TON CODE ICI)
+   ✉️ Formulaire d’envoi d’une question
    ----------------------------------------------------------- */
 
 .user-question-form {
@@ -498,7 +499,7 @@ html[data-theme="full_dark"] .lang-option:hover {
 
 
 /* -----------------------------------------------------------
-   🏆 Classement (COLLER TON CODE ICI)
+   🏆 Tableau du classement
    ----------------------------------------------------------- */
 
 #rankingSection {
@@ -566,9 +567,8 @@ html[data-theme="full_dark"] .lang-option:hover {
 .player-score { opacity: 0.85; }
 
 
-
 /* -----------------------------------------------------------
-   🎮🌍📤🏆 Footer & Boutons (COLLER TON CODE ICI)
+   🎮🌍📤🏆 Footer & Boutons
    ----------------------------------------------------------- */
 
 /* Supprime la flèche native des select pour un rendu emoji centré */
@@ -598,12 +598,10 @@ body {
 }
 
 .footer-item {
-  position: relative;      /* nécessaire pour ancrer le popover */
   display: flex;
-  flex-direction: column;  /* ✅ le bouton en bas, le popover au-dessus */
+  justify-content: center;
   align-items: center;
 }
-
 
 .footer-item button,
 .footer-item select {
@@ -640,26 +638,20 @@ body {
   .footer-item {
     flex: 1;
   }
-}
-  .footer-item {
-    flex: 1;
-  }
 
 
-/* -----------------------------------------------------------
-   🎈 Popovers — Menus Langue & Mode
-   ----------------------------------------------------------- */
+/* Popover (menu flottant) caché au départ */
 .popover {
-  position: fixed;
+  position: absolute;
   bottom: 60px;
   background: var(--bg-secondary);
   border: 1px solid var(--border-color);
   border-radius: 10px;
   padding: 0.4rem;
-  display: none;
+  display: none; /* ✅ Rend le menu invisible au départ */
   flex-direction: column;
   gap: 0.4rem;
-  z-index: 2147483647;
+  z-index: 99999;
 }
 
 .popover button {
@@ -671,9 +663,8 @@ body {
 }
 
 .popover.show {
-  display: flex !important;
+  display: flex;
 }
-
 
 
 
