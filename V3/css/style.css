@@ -631,6 +631,25 @@ html[data-theme="full_dark"] .lang-option:hover {
   100% { opacity: 1; transform: translateY(0); }
 }
 
+/* 🥇🥈🥉 Styles podium */
+.rank-gold {
+  background: linear-gradient(to right, #ffeaa7, #fdd76e);
+  border-color: #d6b85b;
+  font-weight: 600;
+}
+
+.rank-silver {
+  background: linear-gradient(to right, #e6e6e6, #cccccc);
+  border-color: #b3b3b3;
+  font-weight: 600;
+}
+
+.rank-bronze {
+  background: linear-gradient(to right, #ffd5a5, #e6b07d);
+  border-color: #c48a4a;
+  font-weight: 600;
+}
+
 
 }
 
