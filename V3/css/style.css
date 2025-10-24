@@ -571,6 +571,14 @@ html[data-theme="full_dark"] .lang-option:hover {
    🎮🌍📤🏆 Footer & Boutons
    ----------------------------------------------------------- */
 
+/* Supprime la flèche native des select pour un rendu emoji centré */
+.footer-item select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+
 .footer-bar {
   position: fixed;
   bottom: 0;
@@ -620,13 +628,18 @@ body {
 
 @media (max-width: 480px) {
   .footer-bar {
-    justify-content: space-between;
+    justify-content: space-around; /* ✅ Répartition harmonieuse */
     gap: 0.4rem;
   }
   .footer-item {
     flex: 1;
   }
 }
+  .footer-item {
+    flex: 1;
+  }
+}
+
 
 }
 
