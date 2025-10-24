@@ -183,23 +183,40 @@ document.addEventListener("DOMContentLoaded", () => {
 // ===== 🌞 Mode popover =====
 const themeBtn = document.getElementById("themeBtn");
 const themeMenu = document.getElementById("themeMenu");
-const themeSelect = document.getElementById("themeMode");
 
-if (themeBtn && themeMenu && themeSelect) {
+if (themeBtn && themeMenu) {
+
+  // Ouverture / fermeture du menu
   themeBtn.addEventListener("click", (e) => {
     e.stopPropagation();
     themeMenu.classList.toggle("show");
-    langMenu?.style && (langMenu.style.display = "none");
+
+    // ferme le menu langue si ouvert
+    if (typeof langMenu !== "undefined") {
+      langMenu.classList.remove("show");
+    }
   });
 
-  themeMenu.addEventListener("click", (e) => {
-     const mode = e.target.dataset.mode;
-     if (!mode) return;
-     themeSelect.value = mode;
-     if (typeof updateThemeMode === "function") updateThemeMode();
-     themeMenu.classList.remove("show");
-   });
+  // Sélection d'un mode
+  themeMenu.addEventListener("click", async (e) => {
+    const mode = e.target?.dataset?.mode;
+    if (!mode) return;
+
+    localStorage.setItem("selectedMode", mode);
+
+    if (typeof applyTheme === "function") applyTheme(mode);
+    if (typeof applyAccroches === "function") await applyAccroches(mode);
+
+    if (typeof fetchQuestions === "function" && typeof startQuiz === "function") {
+      const newQs = await fetchQuestions(mode);
+      startQuiz(newQs);
+    }
+
+    themeMenu.classList.remove("show");
+  });
+
 }
+
 
 
 // ===== 🌍 Lang popover =====
