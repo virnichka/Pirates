@@ -436,17 +436,21 @@ function hideRankingSection() {
 }
 
 // 🔁 Bascule l'affichage du classement (et ferme le formulaire si ouvert)
-async function toggleRankingSection() {
+function toggleRankingSection() {
   const isOpen = rankingSection.style.display === "block";
-  hideProposeSection();
-  if (isOpen) hideRankingSection();
-  else {
-    showRankingSection();
-    if (typeof loadRanking === "function") await loadRanking();
-  }
-   proposeSection.scrollIntoView({ behavior: "smooth", block: "start" });
 
+  hideProposeSection();
+
+  if (isOpen) {
+    hideRankingSection();
+  } else {
+    showRankingSection();
+    setTimeout(() => {
+      rankingSection.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 50);
+  }
 }
+
 
 
 
