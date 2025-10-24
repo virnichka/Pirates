@@ -708,6 +708,10 @@ html[data-theme="full_dark"] .lang-option:hover {
   }
 }
 
+#proposeSection,
+#rankingSection {
+  margin-bottom: 90px; /* espace nécessaire pour rester au-dessus du footer */
+}
 
 
 
