@@ -234,6 +234,6 @@ if (langBtn && langMenu && langSelectEl) {
      themeMenu.classList.remove("show");
      langMenu.classList.remove("show");
    });
-
+}
 
 
