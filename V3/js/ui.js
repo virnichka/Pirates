@@ -97,16 +97,6 @@ function updateUITexts() {
 }
 
 
-/**
- * 🎲 Mélange un tableau (utile pour les questions / réponses)
- */
-function shuffle(array) {
-  return array.sort(() => Math.random() - 0.5);
-}
-
-window.shuffle = shuffle;
-
-
 
 /* =======================================
    ⏳ Attente du chargement de TEXTS
@@ -123,6 +113,15 @@ function waitForTexts() {
 // 🚀 Lancement automatique
 waitForTexts();
 
+
+/**
+ * 🎲 Mélange un tableau (utile pour les questions / réponses)
+ */
+function shuffle(array) {
+  return array.sort(() => Math.random() - 0.5);
+}
+
+window.shuffle = shuffle;
 
 // 🌍 Initialisation + gestion du changement de langue (bloc unique)
 document.addEventListener("DOMContentLoaded", () => {
