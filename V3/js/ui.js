@@ -202,7 +202,6 @@ if (themeBtn && themeMenu) {
   themeMenu.addEventListener("click", (e) => {
      const mode = e.target.dataset.mode;
      if (!mode) return;
-     themeSelect.value = mode;
      if (typeof updateThemeMode === "function") updateThemeMode();
      themeMenu.classList.remove("show"); // ✅ propre
    });
