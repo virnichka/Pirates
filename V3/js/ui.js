@@ -224,12 +224,10 @@ if (langBtn && langMenu && langSelectEl) {
    });
 
 
-// Fermer popovers si on clique ailleurs
-window.addEventListener("click", () => {
-  if (themeMenu) themeMenu.style.display = "none";
-  if (langMenu) langMenu.style.display = "none";
-});
-
+   window.addEventListener("click", () => {
+     themeMenu.classList.remove("show");
+     langMenu.classList.remove("show");
+   });
 
 
 
