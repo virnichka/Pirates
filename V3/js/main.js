@@ -226,7 +226,7 @@ async function applyAccroches(mode = "general") {
 
 
 // ============================================================
-// 🔗 Connexion des boutons du footer aux fonctions Toggle-logic
+// 🏆📤 Connexion des boutons du footer aux fonctions Toggle-logic
 // ============================================================
 
 const proposeBtn = document.getElementById("proposeBtn");
