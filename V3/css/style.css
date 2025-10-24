@@ -230,7 +230,7 @@ h3 {
   justify-content: center;
   gap: 0.4rem;
   flex: 1 1 120px;
-  max-width: 150px;
+  max-width: 160px;
   text-align: center;
 }
 
@@ -243,8 +243,9 @@ h3 {
 }
 
 /* Boutons & selects uniformisés */
-.footer-item select,
+..footer-item select,
 .footer-item button {
+  width: 100%;
   padding: 0.45rem 0.7rem;
   border-radius: 8px;
   border: 1px solid var(--border-color);
@@ -254,6 +255,7 @@ h3 {
   font-size: 0.95rem;
   height: 38px;
   transition: background-color 0.3s ease, color 0.3s ease;
+}
 }
 
 .footer-item select:hover,
