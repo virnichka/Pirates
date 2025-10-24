@@ -598,10 +598,12 @@ body {
 }
 
 .footer-item {
+  position: relative;      /* nécessaire pour ancrer le popover */
   display: flex;
-  justify-content: center;
+  flex-direction: column;  /* ✅ le bouton en bas, le popover au-dessus */
   align-items: center;
 }
+
 
 .footer-item button,
 .footer-item select {
@@ -663,7 +665,7 @@ body {
 }
 
 .popover.show {
-  display: flex;
+  display: flex !important;  /* ✅ écrase le !display:none du navigateur */
 }
 
 
