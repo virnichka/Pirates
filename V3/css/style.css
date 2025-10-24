@@ -500,25 +500,6 @@ html[data-theme="full_dark"] #themeMode:hover {
   color: #fff;
 }
 
-html[data-theme="full_dark"] .lang-btn {
-  background: #1f1f1f;
-  border-color: #333;
-}
-
-html[data-theme="full_dark"] .lang-btn img {
-  border: 1px solid #444;
-}
-
-html[data-theme="full_dark"] .lang-menu {
-  background: #1b1b1b;
-  border-color: #333;
-  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.05);
-}
-
-html[data-theme="full_dark"] .lang-option {
-  color: #f2f2f2;
-}
-
 html[data-theme="full_dark"] .lang-option:hover {
   background: #e74c3c;
   color: #fff;
