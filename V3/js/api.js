@@ -153,3 +153,29 @@ function getI18nText(key, fallback) {
   return fallback;
 }
 
+
+
+/**
+ * 📊 Récupère le classement complet depuis la feuille "Ranking"
+ */
+async function getRanking() {
+  try {
+    const url = `${CONFIG.GOOGLE_SCRIPT_URL}?action=getRanking&_t=${Date.now()}`;
+    console.log("📡 Récupération du classement :", url);
+
+    const response = await fetch(url, { method: "GET", cache: "no-store" });
+    const data = await response.json();
+
+    if (!Array.isArray(data)) {
+      console.warn("⚠️ Format de classement inattendu :", data);
+      return [];
+    }
+
+    return data; // Format attendu: [ [Nom, Bonnes, Total, %], ... ]
+  } catch (err) {
+    console.error("❌ Erreur lors du chargement du classement :", err);
+    return [];
+  }
+}
+
+
