@@ -558,12 +558,10 @@ html[data-theme="full_dark"] .lang-option:hover {
    }
 
 #proposeSection {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  display: block; /* was flex, now natural flow */
   width: 100%;
   margin-top: clamp(1rem, 3vw, 2.5rem);
+  padding-bottom: 90px; /* space above fixed footer */
 }
 
 .user-question-form {
@@ -589,6 +587,7 @@ html[data-theme="full_dark"] .lang-option:hover {
 // 💅 Style du formulaire de classement 
 // -----------------------------------------------------------
 #rankingSection {
+  display: block; /* ensures it stays in normal flow like proposeSection */
   display: none;
   width: 100%;
   max-width: 600px;
