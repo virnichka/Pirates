@@ -193,12 +193,12 @@ if (themeBtn && themeMenu && themeSelect) {
   });
 
   themeMenu.addEventListener("click", (e) => {
-    const mode = e.target.dataset.mode;
-    if (!mode) return;
-    themeSelect.value = mode;
-    if (typeof updateThemeMode === "function") updateThemeMode();
-    themeMenu.style.display = "none";
-  });
+     const mode = e.target.dataset.mode;
+     if (!mode) return;
+     themeSelect.value = mode;
+     if (typeof updateThemeMode === "function") updateThemeMode();
+     themeMenu.classList.remove("show"); // ✅ propre
+   });
 }
 
 // ===== 🌍 Lang popover =====
