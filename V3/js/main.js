@@ -384,3 +384,33 @@ if (proposeBtn && proposeSection) {
   });
 }
 
+
+// ============================================================
+// 📤 Gestion complète de l'affichage du classement
+// ============================================================
+
+const rankingBtn = document.getElementById("rankingBtn");
+const rankingSection = document.getElementById("rankingSection");
+
+if (rankingBtn && rankingSection) {
+  rankingBtn.addEventListener("click", async () => {
+
+    // Si le formulaire est ouvert → on le ferme
+    if (proposeSection.style.display === "block") {
+      proposeSection.style.display = "none";
+      proposeSection.innerHTML = "";
+    }
+
+    // Toggle classement
+    if (rankingSection.style.display === "block") {
+      rankingSection.style.display = "none";
+      return;
+    }
+
+    // Afficher avec effet
+    rankingSection.style.display = "block";
+
+    // Charger contenu
+    await loadRanking();
+  });
+}
