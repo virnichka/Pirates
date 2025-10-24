@@ -6,6 +6,14 @@
  * - Fournit des utilitaires (shuffle, prénoms aléatoires)
  */
 
+// ✅ Sécurisation : si shuffle n'est pas défini, on le définit
+if (typeof shuffle !== "function") {
+  window.shuffle = function(array) {
+    return array.sort(() => Math.random() - 0.5);
+  };
+}
+
+
 /* =======================================
    🔤 RÉCUPÉRATION DES TEXTES MULTILINGUES
    ======================================= */
