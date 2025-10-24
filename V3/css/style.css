@@ -208,38 +208,31 @@ h3 {
 
 
 /* -----------------------------------------------------------
-   🎮🌍📤 Boutons du footer (mode / langue / upload)
+   🎮🌍📤🏆 Boutons du footer (mode / langue / upload / ranking)
    ----------------------------------------------------------- */
 
-/* Structure commune */
-#mode-selector-footer,
-#lang-selector-footer,
-#proposeContainer,
-#rankingContainer {
+.footer-item {
   display: flex;
-  flex-direction: column;   /* icône au-dessus, bouton dessous */
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 0.4rem;
   margin-top: 0.8rem;
-  flex: 1 1 120px;          /* largeur minimale commune */
-  max-width: 140px;         /* évite les écarts de taille */
+  flex: 1 1 120px;
+  max-width: 140px;
   text-align: center;
 }
 
-/* Icônes */
-#mode-selector-footer label,
-#lang-selector-footer label,
-#proposeContainer .upload-icon {
+/* ✅ Style commun aux icônes (🎮 🌍 ✉️ 🏆) */
+.footer-item > *:first-child {
   font-weight: 600;
   color: var(--text-color);
   font-size: 1.1rem;
 }
 
-/* Boutons et sélecteurs */
-#mode-selector-footer select,
-#lang-selector-footer select,
-#proposeContainer .propose-btn {
+/* ✅ Style commun aux éléments cliquables (select + buttons) */
+.footer-item select,
+.footer-item button {
   padding: 0.4rem 0.8rem;
   border-radius: 8px;
   border: 1px solid var(--border-color);
@@ -247,19 +240,17 @@ h3 {
   color: var(--button-text);
   cursor: pointer;
   font-size: 0.95rem;
-  font-weight: normal;
-  font-family: inherit;
-  height: 38px;             /* ✅ Hauteur unifiée */
+  height: 38px;
   transition: background-color 0.3s, color 0.3s;
 }
 
-/* Survol */
-#mode-selector-footer select:hover,
-#lang-selector-footer select:hover,
-#proposeContainer .propose-btn:hover {
+/* ✅ Hover commun */
+.footer-item select:hover,
+.footer-item button:hover {
   background-color: var(--accent-color);
   color: #fff;
 }
+
 
 
 
