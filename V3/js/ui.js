@@ -207,11 +207,12 @@ const langMenu = document.getElementById("langMenu");
 const langSelectEl = document.getElementById("langSelect");
 
 if (langBtn && langMenu && langSelectEl) {
-  langBtn.addEventListener("click", (e) => {
-    e.stopPropagation();
-    langMenu.style.display = langMenu.style.display === "flex" ? "none" : "flex";
-    themeMenu?.style && (themeMenu.style.display = "none");
-  });
+   langBtn.addEventListener("click", (e) => {
+     e.stopPropagation();
+     langMenu.classList.toggle("show");  // ✅ propre
+     themeMenu.classList.remove("show");
+   });
+
 
   langMenu.addEventListener("click", (e) => {
     const lang = e.target.dataset.lang;
