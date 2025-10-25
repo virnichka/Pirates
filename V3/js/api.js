@@ -179,3 +179,18 @@ async function getRanking() {
 }
 
 
+
+
+/**
+ * 🔑 Récupère les cles ustilisateurs depuis google sheets userkeys
+ */
+async function fetchUserKeys() {
+  const url = `${CONFIG.GOOGLE_SCRIPT_URL}?action=getUserKeys&_t=${Date.now()}`;
+  const res = await fetch(url);
+  const data = await res.json();
+  window.USER_KEYS = data || {};
+  console.log("🔑 USER_KEYS chargées :", window.USER_KEYS);
+}
+
+
+
