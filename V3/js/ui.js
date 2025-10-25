@@ -93,12 +93,23 @@ function updateUITexts() {
   if (!window.TEXTS?.ui) return;
 
   document.querySelectorAll("[data-i18n]").forEach(el => {
+    // ✅ Ne pas appliquer de texte statique sur le titre & sous-titre
+    if (el.id === "quizTitle" || el.id === "quizSubtitle") return;
+
     const key = el.getAttribute("data-i18n");
     const value = key.split('.').reduce((o, i) => o?.[i], window.TEXTS);
     if (value) {
       if (el.tagName === "TITLE") document.title = value;
       else el.innerText = value;
     }
+  });
+
+  // 🎯 Toujours appliquer un titre & sous-titre aléatoires après mise à jour UI
+  if (typeof applyAccroches === "function") {
+    const mode = localStorage.getItem("selectedMode") || "general";
+    applyAccroches(mode);
+  }
+}
   });
 }
 
