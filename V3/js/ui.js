@@ -1,9 +1,8 @@
 /**
- * 🎨 Gestion de l'interface et des textes (V2.4)
+ * 🎨 Gestion de l'interface et des textes 
  * 
  * - Charge les accroches (titres, sous-titres, commentaires finaux)
- * - Gère le thème clair/sombre
- * - Fournit des utilitaires (shuffle, prénoms aléatoires)
+ * - Gère le thème du mode
  */
 
 /* =======================================
