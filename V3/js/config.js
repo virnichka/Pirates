@@ -30,4 +30,3 @@ const CONFIG = {
 
 // ✅ Exposition globale 
 window.CONFIG = CONFIG;
-console.log("🌍 CONFIG exposé globalement :", window.CONFIG);
