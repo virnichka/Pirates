@@ -41,7 +41,8 @@ async function loadTexts() {
 window.addEventListener("load", async () => {
   try {
     await loadTexts(); // 🧩 Charge les textes multilingues au démarrage
-     
+   await fetchUserKeys(); // 🔑 charge les clés utilisateurs au démarrage
+
      // 🗣️ Applique la langue sauvegardée au chargement
       const savedLang = localStorage.getItem("lang") || "fr";
       window.currentLang = savedLang;
