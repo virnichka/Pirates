@@ -63,8 +63,6 @@ async function sendScore(nom, score, total, mode = "general") {
     // 1️⃣ Construction de l’URL complète sur une seule ligne (évite les erreurs de parsing)
     const url = `${CONFIG.GOOGLE_SCRIPT_URL}?action=sendScore&nom=${encodeURIComponent(nom)}&score=${encodeURIComponent(score)}&total=${encodeURIComponent(total)}&mode=${encodeURIComponent(mode)}&_t=${Date.now()}`;
 
-    console.log("📡 Envoi du score via URL :", url);
-
     // 2️⃣ Appel GET
     const response = await fetch(url, { method: "GET", cache: "no-store" });
 
@@ -94,9 +92,6 @@ async function sendScore(nom, score, total, mode = "general") {
 // ============================================================
 // 📩 Gestion de la soumission de la question utilisateur (multilingue + animation)
 // ============================================================
-// ============================================================
-// 🧩 Debug version : sendUserQuestion (toujours accessible)
-// ============================================================
 
 // Vérification du chargement du fichier
 document.addEventListener("DOMContentLoaded", () => {
@@ -117,9 +112,6 @@ window.sendUserQuestion = async function (data) {
     action: "add_user_question",
     ...data,
   };
-
-  console.log("📤 Préparation envoi vers :", url);
-  console.log("📦 Données envoyées :", payload);
 
   try {
     const response = await fetch(url, {
