@@ -7,7 +7,7 @@ const CONFIG = {
   FULL_DARK_PASS: "🖕", // 🗝️ mot de passe pour le mode Full Dark
   
   
-  // 🧩  clés d'accès pour les soumettre une question
+  // 🧩 VALID_KEYS : clé privée saisie par l'utilisateur → nom public stocké dans scores
   VALID_KEYS: {
     "INSA": "Gilo",
     "Juziers": "Simon",
