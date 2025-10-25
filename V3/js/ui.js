@@ -110,11 +110,6 @@ function updateUITexts() {
     applyAccroches(mode);
   }
 }
-  });
-}
-
-
-
 
 
 
