@@ -64,7 +64,6 @@ window.addEventListener("load", async () => {
         modeSelect.value = savedMode;
       }
       
-      
       // 3️⃣ Chargement des questions selon le mode choisi
       const questions = await fetchQuestions(savedMode);
       
