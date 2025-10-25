@@ -43,14 +43,8 @@ if (commentaireEl) {
   commentaireEl.textContent = "";
 }
 
-
-
   // cache le bouton suivant
   if (nextBtn) nextBtn.style.display = "none";
-
-  //  debog console vue question
-  console.log("Question actuelle :", q);
-
 
   // 📝 Affiche le texte de la question
   elQ.innerText = q.question;
@@ -247,7 +241,6 @@ async function restartQuiz() {
     const newQuestions = await fetchQuestions(selectedMode);
 
     if (newQuestions && newQuestions.length > 0) {
-      console.log(`✅ Nouvelles questions chargées (${selectedMode}, ${lang})`);
       startQuiz(newQuestions);
     } else {
       questionEl.innerText = noQuestionsMsg;
