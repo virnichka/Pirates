@@ -49,14 +49,15 @@ window.addEventListener("load", async () => {
       const savedMode = localStorage.getItem("selectedMode") || "general";
       applyTheme(savedMode);
       
-      
+
+      await loadTexts(); // 🧩 Charge les textes multilingues au démarrage
+      await fetchUserKeys(); // 🔑 charge les clés utilisateurs au démarrage
+
+     
       // Force la mise à jour des textes localisés de l'interface
       if (typeof updateUITexts === "function") {
       updateUITexts();
       }    
-
-      await loadTexts(); // 🧩 Charge les textes multilingues au démarrage
-      await fetchUserKeys(); // 🔑 charge les clés utilisateurs au démarrage
       
       // Synchronise le sélecteur du mode
       const modeSelect = document.getElementById("themeMode");
