@@ -186,23 +186,18 @@ function showFinalScore() {
 
   // 🗝️ Demande la clé d’accès
   let userKey = prompt("🗝️");
-  if (!userKey) return; // Annulation => pas d’enregistrement
+  if (!userKey) return;
   
   userKey = userKey.trim();
   
-  // Vérifie si la clé est valide
-  const validKeys = CONFIG.VALID_KEYS || {};
-  if (!validKeys[userKey]) {
-    alert("❌ wrong key");
-    return;
+  if (!window.USER_KEYS[userKey]) {
+      alert("❌");
+      return;
   }
 
-// ✅ Récupère le nom associé à la clé
-const playerName = validKeys[userKey];
-
-// Envoie le score avec le nom réel associé
-sendScore(playerName, score, total);
-
+  // ✅ Récupère le nom associé à la clé et envoie le score avec nom
+  const playerName = window.USER_KEYS[userKey];
+  sendScore(playerName, score, total);
 
 }
 
