@@ -333,8 +333,15 @@ function createProposeForm() {
         return;
       }
 
-      const validKeys = CONFIG.VALID_KEYS || {};
-      const submitted_by = validKeys[userKey];
+      if (!window.USER_KEYS[userKey]) {
+        messageBox.textContent = ui.invalidKey || "❌ Wrong key.";
+        messageBox.style.color = "red";
+        return;
+      }
+
+      // ✅ Nom associé chargé depuis Google Sheets
+      const submitted_by = window.USER_KEYS[userKey];
+
       if (!submitted_by) {
         messageBox.textContent = ui.invalidKey || "❌ Clé d’accès invalide.";
         messageBox.style.color = "red";
