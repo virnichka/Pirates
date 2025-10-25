@@ -184,9 +184,25 @@ function showFinalScore() {
   document.getElementById("nextBtn").style.display = "none";
   document.getElementById("restartBtn").style.display = "block";
 
-  // 🏆 Classement (optionnel)
-const nom = prompt(ui.enterName || "Entre ton nom pour le classement :");
-if (nom && nom.trim()) sendScore(nom.trim(), score, total);
+  // 🗝️ Demande la clé d’accès
+  let userKey = prompt("🗝️");
+  if (!userKey) return; // Annulation => pas d’enregistrement
+  
+  userKey = userKey.trim();
+  
+  // Vérifie si la clé est valide
+  const validKeys = CONFIG.VALID_KEYS || {};
+  if (!validKeys[userKey]) {
+    alert("❌ wrong key");
+    return;
+  }
+
+// ✅ Récupère le nom associé à la clé
+const playerName = validKeys[userKey];
+
+// Envoie le score avec le nom réel associé
+sendScore(playerName, score, total);
+
 
 }
 
