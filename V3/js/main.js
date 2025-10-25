@@ -49,7 +49,6 @@ window.addEventListener("load", async () => {
       const savedMode = localStorage.getItem("selectedMode") || "general";
       applyTheme(savedMode);
      
-      await applyAccroches(savedMode);
      
       await loadTexts(); // 🧩 Charge les textes multilingues au démarrage
       await fetchUserKeys(); // 🔑 charge les clés utilisateurs au démarrage
