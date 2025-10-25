@@ -92,15 +92,8 @@ async function sendScore(nom, score, total, mode = "general") {
 // ============================================================
 // 📩 Gestion de la soumission de la question utilisateur (multilingue + animation)
 // ============================================================
-
-// Vérification du chargement du fichier
-document.addEventListener("DOMContentLoaded", () => {
-  console.log("🟢 api.js chargé — début d'exécution");
-});
-
 // Définition au niveau global (pas dans un bloc local)
 window.sendUserQuestion = async function (data) {
-  console.log("🚀 sendUserQuestion appelée avec :", data);
 
   if (!window.CONFIG || !CONFIG.GOOGLE_SCRIPT_URL) {
     console.error("❌ CONFIG.GOOGLE_SCRIPT_URL est introuvable !");
@@ -123,7 +116,6 @@ window.sendUserQuestion = async function (data) {
       body: JSON.stringify(payload),
     });
 
-    console.log("✅ Requête envoyée à Google Apps Script (mode no-cors)");
     return { status: "success" };
   } catch (error) {
     console.error("❌ Erreur lors de l'envoi à Google Apps Script :", error);
