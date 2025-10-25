@@ -185,8 +185,14 @@ function showFinalScore() {
   document.getElementById("restartBtn").style.display = "block";
 
   // 🏆 Classement (optionnel)
-  const nom = prompt(ui.enterName || "Entre ton nom pour le classement :");
-  if (nom && nom.trim()) sendScore(nom.trim(), score, total);
+  const ui = window.TEXTS?.ui || {};
+  const namePrompt = ui.userKeyLabel || "🔑 Clé d'accès :";
+  
+  const nom = prompt(namePrompt);
+  if (nom && nom.trim()) {
+    sendScore(nom.trim(), score, total);
+  }
+
 }
 
 
