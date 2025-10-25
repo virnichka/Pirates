@@ -21,8 +21,6 @@ async function fetchQuestions(mode = null) {
     const limit = CONFIG.QUIZ_LIMIT || 5;
     const url = `${CONFIG.GOOGLE_SCRIPT_URL}?action=getQuestions&mode=${encodeURIComponent(selectedMode)}&lang=${encodeURIComponent(currentLang)}&limit=${limit}&shuffle=1`;
 
-    console.log("🌐 URL API utilisée :", url);
-
     // 3️⃣ Appel API
     const response = await fetch(url, { method: "GET", cache: "no-store" });
     if (!response.ok) {
@@ -44,7 +42,6 @@ async function fetchQuestions(mode = null) {
       console.warn("⚠️ Format inattendu de certaines questions :", questions);
     }
 
-    console.log(`✅ ${questions.length} questions chargées (${selectedMode}, ${currentLang})`);
     return questions;
 
   } catch (err) {
@@ -79,9 +76,6 @@ async function sendScore(nom, score, total, mode = "general") {
       console.warn("⚠️ Réponse non JSON :", err);
       data = { ok: false, message: "Réponse non JSON" };
     }
-
-    // 4️⃣ Log console
-    console.log("📤 Score enregistré :", data);
 
     if (!data.ok) {
       console.warn("⚠️ Réponse non valide :", data);
@@ -161,8 +155,6 @@ function getI18nText(key, fallback) {
 async function getRanking() {
   try {
     const url = `${CONFIG.GOOGLE_SCRIPT_URL}?action=getRanking&_t=${Date.now()}`;
-    console.log("📡 Récupération du classement :", url);
-
     const response = await fetch(url, { method: "GET", cache: "no-store" });
     const data = await response.json();
 
