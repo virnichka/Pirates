@@ -40,37 +40,37 @@ async function loadTexts() {
 
 window.addEventListener("load", async () => {
   try {
-    await loadTexts(); // 🧩 Charge les textes multilingues au démarrage
-   await fetchUserKeys(); // 🔑 charge les clés utilisateurs au démarrage
-
-     // 🗣️ Applique la langue sauvegardée au chargement
+      
+        // 🗣️ Applique la langue sauvegardée 
       const savedLang = localStorage.getItem("lang") || "fr";
       window.currentLang = savedLang;
       
+      // 🌈 applique le thème visuel du mode 
+      const savedMode = localStorage.getItem("selectedMode") || "general";
+      applyTheme(savedMode);
+      await applyAccroches(savedMode);
+      
+      await loadTexts(); // 🧩 Charge les textes multilingues au démarrage
+      await fetchUserKeys(); // 🔑 charge les clés utilisateurs au démarrage
+      
+      
       // Force la mise à jour des textes localisés de l'interface
       if (typeof updateUITexts === "function") {
-        updateUITexts();
-      }
-     
-    // 1️⃣ Récupération du mode sauvegardé (ou "general" par défaut)
-    const savedMode = localStorage.getItem("selectedMode") || "general";
-
-    // 2️⃣ Application du thème visuel et des accroches correspondantes
-    applyTheme(savedMode);
-    await applyAccroches(savedMode);
-
-     // Synchronise le sélecteur du mode
+      updateUITexts();
+      }    
+      
+      // Synchronise le sélecteur du mode
       const modeSelect = document.getElementById("themeMode");
       if (modeSelect) {
         modeSelect.value = savedMode;
       }
-
-
-    // 3️⃣ Chargement des questions selon le mode choisi
-    const questions = await fetchQuestions(savedMode);
-
-    // 4️⃣ Démarrage du quiz
-    startQuiz(questions);
+      
+      
+      // 3️⃣ Chargement des questions selon le mode choisi
+      const questions = await fetchQuestions(savedMode);
+      
+      // 4️⃣ Démarrage du quiz
+      startQuiz(questions);
 
     // 5️⃣ Gestion du sélecteur de mode (liste déroulante)
     const select = document.getElementById("themeMode");
