@@ -714,3 +714,17 @@ html[data-theme="full_dark"] .lang-option:hover {
   text-align: center;
 }
 
+/* couleur d'ecriture des medailles en mode full dark */
+html[data-theme="full_dark"] .rank-gold,
+html[data-theme="full_dark"] .rank-silver,
+html[data-theme="full_dark"] .rank-bronze {
+  color: #3a3a3a !important;
+  text-shadow: none !important;
+}
+
+/* Footer en mode Full Dark */
+html[data-theme="full_dark"] footer {
+  background: #1b1b1b !important;
+  border-top: 1px solid #2a2a2a;
+}
+
