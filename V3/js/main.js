@@ -453,7 +453,7 @@ async function loadRanking() {
   const list = document.getElementById("rankingList");
   if (!list) return;
 
-  const ui = window.TEXTS?.ranking || {};
+  const ui = window.TEXTS?.ui || {};
   const rows = await getRanking();
 
   if (!rows.length) {
