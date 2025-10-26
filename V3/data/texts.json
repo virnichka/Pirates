@@ -1,4 +1,10 @@
 {
+
+  "modes": {
+    "general": "🌞",
+    "fun": "🤪",
+    "full_dark": "🏴‍☠️"
+  }
   
   "defaultLang": "fr",
 
@@ -36,7 +42,6 @@
           "sendSuccess": "✅ Question envoyée avec succès ! Merci 🙌",
           "sendError": "⚠️ Erreur lors de l'envoi. Réessaie plus tard.",
           "networkError": "❌ Une erreur est survenue pendant l'envoi.",
-          "sendButton": "📤 Envoyer",
           "invalidKey": "Clé d’accès invalide ❌",
           "languageLabel": "Langue de la question",
           "explanationLabel": "📝 Explication (optionnelle)",
