@@ -656,10 +656,13 @@ html[data-theme="full_dark"] .lang-option:hover {
   background: var(--bg-color);
   border: 1px solid var(--border-color);
   border-radius: 8px;
-  padding: 0.6rem 1rem;
+  padding: 0.9rem 1rem;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
   font-size: 0.95rem;
+  line-height: 1.35;
 }
 
 @keyframes fadeIn {
