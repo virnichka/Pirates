@@ -222,7 +222,6 @@ document.addEventListener("DOMContentLoaded", () => {
    
      // Mise à jour initiale après restauration
      updateLangEmoji();
-     updateModeEmoji();
    
      // Garde-fous si main.js ajuste le mode juste après le load
      setTimeout(updateModeEmoji, 0);
