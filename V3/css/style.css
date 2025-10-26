@@ -225,54 +225,83 @@ h3 {
 
 
 /* ✅ Chaque bloc du footer (mode, langue, proposer, classement) */
+
+
+
+/* -----------------------------------------------------------
+   🎮🌍📤🏆 Boutons du footer (mode / langue / upload / ranking)
+   ----------------------------------------------------------- */
+
+/* ✅ Footer propre, unifié */
+/* === Footer dock fixe style application === */
+.footer-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly; /* répartition uniforme */
+  align-items: center;
+  background: var(--background-color);
+  padding: 0.6rem 0;
+  border-top: 1px solid var(--border-color);
+  z-index: 9999;
+}
+
+
+
+/* ✅ Chaque bloc du footer (mode, langue, proposer, classement) */
 /* Chaque icône occupe la même place */
 .footer-item {
-  flex: 1;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 48px;            /* zone tactile carrée */
+  height: 48px;
+  flex: 0 0 48px;         /* empêche l'étirement */
 }
 
 
 
 /* Icône au-dessus */
-.footer-item > *:first-child {
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: var(--text-color);
+.footer-item span {
+  font-size: 1.8rem;
+  line-height: 1;
+  pointer-events: none; /* l'emoji ne capture pas le clic */
 }
 
 /* Boutons & selects uniformisés */
 /* Boutons et selects invisibles → zone cliquable large, emoji visible */
 .footer-item select,
 .footer-item button {
-  background: none;
-  border: none;
-  padding: 0;
-  margin: 0;
-  width: 40px; /* zone tactile large invisible */
-  height: 40px;
-  font-size: 1.8rem; /* emoji visible */
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: absolute;
+  inset: 0;               /* recouvre entièrement le bloc */
+  width: 100%;
+  height: 100%;
+  opacity: 0;             /* invisible mais cliquable */
   cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: 0;
+  background: none;
 }
 
 
-.footer-item select:hover,
-.footer-item button:hover {
-  background-color: var(--accent-color);
-  color: #fff;
-}
+/* pas d'effet hover visible sur mobile */
+
 
 
 /* Footer item becomes a positioned container */
 .footer-item {
   position: relative;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  width: 48px;            /* zone tactile carrée */
+  height: 48px;
+  flex: 0 0 48px;         /* empêche l'étirement */
 }
 
 /* The emoji stays visible & centered */
@@ -294,6 +323,10 @@ h3 {
   border: none;
   background: none;
 }
+
+
+
+
 
 
 
