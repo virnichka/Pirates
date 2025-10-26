@@ -693,14 +693,25 @@ html[data-theme="full_dark"] .lang-option:hover {
 .player-name { font-weight: 600; }
 .player-score { opacity: 0.85; }
 
-
 /* bouton activé */
 .btn--active {
   transform: scale(1.1);
   filter: brightness(1.2);
 }
 
+/* === Classement : nouveau style === */
+.ranking-name {
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin-bottom: 0.35rem;
+}
 
+.ranking-meta {
+  font-size: 0.9rem;
+  opacity: 0.9;
+  line-height: 1.3rem;
+  text-align: center;
+}
 
 }
 
