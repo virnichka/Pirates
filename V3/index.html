@@ -12,42 +12,38 @@
 </head>
 
 <body>
-  <!-- 🏷️ En-tête -->
+  <!-- 🏁 En-tête général affiché en permanence -->
   <header>
-    <!-- 🧠 Titre et sous-titre dynamiques -->
     <h1 id="quizTitle" data-i18n="ui.mainTitle"></h1>
-    <p>
-      <em id="quizSubtitle" data-i18n="ui.loading"></em>
-    </p>
-    
+    <p><em id="quizSubtitle" data-i18n="ui.loading"></em></p>
   </header>
 
-  <!-- 🎮 Contenu principal du quiz -->
-  <main>
-    <!-- Question principale -->
-    <h2 id="quizQuestion" data-i18n="ui.loading">...</h2>
+  <!-- 🎮 Écran principal : Quiz -->
+  <div id="screen-quiz">
+    <main>
+      <h2 id="quizQuestion" data-i18n="ui.loading">...</h2>
+      <div id="quizAnswers" class="answers"></div>
+      <button id="nextBtn" onclick="nextQuestion()" data-i18n="ui.nextQuestion" style="display:none;">Suivant</button>
+      <div id="miniCommentaire" class="mini-comment"></div>
+      <button id="restartBtn" onclick="restartQuiz()" style="display:none;" data-i18n="ui.retry">Rejouer</button>
+    </main>
+  </div>
 
-    <!-- Conteneur pour les réponses -->
-    <div id="quizAnswers" class="answers"></div>
+  <!-- 📤 Écran de soumission de questions (initialement masqué) -->
+  <div id="screen-submit" style="display:none;">
+    <section id="proposeSection"></section>
+  </div>
 
-    <!-- 🔹 On place le bouton "Suivant" -->
-    <button id="nextBtn" onclick="nextQuestion()" data-i18n="ui.nextQuestion" style="display:none;">
-      Suivant
-    </button>
-    
-    <!-- 💬 Puis le texte d’explication -->
-    <div id="miniCommentaire" class="mini-comment"></div>
-    
-    <!-- 🔁 Et enfin le bouton Rejouer -->
-    <button id="restartBtn" onclick="restartQuiz()" style="display:none;" data-i18n="ui.retry">
-      Rejouer
-    </button>
+  <!-- 🏆 Écran du classement (initialement masqué) -->
+  <div id="screen-ranking" style="display:none;">
+    <section id="rankingSection">
+      <h2>📊</h2>
+      <ul id="rankingList"></ul>
+    </section>
+  </div>
 
-  </main>
-
-   <!-- ⚙️ Pied de page -->
+  <!-- 🎛️ Barre d'action (mode / langue / proposer / classement) -->
   <footer class="footer-bar">
-    <!-- 🎮 Sélecteur de mode -->
     <div id="mode-selector-footer" class="footer-item">
       <select id="themeMode">
         <option value="general" data-i18n="ui.modeGeneral">Général 🌞</option>
@@ -55,49 +51,29 @@
         <option value="full_dark" data-i18n="ui.modeDark">Full Dark 🏴‍☠️</option>
       </select>
     </div>
-  
-      <!-- 🌍 Sélecteur de langue simplifié -->
-      <div id="lang-selector-footer" class="footer-item">
-        <select id="langSelect">
-          <option value="fr">🇫🇷</option>
-          <option value="en">🇬🇧</option>
-          <option value="es">🇪🇸</option>
-          <option value="ro">🇷🇴</option>
-        </select>
-      </div>
 
-      <!-- 💡 Bouton pour proposer une question -->
-      <div id="proposeContainer" class="footer-item">
-        <button id="proposeBtn" class="propose-btn" data-i18n="ui.submitQuestion">📤</button>
-      </div>
+    <div id="lang-selector-footer" class="footer-item">
+      <select id="langSelect">
+        <option value="fr">🇫🇷</option>
+        <option value="en">🇬🇧</option>
+        <option value="es">🇪🇸</option>
+        <option value="ro">🇷🇴</option>
+      </select>
+    </div>
 
-      <!-- 🏆 Classement -->
-      <div id="rankingContainer" class="footer-item">
-        <button id="rankingBtn" class="propose-btn">🏆</button>
-      </div>
-    
-      <!-- 🧰 Conteneur du futur formulaire envoi question -->
-      <section id="proposeSection" style="display:none;"></section>
+    <div id="proposeContainer" class="footer-item">
+      <button id="proposeBtn" class="propose-btn" data-i18n="ui.submitQuestion">📤</button>
+    </div>
 
-      
-      <!-- 🧰 Conteneur du futur formulaire clasement -->
-      <section id="rankingSection" style="display:none;">
-        <h2>📊</h2>
-      
-        <ul id="rankingList">
-          <!-- Les scores seront insérés ici par JS -->
-        </ul>
-      </section>
-
-    
+    <div id="rankingContainer" class="footer-item">
+      <button id="rankingBtn" class="propose-btn">🏆</button>
+    </div>
   </footer>
 
-
-  <!-- 📎 Scripts (dans le bon ordre !) -->
-  <script src="js/config.js"></script>   <!-- ⚙️ Configuration globale -->
-  <script src="js/api.js"></script>      <!-- 🌐 Communication avec Google Sheets -->
-  <script src="js/ui.js"></script>       <!-- 🎨 Interface utilisateur -->
-  <script src="js/main.js"></script>     <!-- 🚀 Démarrage -->
-  <script src="js/quiz.js"></script>     <!-- 🎮 Logique du quiz -->
+  <script src="js/config.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/quiz.js"></script>
 </body>
 </html>
