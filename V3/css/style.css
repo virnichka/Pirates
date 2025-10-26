@@ -264,10 +264,7 @@ h3 {
   background: none;
 }
 
-
 /* pas d'effet hover visible sur mobile */
-
-
 
 /* Footer item becomes a positioned container */
 .footer-item {
@@ -300,6 +297,10 @@ h3 {
   background: none;
 }
 
+/* Empêche le footer fixe de recouvrir le contenu */
+body {
+  padding-bottom: 80px; /* hauteur du footer + marge */
+}
 
 
 /* -----------------------------------------------------------
