@@ -190,8 +190,19 @@ document.addEventListener("DOMContentLoaded", () => {
 // Screens: #screen-quiz, #screen-submit, #screen-ranking
 // Footer buttons kept as-is: #proposeBtn (📤), #rankingBtn (🏆)
 (function () {
-  function qs(id) { return document.getElementById(id); }
-  function setDisplay(el, show) { if (el) el.style.display = show ? "block" : "none"; }
+   function qs(id) { return document.getElementById(id); }
+   function setDisplay(el, show) { if (el) el.style.display = show ? "block" : "none"; }
+   
+   function updateModeEmoji() {
+     const mode = document.getElementById("themeMode")?.value;
+     const emoji = {
+       general: "🌞",
+       fun: "🤪",
+       full_dark: "🏴‍☠️"
+     }[mode] || "🌞";
+   
+     document.getElementById("modeEmoji").textContent = emoji;
+   }
 
   function showScreen(target) {
     const screens = {
