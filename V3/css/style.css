@@ -30,7 +30,7 @@
 
 /* === Thèmes visuels — Général / Fun / Full Dark === */
 
-/* Thème clair (par défaut) — Mode Général */
+/* Thème  — Mode Général (par défaut) */
 html[data-theme="general"] {
   --bg-color: #ffffff;
   --text-color: #111111;
@@ -221,6 +221,7 @@ h3 {
   padding: 0.6rem 0;
   border-top: 1px solid var(--border-color);
   z-index: 9999;
+background: var(--bg-color);
 }
 
 
