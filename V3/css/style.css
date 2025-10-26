@@ -210,18 +210,18 @@ h3 {
 /* ✅ Footer propre, unifié */
 /* === Footer dock fixe style application === */
 .footer-bar {
-   position: fixed;
-   bottom: 0;
-   left: 0;
-   width: 100%;
-   display: flex;
-   justify-content: space-evenly; /* répartition uniforme */
-   align-items: center;
-   padding: 0.6rem 0;
-   border-top: 1px solid var(--border-color);
-   z-index: 9999;
-   box-shadow: 0 -2px 6px rgba(0,0,0,0.08);
-   background: var(--bg-color);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly; /* répartition uniforme */
+  align-items: center;
+  background: var(--bg-color);
+  padding: 0.6rem 0;
+  border-top: 1px solid var(--border-color);
+  box-shadow: 0 -2px 6px rgba(0,0,0,0.08); /* lisibilité + séparation */
+  z-index: 9999;
 }
 
 
@@ -233,16 +233,16 @@ h3 {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 48px;            /* zone tactile carrée */
-  height: 48px;
-  flex: 0 0 48px;         /* empêche l'étirement */
+  width: 40px;            /* zone tactile carrée */
+  height: 40px;
+  flex: 0 0 40px;         /* empêche l'étirement */
 }
 
 
 
 /* Icône au-dessus */
 .footer-item span {
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   line-height: 1;
   pointer-events: none; /* l'emoji ne capture pas le clic */
 }
@@ -264,7 +264,10 @@ h3 {
   background: none;
 }
 
+
 /* pas d'effet hover visible sur mobile */
+
+
 
 /* Footer item becomes a positioned container */
 .footer-item {
@@ -272,15 +275,15 @@ h3 {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 48px;            /* zone tactile carrée */
-  height: 48px;
-  flex: 0 0 48px;         /* empêche l'étirement */
+  width: 40px;            /* zone tactile carrée */
+  height: 40px;
+  flex: 0 0 40px;         /* empêche l'étirement */
 }
 
 /* The emoji stays visible & centered */
 #modeEmoji,
 .footer-item span {
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   pointer-events: none; /* Emoji does NOT absorb taps */
 }
 
@@ -296,7 +299,6 @@ h3 {
   border: none;
   background: none;
 }
-
 
 
 
