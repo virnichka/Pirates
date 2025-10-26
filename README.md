@@ -75,21 +75,28 @@ Google Sheets (base de données)
 
 ---
 
-## 🔑 Clés d’accès pour proposer une question
+## 🔑 Clés d’accès (pour soumettre une question **et** enregistrer un score)
 
-Les utilisateurs doivent saisir **une clé** définie dans `config.js` :
+Les identités des joueurs ne sont plus stockées dans `config.js`.
+Elles sont désormais centralisées dans la feuille Google Sheets : **`user_keys`**.
 
-```js
-VALID_KEYS = {
-  "INSA": "Gilo",
-  "Juziers": "Simon",
-  ...
-}
-```
+### Feuille : `user_keys`
 
-* La **clé** est saisie par l’utilisateur
-* La **valeur associée** est stockée dans `submitted_by`
-* **But futur** : utiliser la même clé pour identifier les joueurs dans le classement ✅
+| key (privée) | username (nom affiché) | description | actif |
+| ------------ | ---------------------- | ----------- | ----- |
+| INSA         | Gilo                   | ...         | O     |
+| Juziers      | Simon                  | ...         | O     |
+| ...          | ...                    | ...         | O     |
+
+* L’utilisateur entre **sa clé** → jamais affichée publiquement
+* Le site récupère automatiquement le **username** associé
+* Le score et les questions soumises sont **attribués au username**
+
+➡️ Cela permet :
+
+* une identité **stable** dans le classement
+* la gestion des utilisateurs **directement depuis Google Sheets**
+* aucune modification de code pour ajouter / retirer quelqu’un
 
 ---
 
@@ -127,10 +134,12 @@ Le classement :
 const CONFIG = {
   GOOGLE_SCRIPT_URL: "https://script.google.com/macros/s/XXXX/exec",
   QUIZ_LIMIT: 5,
-  FULL_DARK_PASS: "🖕",
-  VALID_KEYS: { ... }
+  FULL_DARK_PASS: "🖕" // mot de passe du mode Full Dark
 };
 ```
+
+> ✅ Les clés ne sont **plus** stockées dans `config.js`.
+> Elles sont désormais chargées dynamiquement depuis la Google Sheet `user_keys`.
 
 ---
 
