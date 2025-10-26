@@ -224,31 +224,6 @@ h3 {
 }
 
 
-/* ✅ Chaque bloc du footer (mode, langue, proposer, classement) */
-
-
-
-/* -----------------------------------------------------------
-   🎮🌍📤🏆 Boutons du footer (mode / langue / upload / ranking)
-   ----------------------------------------------------------- */
-
-/* ✅ Footer propre, unifié */
-/* === Footer dock fixe style application === */
-.footer-bar {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  display: flex;
-  justify-content: space-evenly; /* répartition uniforme */
-  align-items: center;
-  background: var(--background-color);
-  padding: 0.6rem 0;
-  border-top: 1px solid var(--border-color);
-  z-index: 9999;
-}
-
-
 
 /* ✅ Chaque bloc du footer (mode, langue, proposer, classement) */
 /* Chaque icône occupe la même place */
