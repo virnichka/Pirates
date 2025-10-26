@@ -1,4 +1,10 @@
 {
+
+  "chooseMode": "🎮",
+  "modeGeneral": "🌞",
+  "modeFun": "🤪",
+  "modeDark": "🏴‍☠️",
+  
   "defaultLang": "fr",
 
   "fr": {
