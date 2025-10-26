@@ -219,9 +219,9 @@
           "noRanking": "🤷‍♂️ No score yet",
           "wrongAnswersGroup": "🔀 Possible answers",
           "explanationPlaceholder": "Why is this the correct answer? (context, source, etc.)",
-          "questionsLabel": "questions proposées",
-          "lastGameLabel": "Dernière partie",
-          "noScores": "🤷 Aucun score disponible"
+          "questionsLabel": "questions submitted",
+          "lastGameLabel": "Last game",
+          "noScores": "🤷 No scores available"
         },
 
 
@@ -395,9 +395,9 @@
           "noRanking": "🤷‍♂️ Sin resultados",
           "wrongAnswersGroup": "🔀 Respuestas posibles",
           "explanationPlaceholder": "¿Por qué esta respuesta es correcta? (fuente, contexto, etc.)",
-          "questionsLabel": "questions proposées",
-          "lastGameLabel": "Dernière partie",
-          "noScores": "🤷 Aucun score disponible"
+          "questionsLabel": "preguntas enviadas",
+          "lastGameLabel": "Última partida",
+          "noScores": "🤷 No hay puntuaciones disponibles"
         },
 
   "quiz": {
@@ -570,9 +570,9 @@
         "noRanking": "🤷‍♂️ Niciun scor",
         "wrongAnswersGroup": "🔀 Răspunsuri posibile",
         "explanationPlaceholder": "De ce acesta este răspunsul corect? (context, surse, etc.)",
-          "questionsLabel": "questions proposées",
-          "lastGameLabel": "Dernière partie",
-          "noScores": "🤷 Aucun score disponible"
+        "questionsLabel": "întrebări trimise",
+        "lastGameLabel": "Ultimul joc",
+        "noScores": "🤷 Nicio scor disponibil"
       },
 
   "quiz": {
