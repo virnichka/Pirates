@@ -417,6 +417,17 @@ h1 {
 }
 
 
+.answerBtn {
+  box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.answerBtn:active {
+  transform: scale(0.97);
+  box-shadow: 0 0 0 rgba(0,0,0,0);
+}
+
+
 /* --- États correct / incorrect universels --- */
 .answerBtn.correct {
   background-color: #2ecc71 !important;
@@ -430,6 +441,8 @@ h1 {
   border-color: #c0392b !important;
   color: #fff !important;
 }
+
+
 
 /* --- Désactivation --- */
 .answerBtn:disabled {
