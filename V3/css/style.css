@@ -641,6 +641,7 @@ html[data-theme="full_dark"] .lang-option:hover {
   margin-bottom: 1rem;
   font-size: 1.35rem;
   color: var(--text-color);
+  text-align: center; 
 }
 
 #rankingList {
