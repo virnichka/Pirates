@@ -62,6 +62,8 @@ window.addEventListener("load", async () => {
       const modeSelect = document.getElementById("themeMode");
       if (modeSelect) {
         modeSelect.value = savedMode;
+        // ✅ Mise à jour correcte de l’emoji *après* restauration du mode
+        modeSelect.dispatchEvent(new Event("change"));
       }
       
       // 3️⃣ Chargement des questions selon le mode choisi
