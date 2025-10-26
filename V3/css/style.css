@@ -723,25 +723,9 @@ html[data-theme="full_dark"] .rank-bronze {
 }
 
 /* Footer en mode Full Dark */
-/* -----------------------------------------------------------
-   🌑 Footer amélioré en mode Full Dark (détaché & lisible)
-   ----------------------------------------------------------- */
-html[data-theme="full_dark"] .footer-bar {
-  background: #1a1a1a; /* un cran plus clair que #121212 → distinction subtile */
-  border-top: 1px solid #2c2c2c; /* ligne plus nette */
-  box-shadow: 0 -4px 14px rgba(0,0,0,0.35); /* profondeur douce, naturelle */
-  backdrop-filter: blur(6px); /* optionnel : effet "verre sombre" moderne */
+/* Footer en mode Full Dark */
+html[data-theme="full_dark"] footer {
+  background: #1b1b1b !important;
+  border-top: 1px solid #2a2a2a;
 }
-
-/* Icônes plus lisibles en full_dark */
-html[data-theme="full_dark"] .footer-item span {
-  color: #e8e8e8; /* gris doux → pas blanc → mieux intégré */
-  opacity: 0.92;
-  transition: opacity 0.2s ease;
-}
-
-html[data-theme="full_dark"] .footer-item:hover span {
-  opacity: 1;
-}
-
 
