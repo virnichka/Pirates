@@ -200,7 +200,7 @@ document.addEventListener("DOMContentLoaded", () => {
        general: "🌞",
        fun: "🤪",
        full_dark: "🏴‍☠️"
-     }[mode] || "🌞";
+     }[mode] || "🎮";
    
      document.getElementById("modeEmoji").textContent = emoji;
    }
