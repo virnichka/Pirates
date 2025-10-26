@@ -182,6 +182,59 @@ document.addEventListener("DOMContentLoaded", () => {
       console.error("Erreur lors du changement de langue :", err);
     }
   });
+}
+                         
+                         
+// === UI screen toggling (vanilla, minimal) ===
+// Handles the three exclusive screens without changing existing API / quiz logic.
+// Screens: #screen-quiz, #screen-submit, #screen-ranking
+// Footer buttons kept as-is: #proposeBtn (📤), #rankingBtn (🏆)
+
+(function () {
+  function qs(id) { return document.getElementById(id); }
+  function setDisplay(el, show) { if (el) el.style.display = show ? "block" : "none"; }
+
+  function showScreen(target) {
+    const screens = {
+      quiz: qs("screen-quiz"),
+      submit: qs("screen-submit"),
+      ranking: qs("screen-ranking"),
+    };
+    const btnSubmit = qs("proposeBtn");
+    const btnRanking = qs("rankingBtn");
+    if (!screens.quiz || !btnSubmit || !btnRanking) return;
+
+    // If user clicks the already active button → go back to quiz
+    if (target !== "quiz") {
+      const isSubmitActive = btnSubmit.classList.contains("btn--active");
+      const isRankingActive = btnRanking.classList.contains("btn--active");
+      if ((target === "submit" && isSubmitActive) || (target === "ranking" && isRankingActive)) {
+        target = "quiz";
+      }
+    }
+
+    // Show one, hide the others
+    setDisplay(screens.quiz, target === "quiz");
+    setDisplay(screens.submit, target === "submit");
+    setDisplay(screens.ranking, target === "ranking");
+
+    // Update active state on footer buttons (mode/lang untouched)
+    btnSubmit.classList.toggle("btn--active", target === "submit");
+    btnRanking.classList.toggle("btn--active", target === "ranking");
+  }
+
+  // Expose for reuse if needed elsewhere
+  window.showScreen = showScreen;
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const btnSubmit = qs("proposeBtn");
+    const btnRanking = qs("rankingBtn");
+    if (btnSubmit) btnSubmit.addEventListener("click", function () { showScreen("submit"); });
+    if (btnRanking) btnRanking.addEventListener("click", function () { showScreen("ranking"); });
+
+    // Default: Quiz screen visible on load
+    showScreen("quiz");
+  });
 });
 
 
