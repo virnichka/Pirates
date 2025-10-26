@@ -190,7 +190,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // Screens: #screen-quiz, #screen-submit, #screen-ranking
 // Footer buttons kept as-is: #proposeBtn (📤), #rankingBtn (🏆)
 
-(function () {
+function () {
   function qs(id) { return document.getElementById(id); }
   function setDisplay(el, show) { if (el) el.style.display = show ? "block" : "none"; }
 
