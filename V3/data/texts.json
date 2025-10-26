@@ -1,10 +1,4 @@
 {
-
-  "modes": {
-    "general": "🌞",
-    "fun": "🤪",
-    "full_dark": "🏴‍☠️"
-  }
   
   "defaultLang": "fr",
 
@@ -14,6 +8,9 @@
           "mainTitle": "Quiz Culture Générale 🌞",
           "langBtn": "Changer de langue",
           "chooseMode": "🎮",
+          "modeGeneral": "🌞",
+          "modeFun": "🤪",
+          "modeDark": "🏴‍☠️",
           "submitQuestion": "📤",
           "toggleDark": "Basculer en mode sombre",
           "toggleLight": "Basculer en mode clair",
@@ -39,6 +36,7 @@
           "sendSuccess": "✅ Question envoyée avec succès ! Merci 🙌",
           "sendError": "⚠️ Erreur lors de l'envoi. Réessaie plus tard.",
           "networkError": "❌ Une erreur est survenue pendant l'envoi.",
+          "sendButton": "📤 Envoyer",
           "invalidKey": "Clé d’accès invalide ❌",
           "languageLabel": "Langue de la question",
           "explanationLabel": "📝 Explication (optionnelle)",
@@ -184,6 +182,9 @@
           "mainTitle": "General Knowledge Quiz 🌞",
           "langBtn": "Change language",
           "chooseMode": "🎮",
+          "modeGeneral": "🌞",
+          "modeFun": "🤪",
+          "modeDark": "🏴‍☠️",
           "submitQuestion": "📤",
           "toggleDark": "Switch to dark mode",
           "toggleLight": "Switch to light mode",
@@ -357,6 +358,9 @@
           "mainTitle": "Cuestionario de Cultura General 🌞",
           "langBtn": "Cambiar idioma",
           "chooseMode": "🎮",
+          "modeGeneral": "🌞",
+          "modeFun": "🤪",
+          "modeDark": "🏴‍☠️",
           "submitQuestion": "📤",
           "toggleDark": "Cambiar a modo oscuro",
           "toggleLight": "Cambiar a modo claro",
@@ -529,6 +533,9 @@
         "mainTitle": "Test de Cultură Generală 🌞",
         "langBtn": "Schimbă limba",
         "chooseMode": "🎮",
+        "modeGeneral": "🌞",
+        "modeFun": "🤪",
+        "modeDark": "🏴‍☠️",
         "submitQuestion": "📤",
         "toggleDark": "Comută pe modul întunecat",
         "toggleLight": "Comută pe modul luminos",
