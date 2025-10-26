@@ -189,8 +189,9 @@ document.addEventListener("DOMContentLoaded", () => {
 // Handles the three exclusive screens without changing existing API / quiz logic.
 // Screens: #screen-quiz, #screen-submit, #screen-ranking
 // Footer buttons kept as-is: #proposeBtn (📤), #rankingBtn (🏆)
-
-function () {
+                 
+// === UI screen toggling (vanilla, minimal) ===
+(function () {
   function qs(id) { return document.getElementById(id); }
   function setDisplay(el, show) { if (el) el.style.display = show ? "block" : "none"; }
 
@@ -204,7 +205,7 @@ function () {
     const btnRanking = qs("rankingBtn");
     if (!screens.quiz || !btnSubmit || !btnRanking) return;
 
-    // If user clicks the already active button → go back to quiz
+    // If user clicks the already active button → back to quiz
     if (target !== "quiz") {
       const isSubmitActive = btnSubmit.classList.contains("btn--active");
       const isRankingActive = btnRanking.classList.contains("btn--active");
@@ -213,29 +214,25 @@ function () {
       }
     }
 
-    // Show one, hide the others
     setDisplay(screens.quiz, target === "quiz");
     setDisplay(screens.submit, target === "submit");
     setDisplay(screens.ranking, target === "ranking");
 
-    // Update active state on footer buttons (mode/lang untouched)
     btnSubmit.classList.toggle("btn--active", target === "submit");
     btnRanking.classList.toggle("btn--active", target === "ranking");
   }
 
-  // Expose for reuse if needed elsewhere
   window.showScreen = showScreen;
 
   document.addEventListener("DOMContentLoaded", function () {
     const btnSubmit = qs("proposeBtn");
     const btnRanking = qs("rankingBtn");
-    if (btnSubmit) btnSubmit.addEventListener("click", function () { showScreen("submit"); });
-    if (btnRanking) btnRanking.addEventListener("click", function () { showScreen("ranking"); });
 
-    // Default: Quiz screen visible on load
+    if (btnSubmit) btnSubmit.addEventListener("click", () => showScreen("submit"));
+    if (btnRanking) btnRanking.addEventListener("click", () => showScreen("ranking"));
+
     showScreen("quiz");
   });
-});
-
+})();
 
 
