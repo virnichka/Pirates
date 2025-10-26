@@ -165,7 +165,6 @@ async function fetchUserKeys() {
   const res = await fetch(url);
   const data = await res.json();
   window.USER_KEYS = data || {};
-  console.log("🔑 USER_KEYS chargées :", window.USER_KEYS);
 }
 
 
