@@ -193,10 +193,6 @@ document.addEventListener("DOMContentLoaded", () => {
    function qs(id) { return document.getElementById(id); }
    function setDisplay(el, show) { if (el) el.style.display = show ? "block" : "none"; }
 
-   document.getElementById("themeMode")?.addEventListener("change", updateModeEmoji);
-   document.getElementById("langSelect")?.addEventListener("change", updateLangEmoji);
-
-   
    //  mise a jour de l'emoji mode
    function updateModeEmoji() {
      const mode = document.getElementById("themeMode")?.value;
@@ -216,7 +212,11 @@ document.addEventListener("DOMContentLoaded", () => {
      document.getElementById("langEmoji").textContent = map[lang] || "🌐";
    }
 
-   document.getElementById("langSelect").addEventListener("change", updateLangEmoji);
+     // ✅ Écouteur + mise à jour initiale pour le mode
+   document.getElementById("langSelect")?.addEventListener("change", updateLangEmoji);
+  updateLangEmoji();
+  document.getElementById("themeMode")?.addEventListener("change", updateModeEmoji);
+  updateModeEmoji();
    updateLangEmoji();
 
 
