@@ -465,21 +465,21 @@ async function loadRanking() {
     .map((r, index) => {
       const [name, points, percent, lastGame, questionsProposed] = r;
 
-      // 🏅 Médailles podium
+      // 🏅 Médailles podium (uniquement top 3)
       const medals = ["🥇", "🥈", "🥉"];
-      const medal = medals[index] || "";
+      const medal = index < 3 ? medals[index] : "";
 
-      // 🎨 Classes podium CSS
+      // 🎨 Classes podium (fond spécial pour top 3)
       const rankClass =
         index === 0 ? "rank-gold" :
         index === 1 ? "rank-silver" :
         index === 2 ? "rank-bronze" : "";
 
-      // 🌍 Texte i18n
+      // 🌍 Textes depuis i18n
       const qLabel = ui.questionsLabel || "questions proposées";
       const lastLabel = ui.lastGameLabel || "Dernière partie";
 
-      // 📅 Format date selon la langue
+      // 📅 Format date selon la langue sélectionnée
       const formattedDate = new Date(lastGame).toLocaleDateString(window.currentLang);
 
       return `
@@ -494,6 +494,7 @@ async function loadRanking() {
     })
     .join("");
 }
+
 
 
 
