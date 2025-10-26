@@ -133,6 +133,15 @@ html[data-theme="full_dark"] .subtitle {
   color: var(--text-color); /* hérite de #f0f0f0 défini plus haut */
 }
 
+html[data-theme="full_dark"] body {
+  background-color: #121212; /* déjà ton fond principal */
+  background-image:
+    radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    radial-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 4px 4px, 8px 8px; /* grain fin moderne */
+  background-position: 0 0, 2px 2px; /* évite motifs répétitifs */
+}
+
 
 
 /* -----------------------------------------------------------
