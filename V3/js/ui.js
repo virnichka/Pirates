@@ -204,6 +204,16 @@ document.addEventListener("DOMContentLoaded", () => {
      document.getElementById("modeEmoji").textContent = emoji;
    }
 
+   function updateLangEmoji() {
+  const lang = document.getElementById("langSelect")?.value;
+  const map = { fr: "🇫🇷", en: "🇬🇧", es: "🇪🇸", ro: "🇷🇴" };
+  document.getElementById("langEmoji").textContent = map[lang] || "🌐";
+}
+
+document.getElementById("langSelect").addEventListener("change", updateLangEmoji);
+updateLangEmoji();
+
+
   function showScreen(target) {
     const screens = {
       quiz: qs("screen-quiz"),
