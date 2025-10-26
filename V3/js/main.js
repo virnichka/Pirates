@@ -453,46 +453,47 @@ async function loadRanking() {
   const list = document.getElementById("rankingList");
   if (!list) return;
 
-  list.innerHTML = `<li>⏳ Chargement...</li>`;
-
+  const ui = window.TEXTS?.ranking || {};
   const rows = await getRanking();
 
   if (!rows.length) {
-    list.innerHTML = `<li>🤷‍♂️ Aucun score trouvé</li>`;
+    list.innerHTML = `<li>${ui.noScores || "🤷 Aucun score disponible"}</li>`;
     return;
   }
 
-  // Affichage
-list.innerHTML = rows
-  .map((r, index) => {
-    const [name, score, total, percent] = r;
+  list.innerHTML = rows
+    .map((r, index) => {
+      const [name, points, percent, lastGame, questionsProposed] = r;
 
-    // 🧮 convertit 0.8 → 80%
-    const pct =
-      typeof percent === "number"
-        ? Math.round(percent * 100) + "%"
-        : String(percent).includes("%")
-        ? percent
-        : percent + "%";
+      // 🏅 Médailles podium
+      const medals = ["🥇", "🥈", "🥉"];
+      const medal = medals[index] || "";
 
-    // 🥇 🥈 🥉 Médailles
-    const medals = ["🥇", "🥈", "🥉"];
-    const medal = medals[index] || "";
+      // 🎨 Classes podium CSS
+      const rankClass =
+        index === 0 ? "rank-gold" :
+        index === 1 ? "rank-silver" :
+        index === 2 ? "rank-bronze" : "";
 
-    // Classe podium
-    let rankClass = "";
-    if (index === 0) rankClass = "rank-gold";
-    else if (index === 1) rankClass = "rank-silver";
-    else if (index === 2) rankClass = "rank-bronze";
+      // 🌍 Texte i18n
+      const qLabel = ui.questionsLabel || "questions proposées";
+      const lastLabel = ui.lastGameLabel || "Dernière partie";
 
-    return `
-      <li class="${rankClass}">
-        <span class="player-name">${medal} ${name}</span>
-        <span class="player-score">${score} ✅ — ${pct}</span>
-      </li>`;
-  })
-  .join("");
+      // 📅 Format date selon la langue
+      const formattedDate = new Date(lastGame).toLocaleDateString(window.currentLang);
 
+      return `
+        <li class="${rankClass}">
+          <div class="ranking-name">${medal} ${name}</div>
+          <div class="ranking-meta">
+            ${points} pts — ${percent} — ${questionsProposed} ${qLabel}<br>
+            ${lastLabel} : ${formattedDate}
+          </div>
+        </li>
+      `;
+    })
+    .join("");
 }
+
 
 
