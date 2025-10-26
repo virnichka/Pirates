@@ -215,21 +215,14 @@ h3 {
   left: 0;
   width: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly; /* répartition uniforme */
   align-items: center;
   background: var(--background-color);
   padding: 0.6rem 0;
   border-top: 1px solid var(--border-color);
   z-index: 9999;
 }
-/* on centre la rangée */
-  align-items: center;
-  padding: 0.8rem 1rem;
-  border-top: 1px solid var(--border-color);
-  column-gap: 1rem; /* espace horizontal régulier */
-  row-gap: 1rem;    /* espace vertical si ça wrap */
-  flex-wrap: wrap;  /* peut passer sur 2 lignes en petit écran */
-}
+
 
 /* ✅ Chaque bloc du footer (mode, langue, proposer, classement) */
 /* Chaque icône occupe la même place */
