@@ -210,18 +210,19 @@ h3 {
 /* ✅ Footer propre, unifié */
 /* === Footer dock fixe style application === */
 .footer-bar {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  display: flex;
-  justify-content: space-evenly; /* répartition uniforme */
-  align-items: center;
-  background: var(--background-color);
-  padding: 0.6rem 0;
-  border-top: 1px solid var(--border-color);
-  z-index: 9999;
-background: var(--bg-color);
+   position: fixed;
+   bottom: 0;
+   left: 0;
+   width: 100%;
+   display: flex;
+   justify-content: space-evenly; /* répartition uniforme */
+   align-items: center;
+   background: var(--background-color);
+   padding: 0.6rem 0;
+   border-top: 1px solid var(--border-color);
+   z-index: 9999;
+   box-shadow: 0 -2px 6px rgba(0,0,0,0.08);
+   background: var(--bg-color);
 }
 
 
