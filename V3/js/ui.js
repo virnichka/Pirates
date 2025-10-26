@@ -205,13 +205,13 @@ document.addEventListener("DOMContentLoaded", () => {
    }
 
    function updateLangEmoji() {
-  const lang = document.getElementById("langSelect")?.value;
-  const map = { fr: "🇫🇷", en: "🇬🇧", es: "🇪🇸", ro: "🇷🇴" };
-  document.getElementById("langEmoji").textContent = map[lang] || "🌐";
-}
+     const lang = document.getElementById("langSelect")?.value;
+     const map = { fr: "🇫🇷", en: "🇬🇧", es: "🇪🇸", ro: "🇷🇴" };
+     document.getElementById("langEmoji").textContent = map[lang] || "🌐";
+   }
 
-document.getElementById("langSelect").addEventListener("change", updateLangEmoji);
-updateLangEmoji();
+   document.getElementById("langSelect").addEventListener("change", updateLangEmoji);
+   updateLangEmoji();
 
 
   function showScreen(target) {
