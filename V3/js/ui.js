@@ -213,11 +213,14 @@ document.addEventListener("DOMContentLoaded", () => {
    }
 
      // ✅ Écouteur + mise à jour initiale pour le mode
-   document.getElementById("langSelect")?.addEventListener("change", updateLangEmoji);
-  updateLangEmoji();
-  document.getElementById("themeMode")?.addEventListener("change", updateModeEmoji);
-  updateModeEmoji();
-   updateLangEmoji();
+   document.addEventListener("DOMContentLoaded", () => {
+     document.getElementById("langSelect")?.addEventListener("change", updateLangEmoji);
+     document.getElementById("themeMode")?.addEventListener("change", updateModeEmoji);
+   
+     updateLangEmoji();
+     updateModeEmoji();
+   });
+
 
 
   function showScreen(target) {
