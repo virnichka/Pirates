@@ -192,7 +192,8 @@ document.addEventListener("DOMContentLoaded", () => {
 (function () {
    function qs(id) { return document.getElementById(id); }
    function setDisplay(el, show) { if (el) el.style.display = show ? "block" : "none"; }
-   
+
+   //  mise a jour de l'emoji mode
    function updateModeEmoji() {
      const mode = document.getElementById("themeMode")?.value;
      const emoji = {
@@ -203,7 +204,8 @@ document.addEventListener("DOMContentLoaded", () => {
    
      document.getElementById("modeEmoji").textContent = emoji;
    }
-
+   
+   // 🌍 mise a jour de l'emoji langue
    function updateLangEmoji() {
      const lang = document.getElementById("langSelect")?.value;
      const map = { fr: "🇫🇷", en: "🇬🇧", es: "🇪🇸", ro: "🇷🇴" };
