@@ -212,22 +212,24 @@ document.addEventListener("DOMContentLoaded", () => {
      document.getElementById("langEmoji").textContent = map[lang] || "🌐";
    }
 
-   // ⭐ Écouteurs ajoutés au DOMContentLoaded pour garantir que le mode a été initialisé par main.js
-   document.addEventListener("DOMContentLoaded", () => {
+  // ⭐ Initialisation APRÈS que main.js ait restauré le mode et la langue
+   window.addEventListener("load", () => {
      const langSelect = document.getElementById("langSelect");
      const modeSelect = document.getElementById("themeMode");
    
      if (langSelect) langSelect.addEventListener("change", updateLangEmoji);
      if (modeSelect) modeSelect.addEventListener("change", updateModeEmoji);
    
-     // 🟢 Mise à jour correcte après initialisation du mode par main.js
+     // Mise à jour initiale après restauration
      updateLangEmoji();
      updateModeEmoji();
+   
+     // Garde-fous si main.js ajuste le mode juste après le load
+     setTimeout(updateModeEmoji, 0);
+     setTimeout(updateModeEmoji, 100);
    });
 
-
-
-
+   
   function showScreen(target) {
     const screens = {
       quiz: qs("screen-quiz"),
