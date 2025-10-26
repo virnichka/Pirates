@@ -182,15 +182,13 @@ document.addEventListener("DOMContentLoaded", () => {
       console.error("Erreur lors du changement de langue :", err);
     }
   });
-}
+});
                          
                          
 // === UI screen toggling (vanilla, minimal) ===
 // Handles the three exclusive screens without changing existing API / quiz logic.
 // Screens: #screen-quiz, #screen-submit, #screen-ranking
 // Footer buttons kept as-is: #proposeBtn (📤), #rankingBtn (🏆)
-                 
-// === UI screen toggling (vanilla, minimal) ===
 (function () {
   function qs(id) { return document.getElementById(id); }
   function setDisplay(el, show) { if (el) el.style.display = show ? "block" : "none"; }
