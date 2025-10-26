@@ -274,13 +274,33 @@ h3 {
 }
 
 
-.footer-item select {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  cursor: pointer;
+/* Footer item becomes a positioned container */
+.footer-item {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
+/* The emoji stays visible & centered */
+#modeEmoji,
+.footer-item span {
+  font-size: 1.8rem;
+  pointer-events: none; /* Emoji does NOT absorb taps */
+}
+
+/* The <select> becomes the clickable area, but invisible */
+.footer-item select {
+  position: absolute;
+  inset: 0; /* stretches to cover the emoji */
+  opacity: 0; /* invisible */
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: none;
+  background: none;
+}
 
 
 
