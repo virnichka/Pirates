@@ -203,15 +203,26 @@ h3 {
 
 
 
-
 /* -----------------------------------------------------------
    🎮🌍📤🏆 Boutons du footer (mode / langue / upload / ranking)
    ----------------------------------------------------------- */
 
 /* ✅ Footer propre, unifié */
+/* === Footer dock fixe style application === */
 .footer-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
   display: flex;
-  justify-content: center; /* on centre la rangée */
+  justify-content: space-around;
+  align-items: center;
+  background: var(--background-color);
+  padding: 0.6rem 0;
+  border-top: 1px solid var(--border-color);
+  z-index: 9999;
+}
+/* on centre la rangée */
   align-items: center;
   padding: 0.8rem 1rem;
   border-top: 1px solid var(--border-color);
@@ -221,16 +232,14 @@ h3 {
 }
 
 /* ✅ Chaque bloc du footer (mode, langue, proposer, classement) */
+/* Chaque icône occupe la même place */
 .footer-item {
+  flex: 1;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.4rem;
-  flex: 0 0 150px;   /* largeur FIXE harmonisée */
-  max-width: 150px;  /* empêche de s’étirer */
-  text-align: center;
 }
+
 
 
 /* Icône au-dessus */
@@ -241,27 +250,29 @@ h3 {
 }
 
 /* Boutons & selects uniformisés */
+/* Boutons et selects invisibles → zone cliquable large, emoji visible */
 .footer-item select,
 .footer-item button {
-  width: 100%;
-  padding: 0.45rem 0.7rem;
-  border-radius: 8px;
-  border: 1px solid var(--border-color);
-  background: var(--button-bg);
-  color: var(--button-text);
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  width: 40px; /* zone tactile large invisible */
+  height: 40px;
+  font-size: 1.8rem; /* emoji visible */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  font-size: 0.95rem;
-  height: 38px;
-  text-align: center; /* ✅ Centre le texte */
-  appearance: none;   /* ✅ Retire l’alignement natif du select */
-  transition: background-color 0.3s ease, color 0.3s ease;
 }
+
 
 .footer-item select:hover,
 .footer-item button:hover {
   background-color: var(--accent-color);
   color: #fff;
 }
+
 
 
 
