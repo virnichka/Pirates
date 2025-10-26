@@ -655,6 +655,12 @@ html[data-theme="full_dark"] .lang-option:hover {
 .player-score { opacity: 0.85; }
 
 
+/* bouton activé */
+.btn--active {
+  transform: scale(1.1);
+  filter: brightness(1.2);
+}
+
 
 
 }
