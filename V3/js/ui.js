@@ -216,8 +216,6 @@ document.addEventListener("DOMContentLoaded", () => {
    window.addEventListener("load", () => {
      const langSelect = document.getElementById("langSelect");
      const modeSelect = document.getElementById("themeMode");
-
-      modeSelect.dispatchEvent(new Event("change"));
    
      if (langSelect) langSelect.addEventListener("change", updateLangEmoji);
      if (modeSelect) modeSelect.addEventListener("change", updateModeEmoji);
